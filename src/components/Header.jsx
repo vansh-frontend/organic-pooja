@@ -10,7 +10,7 @@ const Header = () => {
         <IconPhoneCall size={20} className="text-[#ffc900]" />
         <p className="text-sm font-bold">
           Call us at:
-          <a href="tel:+1234567890" className="font-bold text-white cursor-pointer"> +123 456 7890</a>
+          <a href="tel:+918171924503" className="font-bold text-white cursor-pointer"> +91 8171924503</a>
         </p>
       </div>
 
@@ -25,12 +25,12 @@ const Header = () => {
         <div className="flex items-center justify-center flex-1">
           <NavLink to="/" className="flex items-center space-x-4">
             <img 
-              src="img/pooja 2.png"
+              src="img/vansh 2.png"
               alt="Logo"
               className="object-cover w-12 h-12 rounded-full"
             />
             <h1 className="text-2xl font-semibold tracking-wide text-black uppercase">
-              Organic by Vansh
+              Organic by vansh
             </h1>
           </NavLink>
         </div>
