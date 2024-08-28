@@ -25,7 +25,7 @@ const Header = () => {
         <div className="flex items-center justify-center flex-1">
           <NavLink to="/" className="flex items-center space-x-4">
             <img 
-              src="img/vansh 2.png"
+              src="img/pooja 2.png"
               alt="Logo"
               className="object-cover w-12 h-12 rounded-full"
             />
