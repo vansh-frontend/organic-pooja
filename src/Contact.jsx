@@ -1,5 +1,3 @@
-// Contact.js
-
 const Contact = () => {
     return (
       <div className="flex items-center justify-center min-h-screen px-4 py-8 bg-white sm:px-6 lg:px-8">
@@ -20,12 +18,12 @@ const Contact = () => {
                 type="text"
                 id="name"
                 name="name"
-                className="w-full p-4 text-gray-900 transition-all duration-300 bg-gray-100 border border-gray-300 rounded-lg outline-none focus:border-black peer"
+                className="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg outline-none peer"
                 required
               />
               <label
                 htmlFor="name"
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 transform peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-black peer-focus:text-sm"
+                className="absolute text-gray-500 transition-all duration-300 transform -translate-y-1/2 top-1/2 left-4 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:-top-4 peer-focus:text-gray-900 peer-focus:text-sm"
               >
                 Your Name
               </label>
@@ -35,12 +33,12 @@ const Contact = () => {
                 type="email"
                 id="email"
                 name="email"
-                className="w-full p-4 text-gray-900 transition-all duration-300 bg-gray-100 border border-gray-300 rounded-lg outline-none focus:border-black peer"
+                className="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg outline-none peer"
                 required
               />
               <label
                 htmlFor="email"
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 transform peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-black peer-focus:text-sm"
+                className="absolute text-gray-500 transition-all duration-300 transform -translate-y-1/2 top-1/2 left-4 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:-top-4 peer-focus:text-gray-900 peer-focus:text-sm"
               >
                 Your Email
               </label>
@@ -49,12 +47,12 @@ const Contact = () => {
               <textarea
                 id="message"
                 name="message"
-                className="w-full h-32 p-4 text-gray-900 transition-all duration-300 bg-gray-100 border border-gray-300 rounded-lg outline-none focus:border-black peer"
+                className="w-full h-32 p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg outline-none peer"
                 required
               ></textarea>
               <label
                 htmlFor="message"
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 transform peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-black peer-focus:text-sm"
+                className="absolute text-gray-500 transition-all duration-300 transform -translate-y-1/2 top-1/2 left-4 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:-top-4 peer-focus:text-gray-900 peer-focus:text-sm"
               >
                 Your Message
               </label>
