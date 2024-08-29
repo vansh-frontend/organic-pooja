@@ -5,27 +5,27 @@ import './Products.css'; // Import the CSS file for styling
 const products = [
   {
     id: 1,
-    name: 'Product 1',
+    name: 'Face Serum',
     image: 'img/pro1.jpg',
     price: '₹99.99',
   },
   {
     id: 2,
-    name: 'Product 2',
+    name: 'Rice Water Spray',
     image: 'img/pro2.jpg',
     price: '₹149.99',
   },
 
   {
     id: 3,
-    name: 'Product 3',
+    name: 'Rice Water Serum',
     image: 'img/pro3.jpg',
     price: '₹149.99',
   },
 
   {
     id: 4,
-    name: 'Product 4',
+    name: 'Shampoo & Conditioner',
     image: 'img/pro4.jpg',
     price: '₹149.99',
   },
@@ -33,28 +33,28 @@ const products = [
 
   {
     id: 5,
-    name: 'Product 5',
+    name: 'Face Serum Gold',
     image: 'img/pro5.jpg',
     price: '₹149.99',
   },
   
   {
     id: 6,
-    name: 'Product 6',
+    name: 'Face Serum',
     image: 'img/pro1.jpg',
     price: '₹149.99',
   },
   
   {
     id: 7,
-    name: 'Product 7',
+    name: 'Rice Water Spray',
     image: 'img/pro2.jpg',
     price: '₹149.99',
   },
   
   {
     id: 8,
-    name: 'Product 8',
+    name: 'Rice Water Serum',
     image: 'img/pro3.jpg',
     price: '₹149.99',
   },
