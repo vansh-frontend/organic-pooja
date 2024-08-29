@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import {ThemeProvider} from "styled-components";
+import Products from "./Products";
   const theme = {
     colors: {
       heading: "rgb(24 24 29)",
@@ -41,6 +42,7 @@ const App = () => {
       <Route path="/services" element={<Services></Services>}></Route>
       <Route path="/book" element={<Book></Book>}></Route>
       <Route path="/contact" element={<Contact></Contact>}></Route>
+      <Route path="/products" element={<Products></Products>}></Route>
     </Routes>
     <Footer></Footer>
     </BrowserRouter>
