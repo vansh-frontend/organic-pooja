@@ -1,0 +1,149 @@
+/* Products.css */
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+  }
+  
+  .product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  
+  .product-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .product-image-container {
+    position: relative;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .product-card:hover .product-image {
+    transform: scale(1.1);
+  }
+  
+  .product-info {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .product-name {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #333;
+  }
+  
+  .product-price {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .product-card:hover .overlay {
+    opacity: 1;
+  }
+  
+  .overlay-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+  
+  .overlay-price {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .overlay-button {
+    background-color: #ff9900;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .overlay-button:hover {
+    background-color: #cc7a00;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .products-container {
+      gap: 15px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .products-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .product-card {
+      width: 90%;
+    }
+  
+    .product-image {
+      height: 180px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product-name {
+      font-size: 1rem;
+    }
+  
+    .product-price {
+      font-size: 0.9rem;
+    }
+  
+    .overlay-title {
+      font-size: 1.2rem;
+    }
+  
+    .overlay-price {
+      font-size: 1rem;
+    }
+  
+    .overlay-button {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+  }
+  
