@@ -118,12 +118,22 @@ const Navbar = ({ position }) => {
       </li>
       <li>
         <NavLink
-          to="/book"
+          to="/contact"
           className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
           onClick={toggleMenu}
         >
           <IconBook size={20} />
           <span className="ml-2">Contact</span>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/products"
+          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
+          onClick={toggleMenu}
+        >
+          <IconBook size={20} />
+          <span className="ml-2">products</span>
         </NavLink>
       </li>
       <li
