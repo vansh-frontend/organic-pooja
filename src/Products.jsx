@@ -38,6 +38,28 @@ const products = [
     price: '₹149.99',
   },
   
+  {
+    id: 6,
+    name: 'Product 2',
+    image: 'img/pro1.jpg',
+    price: '₹149.99',
+  },
+  
+  {
+    id: 7,
+    name: 'Product 2',
+    image: 'img/pro2.jpg',
+    price: '₹149.99',
+  },
+  
+  {
+    id: 8,
+    name: 'Product 2',
+    image: 'img/pro3.jpg',
+    price: '₹149.99',
+  },
+  
+  
 ];
 
 const Products = () => {
