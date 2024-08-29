@@ -1,7 +1,26 @@
-// footer
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
 
 const Footer = () => {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) { // Adjust this value based on when you want the button to appear
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <>
       <footer className="relative pb-16 text-white bg-black">
@@ -132,7 +151,7 @@ const Footer = () => {
                 <FaInstagram className="text-xl" />
               </a>
             </div>
-            <p className="text-xs">&copy; 2023 organic by vansh Skin Clinic. All rights reserved.</p>
+            <p className="text-xs">&copy; 2023 Organic by Vansh Skin Clinic. All rights reserved.</p>
           </div>
         </div>
       </footer>
@@ -152,6 +171,19 @@ const Footer = () => {
           <span className="flex-grow text-center">Message Us on WhatsApp</span>
         </a>
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed z-50 flex items-center justify-center w-12 h-12 transition-all duration-300 ease-in-out bg-white rounded-full shadow-lg bottom-4 right-4 bg-opacity-30 hover:bg-opacity-50"
+          aria-label="Scroll to top"
+        >
+          <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 4.293l4.293 4.293-1.414 1.414L12 7.121l-2.879 2.879-1.414-1.414L12 4.293z"/>
+          </svg>
+        </button>
+      )}
     </>
   );
 };
