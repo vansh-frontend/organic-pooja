@@ -7,27 +7,27 @@ const products = [
     id: 1,
     name: 'Product 1',
     image: 'img/pro1.jpg',
-    price: '$99.99',
+    price: '₹99.99',
   },
   {
     id: 2,
     name: 'Product 2',
     image: 'img/pro2.jpg',
-    price: '$149.99',
+    price: '₹149.99',
   },
 
   {
     id: 3,
     name: 'Product 2',
     image: 'img/pro3.jpg',
-    price: '$149.99',
+    price: '₹149.99',
   },
 
   {
     id: 4,
     name: 'Product 2',
     image: 'img/pro4.jpg',
-    price: '$149.99',
+    price: '₹149.99',
   },
 
 
@@ -35,7 +35,7 @@ const products = [
     id: 5,
     name: 'Product 2',
     image: 'img/pro5.jpg',
-    price: '$149.99',
+    price: '₹149.99',
   },
   
 ];
