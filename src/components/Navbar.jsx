@@ -122,7 +122,7 @@ const Navbar = ({ position }) => {
           className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
           onClick={toggleMenu}
         >
-          <IconBook size={20} />
+          <IconMail size={20} />
           <span className="ml-2">Contact</span>
         </NavLink>
       </li>
@@ -132,8 +132,8 @@ const Navbar = ({ position }) => {
           className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
           onClick={toggleMenu}
         >
-          <IconBook size={20} />
-          <span className="ml-2">products</span>
+          <IconApps size={20} />
+          <span className="ml-2">Products</span>
         </NavLink>
       </li>
       <li
@@ -158,7 +158,6 @@ const Navbar = ({ position }) => {
                 <li><NavLink to="/ageing-skin" className="block text-gray-700 hover:text-black">Ageing Skin</NavLink></li>
                 <li><NavLink to="/acne-scars" className="block text-gray-700 hover:text-black">Acne Scars</NavLink></li>
                 <li><NavLink to="/dull-skin" className="block text-gray-700 hover:text-black">Dull Skin</NavLink></li>
-                <li><NavLink to="/iv-drips-for-skin" className="block text-gray-700 hover:text-black">IV Drips For Skin</NavLink></li>
               </ul>
             </div>
             <div>
@@ -166,11 +165,8 @@ const Navbar = ({ position }) => {
               <ul className="space-y-2">
                 <li><NavLink to="/hair-loss-concern" className="block text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
                 <li><NavLink to="/prp-gf-treatment" className="block text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
-                <li><NavLink to="/hair-thread-treatment" className="block text-gray-700 hover:text-black">Hair Thread Treatment</NavLink></li>
-                <li><NavLink to="/biocell-therapy" className="block text-gray-700 hover:text-black">Biocell Therapy</NavLink></li>
                 <li><NavLink to="/hair-loss-men" className="block text-gray-700 hover:text-black">Hair Loss In Men</NavLink></li>
                 <li><NavLink to="/hair-loss-women" className="block text-gray-700 hover:text-black">Hair Loss and Thinning for Women</NavLink></li>
-                <li><NavLink to="/iv-drips-for-hair" className="block text-gray-700 hover:text-black">IV Drips For Hair</NavLink></li>
               </ul>
             </div>
           </div>
@@ -181,34 +177,28 @@ const Navbar = ({ position }) => {
 
   return (
     <nav className="relative">
-      {/* Desktop Navigation */}
-      <div className="lg:hidden">
-        <button
-          onClick={toggleMenu}
-          className="p-4 text-black"
-        >
-          <IconMenu size={24} />
+      <div className="flex items-center justify-between p-4 bg-white shadow-lg">
+        <div className="flex items-center space-x-4">
+          {/* Desktop Navigation */}
+          {desktopNavItems}
+        </div>
+        {/* Hamburger Icon for Mobile Navigation */}
+        <button onClick={toggleMenu} className="block lg:hidden">
+          {isOpen ? <IconX size={24} /> : <IconMenu size={24} />}
         </button>
-        {isOpen && (
-          <div className="fixed top-0 left-0 z-50 w-full h-full bg-white">
-            <button
-              onClick={toggleMenu}
-              className="absolute text-black top-4 right-4"
-            >
-              <IconX size={24} />
-            </button>
-            {mobileNavItems}
-          </div>
-        )}
       </div>
 
       {/* Mobile Navigation */}
-      <div className="hidden lg:flex">
-        {desktopNavItems}
-      </div>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 bg-white">
+          <button onClick={toggleMenu} className="absolute p-4 text-gray-700 right-4 top-4">
+            <IconX size={24} />
+          </button>
+          {mobileNavItems}
+        </div>
+      )}
     </nav>
   );
 };
 
 export default Navbar;
-
