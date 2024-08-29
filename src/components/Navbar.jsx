@@ -96,17 +96,7 @@ const Navbar = ({ position }) => {
 
   const mobileNavItems = (
     <ul className="p-8 mt-10 space-y-8">
-      <li>
-        <NavLink
-          to="/"
-          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
-          onClick={toggleMenu}
-        >
-          <IconHome size={20} />
-          <span className="ml-2">Home</span>
-        </NavLink>
-      </li>
-      <li>
+        <li>
         <NavLink
           to="/book"
           className="flex items-center p-3 text-lg font-medium text-white transition-all duration-500 bg-black hover:opacity-75"
@@ -116,26 +106,7 @@ const Navbar = ({ position }) => {
           <span className="ml-2">Book Appointment</span>
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/contact"
-          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
-          onClick={toggleMenu}
-        >
-          <IconMail size={20} />
-          <span className="ml-2">Contact</span>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/products"
-          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
-          onClick={toggleMenu}
-        >
-          <IconApps size={20} />
-          <span className="ml-2">Products</span>
-        </NavLink>
-      </li>
+      
       <li
         className="relative"
         onClick={() => setIsMobileServicesOpen(prev => !prev)}
@@ -172,6 +143,39 @@ const Navbar = ({ position }) => {
           </div>
         )}
       </li>
+    
+      <li>
+        <NavLink
+          to="/contact"
+          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
+          onClick={toggleMenu}
+        >
+          <IconMail size={20} />
+          <span className="ml-2">Contact</span>
+        </NavLink>
+      </li>
+      <li>
+        
+        <NavLink
+          to="/"
+          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
+          onClick={toggleMenu}
+        >
+          <IconHome size={20} />
+          <span className="ml-2">Home</span>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/products"
+          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
+          onClick={toggleMenu}
+        >
+          <IconApps size={20} />
+          <span className="ml-2">Products</span>
+        </NavLink>
+      </li>
+    
     </ul>
   );
 
