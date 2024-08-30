@@ -151,7 +151,7 @@ const Footer = () => {
                 <FaInstagram className="text-xl" />
               </a>
             </div>
-            <p className="text-xs">&copy; 2023 Organic by Vansh Skin Clinic. All rights reserved.</p>
+            <p className="text-xs">&copy; 2023 organic by pooja Skin Clinic. All rights reserved.</p>
           </div>
         </div>
       </footer>
@@ -160,7 +160,7 @@ const Footer = () => {
       <div className="fixed bottom-0 left-0 z-50 w-full px-4 py-2 bg-green-500">
         <a
           id="whatsAppButton"
-          href="https://wa.me/918171924503/?text=Hello%0D%0AGot%20this%20number%20from%20Organic%20By%20Vansh.%0D%0A"
+          href="https://wa.me/918171924503/?text=Hello%0D%0AGot%20this%20number%20from%20Organic%20By%20pooja.%0D%0A"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center w-full px-4 py-2 font-semibold text-white transition duration-200 ease-in-out rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-50"

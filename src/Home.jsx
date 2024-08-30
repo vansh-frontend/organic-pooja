@@ -33,7 +33,7 @@ const Home = () => {
             </p>
           </div>
           <div className="absolute p-2 bg-white rounded-lg shadow-lg bottom-4 right-4">
-            <p className="text-sm font-semibold text-gray-800">Organic by Vansh</p>
+            <p className="text-sm font-semibold text-gray-800">organic by pooja</p>
           </div>
         </div>
 
@@ -52,7 +52,7 @@ const Home = () => {
             </p>
           </div>
           <div className="absolute p-2 bg-white rounded-lg shadow-lg bottom-4 right-4">
-            <p className="text-sm font-semibold text-gray-800">Organic by Vansh</p>
+            <p className="text-sm font-semibold text-gray-800">organic by pooja</p>
           </div>
         </div>
 
@@ -71,7 +71,7 @@ const Home = () => {
             </p>
           </div>
           <div className="absolute p-2 bg-white rounded-lg shadow-lg bottom-4 right-4">
-            <p className="text-sm font-semibold text-gray-800">Organic by Vansh</p>
+            <p className="text-sm font-semibold text-gray-800">organic by pooja</p>
           </div>
         </div>
       </Carousel>
