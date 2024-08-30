@@ -15,10 +15,11 @@ const Navbar = ({ position }) => {
     setIsServicesOpen(prev => !prev);
   };
 
+
   const desktopNavItems = position === 'left' ? (
     <>
       <ul className="hidden space-x-8 lg:flex">
-      <li>
+        <li>
           <NavLink
             to="/"
             className="relative p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75"
@@ -50,28 +51,42 @@ const Navbar = ({ position }) => {
           </NavLink>
           {/* Desktop Services Dropdown */}
           {isServicesOpen && (
-            <div className="absolute left-0 grid grid-cols-2 gap-4 p-4 mt-2 bg-white shadow-lg w-80 top-full">
+            <div className="absolute left-0 p-4 mt-2 bg-white border border-gray-200 shadow-lg w-96">
+              <div className="grid grid-cols-3 gap-4">
               <div>
-                <ul className="space-y-2">
-                  <li className="font-semibold">Skin</li>
-                  <li><NavLink to="/laser-hair-treatment" className="block text-gray-700 hover:text-black">Laser Hair Treatment</NavLink></li>
-                  <li><NavLink to="/thermage-treatment" className="block text-gray-700 hover:text-black">Thermage Treatment</NavLink></li>
-                  <li><NavLink to="/chemical-peel-treatment" className="block text-gray-700 hover:text-black">Chemical Peel Treatment</NavLink></li>
-                  <li><NavLink to="/q-switch-laser-treatment" className="block text-gray-700 hover:text-black">Q-Switch Laser Treatment</NavLink></li>
-                  <li><NavLink to="/skin-brightening-lightening" className="block text-gray-700 hover:text-black">Skin Brightening and Lightening Treatment</NavLink></li>
-                  <li><NavLink to="/ageing-skin" className="block text-gray-700 hover:text-black">Ageing Skin</NavLink></li>
-                  <li><NavLink to="/acne-scars" className="block text-gray-700 hover:text-black">Acne Scars</NavLink></li>
-                  <li><NavLink to="/dull-skin" className="block text-gray-700 hover:text-black">Dull Skin</NavLink></li>
-                </ul>
-              </div>
-              <div>
-                <ul className="space-y-2">
-                  <li className="font-semibold">Hair</li>
-                  <li><NavLink to="/hair-loss-concern" className="block text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
-                  <li><NavLink to="/prp-gf-treatment" className="block text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
-                  <li><NavLink to="/hair-loss-men" className="block text-gray-700 hover:text-black">Hair Loss In Men</NavLink></li>
-                  <li><NavLink to="/hair-loss-women" className="block text-gray-700 hover:text-black">Hair Loss and Thinning for Women</NavLink></li>
-                </ul>
+                  <h3 className="mb-2 text-lg font-semibold">Skin</h3>
+                  <ul className="space-y-2">
+                    <li><NavLink to="/laser-hair-treatment" className="block text-sm text-gray-700 hover:text-black">Laser Hair Treatment</NavLink></li>
+                    <li><NavLink to="/thermage-treatment" className="block text-sm text-gray-700 hover:text-black">Thermage Treatment</NavLink></li>
+                    <li><NavLink to="/chemical-peel-treatment" className="block text-sm text-gray-700 hover:text-black">Chemical Peel Treatment</NavLink></li>
+                    <li><NavLink to="/q-switch-laser-treatment" className="block text-sm text-gray-700 hover:text-black">Q-Switch Laser Treatment</NavLink></li>
+                    <li><NavLink to="/skin-brightening-lightening" className="block text-sm text-gray-700 hover:text-black">Skin Brightening and Lightening Treatment</NavLink></li>
+                    <li><NavLink to="/ageing-skin" className="block text-sm text-gray-700 hover:text-black">Ageing Skin</NavLink></li>
+                    <li><NavLink to="/acne-scars" className="block text-sm text-gray-700 hover:text-black">Acne Scars</NavLink></li>
+                    <li><NavLink to="/dull-skin" className="block text-sm text-gray-700 hover:text-black">Dull Skin</NavLink></li>
+                  </ul>
+                </div>
+                <div>
+
+                  <h3 className="mb-2 text-lg font-semibold">Hair</h3>
+                  <ul className="space-y-2">
+                    <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
+                    <li><NavLink to="/prp-gf-treatment" className="block text-sm text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
+                    <li><NavLink to="/hair-loss-men" className="block text-sm text-gray-700 hover:text-black">Hair Loss In Men</NavLink></li>
+                    <li><NavLink to="/hair-loss-women" className="block text-sm text-gray-700 hover:text-black">Hair Loss and Thinning for Women</NavLink></li> text-sm
+                  </ul>
+                </div>
+              
+                <div>
+                  <h3 className="mb-2 text-lg font-semibold">Make Up</h3>
+                  <ul className="space-y-2">
+                    <li><NavLink to="/make-up" className="block text-sm text-gray-700 hover:text-black">Make Up</NavLink></li>
+                    <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
+                <li><NavLink to="/prp-gf-treatment" className="block text-sm text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
+                <li><NavLink to="/hair-loss-men" className="block text-sm text-gray-700 hover:text-black">Hair Loss In Men</NavLink></li>
+                <li><NavLink to="/hair-loss-women" className="block text-sm text-gray-700 hover:text-black">Hair Loss and Thinning for Women</NavLink></li>
+                  </ul>
+                </div>
               </div>
             </div>
           )}
@@ -103,6 +118,7 @@ const Navbar = ({ position }) => {
     </>
   );
 
+
   const mobileNavItems = (
     <ul className="p-8 mt-10 space-y-8">
         <li>
@@ -130,23 +146,32 @@ const Navbar = ({ position }) => {
             <div>
               <h3 className="font-semibold">Skin</h3>
               <ul className="space-y-2">
-                <li><NavLink to="/laser-hair-treatment" className="block text-gray-700 hover:text-black">Laser Hair Treatment</NavLink></li>
-                <li><NavLink to="/thermage-treatment" className="block text-gray-700 hover:text-black">Thermage Treatment</NavLink></li>
-                <li><NavLink to="/chemical-peel-treatment" className="block text-gray-700 hover:text-black">Chemical Peel Treatment</NavLink></li>
-                <li><NavLink to="/q-switch-laser-treatment" className="block text-gray-700 hover:text-black">Q-Switch Laser Treatment</NavLink></li>
-                <li><NavLink to="/skin-brightening-lightening" className="block text-gray-700 hover:text-black">Skin Brightening and Lightening Treatment</NavLink></li>
-                <li><NavLink to="/ageing-skin" className="block text-gray-700 hover:text-black">Ageing Skin</NavLink></li>
-                <li><NavLink to="/acne-scars" className="block text-gray-700 hover:text-black">Acne Scars</NavLink></li>
-                <li><NavLink to="/dull-skin" className="block text-gray-700 hover:text-black">Dull Skin</NavLink></li>
-              </ul>
+                <li><NavLink to="/laser-hair-treatment" className="block text-sm text-gray-700 hover:text-black">Laser Hair Treatment</NavLink></li>
+                <li><NavLink to="/thermage-treatment" className="block text-sm text-gray-700 hover:text-black">Thermage Treatment</NavLink></li>
+                <li><NavLink to="/chemical-peel-treatment" className="block text-sm text-gray-700 hover:text-black">Chemical Peel Treatment</NavLink></li>
+                <li><NavLink to="/q-switch-laser-treatment" className="block text-sm text-gray-700 hover:text-black">Q-Switch Laser Treatment</NavLink></li>
+                <li><NavLink to="/skin-brightening-lightening" className="block text-sm text-gray-700 hover:text-black">Skin Brightening and Lightening Treatment</NavLink></li>
+                <li><NavLink to="/ageing-skin" className="block text-sm text-gray-700 hover:text-black">Ageing Skin</NavLink></li>
+                <li><NavLink to="/acne-scars" className="block text-sm text-gray-700 hover:text-black">Acne Scars</NavLink></li>
+                <li><NavLink to="/dull-skin" className="block text-sm text-gray-700 hover:text-black">Dull Skin</NavLink></li>
+              </ul> 
             </div>
             <div>
               <h3 className="font-semibold">Hair</h3>
               <ul className="space-y-2">
-                <li><NavLink to="/hair-loss-concern" className="block text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
-                <li><NavLink to="/prp-gf-treatment" className="block text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
-                <li><NavLink to="/hair-loss-men" className="block text-gray-700 hover:text-black">Hair Loss In Men</NavLink></li>
-                <li><NavLink to="/hair-loss-women" className="block text-gray-700 hover:text-black">Hair Loss and Thinning for Women</NavLink></li>
+                <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
+                <li><NavLink to="/prp-gf-treatment" className="block text-sm text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
+                <li><NavLink to="/hair-loss-men" className="block text-sm text-gray-700 hover:text-black">Hair Loss In Men</NavLink></li>
+                <li><NavLink to="/hair-loss-women" className="block text-sm text-gray-700 hover:text-black">Hair Loss and Thinning for Women</NavLink></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold">Make Up</h3>
+              <ul className="space-y-2">
+                <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
+                <li><NavLink to="/prp-gf-treatment" className="block text-sm text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
+                <li><NavLink to="/hair-loss-men" className="block text-sm text-gray-700 hover:text-black">Hair Loss In Men</NavLink></li>
+                <li><NavLink to="/hair-loss-women" className="block text-sm text-gray-700 hover:text-black">Hair Loss and Thinning for Women</NavLink></li>
               </ul>
             </div>
           </div>
