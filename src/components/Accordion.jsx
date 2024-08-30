@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa'; // Import icons for open/close
 import { Transition } from '@headlessui/react'; // Import Transition for smooth animations
+import PropTypes from 'prop-types'; // Import PropTypes for prop validation
 
 const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
   return (
@@ -33,6 +34,15 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
   );
 };
 
+// Define prop types for AccordionItem
+AccordionItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onToggle: PropTypes.func.isRequired,
+};
+
 const Accordion = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -44,7 +54,7 @@ const Accordion = () => {
     <div className="max-w-full px-4 mx-auto my-8 sm:px-6 lg:px-8">
       <div className="bg-white shadow sm:rounded-lg">
         <h2 className="px-6 py-4 text-2xl font-semibold text-gray-900 border-b border-gray-200">
-          FAQ's
+          FAQ&apos;s
         </h2>
         <AccordionItem
           id={0}
