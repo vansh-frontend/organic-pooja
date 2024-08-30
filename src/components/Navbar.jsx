@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { IconHome, IconBook, IconApps, IconMail, IconChevronDown, IconMenu, IconX } from '@tabler/icons-react';
+import { IconHome, IconBook, IconApps, IconMail, IconChevronDown, IconMenu4, IconX } from '@tabler/icons-react';
 
 const Navbar = ({ position }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -222,7 +222,7 @@ const Navbar = ({ position }) => {
         </div>
         {/* Hamburger Icon for Mobile Navigation */}
         <button onClick={toggleMenu} className="block lg:hidden">
-          {isOpen ? <IconX size={24} /> : <IconMenu size={24} />}
+          {isOpen ? <IconX size={24} /> : <IconMenu4 size={24} />}
         </button>
       </div>
 
