@@ -45,14 +45,9 @@ const Home = () => {
   {products.map((product, index) => (
     <div
       key={index}
-      className="relative flex overflow-hidden bg-white rounded-lg shadow-lg sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[500px]"
+      className="relative flex flex-col sm:flex-row overflow-hidden bg-white rounded-lg shadow-lg sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 h-auto sm:h-72 md:h-80 lg:h-96 xl:h-[500px]"
     >
-      {/* Order Now Button */}
-      <button className="absolute px-4 py-2 text-sm text-white bg-green-500 rounded-full top-4 left-4 hover:bg-green-600 focus:outline-none">
-        Order Now
-      </button>
-      
-      <Link to={product.link} className="w-1/2 h-full">
+      <Link to={product.link} className="w-full h-auto sm:w-1/2">
         <img
           src={product.img}
           alt={product.title}
@@ -60,24 +55,29 @@ const Home = () => {
         />
       </Link>
       <div
-        className="flex flex-col justify-center w-1/2 h-full p-4"
+        className="flex flex-col items-center justify-center w-full h-full p-4 sm:w-1/2 sm:p-6 md:p-8 lg:p-10"
         style={{ backgroundColor: '#D0F0C0' }} // Peach Light Green Color
       >
-        <h3 className="text-lg font-bold text-gray-800 sm:text-xl">{product.title}</h3>
-        <p className="mt-2 text-xs sm:text-sm md:text-base">
-          Organic Pooja offers a premium beauty experience using only organic products. From hair styling to nail treatments and makeup, we specialize in creating contemporary and timeless looks for every occasion. Our mission is to make you shine like a star naturally.
-        </p>
-      </div>
-      <div className="absolute p-2 bg-white rounded-lg shadow-lg bottom-4 right-4">
-  <p className="m-0 text-sm font-semibold text-gray-800">Organic By Pooja</p>
-</div>
+        <div className="text-center">
+          <h3 className="text-lg font-bold text-gray-800 sm:text-xl md:text-2xl">{product.title}</h3>
+          <p className="mt-2 text-xs sm:text-sm md:text-base lg:text-lg">
+            Organic Pooja offers a premium beauty experience using only organic products. From hair styling to nail treatments and makeup, we specialize in creating contemporary and timeless looks for every occasion. Our mission is to make you shine like a star naturally.
+          </p>
+          <div className="flex justify-center mt-4">
+          <button className="px-4 py-2 font-serif text-sm text-white transition duration-300 transform bg-black rounded-full sm:px-6 sm:py-3 sm:text-base hover:scale-105 hover:bg-gray-700 hover:shadow-lg focus:outline-none">
+  SHOP NOW
+</button>
 
+
+          </div>
+        </div>
+      </div>
+      {/* <div className="absolute p-2 bg-white rounded-lg shadow-lg bottom-4 right-4 sm:bottom-6 sm:right-6">
+        <p className="m-0 text-xs font-semibold text-gray-800 sm:text-sm">Organic By Pooja</p>
+      </div> */}
     </div>
   ))}
 </Carousel>
-
-
-
 
       {/* Centered Content - Services Section */}
       <div className="mt-8 mb-4 text-center">
