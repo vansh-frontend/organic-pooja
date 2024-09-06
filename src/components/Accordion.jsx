@@ -12,8 +12,8 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
           isOpen ? 'bg-gray-200' : 'bg-white'
         }`}
       >
-        <span className="text-lg font-medium">{title}</span>
-        <span className="text-xl">
+        <span className="text-base font-medium sm:text-lg md:text-xl lg:text-xl">{title}</span>
+        <span className="text-lg sm:text-xl md:text-2xl">
           {isOpen ? <FaMinus /> : <FaPlus />}
         </span>
       </button>
@@ -26,7 +26,7 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div className="px-4 py-2 text-gray-600 bg-gray-50">
+        <div className="px-4 py-2 text-sm text-gray-600 sm:text-base md:text-lg lg:text-lg bg-gray-50">
           {content}
         </div>
       </Transition>
@@ -53,7 +53,7 @@ const Accordion = () => {
   return (
     <div className="max-w-full px-4 mx-auto my-8 sm:px-6 lg:px-8">
       <div className="bg-white shadow sm:rounded-lg">
-        <h2 className="px-6 py-4 text-xl font-semibold text-gray-900 border-b border-gray-200 sm:text-2xl">
+        <h2 className="px-6 py-4 text-lg font-semibold text-gray-900 border-b border-gray-200 sm:text-xl md:text-2xl lg:text-2xl">
           FAQ&apos;s
         </h2>
         {[{
