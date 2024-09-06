@@ -14,7 +14,7 @@ const Header = () => {
         </p>
       </div>
 
-      {/* Main Header */}   
+      {/* Main Header */}
       <div className="flex items-center justify-between p-4 lg:px-8">
         {/* Navbar for Desktop (Left Items) */}
         <div className="hidden space-x-4 lg:flex">
