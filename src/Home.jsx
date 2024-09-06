@@ -33,7 +33,7 @@ const Home = () => {
   autoPlay
   interval={3000}
   infiniteLoop
-  showArrows={true}
+  showArrows={false}
   showThumbs={false}
   showStatus={false}
   showIndicators={true}
