@@ -45,7 +45,7 @@ const Home = () => {
   {products.map((product, index) => (
     <div
       key={index}
-      className="relative flex flex-col sm:flex-row overflow-hidden bg-white rounded-lg shadow-lg sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 h-auto sm:h-72 md:h-80 lg:h-96 xl:h-[500px]"
+      className="relative flex flex-col sm:flex-row overflow-hidden bg-white rounded-lg shadow-lg mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 h-auto sm:h-72 md:h-80 lg:h-96 xl:h-[500px]"
     >
       <Link to={product.link} className="w-full h-auto sm:w-1/2">
         <img
@@ -64,11 +64,9 @@ const Home = () => {
             Organic Pooja offers a premium beauty experience using only organic products. From hair styling to nail treatments and makeup, we specialize in creating contemporary and timeless looks for every occasion. Our mission is to make you shine like a star naturally.
           </p>
           <div className="flex justify-center mt-4">
-          <button className="px-4 py-2 font-serif text-sm text-white transition duration-300 transform bg-black rounded-full sm:px-6 sm:py-3 sm:text-base hover:scale-105 hover:bg-gray-700 hover:shadow-lg focus:outline-none">
-  SHOP NOW
-</button>
-
-
+            <button className="px-4 py-2 font-serif text-sm text-white transition duration-300 transform bg-black rounded-full sm:px-6 sm:py-3 sm:text-base hover:scale-105 hover:bg-gray-700 hover:shadow-lg focus:outline-none">
+              SHOP NOW
+            </button>
           </div>
         </div>
       </div>
@@ -78,6 +76,7 @@ const Home = () => {
     </div>
   ))}
 </Carousel>
+
 
       {/* Centered Content - Services Section */}
       <div className="mt-8 mb-4 text-center">
