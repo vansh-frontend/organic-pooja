@@ -26,11 +26,12 @@
   font-family: 'Playfair Display', serif;
 }
 
+/* Add these styles to your CSS file */
 .carousel-root {
-  overflow: hidden;
+  touch-action: pan-y; /* Allow vertical scrolling */
+  overflow: hidden; /* Ensure no horizontal overflow */
 }
 
-.carousel-item {
-  flex: 1 0 auto;
-  overflow: hidden;
+.carousel-root .carousel .slide {
+  touch-action: pan-y; /* Allow vertical scrolling within the slide */
 }
