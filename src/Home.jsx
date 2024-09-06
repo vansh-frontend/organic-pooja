@@ -37,21 +37,22 @@ const Home = () => {
   showThumbs={false}
   showStatus={false}
   showIndicators={true}
-  swipeable
+  swipeable={true}
   emulateTouch
+  swipeScrollTolerance={5} // Updated to a numeric value
   dynamicHeight={false}
-  className="carousel-root"
+  className="w-full overflow-hidden carousel-root"
 >
   {products.map((product, index) => (
     <div
       key={index}
-      className="relative flex flex-col sm:flex-row overflow-hidden bg-white rounded-lg shadow-lg mx-2 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-12 h-auto sm:h-72 md:h-80 lg:h-96 xl:h-[500px]"
+      className="relative flex flex-col sm:flex-row overflow-hidden bg-white rounded-lg shadow-lg mx-0 sm:mx-0 md:mx-0 lg:mx-0 xl:mx-0 w-full h-auto sm:h-72 md:h-80 lg:h-96 xl:h-[500px]"
     >
-      <Link to={product.link} className="w-full h-auto sm:w-1/2">
+      <Link to={product.link} className="w-full h-full sm:w-1/2">
         <img
           src={product.img}
           alt={product.title}
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full max-h-[300px] sm:max-h-[400px] md:max-h-[500px] lg:max-h-[600px] xl:max-h-[500px]"
         />
       </Link>
       <div
@@ -73,7 +74,6 @@ const Home = () => {
     </div>
   ))}
 </Carousel>
-
 
 
       {/* Centered Content - Services Section */}
