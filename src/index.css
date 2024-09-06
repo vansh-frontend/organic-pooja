@@ -25,3 +25,12 @@
 .font-playfair {
   font-family: 'Playfair Display', serif;
 }
+
+.carousel-root {
+  overflow: hidden;
+}
+
+.carousel-item {
+  flex: 1 0 auto;
+  overflow: hidden;
+}
