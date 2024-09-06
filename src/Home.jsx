@@ -30,42 +30,54 @@ const Home = () => {
     <div className="relative w-full py-8 overflow-hidden bg-gray-100">
       {/* Carousel Section */}
       <Carousel
-        autoPlay
-        interval={3000}
-        infiniteLoop
-        showArrows={true}
-        showThumbs={false}
-        showStatus={false}
-        showIndicators={true}
-        swipeable
-        emulateTouch
-        dynamicHeight={false}
-        className="carousel-root"
+  autoPlay
+  interval={3000}
+  infiniteLoop
+  showArrows={true}
+  showThumbs={false}
+  showStatus={false}
+  showIndicators={true}
+  swipeable
+  emulateTouch
+  dynamicHeight={false}
+  className="carousel-root"
+>
+  {products.map((product, index) => (
+    <div
+      key={index}
+      className="relative flex overflow-hidden bg-white rounded-lg shadow-lg sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[500px]"
+    >
+      {/* Order Now Button */}
+      <button className="absolute px-4 py-2 text-sm text-white bg-green-500 rounded-full top-4 left-4 hover:bg-green-600 focus:outline-none">
+        Order Now
+      </button>
+      
+      <Link to={product.link} className="w-1/2 h-full">
+        <img
+          src={product.img}
+          alt={product.title}
+          className="object-cover w-full h-full"
+        />
+      </Link>
+      <div
+        className="flex flex-col justify-center w-1/2 h-full p-4"
+        style={{ backgroundColor: '#D0F0C0' }} // Peach Light Green Color
       >
-        {products.map((product, index) => (
-          <div
-            key={index}
-            className="relative flex items-center mx-4 overflow-hidden bg-white rounded-lg shadow-lg sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[500px]"
-          >
-            <Link to={product.link} className="flex items-center justify-center w-1/2 h-full p-2">
-              <img
-                src={product.img}
-                alt={product.title}
-                className="object-contain w-full h-full"
-              />
-            </Link>
-            <div className="flex flex-col justify-center w-1/2 h-full p-4">
-              <h3 className="text-lg font-bold text-gray-800 sm:text-xl">{product.title}</h3>
-              <p className="mt-2 text-xs sm:text-sm md:text-base">
-                {product.description}
-              </p>
-            </div>
-            <div className="absolute p-2 bg-white rounded-lg shadow-lg bottom-4 right-4">
-              <p className="text-sm font-semibold text-gray-800">Organic By Pooja</p>
-            </div>
-          </div>
-        ))}
-      </Carousel>
+        <h3 className="text-lg font-bold text-gray-800 sm:text-xl">{product.title}</h3>
+        <p className="mt-2 text-xs sm:text-sm md:text-base">
+          Organic Pooja offers a premium beauty experience using only organic products. From hair styling to nail treatments and makeup, we specialize in creating contemporary and timeless looks for every occasion. Our mission is to make you shine like a star naturally.
+        </p>
+      </div>
+      <div className="absolute p-2 bg-white rounded-lg shadow-lg bottom-4 right-4">
+  <p className="m-0 text-sm font-semibold text-gray-800">Organic By Pooja</p>
+</div>
+
+    </div>
+  ))}
+</Carousel>
+
+
+
 
       {/* Centered Content - Services Section */}
       <div className="mt-8 mb-4 text-center">
