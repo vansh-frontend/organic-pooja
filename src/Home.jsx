@@ -1,64 +1,120 @@
-import './Products.css';
-import { useState } from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
+import { Link } from 'react-router-dom'; // Import Link component for navigation
+import Accordion from "./components/Accordion";
 
-const allProducts = [
-  { id: 1, name: 'Face Serum', image: 'img/pro1.jpg', price: '₹99.99', category: 'Skincare' },
-  { id: 2, name: 'Rice Water Spray', image: 'img/pro2.jpg', price: '₹149.99', category: 'Haircare' },
-  { id: 3, name: 'Rice Water Serum', image: 'img/pro3.jpg', price: '₹149.99', category: 'Skincare' },
-  { id: 4, name: 'Shampoo & Conditioner', image: 'img/pro4.jpg', price: '₹149.99', category: 'Haircare' },
-  { id: 5, name: 'Face Serum Gold', image: 'img/pro5.jpg', price: '₹149.99', category: 'Skincare' },
-  { id: 6, name: 'Body Lotion', image: 'img/pro6.jpg', price: '₹199.99', category: 'Bodycare' },
-  { id: 7, name: 'Hand Cream', image: 'img/pro7.jpg', price: '₹129.99', category: 'Bodycare' },
-  { id: 8, name: 'Hair Oil', image: 'img/pro8.jpg', price: '₹99.99', category: 'Haircare' },
-];
-
-const categories = ['All', 'Skincare', 'Haircare', 'Bodycare'];
-
-const Products = () => {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-
-  const filteredProducts = selectedCategory === 'All'
-    ? allProducts
-    : allProducts.filter(product => product.category === selectedCategory);
+const Home = () => {
+  // Define your images and text content here
+  const products = [
+    {
+      img: 'img/pro1.jpg',
+      title: 'Hair Care',
+      description: 'Explore our range of products designed to nourish and strengthen your hair.',
+      link: '/haircare',
+    },
+    {
+      img: 'img/pro2.jpg',
+      title: 'Body Care',
+      description: 'Body care essentials to keep your skin hydrated and smooth.',
+      link: '/bodycare',
+    },
+    {
+      img: 'img/pro3.jpg',
+      title: 'Skin Care',
+      description: 'Discover our skincare products for glowing, healthy skin.',
+      link: '/skincare',
+    }
+  ];
 
   return (
-    <div>
-      {/* Category Filter */}
-      <div className="category-container">
-        {categories.map((category) => (
-          <button
-            key={category}
-            className={`category-button ${selectedCategory === category ? 'active' : ''}`}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+    <div className="relative w-full py-8 overflow-hidden bg-gray-100">
+      {/* Carousel Section */}
+      <div className="px-4 sm:px-6 md:px-8 lg:px-12">
+        <Carousel
+          autoPlay
+          interval={3000}
+          infiniteLoop
+          showArrows={false}
+          showThumbs={false}
+          showStatus={false}
+          showIndicators={true}
+          swipeable={true}
+          emulateTouch
+          swipeScrollTolerance={5}
+          dynamicHeight={false}
+          className="w-full mx-auto overflow-hidden carousel-root"
+        >
+          {products.map((product, index) => (
+            <div
+              key={index}
+              className="flex flex-row bg-white rounded-lg shadow-lg w-full h-auto sm:h-72 md:h-80 lg:h-96 xl:h-[500px]"
+            >
+              {/* Image section */}
+              <Link to={product.link} className="flex-grow w-1/2">
+                <img
+                  src={product.img}
+                  alt={product.title}
+                  className="object-cover w-full h-full" // Make the image cover its entire container
+                />
+              </Link>
 
-      {/* Products Section */}
-      <div className="products-container">
-        {filteredProducts.map(product => (
-          <div key={product.id} className="product-card">
-            <div className="product-image-container">
-              <img src={product.image} alt={product.name} className="product-image" />
-            </div>
-            <div className="product-info">
-              <h3 className="product-name">{product.name}</h3>
-              <p className="product-price">{product.price}</p>
-            </div>
-            <div className="overlay">
-              <div className="overlay-content">
-                <h3 className="overlay-title">{product.name}</h3>
-                <p className="overlay-price">{product.price}</p>
-                <button className="overlay-button">View Details</button>
+              {/* Text section */}
+              <div
+                className="flex flex-col items-start justify-center flex-grow w-1/2 p-4 sm:p-6 md:p-8 lg:p-10"
+                style={{ backgroundColor: '#D0F0C0' }} // Light Green background
+              >
+                <div className="text-left">
+                  <h3 className="text-lg font-bold text-gray-800 sm:text-xl md:text-2xl">{product.title}</h3>
+                  <p className="mt-2 text-xs sm:text-sm md:text-base lg:text-lg">
+                    Organic Pooja offers a premium beauty experience using only organic products. From hair styling to nail treatments and makeup, we specialize in creating contemporary and timeless looks for every occasion. Our mission is to make you shine like a star naturally.
+                  </p>
+                  <div className="flex justify-start mt-4">
+                    <button className="px-4 py-2 font-serif text-sm text-white transition duration-300 transform bg-black rounded-full sm:px-6 sm:py-3 sm:text-base hover:scale-105 hover:bg-gray-700 hover:shadow-lg focus:outline-none">
+                      SHOP NOW
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </Carousel>
       </div>
+
+      {/* Centered Content - Services Section */}
+      <div className="mt-8 mb-4 text-center">
+        <h2 className="text-2xl font-bold">Explore Our Services</h2>
+      </div>
+
+      <div className="grid grid-cols-1 gap-8 p-4 md:grid-cols-2 lg:grid-cols-3">
+        {/* Service 1 */}
+        <div className="p-6 bg-white rounded-lg shadow-lg">
+          <img src="img/skin.jpg" alt="Anti-Ageing" className="object-cover w-full h-48 rounded-lg" />
+          <h3 className="mt-4 text-xl font-bold">Anti-ageing</h3>
+          <p className="mt-2">Discover our anti-ageing services for a youthful glow.</p>
+          <Link to="/antiageing" className="inline-block mt-4 text-blue-500 hover:underline">Book Now</Link>
+        </div>
+
+        {/* Service 2 */}
+        <div className="p-6 bg-white rounded-lg shadow-lg">
+          <img src="img/shampoo.jpg" alt="Laser Hair Reduction" className="object-cover w-full h-48 rounded-lg" />
+          <h3 className="mt-4 text-xl font-bold">Laser Hair Reduction</h3>
+          <p className="mt-2">Achieve smooth skin with our laser hair reduction services.</p>
+          <Link to="/laserhairreduction" className="inline-block mt-4 text-blue-500 hover:underline">Book Now</Link>
+        </div>
+
+        {/* Service 3 */}
+        <div className="p-6 bg-white rounded-lg shadow-lg">
+          <img src="img/hair.png" alt="Hair Care" className="object-cover w-full h-48 rounded-lg" />
+          <h3 className="mt-4 text-xl font-bold">Hair Care</h3>
+          <p className="mt-2">Explore our hair care services for healthier, shinier hair.</p>
+          <Link to="/haircare" className="inline-block mt-4 text-blue-500 hover:underline">Book Now</Link>
+        </div>
+      </div>
+
+      {/* Accordion component - placed below */}
+      <Accordion />
     </div>
   );
 };
 
-export default Products;
+export default Home;
