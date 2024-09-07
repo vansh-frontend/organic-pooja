@@ -21,7 +21,7 @@
   font-family: 'Playfair Display';
   src: url('/path/to/PlayfairDisplay.woff2') format('woff2'),
        url('/path/to/PlayfairDisplay.woff') format('woff');
-  font-weight: 700;
+  font-weight: normal;
   font-style: normal;
 }
 
