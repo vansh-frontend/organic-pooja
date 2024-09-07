@@ -19,11 +19,10 @@
 
 @font-face {
   font-family: 'Playfair Display';
-  src: url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-}
-
-.font-playfair {
-  font-family: 'Playfair Display', serif;
+  src: url('/path/to/PlayfairDisplay.woff2') format('woff2'),
+       url('/path/to/PlayfairDisplay.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
 }
 
 /* Add these styles to your CSS file */
@@ -34,4 +33,8 @@
 
 .carousel-root .carousel .slide {
   touch-action: pan-y; /* Allow vertical scrolling within the slide */
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
 }

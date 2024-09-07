@@ -47,25 +47,28 @@ const Home = () => {
           {products.map((product, index) => (
             <div
               key={index}
-              className="relative flex flex-col sm:flex-row overflow-hidden bg-white rounded-lg shadow-lg w-full h-auto sm:h-72 md:h-80 lg:h-96 xl:h-[500px]"
+              className="flex flex-row bg-white rounded-lg shadow-lg w-full h-auto sm:h-72 md:h-80 lg:h-96 xl:h-[500px]"
             >
-              <Link to={product.link} className="w-full h-full sm:w-1/2">
+              {/* Image section */}
+              <Link to={product.link} className="flex-grow w-1/2">
                 <img
                   src={product.img}
                   alt={product.title}
-                  className="object-cover w-full h-full max-h-[300px] sm:max-h-[400px] md:max-h-[500px] lg:max-h-[600px] xl:max-h-[500px]"
+                  className="object-cover w-full h-full" // Make the image cover its entire container
                 />
               </Link>
+
+              {/* Text section */}
               <div
-                className="flex flex-col items-start justify-center w-full h-full p-4 sm:w-1/2 sm:p-6 md:p-8 lg:p-10"
-                style={{ backgroundColor: '#D0F0C0' }} // Peach Light Green Color
+                className="flex flex-col items-start justify-center flex-grow w-1/2 p-4 sm:p-6 md:p-8 lg:p-10"
+                style={{ backgroundColor: '#D0F0C0' }} // Light Green background
               >
-                <div className="text-left sm:text-center">
+                <div className="text-left">
                   <h3 className="text-lg font-bold text-gray-800 sm:text-xl md:text-2xl">{product.title}</h3>
                   <p className="mt-2 text-xs sm:text-sm md:text-base lg:text-lg">
                     Organic Pooja offers a premium beauty experience using only organic products. From hair styling to nail treatments and makeup, we specialize in creating contemporary and timeless looks for every occasion. Our mission is to make you shine like a star naturally.
                   </p>
-                  <div className="flex justify-start mt-4 sm:justify-center">
+                  <div className="flex justify-start mt-4">
                     <button className="px-4 py-2 font-serif text-sm text-white transition duration-300 transform bg-black rounded-full sm:px-6 sm:py-3 sm:text-base hover:scale-105 hover:bg-gray-700 hover:shadow-lg focus:outline-none">
                       SHOP NOW
                     </button>
