@@ -1,8 +1,41 @@
+import { FaMapMarkerAlt, FaClock, FaEnvelope } from 'react-icons/fa';
+import './Contact.css'; // Import the custom CSS file
+
 const Contact = () => {
-    return (
-      <div className="flex items-center justify-center min-h-screen px-4 py-8 bg-white sm:px-6 lg:px-8">
-        <div className="w-full max-w-lg p-8 bg-white border border-gray-200 rounded-lg shadow-lg">
-          <h1 className="mb-8 text-3xl font-bold text-gray-900">Book Appointment</h1>
+  return (
+    <div className="contact-container">
+      {/* Information Section */}
+      <div className="info-section">
+        <div className="mt-8">
+          <h2 className="info-heading">
+            <img 
+              src="/img/pooja 2.png" 
+              alt="Organic By Pooja Logo" 
+            />
+            Organic By Pooja
+          </h2>
+          <div className="info-item">
+            <FaMapMarkerAlt />
+            <p>123 Organic St, Poojatown</p>
+          </div>
+          <div className="info-item">
+            <FaClock />
+            <p>Mon-Fri, 9 AM - 6 PM</p>
+          </div>
+          <div className="info-item">
+            <FaEnvelope />
+            <p>For further info, please visit our website or contact us via email.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact Form Section */}
+      <div className="contact-form-section">
+        <div className="w-full max-w-lg">
+          <h1 className="contact-form-heading">
+            <FaEnvelope />
+            Contact Us
+          </h1>
           <form
             action="https://api.web3forms.com/submit"
             method="POST"
@@ -18,12 +51,13 @@ const Contact = () => {
                 type="text"
                 id="name"
                 name="name"
-                className="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg outline-none peer"
+                className="form-input"
+                placeholder=" "
                 required
               />
               <label
                 htmlFor="name"
-                className="absolute text-gray-500 transition-all duration-300 transform -translate-y-1/2 top-1/2 left-4 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:-top-4 peer-focus:text-gray-900 peer-focus:text-sm"
+                className="placeholder-label"
               >
                 Your Name
               </label>
@@ -33,12 +67,13 @@ const Contact = () => {
                 type="email"
                 id="email"
                 name="email"
-                className="w-full p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg outline-none peer"
+                className="form-input"
+                placeholder=" "
                 required
               />
               <label
                 htmlFor="email"
-                className="absolute text-gray-500 transition-all duration-300 transform -translate-y-1/2 top-1/2 left-4 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:-top-4 peer-focus:text-gray-900 peer-focus:text-sm"
+                className="placeholder-label"
               >
                 Your Email
               </label>
@@ -47,27 +82,28 @@ const Contact = () => {
               <textarea
                 id="message"
                 name="message"
-                className="w-full h-32 p-4 text-gray-900 bg-gray-100 border border-gray-300 rounded-lg outline-none peer"
+                className="form-textarea"
+                placeholder=" "
                 required
               ></textarea>
               <label
                 htmlFor="message"
-                className="absolute text-gray-500 transition-all duration-300 transform -translate-y-1/2 top-1/2 left-4 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:-top-4 peer-focus:text-gray-900 peer-focus:text-sm"
+                className="placeholder-label"
               >
                 Your Message
               </label>
             </div>
             <button
               type="submit"
-              className="w-full py-3 font-semibold text-white transition duration-300 bg-black rounded-lg hover:bg-gray-800"
+              className="submit-button"
             >
               Send Message
             </button>
           </form>
         </div>
       </div>
-    );
-  };
-  
-  export default Contact;
-  
+    </div>
+  );
+};
+
+export default Contact;
