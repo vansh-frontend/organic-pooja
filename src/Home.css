@@ -44,14 +44,14 @@
 @media (max-width: 768px) {
     .content-visible,
     .content-exiting {
-        animation-duration: 0.25s; /* Faster animation for tablets and phones */
+        animation-duration: 0.1s; /* Faster animation for tablets and phones */
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .content-visible,
     .content-exiting {
-        animation-duration: 0.3s; /* Adjusted duration for tablets and small desktops */
+        animation-duration: 0.2s; /* Adjusted duration for tablets and small desktops */
     }
 }
 
