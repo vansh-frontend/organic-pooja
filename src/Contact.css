@@ -1,4 +1,7 @@
 /* General styles */
+*{
+  scroll-behavior: smooth;
+}
 .contact-container {
   min-height: 100vh;
   display: flex;

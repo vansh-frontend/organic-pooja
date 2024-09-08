@@ -37,6 +37,8 @@ const Home = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && scrollDirection === 'up') {
           entry.target.classList.add('content-visible');
+        } else if (!entry.isIntersecting && scrollDirection === 'down') {
+          entry.target.classList.add('content-exiting');
         }
       });
     });
@@ -164,7 +166,7 @@ const Home = () => {
       </div>
 
       {/* FAQ Section (Accordion) */}
-      <div className="exclude-animation">
+      <div className="p-4 mt-8 bg-gray-200 rounded-lg content-hidden" ref={(el) => (sectionRefs.current[4] = el)}>
         <Accordion />
       </div>
     </div>
