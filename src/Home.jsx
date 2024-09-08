@@ -15,30 +15,22 @@ const Home = () => {
 
     const handleScroll = () => {
       let currentScrollTop = window.pageYOffset;
-      if (currentScrollTop < lastScrollTop) {
-        setScrollDirection('up');
-      } else {
-        setScrollDirection('down');
-      }
+      setScrollDirection(currentScrollTop < lastScrollTop ? 'up' : 'down');
       lastScrollTop = currentScrollTop;
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Add IntersectionObserver to animate content on scroll up
+  // IntersectionObserver to animate content on scroll
   useEffect(() => {
     const sections = sectionRefs.current;
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && scrollDirection === 'up') {
-          entry.target.classList.add('content-visible');
-        } else if (!entry.isIntersecting && scrollDirection === 'down') {
-          entry.target.classList.add('content-exiting');
+        if (entry.isIntersecting) {
+          entry.target.classList.add(scrollDirection === 'up' ? 'content-visible' : 'content-exiting');
         }
       });
     });
@@ -83,7 +75,7 @@ const Home = () => {
   return (
     <div className="relative w-full py-8 overflow-hidden bg-gray-100">
       {/* Carousel Section */}
-      <div className="px-4 sm:px-6 md:px-8 lg:px-12 exclude-animation"> {/* Exclude animation class */}
+      <div className="px-4 sm:px-6 md:px-8 lg:px-12 exclude-animation">
         <Carousel
           autoPlay
           interval={3000}
@@ -115,7 +107,7 @@ const Home = () => {
               {/* Text section */}
               <div
                 className="flex flex-col items-start justify-center flex-grow w-1/2 p-4 sm:p-6 md:p-8 lg:p-10"
-                style={{ backgroundColor: '#D0F0C0' }} 
+                style={{ backgroundColor: '#D0F0C0' }}
               >
                 <div className="text-left">
                   <h3 className="text-lg font-bold text-gray-800 sm:text-xl md:text-2xl">{product.title}</h3>
@@ -166,7 +158,7 @@ const Home = () => {
       </div>
 
       {/* FAQ Section (Accordion) */}
-      <div className="p-4 mt-8 bg-gray-200 rounded-lg content-hidden" ref={(el) => (sectionRefs.current[4] = el)}>
+      <div className="p-6 mt-8 bg-gray-200 rounded-lg content-hidden" ref={(el) => (sectionRefs.current[4] = el)}>
         <Accordion />
       </div>
     </div>
