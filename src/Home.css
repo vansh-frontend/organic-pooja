@@ -82,7 +82,7 @@
     .content-visible-right,
     .content-exiting-left,
     .content-exiting-right {
-      animation-duration: 0.2s; /* Moderate animation speed for tablets and small desktops */
+      animation-duration: 0.1s; /* Moderate animation speed for tablets and small desktops */
     }
   }
   
