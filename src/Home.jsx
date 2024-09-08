@@ -1,9 +1,61 @@
+import { useEffect, useRef, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
-import { Link } from 'react-router-dom'; // Import Link component for navigation
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; 
+import { Link } from 'react-router-dom'; 
 import Accordion from "./components/Accordion";
+import "./Home.css";
 
 const Home = () => {
+  const sectionRefs = useRef([]);
+  const [scrollDirection, setScrollDirection] = useState(null);
+
+  // Track scroll direction
+  useEffect(() => {
+    let lastScrollTop = window.pageYOffset;
+
+    const handleScroll = () => {
+      let currentScrollTop = window.pageYOffset;
+      if (currentScrollTop < lastScrollTop) {
+        setScrollDirection('up');
+      } else {
+        setScrollDirection('down');
+      }
+      lastScrollTop = currentScrollTop;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Add IntersectionObserver to animate content on scroll up
+  useEffect(() => {
+    const sections = sectionRefs.current;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && scrollDirection === 'up') {
+          entry.target.classList.add('content-visible');
+        }
+      });
+    });
+
+    sections.forEach((section) => {
+      if (section && !section.classList.contains('exclude-animation')) {
+        observer.observe(section);
+      }
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
+  }, [scrollDirection]);
+
   // Define your images and text content here
   const products = [
     {
@@ -29,7 +81,7 @@ const Home = () => {
   return (
     <div className="relative w-full py-8 overflow-hidden bg-gray-100">
       {/* Carousel Section */}
-      <div className="px-4 sm:px-6 md:px-8 lg:px-12">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-12 exclude-animation"> {/* Exclude animation class */}
         <Carousel
           autoPlay
           interval={3000}
@@ -54,14 +106,14 @@ const Home = () => {
                 <img
                   src={product.img}
                   alt={product.title}
-                  className="object-cover w-full h-full" // Make the image cover its entire container
+                  className="object-cover w-full h-full" 
                 />
               </Link>
 
               {/* Text section */}
               <div
                 className="flex flex-col items-start justify-center flex-grow w-1/2 p-4 sm:p-6 md:p-8 lg:p-10"
-                style={{ backgroundColor: '#D0F0C0' }} // Light Green background
+                style={{ backgroundColor: '#D0F0C0' }} 
               >
                 <div className="text-left">
                   <h3 className="text-lg font-bold text-gray-800 sm:text-xl md:text-2xl">{product.title}</h3>
@@ -81,13 +133,13 @@ const Home = () => {
       </div>
 
       {/* Centered Content - Services Section */}
-      <div className="mt-8 mb-4 text-center">
+      <div className="mt-8 mb-4 text-center content-hidden" ref={(el) => (sectionRefs.current[0] = el)}>
         <h2 className="text-2xl font-bold">Explore Our Services</h2>
       </div>
 
       <div className="grid grid-cols-1 gap-8 p-4 md:grid-cols-2 lg:grid-cols-3">
         {/* Service 1 */}
-        <div className="p-6 bg-white rounded-lg shadow-lg">
+        <div className="p-6 bg-white rounded-lg shadow-lg content-hidden" ref={(el) => (sectionRefs.current[1] = el)}>
           <img src="img/skin.jpg" alt="Anti-Ageing" className="object-cover w-full h-48 rounded-lg" />
           <h3 className="mt-4 text-xl font-bold">Anti-ageing</h3>
           <p className="mt-2">Discover our anti-ageing services for a youthful glow.</p>
@@ -95,7 +147,7 @@ const Home = () => {
         </div>
 
         {/* Service 2 */}
-        <div className="p-6 bg-white rounded-lg shadow-lg">
+        <div className="p-6 bg-white rounded-lg shadow-lg content-hidden" ref={(el) => (sectionRefs.current[2] = el)}>
           <img src="img/shampoo.jpg" alt="Laser Hair Reduction" className="object-cover w-full h-48 rounded-lg" />
           <h3 className="mt-4 text-xl font-bold">Laser Hair Reduction</h3>
           <p className="mt-2">Achieve smooth skin with our laser hair reduction services.</p>
@@ -103,7 +155,7 @@ const Home = () => {
         </div>
 
         {/* Service 3 */}
-        <div className="p-6 bg-white rounded-lg shadow-lg">
+        <div className="p-6 bg-white rounded-lg shadow-lg content-hidden" ref={(el) => (sectionRefs.current[3] = el)}>
           <img src="img/hair.png" alt="Hair Care" className="object-cover w-full h-48 rounded-lg" />
           <h3 className="mt-4 text-xl font-bold">Hair Care</h3>
           <p className="mt-2">Explore our hair care services for healthier, shinier hair.</p>
@@ -111,8 +163,10 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Accordion component - placed below */}
-      <Accordion />
+      {/* FAQ Section (Accordion) */}
+      <div className="exclude-animation">
+        <Accordion />
+      </div>
     </div>
   );
 };
