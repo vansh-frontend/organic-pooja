@@ -50,7 +50,6 @@ const Home = () => {
     };
   }, [scrollDirection]);
 
-  // Define your images and text content here
   const products = [
     {
       img: 'img/pro1.jpg',
@@ -73,10 +72,10 @@ const Home = () => {
   ];
 
   return (
-    <div className="relative w-full py-8 overflow-hidden bg-gray-100">
+    <div className="relative w-full py-8 overflow-hidden bg-gray-50">
       {/* Carousel Section */}
-      <div className="px-4 sm:px-6 md:px-8 lg:px-12 exclude-animation">
-        <Carousel
+      <div className="px-4 sm:px-6 lg:px-12 exclude-animation">
+      <Carousel
           autoPlay
           interval={3000}
           infiniteLoop
@@ -126,39 +125,39 @@ const Home = () => {
         </Carousel>
       </div>
 
-      {/* Centered Content - Services Section */}
-      <div className="mt-8 mb-4 text-center content-hidden" ref={(el) => (sectionRefs.current[0] = el)}>
-        <h2 className="text-2xl font-bold">Explore Our Services</h2>
+      {/* Services Section */}
+      <div className="mt-12 text-center content-hidden" ref={(el) => (sectionRefs.current[0] = el)}>
+        <h2 className="text-3xl font-semibold">Explore Our Services</h2>
       </div>
 
-      <div className="grid grid-cols-1 gap-8 p-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 p-4 mt-6 md:grid-cols-2 lg:grid-cols-3">
         {/* Service 1 */}
-        <div className="p-6 bg-white rounded-lg shadow-lg content-hidden" ref={(el) => (sectionRefs.current[1] = el)}>
+        <div className="p-6 bg-white rounded-lg shadow-md content-hidden" ref={(el) => (sectionRefs.current[1] = el)}>
           <img src="img/skin.jpg" alt="Anti-Ageing" className="object-cover w-full h-48 rounded-lg" />
-          <h3 className="mt-4 text-xl font-bold">Anti-ageing</h3>
-          <p className="mt-2">Discover our anti-ageing services for a youthful glow.</p>
-          <Link to="/antiageing" className="inline-block mt-4 text-blue-500 hover:underline">Book Now</Link>
+          <h3 className="mt-4 text-xl font-semibold">Anti-ageing</h3>
+          <p className="mt-2 text-gray-600">Discover our anti-ageing services for a youthful glow.</p>
+          <Link to="/antiageing" className="inline-block mt-4 text-blue-600">Book Now</Link>
         </div>
 
         {/* Service 2 */}
-        <div className="p-6 bg-white rounded-lg shadow-lg content-hidden" ref={(el) => (sectionRefs.current[2] = el)}>
+        <div className="p-6 bg-white rounded-lg shadow-md content-hidden" ref={(el) => (sectionRefs.current[2] = el)}>
           <img src="img/shampoo.jpg" alt="Laser Hair Reduction" className="object-cover w-full h-48 rounded-lg" />
-          <h3 className="mt-4 text-xl font-bold">Laser Hair Reduction</h3>
-          <p className="mt-2">Achieve smooth skin with our laser hair reduction services.</p>
-          <Link to="/laserhairreduction" className="inline-block mt-4 text-blue-500 hover:underline">Book Now</Link>
+          <h3 className="mt-4 text-xl font-semibold">Laser Hair Reduction</h3>
+          <p className="mt-2 text-gray-600">Achieve smooth skin with our laser hair reduction services.</p>
+          <Link to="/laserhairreduction" className="inline-block mt-4 text-blue-600">Book Now</Link>
         </div>
 
         {/* Service 3 */}
-        <div className="p-6 bg-white rounded-lg shadow-lg content-hidden" ref={(el) => (sectionRefs.current[3] = el)}>
+        <div className="p-6 bg-white rounded-lg shadow-md content-hidden" ref={(el) => (sectionRefs.current[3] = el)}>
           <img src="img/hair.png" alt="Hair Care" className="object-cover w-full h-48 rounded-lg" />
-          <h3 className="mt-4 text-xl font-bold">Hair Care</h3>
-          <p className="mt-2">Explore our hair care services for healthier, shinier hair.</p>
-          <Link to="/haircare" className="inline-block mt-4 text-blue-500 hover:underline">Book Now</Link>
+          <h3 className="mt-4 text-xl font-semibold">Hair Care</h3>
+          <p className="mt-2 text-gray-600">Explore our hair care services for healthier, shinier hair.</p>
+          <Link to="/haircare" className="inline-block mt-4 text-blue-600">Book Now</Link>
         </div>
       </div>
 
-      {/* FAQ Section (Accordion) */}
-      <div className="p-6 mt-8 bg-gray-200 rounded-lg content-hidden" ref={(el) => (sectionRefs.current[4] = el)}>
+      {/* FAQ Section */}
+      <div className="mt-12 content-hidden" ref={(el) => (sectionRefs.current[7] = el)}>
         <Accordion />
       </div>
     </div>

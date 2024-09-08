@@ -1,8 +1,9 @@
-/* Animation to slide content from the outside */
+/* Smooth scrolling */
 * {
   scroll-behavior: smooth;
 }
 
+/* Keyframes for slide animations */
 @keyframes slideInFromLeft {
   0% {
     transform: translateX(-100%);
@@ -40,33 +41,87 @@
   animation: slideInFromRight 0.5s ease-in-out forwards;
 }
 
-.content-exiting {
-  animation: slideInFromLeft 0.5s ease-in forwards;
-}
-
+/* Exclude certain sections from animation */
 .exclude-animation {
   opacity: 1;
   transform: none;
 }
 
-/* Media Queries for different devices */
+/* Responsive Grid and Carousel */
+.home-container {
+  padding: 1rem;
+  background-color: #f0f0f0;
+}
+
+.carousel-section {
+  margin-bottom: 2rem;
+}
+
+.carousel-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.carousel-image {
+  flex: 1;
+}
+
+.carousel-text {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.shop-now-button {
+  margin-top: 1rem;
+  background-color: black;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  transition: transform 0.3s ease;
+}
+
+.shop-now-button:hover {
+  transform: scale(1.05);
+}
+
+/* Services Section */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.service-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.service-card h3 {
+  margin-top: 1rem;
+}
+
+/* Media Queries for responsiveness */
 @media (max-width: 768px) {
-  .content-visible,
-  .content-exiting {
-    animation-duration: 0.4s; /* Adjust duration for smaller screens */
+  .carousel-item {
+    flex-direction: column;
   }
-}
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .content-visible,
-  .content-exiting {
-    animation-duration: 0.4s; /* Adjust duration for tablets and small desktops */
+  .carousel-text {
+    padding: 1rem;
   }
-}
 
-@media (min-width: 1025px) {
-  .content-visible,
-  .content-exiting {
-    animation-duration: 0.5s; /* Adjust duration for desktops */
+  .shop-now-button {
+    font-size: 0.9rem;
   }
 }
