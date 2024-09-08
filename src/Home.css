@@ -44,7 +44,7 @@
 @media (max-width: 768px) {
     .content-visible,
     .content-exiting {
-        animation-duration: 0.1s; /* Faster animation for tablets and phones */
+        animation-duration: 0.2s; /* Faster animation for tablets and phones */
     }
 }
 
