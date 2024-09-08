@@ -1,8 +1,8 @@
-
 /* Animation to slide content from the outside */
-*{
+* {
   scroll-behavior: smooth;
 }
+
 @keyframes slideInFromLeft {
   0% {
     transform: translateX(-100%);
@@ -33,15 +33,15 @@
 
 /* When the content becomes visible */
 .content-visible {
-  animation: slideInFromLeft 0.3s ease-out forwards;
+  animation: slideInFromLeft 0.5s ease-in-out forwards;
 }
 
 .content-visible-right {
-  animation: slideInFromRight 0.3s ease-out forwards;
+  animation: slideInFromRight 0.5s ease-in-out forwards;
 }
 
 .content-exiting {
-  animation: slideInFromLeft 0.3s ease-in forwards;
+  animation: slideInFromLeft 0.5s ease-in forwards;
 }
 
 .exclude-animation {
@@ -53,20 +53,20 @@
 @media (max-width: 768px) {
   .content-visible,
   .content-exiting {
-    animation-duration: 0.2s;
+    animation-duration: 0.4s; /* Adjust duration for smaller screens */
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .content-visible,
   .content-exiting {
-    animation-duration: 0.2s;
+    animation-duration: 0.4s; /* Adjust duration for tablets and small desktops */
   }
 }
 
 @media (min-width: 1025px) {
   .content-visible,
   .content-exiting {
-    animation-duration: 0.3s;
+    animation-duration: 0.5s; /* Adjust duration for desktops */
   }
 }
