@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; 
 import { Link } from 'react-router-dom'; 
 import Accordion from "./components/Accordion";
-import "./Home.css";
-import './Button.css';
+import "./Home.css"; // Keep the external CSS if needed
 
 const Home = () => {
   const sectionRefs = useRef([]);
@@ -55,89 +52,37 @@ const Home = () => {
       });
     };
   }, [scrollDirection]);
-  
-
-  const products = [
-    {
-      img: 'img/pro1.jpg',
-      title: 'Hair Care',
-      description: 'Explore our range of products designed to nourish and strengthen your hair.',
-      link: '/haircare',
-    },
-    {
-      img: 'img/pro2.jpg',
-      title: 'Body Care',
-      description: 'Body care essentials to keep your skin hydrated and smooth.',
-      link: '/bodycare',
-    },
-    {
-      img: 'img/pro3.jpg',
-      title: 'Skin Care',
-      description: 'Discover our skincare products for glowing, healthy skin.',
-      link: '/skincare',
-    }
-  ];
 
   return (
     <div className="relative w-full py-8 overflow-hidden bg-gray-50">
-      {/* Carousel Section */}
+      {/* Hero Section */}
       <div className="px-4 sm:px-6 lg:px-12 exclude-animation">
-      <Carousel
-  autoPlay
-  interval={3000}
-  infiniteLoop
-  showArrows={false}
-  showThumbs={false}
-  showStatus={false}
-  showIndicators={true}
-  swipeable={true}
-  emulateTouch
-  swipeScrollTolerance={5}
-  dynamicHeight={false}
-  className="w-full mx-auto overflow-hidden carousel-root"
->
-  {products.map((product, index) => (
-    <div
-      key={index}
-      className="flex flex-row bg-white rounded-lg shadow-lg w-full h-auto sm:h-72 md:h-80 lg:h-96 xl:h-[500px] overflow-hidden"
-    >
-      {/* Image section */}
-      <Link to={product.link} className="flex-grow w-1/2 overflow-hidden rounded-l-lg">
-        <img
-          src={product.img}
-          alt={product.title}
-          className="object-cover w-full h-full rounded-l-lg" 
-        />
-      </Link>
-
-      {/* Text section */}
-      <div
-        className="flex flex-col items-start justify-center flex-grow w-1/2 p-4 rounded-r-lg sm:p-6 md:p-8 lg:p-10"
-        style={{ backgroundColor: '#D0F0C0' }}
-      >
-        <div className="text-left">
-          <h3 className="text-lg font-bold text-gray-800 sm:text-xl md:text-2xl">{product.title}</h3>
-          <p className="mt-2 text-xs sm:text-sm md:text-base lg:text-lg">
-            Organic Pooja offers a premium beauty experience using only organic products. From hair styling to nail treatments and makeup, we specialize in creating contemporary and timeless looks for every occasion. Our mission is to make you shine like a star naturally.
-          </p>
-          <div className="flex justify-start mt-4">
-          <button className="relative flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-gray-800 border-none rounded-full cursor-pointer group shimmeringbtn">
-      <span className="relative inline-block pr-10 transition-all duration-500 group-hover:pr-16">
-        SHOP NOW
-        <span className="absolute right-0 transition-opacity duration-500 transform -translate-y-1/2 opacity-0 top-1/2 group-hover:opacity-100">
-          &rarr;
-        </span>
-      </span>
-    </button>
-
+        <div className="flex flex-col items-center justify-between w-full p-6 bg-white rounded-lg shadow-lg sm:flex-row">
+          <div className="flex flex-col items-center w-full sm:w-1/2">
+            <h1 className="text-6xl font-extrabold text-center uppercase">
+              ORGANIC <br />
+              BY POOJA
+            </h1>
+            <p className="mt-4 text-sm text-center text-gray-700 sm:text-base md:text-lg">
+              Perfect your skin care routine
+            </p>
+            <p className="mt-2 text-sm text-center text-gray-700 sm:text-base md:text-lg">
+              with our body and facial products.
+            </p>
+            <div className="flex justify-center mt-6 space-x-4">
+              <button className="px-4 py-2 text-base font-semibold text-white transition-all duration-300 bg-black rounded hover:bg-gray-800">
+                SHOP NOW
+              </button>
+              <button className="px-4 py-2 text-base font-semibold text-black transition-all duration-300 border border-black rounded hover:bg-gray-200">
+                LEARN MORE
+              </button>
+            </div>
+          </div>
+          <div className="flex flex-col w-full mt-6 sm:w-1/2 sm:mt-0">
+            <img src="img/section.jpg" alt="Service Image 1" className="object-cover w-full h-48 mb-4 rounded-lg" />
+            <img src="img/sec2.jpg" alt="Service Image 2" className="object-cover w-full h-48 rounded-lg" />
           </div>
         </div>
-      </div>
-    </div>
-  ))}
-</Carousel>
-
-
       </div>
 
       {/* Services Section */}
