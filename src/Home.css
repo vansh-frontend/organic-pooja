@@ -36,15 +36,44 @@
 
 /* When the content becomes visible */
 .content-visible {
-  animation: slideInFromLeft 0.2s ease-in-out forwards; /* Reduced duration for faster animation */
+  animation: slideInFromLeft 1s ease-out forwards; /* Increased duration for smoother animation */
 }
 
 /* For content that enters from the right */
 .content-visible-right {
-  animation: slideInFromRight 0.2s ease-in-out forwards;
+  animation: slideInFromRight 1s ease-out forwards;
 }
 
-/* Styling for Carousel */
-.carousel-root {
-  border-radius: 20px; /* Adds the 3D effect */
+/* Animation for fading in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Animation for scaling in */
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Animation for zoom-in effect on images */
+@keyframes zoomIn {
+  from { transform: scale(1.1); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Animation for shimmering effect */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+/* Content fade-in */
+.fade-in {
+  animation: fadeIn 1.5s ease-out; /* Increased duration for smoother fade-in */
+}
+
+/* Image zoom-in */
+.zoom-in {
+  animation: zoomIn 1.5s ease-out; /* Increased duration for smoother zoom-in */
 }
