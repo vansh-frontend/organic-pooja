@@ -34,21 +34,15 @@
 
 /* When the content becomes visible */
 .content-visible {
-  animation: slideInFromLeft 0.3s ease-in-out forwards; /* Adjust duration as needed */
+  animation: slideInFromLeft 0.2s ease-in-out forwards; /* Reduced duration for faster animation */
 }
 
 /* For content that enters from the right */
 .content-visible-right {
-  animation: slideInFromRight 0.3s ease-in-out forwards; /* Adjust duration as needed */
+  animation: slideInFromRight 0.2s ease-in-out forwards;
 }
 
-/* When the content is exiting (if needed) */
-.content-exiting {
-  animation: slideInFromLeft 0.3s ease-in-out reverse; /* Adjust duration as needed */
-}
-
-/* Exclude animation from FAQ section */
-.exclude-animation {
-  opacity: 1;
-  transform: none;
+/* Styling for Carousel */
+.carousel-root {
+  border-radius: 20px; /* Adds the 3D effect */
 }
