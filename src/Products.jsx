@@ -1,4 +1,3 @@
-import './Products.css';
 import { useState, memo } from 'react';
 import PropTypes from 'prop-types';
 
@@ -19,24 +18,33 @@ const categories = ['All', 'Skincare', 'Haircare', 'Bodycare'];
 // Memoized ProductCard component with display name and PropTypes
 const ProductCard = memo(function ProductCard({ product }) {
   return (
-    <div className="product-card">
-      <div className="product-image-container">
+    <div className="overflow-hidden transition-transform transform bg-white rounded-lg shadow-lg hover:scale-105 hover:shadow-xl">
+      <div className="relative">
         <img
           src={product.image}
           alt={product.name}
-          className="product-image"
+          className="object-cover w-full h-56 md:h-64"
           loading="lazy"
         />
+        <div className="absolute inset-0 flex items-center justify-center transition-opacity bg-black bg-opacity-50 opacity-0 hover:opacity-100">
+          <div className="text-center">
+            <h3 className="text-sm font-semibold text-white sm:text-lg">{product.name}</h3>
+            <p className="text-xs font-medium text-white sm:text-md">{product.price}</p>
+            <button className="px-3 py-1 mt-2 font-semibold text-black bg-white rounded sm:px-4 sm:py-2 hover:bg-gray-200">
+              View Details
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="product-info">
-        <h3 className="product-name">{product.name}</h3>
-        <p className="product-price">{product.price}</p>
-      </div>
-      <div className="overlay">
-        <div className="overlay-content">
-          <h3 className="overlay-title">{product.name}</h3>
-          <p className="overlay-price">{product.price}</p>
-          <button className="overlay-button">View Details</button>
+      <div className="p-3 sm:p-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 sm:text-lg">{product.name}</h3>
+            <p className="text-xs text-gray-600 sm:text-sm">{product.price}</p>
+          </div>
+          <button className="px-4 py-2 ml-2 text-xs sm:text-sm font-semibold text-black bg-[#f0ead6]/30 backdrop-blur-md rounded-lg border border-gray-300/50 shadow-md transition-all duration-300 ease-in-out hover:bg-[#f0ead6]/50 hover:shadow-lg hover:-translate-y-1 active:shadow-sm active:translate-y-0 active:bg-[#f0ead6]/70">
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
@@ -63,13 +71,13 @@ const Products = () => {
     : allProducts.filter(product => product.category === selectedCategory);
 
   return (
-    <div>
+    <div className="container px-4 mx-auto">
       {/* Category Filter */}
-      <div className="category-container">
+      <div className="flex flex-wrap justify-center mb-6 space-x-2 sm:space-x-4">
         {categories.map((category) => (
           <button
             key={category}
-            className={`category-button ${selectedCategory === category ? 'active' : ''}`}
+            className={`px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold ${selectedCategory === category ? 'bg-black text-white' : 'bg-gray-200 text-gray-700'} transition-colors hover:bg-black hover:text-white`}
             onClick={() => setSelectedCategory(category)}
           >
             {category}
@@ -78,7 +86,7 @@ const Products = () => {
       </div>
 
       {/* Products Section */}
-      <div className="products-container">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {filteredProducts.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
