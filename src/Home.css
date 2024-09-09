@@ -36,12 +36,12 @@
 
 /* When the content becomes visible */
 .content-visible {
-  animation: slideInFromLeft 1s ease-out forwards; /* Increased duration for smoother animation */
+  animation: slideInFromLeft 0.5s ease-out forwards; /* Increased duration for smoother animation */
 }
 
 /* For content that enters from the right */
 .content-visible-right {
-  animation: slideInFromRight 1s ease-out forwards;
+  animation: slideInFromRight 0.5s ease-out forwards;
 }
 
 /* Animation for fading in */
@@ -70,10 +70,11 @@
 
 /* Content fade-in */
 .fade-in {
-  animation: fadeIn 1.5s ease-out; /* Increased duration for smoother fade-in */
+  animation: fadeIn 1s ease-out;
 }
 
 /* Image zoom-in */
 .zoom-in {
-  animation: zoomIn 1.5s ease-out; /* Increased duration for smoother zoom-in */
+  animation: zoomIn 1s ease-out;
 }
+
