@@ -215,16 +215,17 @@ const Navbar = ({ position }) => {
 
   return (
     <nav className="relative">
-      <div className="flex items-center justify-between p-4 bg-white">
-        <div className="flex items-center space-x-4">
-          {/* Desktop Navigation */}
-          {desktopNavItems}
-        </div>
-        {/* Hamburger Icon for Mobile Navigation */}
-        <button onClick={toggleMenu} className="block lg:hidden">
-          {isOpen ? <IconX size={24} /> : <IconMenu4 size={24} />}
-        </button>
-      </div>
+     <div className="flex items-center justify-between p-4 bg-white">
+  <div className="flex items-center space-x-4">
+    {/* Desktop Navigation */}
+    {desktopNavItems}
+  </div>
+  {/* Hamburger Icon for Mobile Navigation */}
+  <button onClick={toggleMenu} className="block lg:hidden">
+    {isOpen ? <IconX size={30} /> : <IconMenu4 size={30} />}
+  </button>
+</div>
+
 
       {/* Mobile Navigation */}
       {isOpen && (
