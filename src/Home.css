@@ -34,94 +34,21 @@
 
 /* When the content becomes visible */
 .content-visible {
-  animation: slideInFromLeft 0.5s ease-in-out forwards;
+  animation: slideInFromLeft 0.3s ease-in-out forwards; /* Adjust duration as needed */
 }
 
+/* For content that enters from the right */
 .content-visible-right {
-  animation: slideInFromRight 0.5s ease-in-out forwards;
+  animation: slideInFromRight 0.3s ease-in-out forwards; /* Adjust duration as needed */
 }
 
-/* Exclude certain sections from animation */
+/* When the content is exiting (if needed) */
+.content-exiting {
+  animation: slideInFromLeft 0.3s ease-in-out reverse; /* Adjust duration as needed */
+}
+
+/* Exclude animation from FAQ section */
 .exclude-animation {
   opacity: 1;
   transform: none;
-}
-
-/* Responsive Grid and Carousel */
-.home-container {
-  padding: 1rem;
-  background-color: #f0f0f0;
-}
-
-.carousel-section {
-  margin-bottom: 2rem;
-}
-
-.carousel-item {
-  display: flex;
-  flex-direction: row;
-}
-
-.carousel-image {
-  flex: 1;
-}
-
-.carousel-text {
-  flex: 1;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.shop-now-button {
-  margin-top: 1rem;
-  background-color: black;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  transition: transform 0.3s ease;
-}
-
-.shop-now-button:hover {
-  transform: scale(1.05);
-}
-
-/* Services Section */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-}
-
-.service-card {
-  background-color: white;
-  border-radius: 8px;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.service-card img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.service-card h3 {
-  margin-top: 1rem;
-}
-
-/* Media Queries for responsiveness */
-@media (max-width: 768px) {
-  .carousel-item {
-    flex-direction: column;
-  }
-    
-  .carousel-text {
-    padding: 1rem;
-  }
-
-  .shop-now-button {
-    font-size: 0.9rem;
-  }
 }

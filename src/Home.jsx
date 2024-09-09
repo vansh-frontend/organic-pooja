@@ -26,21 +26,26 @@ const Home = () => {
   // IntersectionObserver to animate content on scroll
   useEffect(() => {
     const sections = sectionRefs.current;
-
+  
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add(scrollDirection === 'up' ? 'content-visible' : 'content-exiting');
+          if (!entry.target.classList.contains('already-visible')) {
+            entry.target.classList.add(scrollDirection === 'up' ? 'content-visible' : 'content-visible-right');
+            entry.target.classList.add('already-visible');
+          }
+        } else {
+          entry.target.classList.remove('already-visible');
         }
       });
     });
-
+  
     sections.forEach((section) => {
       if (section && !section.classList.contains('exclude-animation')) {
         observer.observe(section);
       }
     });
-
+  
     return () => {
       sections.forEach((section) => {
         if (section) {
@@ -49,7 +54,7 @@ const Home = () => {
       });
     };
   }, [scrollDirection]);
-
+  
   const products = [
     {
       img: 'img/pro1.jpg',
@@ -75,20 +80,20 @@ const Home = () => {
     <div className="relative w-full py-8 overflow-hidden bg-gray-50">
       {/* Carousel Section */}
       <div className="px-4 sm:px-6 lg:px-12 exclude-animation">
-      <Carousel
-          autoPlay
-          interval={3000}
-          infiniteLoop
-          showArrows={false}
-          showThumbs={false}
-          showStatus={false}
-          showIndicators={true}
-          swipeable={true}
-          emulateTouch
-          swipeScrollTolerance={5}
-          dynamicHeight={false}
-          className="w-full mx-auto overflow-hidden carousel-root"
-        >
+        <Carousel
+            autoPlay
+            interval={3000}
+            infiniteLoop
+            showArrows={false}
+            showThumbs={false}
+            showStatus={false}
+            showIndicators={true}
+            swipeable={true}
+            emulateTouch
+            swipeScrollTolerance={5}
+            dynamicHeight={false}
+            className="w-full mx-auto overflow-hidden carousel-root"
+          >
           {products.map((product, index) => (
             <div
               key={index}
@@ -154,10 +159,18 @@ const Home = () => {
           <p className="mt-2 text-gray-600">Explore our hair care services for healthier, shinier hair.</p>
           <Link to="/haircare" className="inline-block mt-4 text-blue-600">Book Now</Link>
         </div>
+
+        {/* Service 4 */}
+        <div className="p-6 bg-white rounded-lg shadow-md content-hidden" ref={(el) => (sectionRefs.current[4] = el)}>
+          <img src="img/makeup.jpg" alt="Makeup Services" className="object-cover w-full h-48 rounded-lg" />
+          <h3 className="mt-4 text-xl font-semibold">Makeup Services</h3>
+          <p className="mt-2 text-gray-600">Get glamorous with our professional makeup services for any occasion.</p>
+          <Link to="/makeupservices" className="inline-block mt-4 text-blue-600">Book Now</Link>
+        </div>
       </div>
 
       {/* FAQ Section */}
-      <div className="mt-12 content-hidden" ref={(el) => (sectionRefs.current[7] = el)}>
+      <div className="mt-12">
         <Accordion />
       </div>
     </div>
