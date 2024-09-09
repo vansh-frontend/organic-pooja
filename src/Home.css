@@ -1,6 +1,8 @@
 /* Smooth scrolling */
 * {
   scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
 }
 
 /* Keyframes for slide animations */
