@@ -98,15 +98,6 @@ const Navbar = ({ position }) => {
       <ul className="hidden space-x-8 lg:flex">
         <li>
           <NavLink
-            to="/contact"
-            className="relative p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75"
-          >
-            Contact
-            <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
             to="/book"
             className="relative p-3 text-lg font-medium text-white transition-all duration-500 bg-black hover:opacity-75"
           >

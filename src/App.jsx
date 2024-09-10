@@ -2,7 +2,6 @@
 import Home from "./Home";
 import Book from "./Book";
 import Services from "./Services";
-import Contact from "./Contact";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import {BrowserRouter,Routes,Route} from "react-router-dom";
@@ -41,7 +40,6 @@ const App = () => {
       <Route path="/" element={<Home></Home>}></Route>
       <Route path="/services" element={<Services></Services>}></Route>
       <Route path="/book" element={<Book></Book>}></Route>
-      <Route path="/contact" element={<Contact></Contact>}></Route>
       <Route path="/products" element={<Products></Products>}></Route>
     </Routes>
     <Footer></Footer>
