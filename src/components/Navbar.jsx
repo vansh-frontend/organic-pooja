@@ -241,7 +241,7 @@ const Navbar = ({ position }) => {
 
   return (
     <nav className="relative">
-      <div className="flex items-center justify-between p-4 bg-white">
+      <div className="flex items-center justify-between p-4">
         <div className="flex items-center space-x-4">
           {/* Desktop Navigation */}
           {desktopNavItems}
