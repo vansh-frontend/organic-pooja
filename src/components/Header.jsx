@@ -29,8 +29,8 @@ const Header = () => {
               alt="Logo"
               className="object-cover w-16 h-16 rounded-full shadow-lg"
             />
-            <h1 className="text-3xl font-extrabold tracking-widest text-gray-800 uppercase">
-              Organic By Pooja
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-widest text-gray-800 uppercase font-['Roboto_Slab']">
+              Organic <span className="font-extrabold text-yellow-500">Pooja</span>
             </h1>
           </NavLink>
         </div>
