@@ -178,40 +178,39 @@ const Navbar = ({ position }) => {
             <div>
               <h3 className="font-semibold">Skin</h3>
               <ul className="space-y-2">
-                <li><NavLink to="/laser-hair-treatment" className="block text-sm text-gray-700 hover:text-black">Thermage Treatment</NavLink></li>
-                <li><NavLink to="/laser-hair-treatment" className="block text-sm text-gray-700 hover:text-black">HIFU Treatment</NavLink></li>
-                <li><NavLink to="/laser-hair-treatment" className="block text-sm text-gray-700 hover:text-black">Dermal Fillers Treatment</NavLink></li>
-                <li><NavLink to="/laser-hair-treatment" className="block text-sm text-gray-700 hover:text-black">Chemical Peel Treatment</NavLink></li>
-                <li><NavLink to="/laser-hair-treatment" className="block text-sm text-gray-700 hover:text-black">Q-Switch Laser Treatment</NavLink></li>
-                <li><NavLink to="/laser-hair-treatment" className="block text-sm text-gray-700 hover:text-black">Skin Brightening and Lightening Treatment</NavLink></li>
-                <li><NavLink to="/laser-hair-treatment" className="block text-sm text-gray-700 hover:text-black">Ageing Skin</NavLink></li>
-                <li><NavLink to="/laser-hair-treatment" className="block text-sm text-gray-700 hover:text-black">Acne Scars</NavLink></li>
-                <li><NavLink to="/laser-hair-treatment" className="block text-sm text-gray-700 hover:text-black">Dull Skin</NavLink></li>
-                <li><NavLink to="/laser-hair-treatment" className="block text-sm text-gray-700 hover:text-black">IV Drips For Skin</NavLink></li>
+                <li><NavLink to="/thermage-treatment" className="block text-sm text-gray-700 hover:text-black">Thermage Treatment</NavLink></li>
+                <li><NavLink to="/hifu-treatment" className="block text-sm text-gray-700 hover:text-black">HIFU Treatment</NavLink></li>
+                <li><NavLink to="/dermal-fillers-treatment" className="block text-sm text-gray-700 hover:text-black">Dermal Fillers Treatment</NavLink></li>
+                <li><NavLink to="/chemical-peel-treatment" className="block text-sm text-gray-700 hover:text-black">Chemical Peel Treatment</NavLink></li>
+                <li><NavLink to="/q-switch-laser-treatment" className="block text-sm text-gray-700 hover:text-black">Q-Switch Laser Treatment</NavLink></li>
+                <li><NavLink to="/skin-brightening-lightening-treatment" className="block text-sm text-gray-700 hover:text-black">Skin Brightening and Lightening Treatment</NavLink></li>
+                <li><NavLink to="/ageing-skin" className="block text-sm text-gray-700 hover:text-black">Ageing Skin</NavLink></li>
+                <li><NavLink to="/acne-scars" className="block text-sm text-gray-700 hover:text-black">Acne Scars</NavLink></li>
+                <li><NavLink to="/dull-skin" className="block text-sm text-gray-700 hover:text-black">Dull Skin</NavLink></li>
+                <li><NavLink to="/iv-drips-for-skin" className="block text-sm text-gray-700 hover:text-black">IV Drips For Skin</NavLink></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold">Hair</h3>
               <ul className="space-y-2">
                 <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
-                <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
-                <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Thread Treatment</NavLink></li>
-                <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Biocell Therapy</NavLink></li>
-                <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss In Women</NavLink></li>
-                <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">IV Drips For Hair</NavLink></li>
+                <li><NavLink to="/prp-gf-treatment" className="block text-sm text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
+                <li><NavLink to="/hair-thread-treatment" className="block text-sm text-gray-700 hover:text-black">Hair Thread Treatment</NavLink></li>
+                <li><NavLink to="/biocell-therapy" className="block text-sm text-gray-700 hover:text-black">Biocell Therapy</NavLink></li>
+                <li><NavLink to="/hair-loss-in-women" className="block text-sm text-gray-700 hover:text-black">Hair Loss In Women</NavLink></li>
+                <li><NavLink to="/iv-drips-for-hair" className="block text-sm text-gray-700 hover:text-black">IV Drips For Hair</NavLink></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold">Make Up</h3>
               <ul className="space-y-2">
                 <li><NavLink to="/make-up" className="block text-sm text-gray-700 hover:text-black">Make Up</NavLink></li>
-                <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
-                    <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Thread Treatment</NavLink></li>
-                    <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Biocell Therapy</NavLink></li>
-                    <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss In women</NavLink></li>
-                    <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">IV Drips For Hair</NavLink></li>
-                    <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
-                  
+                <li><NavLink to="/prp-gf-treatment" className="block text-sm text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
+                <li><NavLink to="/hair-thread-treatment" className="block text-sm text-gray-700 hover:text-black">Hair Thread Treatment</NavLink></li>
+                <li><NavLink to="/biocell-therapy" className="block text-sm text-gray-700 hover:text-black">Biocell Therapy</NavLink></li>
+                <li><NavLink to="/hair-loss-in-women" className="block text-sm text-gray-700 hover:text-black">Hair Loss In Women</NavLink></li>
+                <li><NavLink to="/iv-drips-for-hair" className="block text-sm text-gray-700 hover:text-black">IV Drips For Hair</NavLink></li>
+                <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
               </ul>
             </div>
           </div>
@@ -239,7 +238,6 @@ const Navbar = ({ position }) => {
       </li>
     </ul>
   );
-  
 
   return (
     <nav className="relative">
@@ -249,12 +247,23 @@ const Navbar = ({ position }) => {
           {desktopNavItems}
         </div>
 
-        <button
-          className="p-2 lg:hidden"
-          onClick={toggleMenu}
-        >
-          {isOpen ? <IconX size={24} /> : <IconMenu4 size={24} />}
-        </button>
+        <div className="flex items-center space-x-4 lg:hidden">
+          {/* Shopping Cart Icon */}
+          <NavLink
+            to="/cart"
+            className="flex items-center p-2 text-black transition-all duration-500 hover:opacity-75"
+          >
+            <IconShoppingCart size={24} />
+          </NavLink>
+
+          {/* Menu Toggle Button */}
+          <button
+            className="p-2"
+            onClick={toggleMenu}
+          >
+            {isOpen ? <IconX size={24} /> : <IconMenu4 size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation Menu */}
