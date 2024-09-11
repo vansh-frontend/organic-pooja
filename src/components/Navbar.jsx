@@ -120,24 +120,28 @@ const Navbar = ({ position }) => {
     </>
   ) : (
     <>
-      <ul className="hidden space-x-8 lg:flex">
-      <NavLink
-          to="/cart"
-          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
-        >
-          <IconShoppingCart size={24} />
-          <span className="hidden ml-2 lg:inline">Cart</span>
-        </NavLink>
-        <li>
-          <NavLink
-            to="/book"
-            className="relative p-3 text-lg font-medium text-white transition-all duration-500 bg-black hover:opacity-75"
-          >
-            Book Appointment
-            <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
-          </NavLink>
-        </li>
-      </ul>
+     <ul className="items-center hidden space-x-8 lg:flex">
+  <li>
+    <NavLink
+      to="/cart"
+      className="relative flex items-center p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75"
+    >
+      <IconShoppingCart size={24} />
+      <span className="ml-2">Cart</span>
+      <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      to="/book"
+      className="relative flex items-center p-3 text-lg font-medium text-white transition-all duration-500 bg-black hover:opacity-75 group"
+    >
+      Book Appointment
+      <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-white transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
+    </NavLink>
+  </li>
+</ul>
+
     </>
   );
   const mobileNavItems = (
@@ -201,6 +205,13 @@ const Navbar = ({ position }) => {
               <h3 className="font-semibold">Make Up</h3>
               <ul className="space-y-2">
                 <li><NavLink to="/make-up" className="block text-sm text-gray-700 hover:text-black">Make Up</NavLink></li>
+                <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
+                    <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Thread Treatment</NavLink></li>
+                    <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Biocell Therapy</NavLink></li>
+                    <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss In women</NavLink></li>
+                    <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">IV Drips For Hair</NavLink></li>
+                    <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
+                  
               </ul>
             </div>
           </div>
