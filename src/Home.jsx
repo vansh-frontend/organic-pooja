@@ -55,7 +55,7 @@ const Home = () => {
 
   return (
     <div className="relative w-full overflow-hidden bg-gray-50">
-{/* Organic By Pooja Section */}
+   {/* Organic By Pooja Section */}
 <section className="relative flex flex-col items-center justify-start min-h-screen px-6 py-16 overflow-hidden text-white bg-teal-500 lg:px-12 lg:py-24">
   <div className="absolute inset-0">
     <img
@@ -84,43 +84,43 @@ const Home = () => {
   </div>
 </section>
 
-  {/* Services Section */}
-<section className="py-16 bg-gray-50" ref={(el) => (sectionRefs.current[0] = el)}>
-  <div className="container px-6 mx-auto text-center">
-    <h2 className="mb-12 text-3xl font-bold text-gray-900 sm:text-4xl">Explore Our Services</h2>
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {/* Service 1 */}
-      <div className="p-6 transition-shadow duration-300 ease-in-out transform bg-white rounded-lg shadow-lg hover:shadow-xl hover:scale-105">
-        <img src="img/section.jpg" alt="Makeup Services" className="object-cover w-full h-48 mb-4 rounded-lg" />
-        <h3 className="mb-2 text-xl font-bold text-gray-800">Makeup Services</h3>
-        <p className="mb-4 text-gray-700">Expert makeup services for all occasions.</p>
-        <Link to="/makeupservices" className="font-semibold text-teal-600 hover:text-teal-700">Book Now</Link>
-      </div>
-      {/* Service 2 */}
-      <div className="p-6 transition-shadow duration-300 ease-in-out transform bg-white rounded-lg shadow-lg hover:shadow-xl hover:scale-105">
-        <img src="img/skin.jpg" alt="Skin Care" className="object-cover w-full h-48 mb-4 rounded-lg" />
-        <h3 className="mb-2 text-xl font-bold text-gray-800">Skin Care</h3>
-        <p className="mb-4 text-gray-700">Advanced skincare treatments for glowing skin.</p>
-        <Link to="/skincare" className="font-semibold text-teal-600 hover:text-teal-700">Book Now</Link>
-      </div>
-      {/* Service 3 */}
-      <div className="p-6 transition-shadow duration-300 ease-in-out transform bg-white rounded-lg shadow-lg hover:shadow-xl hover:scale-105">
-        <img src="img/hair.png" alt="Hair Styling" className="object-cover w-full h-48 mb-4 rounded-lg" />
-        <h3 className="mb-2 text-xl font-bold text-gray-800">Hair Styling</h3>
-        <p className="mb-4 text-gray-700">Professional hair styling services for every look.</p>
-        <Link to="/hairstyling" className="font-semibold text-teal-600 hover:text-teal-700">Book Now</Link>
-      </div>
-      {/* Service 4 */}
-      <div className="p-6 transition-shadow duration-300 ease-in-out transform bg-white rounded-lg shadow-lg hover:shadow-xl hover:scale-105">
-        <img src="img/sec2.jpg" alt="Salon Products" className="object-cover w-full h-48 mb-4 rounded-lg" />
-        <h3 className="mb-2 text-xl font-bold text-gray-800">Salon Products</h3>
-        <p className="mb-4 text-gray-700">Top-quality products for your salon needs.</p>
-        <Link to="/salonproducts" className="font-semibold text-teal-600 hover:text-teal-700">Shop Now</Link>
-      </div>
-    </div>
-  </div>
-</section>
 
+      {/* Services Section */}
+      <section className="py-16 bg-gray-100" ref={(el) => (sectionRefs.current[0] = el)}>
+        <div className="container px-6 mx-auto text-center">
+          <h2 className="mb-12 text-3xl font-semibold text-gray-800">Explore Our Services</h2>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {/* Service 1 */}
+            <div className="p-6 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105">
+              <img src="img/section.jpg" alt="Makeup Services" className="object-cover w-full h-48 mb-4 rounded-lg" />
+              <h3 className="mb-2 text-xl font-semibold text-gray-800">Makeup Services</h3>
+              <p className="mb-4 text-gray-600">Expert makeup services for all occasions.</p>
+              <Link to="/makeupservices" className="text-teal-500 hover:text-teal-600">Book Now</Link>
+            </div>
+            {/* Service 2 */}
+            <div className="p-6 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105">
+              <img src="img/skin.jpg" alt="Skin Care" className="object-cover w-full h-48 mb-4 rounded-lg" />
+              <h3 className="mb-2 text-xl font-semibold text-gray-800">Skin Care</h3>
+              <p className="mb-4 text-gray-600">Advanced skincare treatments for glowing skin.</p>
+              <Link to="/skincare" className="text-teal-500 hover:text-teal-600">Book Now</Link>
+            </div>
+            {/* Service 3 */}
+            <div className="p-6 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105">
+              <img src="img/hair.png" alt="Hair Styling" className="object-cover w-full h-48 mb-4 rounded-lg" />
+              <h3 className="mb-2 text-xl font-semibold text-gray-800">Hair Styling</h3>
+              <p className="mb-4 text-gray-600">Professional hair styling services for every look.</p>
+              <Link to="/hairstyling" className="text-teal-500 hover:text-teal-600">Book Now</Link>
+            </div>
+            {/* Service 4 */}
+            <div className="p-6 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105">
+              <img src="img/sec2.jpg" alt="Salon Products" className="object-cover w-full h-48 mb-4 rounded-lg" />
+              <h3 className="mb-2 text-xl font-semibold text-gray-800">Salon Products</h3>
+              <p className="mb-4 text-gray-600">Top-quality products for your salon needs.</p>
+              <Link to="/salonproducts" className="text-teal-500 hover:text-teal-600">Shop Now</Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* FAQ Section */}
       <section className="py-16 bg-white" ref={(el) => (sectionRefs.current[7] = el)}>
