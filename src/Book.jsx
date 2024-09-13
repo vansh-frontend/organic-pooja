@@ -190,7 +190,7 @@ const Contact = () => {
               htmlFor="message"
               className="absolute text-gray-500 transition-transform duration-300 ease-in-out transform -translate-y-1/2 top-3 left-3 peer-placeholder-shown:top-1/2 peer-placeholder-shown:left-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-sm peer-focus:-translate-y-5 peer-focus:text-blue-600 peer-focus:text-xs"
             >
-              Your Message
+              Your Message For Us
             </label>
           </div>
 
@@ -198,7 +198,7 @@ const Contact = () => {
             type="submit"
             className="w-full p-3 font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            Send Message
+            Book Appointment
           </button>
         </form>
       </div>
