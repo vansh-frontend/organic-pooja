@@ -156,12 +156,12 @@ const Navbar = ({ position }) => {
       </li>
       <li>
         <NavLink
-          to="/book"
-          className="flex items-center p-3 text-lg font-medium text-white transition-all duration-500 bg-black hover:opacity-75"
+          to="/"
+          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
           onClick={toggleMenu}
         >
-          <IconBook size={20} />
-          <span className="ml-2">Book Appointment</span>
+          <IconHome size={20} />
+          <span className="ml-2">Home</span>
         </NavLink>
       </li>
       <li
@@ -218,22 +218,22 @@ const Navbar = ({ position }) => {
       </li>
       <li>
         <NavLink
-          to="/"
-          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
-          onClick={toggleMenu}
-        >
-          <IconHome size={20} />
-          <span className="ml-2">Home</span>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
           to="/products"
           className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
           onClick={toggleMenu}
         >
           <IconApps size={20} />
           <span className="ml-2">Products</span>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/book"
+          className="flex items-center p-3 text-lg font-medium text-white transition-all duration-500 bg-black hover:opacity-75"
+          onClick={toggleMenu}
+        >
+          <IconBook size={20} />
+          <span className="ml-2">Book Appointment</span>
         </NavLink>
       </li>
     </ul>
