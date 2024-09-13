@@ -21,7 +21,6 @@ const ProductCard = memo(({ product, onAddToCart }) => {
             <h3 className="text-lg font-semibold">{product.name}</h3>
             <p className="font-medium text-md">{product.price}</p>
             <button
-              onClick={handleAddToCart}
               className="px-5 py-2 mt-2 text-sm font-semibold text-white rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 hover:shadow-xl active:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300"
             >
               More Details
