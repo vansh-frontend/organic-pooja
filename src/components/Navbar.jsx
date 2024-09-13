@@ -123,7 +123,7 @@ const Navbar = ({ position }) => {
      <ul className="items-center hidden space-x-8 lg:flex">
   <li>
     <NavLink
-      to="/cart"
+      to="/Cart"
       className="relative flex items-center p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75"
     >
       <IconShoppingCart size={24} />
@@ -250,7 +250,7 @@ const Navbar = ({ position }) => {
         <div className="flex items-center space-x-4 lg:hidden">
           {/* Shopping Cart Icon */}
           <NavLink
-            to="/cart"
+            to="/Cart"
             className="flex items-center p-2 text-black transition-all duration-500 hover:opacity-75"
           >
             <IconShoppingCart size={24} />

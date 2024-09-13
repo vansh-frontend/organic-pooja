@@ -1,8 +1,9 @@
-import { useState, memo } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
+import ProductCard from './components/ProductCard'; // Assuming you fixed the file import
 
-// Sample product data
 const allProducts = [
+  // Product data remains the same
   { id: 1, name: 'Face Serum', image: 'img/pro1.jpg', price: '₹99.99', category: 'Skincare' },
   { id: 2, name: 'Rice Water Spray', image: 'img/pro2.jpg', price: '₹149.99', category: 'Haircare' },
   { id: 3, name: 'Rice Water Serum', image: 'img/pro3.jpg', price: '₹149.99', category: 'Skincare' },
@@ -27,57 +28,9 @@ const allProducts = [
 
 const categories = ['All', 'Skincare', 'Haircare', 'Bodycare'];
 
-// Memoized ProductCard component with display name and PropTypes
-const ProductCard = memo(function ProductCard({ product }) {
-  return (
-    <div className="overflow-hidden transition-transform duration-300 ease-in-out transform bg-white rounded-lg shadow-md hover:shadow-lg hover:scale-105">
-      <div className="relative">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="object-cover w-full h-56 md:h-64"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 ease-in-out bg-black bg-opacity-50 opacity-0 hover:opacity-100">
-          <div className="p-4 text-center text-white">
-            <h3 className="text-lg font-semibold">{product.name}</h3>
-            <p className="font-medium text-md">{product.price}</p>
-            <button className="px-4 py-2 mt-2 text-sm font-semibold text-black transition-colors duration-300 ease-in-out bg-white rounded-lg hover:bg-gray-200">
-              View Details
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="p-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900">{product.name}</h3>
-            <p className="text-sm text-gray-600">{product.price}</p>
-          </div>
-           <button className="px-4 py-2 ml-2 text-xs sm:text-sm font-semibold text-black bg-[#f0ead6]/30 backdrop-blur-md rounded-lg border border-gray-300/50 shadow-md transition-all duration-300 ease-in-out hover:bg-[#f0ead6]/50 hover:shadow-lg hover:-translate-y-1 active:shadow-sm active:translate-y-0 active:bg-[#f0ead6]/70">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-});
-
-// Define PropTypes for ProductCard
-ProductCard.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-const Products = () => {
+const Products = ({ addToCart }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  // Filter products based on the selected category
   const filteredProducts = selectedCategory === 'All'
     ? allProducts
     : allProducts.filter(product => product.category === selectedCategory);
@@ -100,11 +53,15 @@ const Products = () => {
       {/* Products Section */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {filteredProducts.map(product => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
         ))}
       </div>
     </div>
   );
+};
+
+Products.propTypes = {
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default Products;
