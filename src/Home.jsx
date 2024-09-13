@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accordion from './components/Accordion';
-import PreLoader from './PreLoader';
 import './Home.css'; // Keep external CSS if needed
 
 const Home = () => {
   const sectionRefs = useRef([]);
   const [scrollDirection, setScrollDirection] = useState(null);
-  const [loading, setLoading] = useState(true);
+
 
   // Track scroll direction
   useEffect(() => {
@@ -56,18 +55,10 @@ const Home = () => {
   }, [scrollDirection]);
 
   // Handle loader
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000); // 3 seconds
-
-    return () => clearTimeout(timer);
-  }, []);
-
+ 
   return (
     <>
-      {loading && <PreLoader />}
-      {!loading && (
+   
         <div className="relative w-full overflow-hidden bg-gray-50">
           {/* Organic By Pooja Section */}
           <section className="relative flex flex-col items-center justify-start min-h-screen px-6 py-16 overflow-hidden text-white bg-teal-500 lg:px-12 lg:py-24">
@@ -143,7 +134,7 @@ const Home = () => {
             </div>
           </section>
         </div>
-      )}
+ 
     </>
   );
 };
