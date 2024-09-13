@@ -19,59 +19,60 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
 
   return (
     <div className="container px-4 py-8 mx-auto">
-      <h2 className="mb-6 text-2xl font-semibold">Your Cart</h2>
+      <h2 className="mb-6 text-3xl font-bold text-gray-800">Your Cart</h2>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p className="text-lg text-gray-600">Your cart is empty.</p>
       ) : (
-        <div className="space-y-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {cartItems.map((item) => (
-            <div key={item.id} className="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
-              <div className="flex items-center space-x-4">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="object-cover w-24 h-24 rounded-md"
-                  loading="lazy"
-                />
-                <div className="flex flex-col">
-                  <h3 className="text-lg font-semibold text-gray-900">{item.name}</h3>
-                  <p className="text-sm text-gray-600">{item.price}</p>
-                  <div className="flex items-center mt-2">
+            <div
+              key={item.id}
+              className="flex flex-col transition-transform duration-300 ease-in-out bg-white rounded-lg shadow-lg hover:scale-105 hover:shadow-xl"
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                className="object-cover w-full h-48 sm:h-56 md:h-64"
+                loading="lazy"
+              />
+              <div className="flex flex-col flex-grow p-4">
+                <h3 className="text-xl font-semibold text-gray-900">{item.name}</h3>
+                <p className="mt-1 text-lg text-gray-700">{item.price}</p>
+                <div className="flex items-center mt-4 space-x-2">
+                  <button
+                    onClick={() => handleQuantityChange(item, item.quantity - 1)}
+                    className="px-3 py-1 text-lg font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+                  >
+                    -
+                  </button>
+                  <span className="px-4 py-2 text-lg font-medium bg-gray-200 rounded">
+                    {item.quantity}
+                  </span>
+                  <button
+                    onClick={() => handleQuantityChange(item, item.quantity + 1)}
+                    className="px-3 py-1 text-lg font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+                  >
+                    +
+                  </button>
+                </div>
+                <div className="flex flex-col mt-4 space-y-2 sm:space-y-0 sm:flex-row sm:justify-between">
+                  <p className="text-lg font-semibold text-gray-900">
+                    ${(parseFloat(item.price.slice(1)) * item.quantity).toFixed(2)}
+                  </p>
+                  <div className="flex flex-col sm:flex-row sm:space-x-2">
                     <button
-                      onClick={() => handleQuantityChange(item, item.quantity - 1)}
-                      className="px-3 py-1 text-xl font-bold text-white bg-gray-700 rounded-l hover:bg-gray-800"
+                      onClick={() => handleRemoveItem(item)}
+                      className="px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600"
                     >
-                      -
+                      Remove
                     </button>
-                    <span className="px-4 py-1 text-lg font-medium bg-gray-200 rounded-tl rounded-bl">
-                      {item.quantity}
-                    </span>
                     <button
-                      onClick={() => handleQuantityChange(item, item.quantity + 1)}
-                      className="px-3 py-1 text-xl font-bold text-white bg-gray-700 rounded-r hover:bg-gray-800"
+                      onClick={() => onBuyNow(item)}
+                      className="px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-100 rounded-lg hover:bg-gray-200 sm:mt-0"
                     >
-                      +
+                      Buy Now
                     </button>
                   </div>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <p className="text-lg font-semibold text-gray-900">
-                  ${(parseFloat(item.price.slice(1)) * item.quantity).toFixed(2)}
-                </p>
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => handleRemoveItem(item)}
-                    className="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700"
-                  >
-                    Remove
-                  </button>
-                  <button
-                    onClick={() => onBuyNow(item)}
-                    className="px-4 py-2 text-sm font-semibold text-gray-900 transition-transform transform bg-white rounded-lg shadow-md bg-opacity-30 backdrop-blur-lg hover:scale-105 active:scale-95 hover:shadow-lg active:shadow-sm"
-                  >
-                    Buy Now
-                  </button>
                 </div>
               </div>
             </div>
