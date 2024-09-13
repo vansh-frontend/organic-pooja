@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
 
-const Cart = ({ cartItems, updateQuantity, removeFromCart }) => {
-  // Memoize the quantity change handler to avoid unnecessary re-renders
+const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
   const handleQuantityChange = useCallback(
     (product, quantity) => {
       if (quantity <= 0) {
@@ -14,7 +13,6 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart }) => {
     [updateQuantity, removeFromCart]
   );
 
-  // Handle item removal from cart
   const handleRemoveItem = (product) => {
     removeFromCart(product);
   };
@@ -61,12 +59,20 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart }) => {
                 <p className="text-lg font-semibold text-gray-900">
                   ${(parseFloat(item.price.slice(1)) * item.quantity).toFixed(2)}
                 </p>
-                <button
-                  onClick={() => handleRemoveItem(item)}
-                  className="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700"
-                >
-                  Remove
-                </button>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleRemoveItem(item)}
+                    className="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700"
+                  >
+                    Remove
+                  </button>
+                  <button
+                    onClick={() => onBuyNow(item)}
+                    className="px-4 py-2 text-sm font-semibold text-gray-900 transition-transform transform bg-white rounded-lg shadow-md bg-opacity-30 backdrop-blur-lg hover:scale-105 active:scale-95 hover:shadow-lg active:shadow-sm"
+                  >
+                    Buy Now
+                  </button>
+                </div>
               </div>
             </div>
           ))}
@@ -88,6 +94,7 @@ Cart.propTypes = {
   ).isRequired,
   updateQuantity: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired,
+  onBuyNow: PropTypes.func.isRequired,
 };
 
 export default Cart;

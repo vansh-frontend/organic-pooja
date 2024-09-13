@@ -16,11 +16,12 @@ const ProductCard = memo(({ product, onAddToCart }) => {
             <h3 className="text-lg font-semibold">{product.name}</h3>
             <p className="font-medium text-md">{product.price}</p>
             <button
-              onClick={() => onAddToCart(product)}
-              className="px-4 py-2 mt-2 text-sm font-semibold text-black transition-colors duration-300 ease-in-out bg-white rounded-lg hover:bg-gray-200"
-            >
-              Add to Cart
-            </button>
+  onClick={() => onAddToCart(product)}
+  className="px-4 py-2 mt-2 text-sm font-semibold text-gray-900 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105 active:scale-95 hover:shadow-lg active:shadow-sm"
+>
+  Add to Cart
+</button>
+
           </div>
         </div>
       </div>
@@ -31,11 +32,12 @@ const ProductCard = memo(({ product, onAddToCart }) => {
             <p className="text-sm text-gray-600">{product.price}</p>
           </div>
           <button
-            onClick={() => onAddToCart(product)}
-            className="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600"
-          >
-            Add to Cart
-          </button>
+  onClick={() => onAddToCart(product)}
+  className="px-4 py-2 text-sm font-semibold text-gray-800 transition-transform transform bg-gray-100 rounded-lg shadow-md hover:-translate-y-2 active:translate-y-1 active:shadow-sm"
+>
+  Add to Cart
+</button>
+
         </div>
       </div>
     </div>
