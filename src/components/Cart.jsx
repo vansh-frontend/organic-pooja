@@ -18,57 +18,57 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
   };
 
   return (
-    <div className="container px-4 py-8 mx-auto">
-      <h2 className="mb-6 text-3xl font-bold text-gray-800">Your Cart</h2>
+    <div className="container max-w-screen-sm px-2 py-4 mx-auto">
+      <h2 className="mb-4 text-xl font-semibold text-gray-900">Your Cart</h2>
       {cartItems.length === 0 ? (
-        <p className="text-lg text-gray-600">Your cart is empty.</p>
+        <p className="text-base text-gray-500">Your cart is empty.</p>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4">
           {cartItems.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col transition-transform duration-300 ease-in-out bg-white rounded-lg shadow-lg hover:scale-105 hover:shadow-xl"
+              className="flex items-start overflow-hidden bg-white border border-gray-200 rounded-lg shadow-sm"
             >
               <img
                 src={item.image}
                 alt={item.name}
-                className="object-cover w-full h-48 sm:h-56 md:h-64"
+                className="object-cover w-24 h-24"
                 loading="lazy"
               />
-              <div className="flex flex-col flex-grow p-4">
-                <h3 className="text-xl font-semibold text-gray-900">{item.name}</h3>
-                <p className="mt-1 text-lg text-gray-700">{item.price}</p>
-                <div className="flex items-center mt-4 space-x-2">
+              <div className="flex flex-col flex-grow p-2">
+                <h3 className="text-base font-semibold text-gray-800">{item.name}</h3>
+                <p className="text-sm text-gray-600">{item.price}</p>
+                <div className="flex items-center mt-2 space-x-1">
                   <button
                     onClick={() => handleQuantityChange(item, item.quantity - 1)}
-                    className="px-3 py-1 text-lg font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+                    className="flex items-center justify-center w-6 h-6 text-white bg-blue-600 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
                   >
                     -
                   </button>
-                  <span className="px-4 py-2 text-lg font-medium bg-gray-200 rounded">
+                  <span className="flex items-center justify-center w-8 h-6 text-sm font-medium bg-gray-100 rounded">
                     {item.quantity}
                   </span>
                   <button
                     onClick={() => handleQuantityChange(item, item.quantity + 1)}
-                    className="px-3 py-1 text-lg font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+                    className="flex items-center justify-center w-6 h-6 text-white bg-blue-600 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
                   >
                     +
                   </button>
                 </div>
-                <div className="flex flex-col mt-4 space-y-2 sm:space-y-0 sm:flex-row sm:justify-between">
-                  <p className="text-lg font-semibold text-gray-900">
+                <div className="flex items-center justify-between mt-2">
+                  <p className="text-sm font-semibold text-gray-900">
                     ${(parseFloat(item.price.slice(1)) * item.quantity).toFixed(2)}
                   </p>
-                  <div className="flex flex-col sm:flex-row sm:space-x-2">
+                  <div className="flex space-x-1">
                     <button
                       onClick={() => handleRemoveItem(item)}
-                      className="px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600"
+                      className="px-2 py-1 text-xs font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
                     >
                       Remove
                     </button>
                     <button
                       onClick={() => onBuyNow(item)}
-                      className="px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-100 rounded-lg hover:bg-gray-200 sm:mt-0"
+                      className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
                     >
                       Buy Now
                     </button>
