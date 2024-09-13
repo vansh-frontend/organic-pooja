@@ -15,29 +15,29 @@ const Header = () => {
       </div>
 
       {/* Main Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-300 lg:px-8">
+      <div className="flex items-center justify-between p-2 border-b border-gray-300 lg:px-4 lg:py-1">
         {/* Navbar for Desktop (Left Items) */}
-        <div className="hidden lg:flex lg:space-x-6">
-          <Navbar position="left" />
+        <div className="hidden lg:flex lg:space-x-4">
+          <Navbar position="left" className="h-8" /> {/* Adjust height here */}
         </div>
 
         {/* Centered Logo and Title */}
-        <div className="flex items-center justify-center flex-1 space-x-4">
-          <NavLink to="/" className="flex items-center space-x-4">
+        <div className="flex items-center justify-center flex-1 space-x-2">
+          <NavLink to="/" className="flex items-center space-x-2">
             <img 
               src="img/pooja 2.png"
               alt="Logo"
-              className="object-cover w-16 h-16 rounded-full shadow-lg"
+              className="object-cover w-12 h-12 rounded-full shadow-lg"
             />
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-widest text-gray-800 uppercase font-['Roboto_Slab']">
+            <h1 className="text-lg md:text-xl lg:text-2xl font-bold tracking-widest text-gray-800 uppercase font-['Roboto_Slab']">
               Organic <span className="font-extrabold text-yellow-500">Pooja</span>
             </h1>
           </NavLink>
         </div>
 
         {/* Navbar for Desktop (Right Items) */}
-        <div className="hidden lg:flex lg:space-x-6">
-          <Navbar position="right" />
+        <div className="hidden lg:flex lg:space-x-4">
+          <Navbar position="right" className="h-8" /> {/* Adjust height here */}
         </div>
 
         {/* Mobile Menu Button */}

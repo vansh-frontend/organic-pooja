@@ -21,7 +21,7 @@ const Navbar = ({ position }) => {
         <li>
           <NavLink
             to="/"
-            className="relative p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75"
+            className="relative p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 hover:text-yellow-400"
           >
             Home
             <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
@@ -30,7 +30,7 @@ const Navbar = ({ position }) => {
         <li>
           <NavLink
             to="/products"
-            className="relative p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75"
+            className="relative p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 hover:text-yellow-400"
           >
             Products
             <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
@@ -43,7 +43,7 @@ const Navbar = ({ position }) => {
         >
           <NavLink
             to="/services"
-            className="relative p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75"
+            className="relative p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 hover:text-yellow-400"
           >
             Services
             <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
@@ -134,7 +134,7 @@ const Navbar = ({ position }) => {
   <li>
     <NavLink
       to="/book"
-      className="relative flex items-center p-3 text-lg font-medium text-white transition-all duration-500 bg-black hover:opacity-75 group"
+      className="relative flex items-center p-3 text-lg font-medium text-white transition-all duration-500 bg-black hover:opacity-75 group hover:text-yellow-400"
     >
       Book Appointment
       <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-white transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
