@@ -248,6 +248,16 @@ const Navbar = ({ position }) => {
       </li>
       <li>
         <NavLink
+          to="/products"
+          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
+          onClick={openLoginModal}
+        >
+          <IconArrowRight size={20} />
+          <span className="ml-2">Login</span>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/book"
           className="flex items-center p-3 text-lg font-medium text-white transition-all duration-500 bg-black hover:opacity-75"
           onClick={toggleMenu}
@@ -269,14 +279,14 @@ const Navbar = ({ position }) => {
 
         <div className="flex items-center space-x-4 lg:hidden">
           {/* Shopping Cart Icon */}
-          <NavLink
+          {/* <NavLink
             onClick={openLoginModal}
             className="flex items-center p-2 text-black transition-all duration-500 rounded-full bg-b hover:opacity-75"
           >
             
             <IconUserCircle size={28} />
           </NavLink>
-          
+           */}
           <NavLink
             to="/Cart"
             className="flex items-center p-2 text-black"
