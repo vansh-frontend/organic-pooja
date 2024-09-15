@@ -57,52 +57,56 @@ const Contact = () => {
               <div className="grid grid-cols-1 gap-6">
                 {/* Name Input */}
                 <div className="relative">
+                  <label htmlFor="name" className="block text-gray-700">Name</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    placeholder="Enter your full name"
+                    placeholder="Your Name"
                     required
                   />
                 </div>
 
                 {/* Email Input */}
                 <div className="relative">
+                  <label htmlFor="email" className="block text-gray-700">Email</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    placeholder="Enter your email address"
+                    placeholder="Your Email"
                     required
                   />
                 </div>
 
                 {/* Phone Input */}
                 <div className="relative">
+                  <label htmlFor="phone" className="block text-gray-700">Phone</label>
                   <input
                     type="text"
                     id="phone"
                     name="phone"
                     className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    placeholder="Enter your phone number"
+                    placeholder="Your Phone Number"
                     required
                   />
                 </div>
 
                 {/* Treatment Select */}
                 <div className="relative">
+                  <label htmlFor="treatment" className="block text-gray-700">Treatment</label>
                   <select
                     id="treatment"
                     name="treatment"
                     className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                     required
                   >
-                    <option value="Select your treatment">Select your treatment</option>
+                    <option value="" disabled>Select Treatment</option>
                     
                     {/* Skin Treatments Group */}
-                    <optgroup label="Skin Treatments">Select 
+                    <optgroup label="Skin Treatments">
                       <option value="Laser Hair Treatment">Laser Hair Treatment</option>
                       <option value="Thermage Treatment">Thermage Treatment</option>
                       <option value="HIFU Treatment">HIFU Treatment</option>
@@ -136,24 +140,26 @@ const Contact = () => {
                 </div>
 
                 {/* Date & Time Inputs */}
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div className="relative">
+                    <label htmlFor="date" className="block text-gray-700">Date</label>
                     <input
                       type="date"
                       id="date"
                       name="date"
                       className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      placeholder="Select appointment date"
+                      placeholder="Select a date"
                       required
                     />
                   </div>
                   <div className="relative">
+                    <label htmlFor="time" className="block text-gray-700">Time</label>
                     <input
                       type="time"
                       id="time"
                       name="time"
                       className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      placeholder="Select appointment time"
+                      placeholder="Select a time"
                       required
                     />
                   </div>
@@ -161,11 +167,12 @@ const Contact = () => {
 
                 {/* Message Input */}
                 <div className="relative">
+                  <label htmlFor="message" className="block text-gray-700">Message</label>
                   <textarea
                     id="message"
                     name="message"
                     className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    placeholder="Your message or special requests"
+                    placeholder="Your Message For Us"
                     rows="4"
                     required
                   ></textarea>
