@@ -123,10 +123,10 @@ const Navbar = ({ position }) => {
      <ul className="items-center hidden space-x-8 lg:flex">
      <li>
     <NavLink
-      to="/Cart"
+      to="/Login"
       className="relative flex items-center p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 "
     >
-      <IconUserCircle size={24} />
+      <IconUserCircle size={28} />
       <span className="ml-2">Login</span>
       <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
     </NavLink>
@@ -136,7 +136,7 @@ const Navbar = ({ position }) => {
       to="/Cart"
       className="relative flex items-center p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 "
     >
-      <IconShoppingCart size={24} />
+      <IconShoppingCart size={28} />
       <span className="ml-2">Cart</span>
       <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
     </NavLink>
@@ -260,18 +260,17 @@ const Navbar = ({ position }) => {
         <div className="flex items-center space-x-4 lg:hidden">
           {/* Shopping Cart Icon */}
           <NavLink
-      to="/Cart"
+      to="/Login"
       className="relative flex items-center p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 "
     >
-      <IconUserCircle size={24} />
-      <span className="ml-2">Login</span>
+      <IconUserCircle size={28} />
       <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
     </NavLink>
           <NavLink
             to="/Cart"
             className="flex items-center p-2 text-black transition-all duration-500 hover:opacity-75"
           >
-            <IconShoppingCart size={24} />
+            <IconShoppingCart size={28} />
           </NavLink>
 
           {/* Menu Toggle Button */}
