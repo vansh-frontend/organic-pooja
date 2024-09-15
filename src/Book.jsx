@@ -62,7 +62,7 @@ const Contact = () => {
                     id="name"
                     name="name"
                     className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    placeholder="Your Name"
+                    placeholder="Enter your full name"
                     required
                   />
                 </div>
@@ -74,7 +74,7 @@ const Contact = () => {
                     id="email"
                     name="email"
                     className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    placeholder="Your Email"
+                    placeholder="Enter your email address"
                     required
                   />
                 </div>
@@ -86,7 +86,7 @@ const Contact = () => {
                     id="phone"
                     name="phone"
                     className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    placeholder="Your Phone Number"
+                    placeholder="Enter your phone number"
                     required
                   />
                 </div>
@@ -99,10 +99,10 @@ const Contact = () => {
                     className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                     required
                   >
-                    <option value="" disabled>Select Treatment</option>
+                    <option value="Select your treatment">Select your treatment</option>
                     
                     {/* Skin Treatments Group */}
-                    <optgroup label="Skin Treatments">
+                    <optgroup label="Skin Treatments">Select 
                       <option value="Laser Hair Treatment">Laser Hair Treatment</option>
                       <option value="Thermage Treatment">Thermage Treatment</option>
                       <option value="HIFU Treatment">HIFU Treatment</option>
@@ -137,28 +137,27 @@ const Contact = () => {
 
                 {/* Date & Time Inputs */}
                 <div className="grid grid-cols-2 gap-6">
-  <div className="relative">
-    <input
-      type="date"
-      id="date"
-      name="date"
-      className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-      placeholder="Select a date"
-      required
-    />
-  </div>
-  <div className="relative">
-    <input
-      type="time"
-      id="time"
-      name="time"
-      className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-      placeholder="Select a time"
-      required
-    />
-  </div>
-</div>
-
+                  <div className="relative">
+                    <input
+                      type="date"
+                      id="date"
+                      name="date"
+                      className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      placeholder="Select appointment date"
+                      required
+                    />
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="time"
+                      id="time"
+                      name="time"
+                      className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      placeholder="Select appointment time"
+                      required
+                    />
+                  </div>
+                </div>
 
                 {/* Message Input */}
                 <div className="relative">
@@ -166,7 +165,7 @@ const Contact = () => {
                     id="message"
                     name="message"
                     className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    placeholder="Your Message For Us"
+                    placeholder="Your message or special requests"
                     rows="4"
                     required
                   ></textarea>
