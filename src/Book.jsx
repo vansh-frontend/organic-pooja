@@ -57,7 +57,7 @@ const Contact = () => {
               <div className="grid grid-cols-1 gap-6">
                 {/* Name Input */}
                 <div className="relative">
-                  <label htmlFor="name" className="block text-gray-700">Name</label>
+                  <label htmlFor="name" className="block text-gray-700"></label>
                   <input
                     type="text"
                     id="name"
@@ -70,7 +70,7 @@ const Contact = () => {
 
                 {/* Email Input */}
                 <div className="relative">
-                  <label htmlFor="email" className="block text-gray-700">Email</label>
+                  <label htmlFor="email" className="block text-gray-700"></label>
                   <input
                     type="email"
                     id="email"
@@ -83,7 +83,7 @@ const Contact = () => {
 
                 {/* Phone Input */}
                 <div className="relative">
-                  <label htmlFor="phone" className="block text-gray-700">Phone</label>
+                  <label htmlFor="phone" className="block text-gray-700"></label>
                   <input
                     type="text"
                     id="phone"
@@ -96,14 +96,14 @@ const Contact = () => {
 
                 {/* Treatment Select */}
                 <div className="relative">
-                  <label htmlFor="treatment" className="block text-gray-700">Treatment</label>
+                  <label htmlFor="treatment" className="block text-gray-700"></label>
                   <select
                     id="treatment"
                     name="treatment"
                     className="w-full p-4 text-black bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                     required
                   >
-                    <option value="" disabled>Select Treatment</option>
+                    <option value="Select Treatment">Select Treatment</option>
                     
                     {/* Skin Treatments Group */}
                     <optgroup label="Skin Treatments">
@@ -167,7 +167,7 @@ const Contact = () => {
 
                 {/* Message Input */}
                 <div className="relative">
-                  <label htmlFor="message" className="block text-gray-700">Message</label>
+                  <label htmlFor="message" className="block text-gray-700"></label>
                   <textarea
                     id="message"
                     name="message"
