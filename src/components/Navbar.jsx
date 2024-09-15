@@ -131,16 +131,17 @@ const Navbar = ({ position }) => {
     <>
      <ul className="items-center hidden space-x-8 lg:flex">
      <li>
-    <NavLink
-       onClick={openLoginModal}
-      className="relative flex items-center p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 "
-    >
-   
-      <span className="items-center hidden gap-2 px-6 py-2 font-bold text-black transition-shadow duration-300 bg-white rounded-full shadow-md md:flex hover:shadow-xl hover:bg-indigo-50">
-        Login   <IconArrowRight size={20} /></span>
-      <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
-    </NavLink>
-  </li>
+  <NavLink
+    onClick={openLoginModal}
+    className="relative flex items-center p-2 text-base font-medium text-black transition-all duration-500 group hover:opacity-75"
+  >
+    <span className="items-center hidden gap-2 px-4 py-1.5 font-semibold text-black transition-shadow duration-300 bg-white rounded-full shadow-md md:flex hover:shadow-xl hover:bg-indigo-50">
+      Login <IconArrowRight size={16} />
+    </span>
+    <span className="absolute bottom-0 left-1/2 w-0 h-[1px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
+  </NavLink>
+</li>
+
   <li>
     <NavLink
       to="/Cart"
@@ -152,14 +153,15 @@ const Navbar = ({ position }) => {
     </NavLink>
   </li>
   <li>
-    <NavLink
-      to="/book"
-      className="relative flex items-center p-3 text-lg font-medium text-white transition-all duration-500 bg-black hover:opacity-75 group "
-    >
-      Book Appointment
-      <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-white transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
-    </NavLink>
-  </li>
+  <NavLink
+    to="/book"
+    className="relative flex items-center p-2.5 text-lg font-medium text-white transition-all duration-500 bg-black hover:opacity-75 group rounded-md"
+  >
+    Book Appointment
+    <span className="absolute bottom-0 left-1/2 w-0 h-[1.5px] bg-white transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
+  </NavLink>
+</li>
+
 </ul>
 
     </>
