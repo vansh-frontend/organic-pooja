@@ -22,14 +22,14 @@ const Header = () => {
         </div>
 
         {/* Centered Logo and Title */}
-        <div className="flex items-center justify-center flex-1 space-x-2">
+        <div className="flex justify-center flex-1">
           <NavLink to="/" className="flex items-center space-x-2">
             <img 
               src="img/pooja 2.png"
               alt="Logo"
               className="object-cover w-12 h-12 rounded-full shadow-lg"
             />
-            <h1 className="text-lg md:text-xl lg:text-2xl font-bold tracking-widest text-gray-800 uppercase font-['Roboto_Slab']">
+            <h1 className="text-lg md:text-xl lg:text-2xl font-bold tracking-widest text-gray-800 uppercase font-['Roboto_Slab'] ml-4">
               Organic <span className="font-extrabold text-yellow-500">Pooja</span>
             </h1>
           </NavLink>
