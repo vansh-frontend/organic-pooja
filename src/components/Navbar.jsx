@@ -309,12 +309,27 @@ const Navbar = ({ position }) => {
               </button>
               <h2 className="mb-4 text-2xl font-semibold">Login</h2>
               <form>
+            <div className="mb-4">
+  <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
+  <input
+    type="tel"
+    id="phone"
+    name="phone"
+    pattern="[0-9]{10}"
+    maxLength="10"
+    className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+    required
+    placeholder="Enter 10-digit phone number"
+  />
+</div>
+
                 <div className="mb-4">
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
+                    placeholder='Forexample@gmail.com'
                     className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
                     required
                   />
@@ -325,13 +340,14 @@ const Navbar = ({ position }) => {
                     type="password"
                     id="password"
                     name="password"
+                    placeholder='Your Password'
                     className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
                     required
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full px-4 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600"
+                  className="w-full px-4 py-2 font-semibold text-white bg-yellow-500 rounded-md hover:bg-yellow-600"
                 >
                   Login
                 </button>
