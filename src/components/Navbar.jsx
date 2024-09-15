@@ -268,7 +268,7 @@ const Navbar = ({ position }) => {
         <div className="flex items-center space-x-4 lg:hidden">
           {/* Shopping Cart Icon */}
           <NavLink
-            
+            onClick={openLoginModal}
             className="flex items-center p-2 text-black transition-all duration-500 hover:opacity-75"
           >
             <IconUserCircle size={28} />
@@ -301,7 +301,7 @@ const Navbar = ({ position }) => {
            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
     <div className="relative w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
 
-              <button
+              <button 
                 onClick={closeLoginModal}
                 className="absolute text-gray-600 top-2 right-2"
               >
