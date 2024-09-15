@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { IconHome, IconBook, IconApps, IconMail, IconChevronDown, IconMenu4, IconX, IconShoppingCart,IconUserCircle,IconBrandGoogle} from '@tabler/icons-react';
+import { IconHome, IconBook, IconApps, IconMail, IconChevronDown, IconMenu4, IconX, IconShoppingCart,IconUserCircle,IconBrandGoogle, IconArrowRight} from '@tabler/icons-react';
 const Navbar = ({ position }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false); // Desktop Services Dropdown state
@@ -135,8 +135,9 @@ const Navbar = ({ position }) => {
        onClick={openLoginModal}
       className="relative flex items-center p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 "
     >
-      <IconUserCircle size={28} />
-      <span className="ml-2">Login</span>
+   
+      <span className="items-center hidden gap-2 px-6 py-2 font-bold text-black transition-shadow duration-300 bg-white rounded-full shadow-md md:flex hover:shadow-xl hover:bg-indigo-50">
+        Login   <IconArrowRight size={20} /></span>
       <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
     </NavLink>
   </li>
@@ -270,8 +271,9 @@ const Navbar = ({ position }) => {
           {/* Shopping Cart Icon */}
           <NavLink
             onClick={openLoginModal}
-            className="flex items-center p-2 text-black transition-all duration-500 hover:opacity-75"
+            className="flex items-center p-2 text-black transition-all duration-500 rounded-full bg-b hover:opacity-75"
           >
+            
             <IconUserCircle size={28} />
           </NavLink>
           
