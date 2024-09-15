@@ -29,8 +29,28 @@ const Contact = () => {
             {/* Email */}
             <div className="flex items-center space-x-4">
               <FaEnvelope className="text-2xl text-teal-600" />
-              <p className="text-lg">info@organicbypooja.com</p>
+              <p className="text-lg">
+                <a 
+                  href="mailto:info@organicbypooja.com" 
+                  className="text-black hover:underline hover:underline-offset-8 hover:text-teal-600"
+                >
+                  info@organicbypooja.com
+                </a>
+              </p>
             </div>
+          </div>
+
+          {/* Google Map */}
+          <div className="mt-8">
+            <iframe
+              title="Google Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9025902177554!2d90.38882541429766!3d23.750834684588457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b86124827977%3A0x46870f81b0e11a65!2sJanakpuri!5e0!3m2!1sen!2sbd!4v1635675008746!5m2!1sen!2sbd"
+              width="100%"
+              height="350"
+              className="border-0 rounded-lg"
+              allowFullScreen=""
+              loading="eager"
+            ></iframe>
           </div>
         </div>
 
@@ -94,65 +114,62 @@ const Contact = () => {
                   required
                 >
                   <option value="Select Treatment">Select Treatment</option>
-                  {/* Skin Treatments */}
+                  {/* Options */}
                   <optgroup label="Skin Treatments">
-                      <option value="Laser Hair Treatment">Laser Hair Treatment</option>
-                      <option value="Thermage Treatment">Thermage Treatment</option>
-                      <option value="HIFU Treatment">HIFU Treatment</option>
-                      <option value="Dermal Fillers Treatment">Dermal Fillers Treatment</option>
-                      <option value="Chemical Peel Treatment">Chemical Peel Treatment</option>
-                      <option value="Q-Switch Laser Treatment">Q-Switch Laser Treatment</option>
-                      <option value="Skin Brightening and Lightening Treatment">Skin Brightening and Lightening Treatment</option>
-                      <option value="Ageing Skin">Ageing Skin</option>
-                      <option value="Acne Scars">Acne Scars</option>
-                      <option value="Dull Skin">Dull Skin</option>
-                      <option value="IV Drips For Skin">IV Drips For Skin</option>
-                    </optgroup>
+                    <option value="Laser Hair Treatment">Laser Hair Treatment</option>
+                    <option value="Thermage Treatment">Thermage Treatment</option>
+                    <option value="HIFU Treatment">HIFU Treatment</option>
+                    <option value="Dermal Fillers Treatment">Dermal Fillers Treatment</option>
+                    <option value="Chemical Peel Treatment">Chemical Peel Treatment</option>
+                    <option value="Q-Switch Laser Treatment">Q-Switch Laser Treatment</option>
+                    <option value="Skin Brightening and Lightening Treatment">Skin Brightening and Lightening Treatment</option>
+                    <option value="Ageing Skin">Ageing Skin</option>
+                    <option value="Acne Scars">Acne Scars</option>
+                    <option value="Dull Skin">Dull Skin</option>
+                    <option value="IV Drips For Skin">IV Drips For Skin</option>
+                  </optgroup>
 
-                    {/* Hair Treatments Group */}
-                    <optgroup label="Hair Treatments">
-                      <option value="PRP GF Treatment">PRP GF Treatment</option>
-                      <option value="Hair Thread Treatment">Hair Thread Treatment</option>
-                      <option value="Biocell Therapy">Biocell Therapy</option>
-                      <option value="Hair Loss In Women">Hair Loss In Women</option>
-                      <option value="IV Drips For Hair">IV Drips For Hair</option>
-                      <option value="Hair Loss Concern">Hair Loss Concern</option>
-                    </optgroup>
+                  {/* Hair Treatments */}
+                  <optgroup label="Hair Treatments">
+                    <option value="PRP GF Treatment">PRP GF Treatment</option>
+                    <option value="Hair Thread Treatment">Hair Thread Treatment</option>
+                    <option value="Biocell Therapy">Biocell Therapy</option>
+                    <option value="Hair Loss In Women">Hair Loss In Women</option>
+                    <option value="IV Drips For Hair">IV Drips For Hair</option>
+                    <option value="Hair Loss Concern">Hair Loss Concern</option>
+                  </optgroup>
 
-                    {/* Makeup Services Group */}
-                    <optgroup label="Make Up">
-                      <option value="Bridal Makeup">Bridal Makeup</option>
-                      <option value="Party Makeup">Party Makeup</option>
-                    </optgroup>
+                  {/* Makeup Services */}
+                  <optgroup label="Makeup Services">
+                    <option value="Bridal Makeup">Bridal Makeup</option>
+                    <option value="Party Makeup">Party Makeup</option>
+                  </optgroup>
                 </select>
               </div>
 
               {/* Date & Time Inputs */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-  <div className="relative">
-    <label htmlFor="date" className="text-teal-500">Date</label>
-    <input
-      type="date"
-      id="date"
-      name="date"
-      className="w-full p-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-      placeholder="Select a date"
-      required
-    />
-  </div>
-  <div className="relative">
-    <label htmlFor="time" className="text-teal-500">Time</label>
-    <input
-      type="time"
-      id="time"
-      name="time"
-      className="w-full p-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-      placeholder="Select a time"
-      required
-    />
-  </div>
-</div>
-
+                <div className="relative">
+                  <label htmlFor="date" className="text-teal-500">Date</label>
+                  <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    className="w-full p-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    required
+                  />
+                </div>
+                <div className="relative">
+                  <label htmlFor="time" className="text-teal-500">Time</label>
+                  <input
+                    type="time"
+                    id="time"
+                    name="time"
+                    className="w-full p-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    required
+                  />
+                </div>
+              </div>
 
               {/* Message Input */}
               <div className="relative">
