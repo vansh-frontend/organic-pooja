@@ -18,57 +18,59 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
   };
 
   return (
-    <div className="container max-w-screen-lg px-4 py-8 mx-auto">
-      <h2 className="mb-6 text-2xl font-semibold text-gray-900">Your Cart</h2>
+    <div className="container px-4 py-8 mx-auto max-w-7xl">
+      <h2 className="mb-8 text-3xl font-bold text-gray-900">Your Shopping Cart</h2>
       {cartItems.length === 0 ? (
-        <p className="text-base text-gray-500">Your cart is empty.</p>
+        <p className="text-lg text-gray-500">Your cart is empty. Start shopping to fill it up!</p>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="space-y-6">
           {cartItems.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm"
+              className="flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg shadow-md sm:flex-row"
             >
-              <img
-                src={item.image}
-                alt={item.name}
-                className="object-cover w-full h-48 rounded-t-lg md:h-56 lg:h-64"
-                loading="lazy"
-              />
-              <div className="flex flex-col flex-grow p-4">
-                <h3 className="text-base font-semibold text-gray-800">{item.name}</h3>
-                <p className="text-sm text-gray-600">{item.price}</p>
-                <div className="flex items-center mt-3 space-x-2">
+              <div className="relative w-full h-48 overflow-hidden sm:w-48 sm:h-32">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="object-cover w-full h-full rounded-t-lg sm:rounded-l-lg"
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex-1 p-4">
+                <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
+                <p className="mb-2 text-gray-600 text-md">{item.price}</p>
+                <div className="flex items-center mb-4 space-x-2">
                   <button
                     onClick={() => handleQuantityChange(item, item.quantity - 1)}
-                    className="flex items-center justify-center w-8 h-8 text-xl text-white bg-blue-600 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="flex items-center justify-center w-8 h-8 text-xl text-white transition-colors bg-blue-600 rounded-full hover:bg-blue-700"
                   >
                     -
                   </button>
-                  <span className="flex items-center justify-center w-12 h-8 text-sm font-medium bg-gray-100 rounded">
+                  <span className="flex items-center justify-center w-16 h-8 text-base font-medium bg-gray-100 border border-gray-300 rounded-lg">
                     {item.quantity}
                   </span>
                   <button
                     onClick={() => handleQuantityChange(item, item.quantity + 1)}
-                    className="flex items-center justify-center w-8 h-8 text-xl text-white bg-blue-600 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="flex items-center justify-center w-8 h-8 text-xl text-white transition-colors bg-blue-600 rounded-full hover:bg-blue-700"
                   >
                     +
                   </button>
                 </div>
-                <div className="flex items-center justify-between mt-3">
-                  <p className="text-base font-semibold text-gray-900">
+                <div className="flex items-center justify-between">
+                  <p className="text-lg font-semibold text-gray-900">
                     ${(parseFloat(item.price.slice(1)) * item.quantity).toFixed(2)}
                   </p>
                   <div className="flex space-x-2">
                     <button
                       onClick={() => handleRemoveItem(item)}
-                      className="px-3 py-2 text-xs font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
+                      className="px-4 py-2 text-sm font-medium text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700"
                     >
                       Remove
                     </button>
                     <button
                       onClick={() => onBuyNow(item)}
-                      className="px-3 py-2 text-xs font-semibold text-gray-800 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
+                      className="px-4 py-2 text-sm font-medium text-gray-800 transition-colors bg-gray-200 rounded-lg hover:bg-gray-300"
                     >
                       Buy Now
                     </button>
