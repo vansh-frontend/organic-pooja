@@ -268,7 +268,7 @@ const Navbar = ({ position }) => {
           
           <NavLink
             to="/Cart"
-            className="flex items-center p-2 text-black transition-all duration-500 hover:opacity-75"
+            className="flex items-center p-2 text-black"
           >
             <IconShoppingCart size={28} />
           </NavLink>
