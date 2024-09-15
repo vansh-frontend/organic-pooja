@@ -129,25 +129,30 @@ const Contact = () => {
 
               {/* Date & Time Inputs */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                <div className="relative">
-                  <input
-                    type="date"
-                    id="date"
-                    name="date"
-                    className="w-full p-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    required
-                  />
-                </div>
-                <div className="relative">
-                  <input
-                    type="time"
-                    id="time"
-                    name="time"
-                    className="w-full p-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    required
-                  />
-                </div>
-              </div>
+  <div className="relative">
+    <label htmlFor="date" className="text-teal-500">Date</label>
+    <input
+      type="date"
+      id="date"
+      name="date"
+      className="w-full p-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+      placeholder="Select a date"
+      required
+    />
+  </div>
+  <div className="relative">
+    <label htmlFor="time" className="text-teal-500">Time</label>
+    <input
+      type="time"
+      id="time"
+      name="time"
+      className="w-full p-4 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+      placeholder="Select a time"
+      required
+    />
+  </div>
+</div>
+
 
               {/* Message Input */}
               <div className="relative">
