@@ -122,6 +122,18 @@ const Home = () => {
                   <p className="mb-4 text-gray-600">Top-quality products for your salon needs.</p>
                   <Link to="/salonproducts" className="text-teal-500 hover:text-teal-600">Shop Now</Link>
                 </div>
+                <div className="p-6 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105">
+                  <img src="img/sec2.jpg" alt="Salon Products" className="object-cover w-full h-48 mb-4 rounded-lg" />
+                  <h3 className="mb-2 text-xl font-semibold text-gray-800">Salon Products</h3>
+                  <p className="mb-4 text-gray-600">Top-quality products for your salon needs.</p>
+                  <Link to="/salonproducts" className="text-teal-500 hover:text-teal-600">Shop Now</Link>
+                </div>
+                <div className="p-6 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105">
+                  <img src="img/sec2.jpg" alt="Salon Products" className="object-cover w-full h-48 mb-4 rounded-lg" />
+                  <h3 className="mb-2 text-xl font-semibold text-gray-800">Salon Products</h3>
+                  <p className="mb-4 text-gray-600">Top-quality products for your salon needs.</p>
+                  <Link to="/salonproducts" className="text-teal-500 hover:text-teal-600">Shop Now</Link>
+                </div>
               </div>
             </div>
           </section>
