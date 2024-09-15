@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { IconHome, IconBook, IconApps, IconMail, IconChevronDown, IconMenu4, IconX, IconShoppingCart,IconUserCircle} from '@tabler/icons-react';
-
 const Navbar = ({ position }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false); // Desktop Services Dropdown state
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false); // Mobile Services Dropdown state
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // Login Modal state
 
   const toggleMenu = () => {
     setIsOpen(prev => !prev);
@@ -13,6 +13,14 @@ const Navbar = ({ position }) => {
 
   const toggleServices = () => {
     setIsServicesOpen(prev => !prev);
+  };
+
+  const openLoginModal = () => {
+    setIsLoginModalOpen(true);
+  };
+
+  const closeLoginModal = () => {
+    setIsLoginModalOpen(false);
   };
 
   const desktopNavItems = position === 'left' ? (
@@ -123,7 +131,7 @@ const Navbar = ({ position }) => {
      <ul className="items-center hidden space-x-8 lg:flex">
      <li>
     <NavLink
-      to="/Login"
+       onClick={openLoginModal}
       className="relative flex items-center p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 "
     >
       <IconUserCircle size={28} />
@@ -260,7 +268,7 @@ const Navbar = ({ position }) => {
         <div className="flex items-center space-x-4 lg:hidden">
           {/* Shopping Cart Icon */}
           <NavLink
-            to="/Login"
+            
             className="flex items-center p-2 text-black transition-all duration-500 hover:opacity-75"
           >
             <IconUserCircle size={28} />
@@ -289,6 +297,48 @@ const Navbar = ({ position }) => {
           {mobileNavItems}
         </div>
       )}
+      {isLoginModalOpen && (
+           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="relative w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+
+              <button
+                onClick={closeLoginModal}
+                className="absolute text-gray-600 top-2 right-2"
+              >
+                <IconX size={24} />
+              </button>
+              <h2 className="mb-4 text-2xl font-semibold">Login</h2>
+              <form>
+                <div className="mb-4">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full px-4 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600"
+                >
+                  Login
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
     </nav>
   );
 };
