@@ -7,6 +7,7 @@ const Navbar = ({ position }) => {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false); // Mobile Services Dropdown state
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // Login Modal state
 
+
   const toggleMenu = () => {
     setIsOpen(prev => !prev);
   };
@@ -298,75 +299,74 @@ const Navbar = ({ position }) => {
         </div>
       )}
       {isLoginModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="relative w-full max-w-md p-8 bg-white rounded-lg shadow-lg bg-opacity-70 backdrop-blur-lg">
-    
-            <button 
-              onClick={closeLoginModal}
-              className="absolute text-gray-600 top-2 right-2"
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="relative w-full max-w-md p-8 bg-white rounded-lg shadow-lg bg-opacity-80 backdrop-blur-sm">
+          
+          <button 
+            onClick={closeLoginModal}
+            className="absolute text-gray-600 transition duration-300 top-2 right-2 hover:text-gray-800"
+          >
+            <IconX size={24} />
+          </button>
+          
+          <h2 className="mb-6 text-2xl font-bold text-gray-800">Login</h2>
+          
+          <form className="space-y-6">
+            <div className="mb-4">
+              <label htmlFor="phone" className="block mb-1 text-sm font-medium text-gray-700">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                pattern="[0-9]{10}"
+                maxLength="10"
+                className="block w-full p-3 transition duration-300 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 placeholder-animation"
+                required
+                placeholder="Enter 10-digit phone number"
+              />
+            </div>
+  
+            <div className="mb-4">
+              <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-700">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder='example@gmail.com'
+                className="block w-full p-3 transition duration-300 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 placeholder-animation"
+                required
+              />
+            </div>
+            
+            <div className="mb-4">
+              <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-700">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder='Your Password'
+                className="block w-full p-3 transition duration-300 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 placeholder-animation"
+                required
+              />
+            </div>
+  
+            <button
+              type="button"
+              className="flex items-center justify-center w-full px-4 py-2 mb-4 font-semibold text-white transition duration-300 bg-gray-800 rounded-lg hover:bg-gray-700 active:bg-gray-600"
             >
-              <IconX size={24} />
+              <IconBrandGoogle className="w-5 h-5 mr-2" />
+              Login with Google
             </button>
-            
-            <h2 className="mb-4 text-2xl font-semibold">Login</h2>
-            
-            <form>
-              <div className="mb-4">
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  pattern="[0-9]{10}"
-                  maxLength="10"
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
-                  required
-                  placeholder="Enter 10-digit phone number"
-                />
-              </div>
-    
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder='Forexample@gmail.com'
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
-                  required
-                />
-              </div>
-              
-              <div className="mb-4">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder='Your Password'
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
-                  required
-                />
-              </div>
-    
-              <button
-                type="button"
-                className="flex items-center justify-center w-full px-4 py-2 mb-4 font-semibold text-black transition duration-300 bg-white bg-opacity-50 border border-gray-300 rounded-md hover:bg-opacity-60 active:bg-opacity-70"
-              >
-                <IconBrandGoogle className="w-5 h-5 mr-2" />
-                Login with Google
-              </button>
-    
-              <button
-                type="submit"
-                className="w-full px-4 py-2 font-semibold text-white transition duration-300 bg-yellow-500 rounded-md hover:bg-yellow-600 active:bg-yellow-700"
-              >
-                Login
-              </button>
-            </form>
-          </div>
+  
+            <button
+              type="submit"
+              className="w-full px-4 py-2 font-semibold text-white transition duration-300 rounded-lg bg-gradient-to-r from-teal-400 to-cyan-500 hover:from-teal-300 hover:to-cyan-400 active:from-teal-200 active:to-cyan-300"
+            >
+              Login
+            </button>
+          </form>
         </div>
-        
+      </div>
         )}
     </nav>
   );
