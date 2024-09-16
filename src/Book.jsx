@@ -6,54 +6,6 @@ const Contact = () => {
       {/* Main Container */}
       <div className="relative z-10 flex flex-col lg:flex-row">
         
-        {/* Contact Information Section */}
-        <div className="flex flex-col justify-center w-full p-8 text-gray-800 lg:w-1/2 lg:justify-start lg:px-12 lg:py-16">
-          <h2 className="mb-4 text-4xl font-bold text-teal-600">Get in Touch</h2>
-          <p className="mb-8 text-lg text-gray-600">
-            We are here to assist you! Contact us or book an appointment using the form below.
-          </p>
-
-          <div className="space-y-6">
-            {/* Address */}
-            <div className="flex items-center space-x-4">
-              <FaMapMarkerAlt className="text-2xl text-teal-600" />
-              <p className="text-lg">#762 JanakPuri, Bareilly 243122</p>
-            </div>
-
-            {/* Hours */}
-            <div className="flex items-center space-x-4">
-              <FaClock className="text-2xl text-teal-600" />
-              <p className="text-lg">Mon-Sun, 9 AM - 8 PM</p>
-            </div>
-
-            {/* Email */}
-            <div className="flex items-center space-x-4">
-              <FaEnvelope className="text-2xl text-teal-600" />
-              <p className="text-lg">
-                <a 
-                  href="mailto:info@organicbypooja.com" 
-                  className="text-black hover:underline hover:underline-offset-8 hover:text-teal-600"
-                >
-                  info@organicbypooja.com
-                </a>
-              </p>
-            </div>
-          </div>
-
-          {/* Google Map */}
-          <div className="mt-8">
-            <iframe
-              title="Google Map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9025902177554!2d90.38882541429766!3d23.750834684588457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b86124827977%3A0x46870f81b0e11a65!2sJanakpuri!5e0!3m2!1sen!2sbd!4v1635675008746!5m2!1sen!2sbd"
-              width="100%"
-              height="350"
-              className="border-0 rounded-lg"
-              allowFullScreen=""
-              loading="eager"
-            ></iframe>
-          </div>
-        </div>
-
         {/* Contact Form Section */}
         <div className="flex flex-col justify-center w-full p-8 bg-white rounded-lg shadow-lg lg:w-1/2 lg:px-12 lg:py-16">
           <div className="w-full max-w-lg mx-auto">
@@ -191,6 +143,54 @@ const Contact = () => {
                 Book Appointment
               </button>
             </form>
+          </div>
+        </div>
+
+        {/* Contact Information Section */}
+        <div className="flex flex-col justify-center w-full p-8 text-gray-800 lg:w-1/2 lg:justify-start lg:px-12 lg:py-16">
+          <h2 className="mb-4 text-4xl font-bold text-teal-600">Get in Touch</h2>
+          <p className="mb-8 text-lg text-gray-600">
+            We are here to assist you! Contact us or book an appointment using the form below.
+          </p>
+
+          <div className="space-y-6">
+            {/* Address */}
+            <div className="flex items-center space-x-4">
+              <FaMapMarkerAlt className="text-2xl text-teal-600" />
+              <p className="text-lg">#762 JanakPuri, Bareilly 243122</p>
+            </div>
+
+            {/* Hours */}
+            <div className="flex items-center space-x-4">
+              <FaClock className="text-2xl text-teal-600" />
+              <p className="text-lg">Mon-Sun, 9 AM - 8 PM</p>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-center space-x-4">
+              <FaEnvelope className="text-2xl text-teal-600" />
+              <p className="text-lg">
+                <a 
+                  href="mailto:info@organicbypooja.com" 
+                  className="text-black hover:underline hover:underline-offset-8 hover:text-teal-600"
+                >
+                  info@organicbypooja.com
+                </a>
+              </p>
+            </div>
+          </div>
+
+          {/* Google Map */}
+          <div className="mt-8">
+            <iframe
+              title="Google Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9025902177554!2d90.38882541429766!3d23.750834684588457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b86124827977%3A0x46870f81b0e11a65!2sJanakpuri!5e0!3m2!1sen!2sbd!4v1635675008746!5m2!1sen!2sbd"
+              width="100%"
+              height="350"
+              className="border-0 rounded-lg"
+              allowFullScreen=""
+              loading="eager"
+            ></iframe>
           </div>
         </div>
       </div>
