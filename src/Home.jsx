@@ -90,53 +90,62 @@ const Home = () => {
 </section>
 
           {/* Services Section */}
-          <section className="py-16 bg-gray-100" ref={(el) => (sectionRefs.current[0] = el)}>
-            <div className="container px-6 mx-auto text-center">
-              <h2 className="mb-12 text-3xl font-semibold text-gray-800">Explore Our Services</h2>
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {/* Service 1 */}
-                <div className="p-6 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105">
-                  <img src="img/section.jpg" alt="Makeup Services" className="object-cover w-full h-48 mb-4 rounded-lg" />
-                  <h3 className="mb-2 text-xl font-semibold text-gray-800">Makeup Services</h3>
-                  <p className="mb-4 text-gray-600">Expert makeup services for all occasions.</p>
-                  <Link to="/makeupservices" className="text-teal-500 hover:text-teal-600">Book Now</Link>
-                </div>
-                {/* Service 2 */}
-                <div className="p-6 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105">
-                  <img src="img/skin.jpg" alt="Skin Care" className="object-cover w-full h-48 mb-4 rounded-lg" />
-                  <h3 className="mb-2 text-xl font-semibold text-gray-800">Skin Care</h3>
-                  <p className="mb-4 text-gray-600">Advanced skincare treatments for glowing skin.</p>
-                  <Link to="/skincare" className="text-teal-500 hover:text-teal-600">Book Now</Link>
-                </div>
-                {/* Service 3 */}
-                <div className="p-6 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105">
-                  <img src="img/hair.png" alt="Hair Styling" className="object-cover w-full h-48 mb-4 rounded-lg" />
-                  <h3 className="mb-2 text-xl font-semibold text-gray-800">Hair Styling</h3>
-                  <p className="mb-4 text-gray-600">Professional hair styling services for every look.</p>
-                  <Link to="/hairstyling" className="text-teal-500 hover:text-teal-600">Book Now</Link>
-                </div>
-                {/* Service 4 */}
-                <div className="p-6 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105">
-                  <img src="img/sec2.jpg" alt="Salon Products" className="object-cover w-full h-48 mb-4 rounded-lg" />
-                  <h3 className="mb-2 text-xl font-semibold text-gray-800">Salon Products</h3>
-                  <p className="mb-4 text-gray-600">Top-quality products for your salon needs.</p>
-                  <Link to="/salonproducts" className="text-teal-500 hover:text-teal-600">Shop Now</Link>
-                </div>
-                <div className="p-6 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105">
-                  <img src="img/sec2.jpg" alt="Salon Products" className="object-cover w-full h-48 mb-4 rounded-lg" />
-                  <h3 className="mb-2 text-xl font-semibold text-gray-800">Salon Products</h3>
-                  <p className="mb-4 text-gray-600">Top-quality products for your salon needs.</p>
-                  <Link to="/salonproducts" className="text-teal-500 hover:text-teal-600">Shop Now</Link>
-                </div>
-                <div className="p-6 transition-transform transform bg-white rounded-lg shadow-md hover:scale-105">
-                  <img src="img/sec2.jpg" alt="Salon Products" className="object-cover w-full h-48 mb-4 rounded-lg" />
-                  <h3 className="mb-2 text-xl font-semibold text-gray-800">Salon Products</h3>
-                  <p className="mb-4 text-gray-600">Top-quality products for your salon needs.</p>
-                  <Link to="/salonproducts" className="text-teal-500 hover:text-teal-600">Shop Now</Link>
+          <section className="px-6 py-16 bg-gray-200">
+        <div className="container mx-auto text-center">
+          <h2 className="mb-12 text-3xl font-bold text-gray-800 sm:text-4xl">Our Premium Services</h2>
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { title: 'Makeup Services', img: 'img/section.jpg', desc: 'Get stunning makeup looks for any occasion with our professional services.', link: '/makeup' },
+              { title: 'Skin Care', img: 'img/skin.jpg', desc: 'Achieve radiant skin with our specialized skincare treatments and products.', link: '/skin-care' },
+              { title: 'Hair Styling', img: 'img/shampoo.jpg', desc: 'Transform your look with our expert hair styling services.', link: '/hair-styling' },
+              { title: 'Salon Products', img: 'img/sec2.jpg', desc: 'Explore our exclusive range of salon-quality products.', link: '/products' },
+              { title: 'Salon Master', img: 'img/sec3.jpg', desc: 'Pamper yourself with our luxurious body treatments.', link: '/body-treatments' },
+              { title: ' Nail extension', img: 'img/pro5.jpg', desc: 'Book a consultation to get personalized beauty advice and recommendations.', link: '/consultations' },
+            ].map((service, index) => (
+              <div key={index} className="overflow-hidden transition-transform transform bg-white rounded-lg shadow-lg hover:scale-105">
+                <img src={service.img} alt={service.title} className="object-cover w-full h-48"/>
+                <div className="p-6">
+                  <h3 className="mb-2 text-xl font-semibold text-gray-800">{service.title}</h3>
+                  <p className="mb-4 text-gray-600">{service.desc}</p>
+                  <Link to={service.link} className="font-semibold text-teal-500 hover:text-teal-600">
+                    Learn More
+                  </Link>
                 </div>
               </div>
-            </div>
-          </section>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="px-6 py-16 bg-white">
+  <div className="container mx-auto text-center">
+    <h2 className="mb-12 text-2xl font-bold text-gray-800 sm:text-3xl md:text-4xl">What Our Clients Say</h2>
+    <div className="relative overflow-hidden">
+      <div className="flex gap-4 scrolling-wrapper md:gap-6 lg:gap-8">
+        {[
+          { name: 'Jane Doe', review: '“The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!”', img: 'img/jane.jpg' },
+          { name: 'John Smith', review: '“Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.”', img: 'img/john.jpg' },
+          { name: 'Emily Davis', review: '“Professional staff and fantastic results. The best salon experience I have ever had!”', img: 'img/emily.jpg' },
+          { name: 'Jane Doe', review: '“The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!”', img: 'img/jane.jpg' },
+          { name: 'John Smith', review: '“Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.”', img: 'img/john.jpg' },
+          { name: 'Emily Davis', review: '“Professional staff and fantastic results. The best salon experience I have ever had!”', img: 'img/emily.jpg' },
+        ].map((testimonial, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center flex-shrink-0 w-full max-w-xs p-4 bg-gray-100 rounded-lg shadow-lg cursor-pointer testimonial-box sm:p-6 sm:max-w-sm lg:max-w-md"
+          >
+            <img src={testimonial.img} alt={testimonial.name} className="w-20 h-20 mb-4 rounded-full sm:w-24 sm:h-24"/>
+            <p className="mb-4 text-sm text-gray-600 sm:text-base">"{testimonial.review}"</p>
+            <p className="text-sm font-semibold text-gray-800 sm:text-base">{testimonial.name}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
           {/* FAQ Section */}
           <section className="py-16 bg-white" ref={(el) => (sectionRefs.current[7] = el)}>
@@ -145,6 +154,19 @@ const Home = () => {
               <Accordion />
             </div>
           </section>
+          <section className="px-6 py-16 text-white bg-teal-500">
+        <div className="container mx-auto text-center">
+          <h2 className="mb-8 text-3xl font-bold sm:text-4xl">Get in Touch</h2>
+          <p className="mb-8 text-lg">We'd love to hear from you! Reach out to us for any inquiries or to schedule an appointment.</p>
+          <Link
+            to="/contact"
+            className="px-6 py-3 font-semibold text-gray-800 transition-transform transform bg-yellow-500 rounded-lg shadow-lg hover:bg-yellow-600 hover:scale-105"
+          >
+            Contact Us
+          </Link>
+        </div>
+      </section>
+
         </div>
  
     </>
