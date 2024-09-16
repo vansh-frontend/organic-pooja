@@ -77,6 +77,9 @@
 .zoom-in {
   animation: zoomIn 1s ease-out;
 }
+
+
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -88,9 +91,10 @@
 
 .scrolling-wrapper {
   display: flex;
-  animation: scroll 10s linear infinite; /* Adjusted duration for faster scrolling */
+  animation: scroll 9s linear infinite; /* Adjusted duration for faster scrolling */
 }
 
 .scrolling-wrapper:hover {
   animation-play-state: paused;
 }
+
