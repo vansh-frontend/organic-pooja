@@ -32,7 +32,7 @@ const ProductCard = memo(({ product, onAddToCart }) => {
           <h3 className="text-lg font-semibold text-gray-900">{product.name}</h3>
           <p className="text-gray-600 text-md">{product.price}</p>
           <div className="flex items-center justify-between mt-4">
-            <span className="text-sm font-medium text-gray-500">In Stock</span>
+            <span className="text-sm font-medium text-green-500">In Stock</span>
             <button
               onClick={handleAddToCart}
               className="px-4 py-2 text-sm font-semibold text-gray-800 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
