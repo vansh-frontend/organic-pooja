@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { IconHome, IconBook, IconApps, IconMail, IconChevronDown, IconMenu4, IconX, IconShoppingCart,IconUserCircle,IconBrandGoogle, IconArrowRight} from '@tabler/icons-react';
+import { IconHome, IconBook, IconApps,IconChevronDown, IconMenu4, IconX, IconShoppingCart,IconUserCircle,IconBrandGoogle, IconArrowRight} from '@tabler/icons-react';
 const Navbar = ({ position }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false); // Desktop Services Dropdown state
@@ -12,9 +12,9 @@ const Navbar = ({ position }) => {
     setIsOpen(prev => !prev);
   };
 
-  const toggleServices = () => {
-    setIsServicesOpen(prev => !prev);
-  };
+  // const toggleServices = () => {
+  //   setIsServicesOpen(prev => !prev);
+  // };
 
   const openLoginModal = () => {
     setIsLoginModalOpen(true);
