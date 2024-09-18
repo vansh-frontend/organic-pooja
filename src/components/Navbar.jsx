@@ -12,10 +12,6 @@ const Navbar = ({ position }) => {
     setIsOpen(prev => !prev);
   };
 
-  // const toggleServices = () => {
-  //   setIsServicesOpen(prev => !prev);
-  // };
-
   const openLoginModal = () => {
     setIsLoginModalOpen(true);
   };
