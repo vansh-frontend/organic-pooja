@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { IconHome, IconBook, IconApps,IconChevronDown, IconMenu4, IconX, IconShoppingCart,IconUserCircle,IconBrandGoogle, IconArrowRight} from '@tabler/icons-react';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from './firebaseConfig';
+
 const Navbar = ({ position }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false); // Desktop Services Dropdown state
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false); // Mobile Services Dropdown state
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // Login Modal state
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [telephone, setTelephone] = useState('');
+  const [error, setError] = useState('');
 
   const toggleMenu = () => {
-    setIsOpen(prev => !prev);
+    setIsOpen((prev) => !prev);
   };
 
   const openLoginModal = () => {
@@ -19,6 +25,33 @@ const Navbar = ({ position }) => {
   const closeLoginModal = () => {
     setIsLoginModalOpen(false);
   };
+
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log('Google login successful:', user);
+      closeLoginModal();
+    } catch (error) {
+      console.error('Google login error:', error);
+      setError('Google login failed. Please try again.');
+    }
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log('Login successful:', user);
+      closeLoginModal();
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('Login failed. Please try again.');
+    }
+  };
+
 
   const desktopNavItems = position === 'left' ? (
     <>
@@ -306,76 +339,64 @@ const Navbar = ({ position }) => {
       )}
       {isLoginModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="relative w-full max-w-md p-8 bg-white rounded-lg shadow-lg bg-opacity-80 backdrop-blur-sm">
-          
-          <button 
-            onClick={closeLoginModal}
-            className="absolute text-gray-600 transition duration-300 top-2 right-2 hover:text-gray-800"
-          >
-            <IconX size={24} />
-          </button>
-          
-          <h2 className="mb-6 text-2xl font-bold text-gray-800">Login</h2>
-          
-          <form className="space-y-6">
-            <div className="mb-4">
-              <label htmlFor="phone" className="block mb-1 text-sm font-medium text-gray-700">Phone Number</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                pattern="[0-9]{10}"
-                maxLength="10"
-                className="block w-full p-3 transition duration-300 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 placeholder-animation"
-                required
-                placeholder="Enter 10-digit phone number"
-              />
-            </div>
-  
-            <div className="mb-4">
-              <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-700">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder='example@gmail.com'
-                className="block w-full p-3 transition duration-300 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 placeholder-animation"
-                required
-              />
-            </div>
-            
-            <div className="mb-4">
-              <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-700">Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder='Your Password'
-                className="block w-full p-3 transition duration-300 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 placeholder-animation"
-                required
-              />
-            </div>
-  
-            <button
-              type="button"
-              className="flex items-center justify-center w-full px-4 py-2 mb-4 font-semibold text-white transition duration-300 bg-gray-800 rounded-lg hover:bg-gray-700 active:bg-gray-600"
-            >
-              <IconBrandGoogle className="w-5 h-5 mr-2" />
-              Login with Google
+          <div className="relative w-full max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg">
+            <button className="absolute p-2 text-gray-600 top-2 right-2 hover:text-gray-800" onClick={closeLoginModal}>
+              <IconX size={24} />
             </button>
-  
-            <button
-              type="submit"
-              className="w-full px-4 py-2 font-semibold text-white transition duration-300 rounded-lg bg-gradient-to-r from-teal-400 to-cyan-500 hover:from-teal-300 hover:to-cyan-400 active:from-teal-200 active:to-cyan-300"
-            >
-              Login
-            </button>
-          </form>
+            <h2 className="mb-4 text-2xl font-bold text-center">Login</h2>
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <label htmlFor="email" className="block mb-1 text-sm font-semibold text-gray-700">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block mb-1 text-sm font-semibold text-gray-700">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              {error && <p className="text-sm text-red-600">{error}</p>}
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="px-4 py-2 font-semibold text-white bg-black rounded-md hover:bg-gray-800"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+            <div className="mt-4">
+              <button
+                onClick={handleGoogleLogin}
+                className="flex items-center justify-center w-full px-4 py-2 font-semibold text-black border border-gray-300 rounded-md hover:bg-gray-50"
+              >
+                <IconBrandGoogle size={20} className="mr-2" />
+                Login with Google
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-        )}
+      )}
+
     </nav>
   );
 };
 
 export default Navbar;
+
