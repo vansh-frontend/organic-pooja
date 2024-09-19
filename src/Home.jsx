@@ -61,28 +61,29 @@ const Home = () => {
    
         <div className="relative w-full overflow-hidden bg-gray-50">
           {/* Organic By Pooja Section */}
-          <section className="relative flex flex-col items-center justify-start h-auto px-6 py-8 overflow-hidden text-white bg-teal-500 lg:px-12 lg:py-12">
+          <section className="relative flex flex-col items-center justify-center h-auto px-6 py-12 overflow-hidden text-white bg-teal-500 lg:px-12 lg:py-16">
   <div className="absolute inset-0">
     <img
       src="img/section.jpg"
       alt="Background"
-      className="object-cover w-full h-full opacity-30"
+      className="object-cover w-full h-full opacity-40"
     />
+    <div className="absolute inset-0 bg-black opacity-30"></div> {/* Overlay for better text readability */}
   </div>
-  <div className="relative z-10 flex flex-col items-center space-y-4 text-center lg:space-y-6">
-    <h1 className="text-4xl font-bold sm:text-5xl lg:text-6xl">
-      ORGANIC <span className="block text-5xl font-bold text-yellow-300 sm:text-6xl lg:text-7xl">BY POOJA</span>
+  <div className="relative z-10 flex flex-col items-center space-y-6 text-center lg:space-y-8">
+    <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+      ORGANIC <span className="block text-5xl font-extrabold text-yellow-300 sm:text-6xl lg:text-7xl">BY POOJA</span>
     </h1>
     
-    <p className="text-lg sm:text-xl lg:text-2xl">
+    <p className="text-lg font-light sm:text-xl lg:text-2xl">
       Elevate your skincare routine with our premium body and facial products.
     </p>
     
-    <div className="flex flex-col gap-4 mt-4 sm:flex-row sm:gap-6">
-      <button className="px-8 py-3 text-lg font-semibold text-gray-800 transition-transform transform bg-yellow-500 rounded-lg shadow-lg hover:scale-105">
+    <div className="flex flex-col gap-4 mt-6 sm:flex-row sm:gap-6">
+      <button className="px-8 py-4 text-lg font-semibold text-gray-800 transition-transform transform bg-yellow-500 rounded-full shadow-lg hover:scale-105 hover:shadow-xl">
         SHOP NOW
       </button>
-      <button className="px-8 py-3 text-lg font-semibold text-yellow-500 transition-transform transform border border-yellow-500 rounded-lg shadow-lg hover:bg-yellow-500 hover:text-gray-800 hover:scale-105">
+      <button className="px-8 py-4 text-lg font-semibold text-yellow-500 transition-transform transform border border-yellow-500 rounded-full shadow-lg hover:bg-yellow-500 hover:text-gray-800 hover:shadow-xl hover:scale-105">
         ASK US ANYTHING
       </button>
     </div>
