@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { memo } from 'react';
 
-const ProductCard = memo(({ product, onAddToCart }) => {
+const ProductCard = memo(({ product, onAddToCart, onMoreDetails }) => {
   const handleAddToCart = () => {
     alert(`Your ${product.name} has been added to the cart!`);
     onAddToCart(product);
@@ -21,6 +21,7 @@ const ProductCard = memo(({ product, onAddToCart }) => {
             <h3 className="text-xl font-bold">{product.name}</h3>
             <button
               className="px-4 py-2 mt-4 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              onClick={() => onMoreDetails(product)} // Call the passed function when clicked
             >
               More Details
             </button>
@@ -56,6 +57,7 @@ ProductCard.propTypes = {
     price: PropTypes.string.isRequired,
   }).isRequired,
   onAddToCart: PropTypes.func.isRequired,
+  onMoreDetails: PropTypes.func.isRequired, // New prop for handling the "More Details" click
 };
 
 export default ProductCard;

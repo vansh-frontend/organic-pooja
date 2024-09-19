@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import ProductCard from './components/ProductCard'; // Ensure this import path is correct
+import ProductCard from './components/ProductCard';
+import ProductModal from './components/ProductModal'; // Import the modal
 
 const allProducts = [
   // Product data remains the same
@@ -24,16 +25,26 @@ const allProducts = [
   { id: 18, name: 'Foot Cream', image: 'img/sec6.jpg', price: '119.99', category: 'Bodycare' },
   { id: 19, name: 'Revitalizing Eye Cream', image: 'img/skin.jpg', price: '189.99', category: 'Skincare' },
   { id: 20, name: 'Essential Oil Blend', image: 'img/sc.png', price: '139.99', category: 'Bodycare' },
+  // (Other products...)
 ];
 
 const categories = ['All', 'Skincare', 'Haircare', 'Bodycare'];
 
 const Products = ({ addToCart }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedProduct, setSelectedProduct] = useState(null); // New state to manage the selected product for the modal
 
   const filteredProducts = selectedCategory === 'All'
     ? allProducts
     : allProducts.filter(product => product.category === selectedCategory);
+
+  const handleProductDetails = (product) => {
+    setSelectedProduct(product); // Set the clicked product for the modal
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProduct(null); // Close the modal
+  };
 
   return (
     <div className="container px-4 py-8 mx-auto">
@@ -53,9 +64,17 @@ const Products = ({ addToCart }) => {
       {/* Products Section */}
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {filteredProducts.map(product => (
-          <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
+          <ProductCard key={product.id} product={product} onAddToCart={addToCart} onMoreDetails={handleProductDetails} />
         ))}
       </div>
+
+      {/* Modal Section */}
+      {selectedProduct && (
+        <ProductModal
+          product={selectedProduct}
+          onClose={handleCloseModal} // Close modal handler
+        />
+      )}
     </div>
   );
 };
