@@ -8,6 +8,7 @@ import Products from './Products';
 import Cart from './components/Cart';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import About from './About';
 
 const theme = {
   colors: {
@@ -80,6 +81,7 @@ const App = () => {
               onBuyNow={(product) => console.log(`Buy now ${product.name}`)} // Placeholder for buy now function
             />
           } />
+          <Route path='/About' element={<About></About>}></Route>
         </Routes> 
         <Footer />
       </BrowserRouter>

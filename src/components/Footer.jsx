@@ -1,5 +1,7 @@
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import About from "../About";
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -96,7 +98,17 @@ const Footer = () => {
             <div>
               <h3 className="mb-4 text-lg font-semibold">Company</h3>
               <ul className="space-y-2">
-                <li><a href="/company/about-us" className="hover:underline">About Us</a></li>
+              <li>
+          <NavLink 
+            to="/About" 
+            className={({ isActive }) => 
+              `text-gray-700 ${isActive ? 'underline font-bold' : 'hover:underline'}`
+            }
+          >
+            About Us
+          </NavLink>
+        </li>
+               
                 <li><a href="/company/team" className="hover:underline">Team</a></li>
                 <li><a href="/company/investor-relations" className="hover:underline">Investor Relations</a></li>
                 <li><a href="/company/blog" className="hover:underline">Blog</a></li>

@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accordion from './components/Accordion';
+import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaStarHalfAlt } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+
 import './Home.css'; // Keep external CSS if needed
 
 const Home = () => {
@@ -118,34 +121,125 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="px-6 py-16 bg-white">
-  <div className="container mx-auto text-center">
-    <h2 className="mb-12 text-2xl font-bold text-gray-800 sm:text-3xl md:text-4xl">What Our Clients Say</h2>
-    <div className="relative overflow-hidden">
-      <div className="flex gap-4 scrolling-wrapper md:gap-6 lg:gap-8">
-        {[
-          { name: 'Jane Doe', review: '“The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!”', img: 'img/jane.jpg' },
-          { name: 'John Smith', review: '“Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.”', img: 'img/john.jpg' },
-          { name: 'Emily Davis', review: '“Professional staff and fantastic results. The best salon experience I have ever had!”', img: 'img/emily.jpg' },
-          { name: 'Jane Doe', review: '“The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!”', img: 'img/jane.jpg' },
-          { name: 'John Smith', review: '“Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.”', img: 'img/john.jpg' },
-          { name: 'Emily Davis', review: '“Professional staff and fantastic results. The best salon experience I have ever had!”', img: 'img/emily.jpg' },
-        ].map((testimonial, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center flex-shrink-0 w-full max-w-xs p-4 bg-gray-100 rounded-lg shadow-lg cursor-pointer testimonial-box sm:p-6 sm:max-w-sm lg:max-w-md"
-          >
-            <img src={testimonial.img} alt={testimonial.name} className="w-20 h-20 mb-4 rounded-full sm:w-24 sm:h-24"/>
-            <p className="mb-4 text-sm text-gray-600 sm:text-base">"{testimonial.review}"</p>
-            <p className="text-sm font-semibold text-gray-800 sm:text-base">{testimonial.name}</p>
+      {/* about us */}
+      <div className="px-4 py-16 bg-white lg:py-24 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        {/* Main Content Section */}
+        <div className="flex flex-col items-center justify-center gap-8 lg:gap-16 lg:flex-row lg:items-center lg:justify-center">
+          {/* Text Section */}
+          <div className="flex flex-col items-center justify-center w-full text-center">
+            <h2 className="max-w-full mb-4 text-4xl font-bold text-gray-700">
+              Behind the brand
+            </h2>
+            <p className="max-w-full text-base leading-6 text-gray-600 sm:text-lg lg:text-xl">
+              Organic by Pooja began in 2019 with a simple mission: to offer natural, homemade solutions for skin and hair that heal and nourish from within. What started as a small initiative quickly gained the trust of customers seeking authenticity and quality. Combining modern treatments with organic, handmade products, Organic by Pooja has become a trusted name for personalized care. Our goal is to bring out your natural beauty while making you feel good inside and out.
+            </p>
           </div>
-        ))}
+        </div>
+
+        {/* Icon Section */}
+        <div className="mt-16">
+          <h3 className="mb-8 text-2xl font-semibold text-center text-gray-800">Our Values</h3>
+          <div className="flex flex-wrap justify-center gap-12">
+            <div className="text-center transition-colors duration-300 transform hover:text-green-500 hover:scale-110">
+              <FaLeaf className="mx-auto mb-2 text-4xl" />
+              <p className="text-gray-600">Natural Ingredients</p>
+            </div>
+            <div className="text-center transition-colors duration-300 transform hover:text-yellow-500 hover:scale-110">
+              <FaStar className="mx-auto mb-2 text-4xl" />
+              <p className="text-gray-600">Quality Assurance</p>
+            </div>
+            <div className="text-center transition-colors duration-300 transform hover:text-red-500 hover:scale-110">
+              <FaHeart className="mx-auto mb-2 text-4xl" />
+              <p className="text-gray-600">Customer Love</p>
+            </div>
+            <div className="text-center transition-colors duration-300 transform hover:text-blue-500 hover:scale-110">
+              <FaGift className="mx-auto mb-2 text-4xl" />
+              <p className="text-gray-600">Special Offers</p>
+            </div>
+            <div className="text-center transition-colors duration-300 transform hover:text-purple-500 hover:scale-110">
+              <FaRegClock className="mx-auto mb-2 text-4xl" />
+              <p className="text-gray-600">Timely Service</p>
+            </div>
+            <div className="text-center transition-colors duration-300 transform hover:text-teal-500 hover:scale-110">
+              <FaHandsHelping className="mx-auto mb-2 text-4xl" />
+              <p className="text-gray-600">Community Support</p>
+            </div>
+          </div>
+        </div>
+
+        {/* New Section: Our Services */}
+        <div className="mt-16">
+          <h3 className="mb-8 text-2xl font-semibold text-center text-gray-800">Our Services</h3>
+          <div className="flex flex-wrap justify-center gap-12">
+            <motion.div 
+              className="text-center transition-colors duration-300 transform hover:text-teal-500 hover:scale-110"
+              whileHover={{ scale: 1.1, rotate: 10 }}
+            >
+              <FaHandSparkles className="mx-auto mb-2 text-4xl" />
+              <p className="text-gray-600">Personalized Treatments</p>
+            </motion.div>
+            <motion.div 
+              className="text-center transition-colors duration-300 transform hover:text-blue-500 hover:scale-110"
+              whileHover={{ scale: 1.1, rotate: -10 }}
+            >
+              <FaShieldAlt className="mx-auto mb-2 text-4xl" />
+              <p className="text-gray-600">Safe & Effective</p>
+            </motion.div>
+            <motion.div 
+              className="text-center transition-colors duration-300 transform hover:text-green-500 hover:scale-110"
+              whileHover={{ scale: 1.1, rotate: 10 }}
+            >
+              <FaUsers className="mx-auto mb-2 text-4xl" />
+              <p className="text-gray-600">Expert Team</p>
+            </motion.div>
+          </div>
+        </div>
+
+      
+        {/* Call-to-Action Section */}
+      
       </div>
     </div>
-  </div>
-</section>
 
+
+      {/* about us */}
+
+      {/* Testimonials Section */}
+      <section className="px-6 py-16 bg-white">
+      <div className="container mx-auto text-center">
+        <h2 className="mb-12 text-2xl font-bold text-gray-800 sm:text-3xl md:text-4xl">What Our Clients Say</h2>
+        <div className="relative overflow-hidden">
+          <div className="flex gap-4 scrolling-wrapper md:gap-6 lg:gap-8">
+            {[
+              { name: 'Eshita Arora', review: '“The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!”', img: 'img/sec2.jpg', rating: 5 },
+              { name: 'Kanika', review: '“Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.”', img: 'img/sec2.jpg', rating: 4.5 },
+              { name: 'Nandini Pathak', review: '“Professional staff and fantastic results. The best salon experience I have ever had!”', img: 'img/sec2.jpg', rating: 4 },
+              { name: 'Kavita Bhalla', review: '“The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!”', img: 'img/sec2.jpg', rating: 5 },
+              { name: 'Anjali Sharma', review: '“Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.”', img: 'img/sec2.jpg', rating: 4.5 },
+              { name: 'Varsha Agarwal', review: '“Professional staff and fantastic results. The best salon experience I have ever had!”', img: 'img/sec2.jpg', rating: 4 },
+            ].map((testimonial, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center flex-shrink-0 w-full max-w-xs p-4 bg-gray-100 rounded-lg shadow-lg cursor-pointer testimonial-box sm:p-6 sm:max-w-sm lg:max-w-md"
+              >
+                <img src={testimonial.img} alt={testimonial.name} className="w-20 h-20 mb-4 rounded-full sm:w-24 sm:h-24"/>
+                <p className="mb-4 text-sm text-gray-600 sm:text-base">"{testimonial.review}"</p>
+                <p className="text-sm font-semibold text-gray-800 sm:text-base">{testimonial.name}</p>
+                
+                {/* Star Rating */}
+                <div className="flex items-center mt-2">
+                  {[...Array(Math.floor(testimonial.rating))].map((_, i) => (
+                    <FaStar key={i} className="text-yellow-500"/>
+                  ))}
+                  {testimonial.rating % 1 !== 0 && <FaStarHalfAlt className="text-yellow-500"/>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
 
 
           {/* FAQ Section */}
