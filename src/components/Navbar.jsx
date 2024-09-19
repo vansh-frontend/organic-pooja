@@ -10,7 +10,7 @@ const Navbar = ({ position }) => {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false); // Mobile Services Dropdown state
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // Login Modal state
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const[OTP,setotp] = useState('');
   const [telephone, setTelephone] = useState('');
   const [error, setError] = useState('');
 
@@ -338,60 +338,78 @@ const Navbar = ({ position }) => {
         </div>
       )}
       {isLoginModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="relative w-full max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg">
-            <button className="absolute p-2 text-gray-600 top-2 right-2 hover:text-gray-800" onClick={closeLoginModal}>
-              <IconX size={24} />
-            </button>
-            <h2 className="mb-4 text-2xl font-bold text-center">Login</h2>
-            <form onSubmit={handleLogin} className="space-y-4">
-              <div>
-                <label htmlFor="email" className="block mb-1 text-sm font-semibold text-gray-700">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="block mb-1 text-sm font-semibold text-gray-700">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              {error && <p className="text-sm text-red-600">{error}</p>}
-              <div className="flex justify-center">
-                <button
-                  type="submit"
-                  className="px-4 py-2 font-semibold text-white bg-black rounded-md hover:bg-gray-800"
-                >
-                  Login
-                </button>
-              </div>
-            </form>
-            <div className="mt-4">
-              <button
-                onClick={handleGoogleLogin}
-                className="flex items-center justify-center w-full px-4 py-2 font-semibold text-black border border-gray-300 rounded-md hover:bg-gray-50"
-              >
-                <IconBrandGoogle size={20} className="mr-2" />
-                Login with Google
-              </button>
-            </div>
-          </div>
-        </div>
+     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-80">
+     <div className="relative w-full max-w-lg p-8 mx-auto bg-white border border-gray-200 shadow-2xl bg-opacity-90 rounded-2xl backdrop-filter backdrop-blur-lg">
+       <button
+         className="absolute p-2 text-gray-700 transition-transform transform top-4 right-4 hover:text-gray-900 hover:scale-110"
+         onClick={closeLoginModal}
+       >
+         <IconX size={24} />
+       </button>
+       <h2 className="mb-6 text-3xl font-bold text-center text-gray-900">
+         Login
+       </h2>
+       <form onSubmit={handleLogin} className="space-y-6">
+         <div>
+           <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-800">
+             Phone Number
+           </label>
+           <input
+             type="tel"
+             id="phone"
+             className="w-full px-4 py-3 text-base text-gray-900 placeholder-gray-500 transition-all bg-white border border-gray-300 rounded-lg shadow-md bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+             value={telephone}
+             onChange={(e) => {
+               if (e.target.value.length <= 10) setTelephone(e.target.value);
+             }}
+             required
+             maxLength="10"
+             placeholder="Enter your 10-digit phone number"
+             pattern="\d{10}"
+             title="Please enter a valid 10-digit phone number"
+           />
+         </div>
+         <div>
+           <label htmlFor="otp" className="block mb-2 text-sm font-medium text-gray-800">
+             OTP
+           </label>
+           <input
+             type="tel"
+             id="otp"
+             className="w-full px-4 py-3 text-base text-gray-900 placeholder-gray-500 transition-all bg-white border border-gray-300 rounded-lg shadow-md bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+             value={OTP}
+             onChange={(e) => {
+               if (e.target.value.length <= 6) setotp(e.target.value);
+             }}
+             required
+             maxLength="6"
+             placeholder="Enter 6-digit OTP"
+             pattern="\d{6}"
+             title="Please enter a valid 6-digit OTP"
+           />
+         </div>
+         {error && <p className="text-sm text-red-500">{error}</p>}
+         <div className="flex justify-center">
+           <button
+             type="submit"
+             className="w-full px-6 py-3 font-semibold text-white transition-transform duration-300 transform rounded-lg shadow-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-300 hover:scale-105"
+           >
+             Verify
+           </button>
+         </div>
+       </form>
+       <div className="mt-6">
+         <button
+           onClick={handleGoogleLogin}
+           className="flex items-center justify-center w-full px-6 py-3 font-semibold text-gray-800 transition-transform duration-300 transform bg-white border border-gray-300 rounded-lg shadow-md bg-opacity-80 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-purple-300 hover:scale-105"
+         >
+           <IconBrandGoogle size={20} className="mr-2" />
+           Login with Google
+         </button>
+       </div>
+     </div>
+   </div>
+   
       )}
 
     </nav>
