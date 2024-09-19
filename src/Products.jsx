@@ -49,17 +49,22 @@ const Products = ({ addToCart }) => {
   return (
     <div className="container px-4 py-8 mx-auto">
       {/* Category Filter */}
-      <div className="flex flex-wrap justify-center mb-8 space-x-2 sm:space-x-4">
-        {categories.map((category) => (
-          <button
-            key={category}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300 ease-in-out ${selectedCategory === category ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-blue-500 hover:text-white'}`}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+      <div className="flex flex-wrap justify-center gap-2 mb-8 sm:gap-4">
+  {categories.map((category) => (
+    <button
+      key={category}
+      className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300 ease-in-out ${
+        selectedCategory === category
+          ? 'bg-blue-600 text-white'
+          : 'bg-gray-200 text-gray-700 hover:bg-blue-500 hover:text-white'
+      }`}
+      onClick={() => setSelectedCategory(category)}
+    >
+      {category}
+    </button>
+  ))}
+</div>
+
 
       {/* Products Section */}
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
