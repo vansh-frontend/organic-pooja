@@ -102,7 +102,7 @@ const Footer = () => {
           <NavLink 
             to="/About" 
             className={({ isActive }) => 
-              `text-gray-700 ${isActive ? 'underline font-bold' : 'hover:underline'}`
+              `text-white ${isActive ? 'underline font-bold' : 'hover:underline'}`
             }
           >
             About Us

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accordion from './components/Accordion';
-import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaStarHalfAlt } from 'react-icons/fa';
+import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaStarHalfAlt,FaPhone,FaEnvelope } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 import './Home.css'; // Keep external CSS if needed
@@ -104,7 +104,7 @@ const Home = () => {
               { title: 'Hair Styling', img: 'img/shampoo.jpg', desc: 'Transform your look with our expert hair styling services.', link: '/hair-styling' },
               { title: 'Salon Products', img: 'img/sec2.jpg', desc: 'Explore our exclusive range of salon-quality products.', link: '/products' },
               { title: 'Salon Masterclass', img: 'img/sec3.jpg', desc: 'Pamper yourself with our luxurious body treatments.', link: '/body-treatments' },
-              { title: ' Nail extension', img: 'img/pro5.jpg', desc: 'Book a consultation to get personalized beauty advice and recommendations.', link: '/consultations' },
+              { title: ' Nail Extension', img: 'img/pro5.jpg', desc: 'Book a consultation to get personalized beauty advice and recommendations.', link: '/consultations' },
             ].map((service, index) => (
               <div key={index} className="overflow-hidden transition-transform transform bg-white rounded-lg shadow-lg hover:scale-105">
                 <img src={service.img} alt={service.title} className="object-cover w-full h-48"/>
@@ -249,19 +249,32 @@ const Home = () => {
               <Accordion />
             </div>
           </section>
-          <section className="px-6 py-16 text-white bg-teal-500">
-        <div className="container mx-auto text-center">
-          <h2 className="mb-8 text-3xl font-bold sm:text-4xl">Get in Touch</h2>
-          <p className="mb-8 text-lg">We'd love to hear from you! Reach out to us for any inquiries or to schedule an appointment.</p>
-          <Link
-            to="/contact"
-            className="px-6 py-3 font-semibold text-gray-800 transition-transform transform bg-yellow-500 rounded-lg shadow-lg hover:bg-yellow-600 hover:scale-105"
-          >
-            Contact Us
-          </Link>
+          <section className="px-4 py-8 text-white bg-teal-500 sm:px-6 sm:py-12">
+      <div className="container mx-auto text-center">
+        <h2 className="mb-4 text-xl font-bold sm:text-2xl md:text-3xl animate__animated animate__fadeIn animate__delay-1s">
+          Get in Touch
+        </h2>
+        <p className="mb-6 text-sm sm:text-base md:text-lg animate__animated animate__fadeIn animate__delay-2s">
+          We'd love to hear from you! Reach out to us for any inquiries or to schedule an appointment.
+        </p>
+        <div className="flex justify-center mb-6 space-x-4 animate__animated animate__fadeIn animate__delay-3s">
+          <a href="tel:+1234567890" className="flex items-center space-x-2 transition-transform hover:scale-105">
+            <FaPhone className="text-lg text-yellow-400" />
+            <span className="text-sm sm:text-base">Call Us</span>
+          </a>
+          <a href="mailto:info@example.com" className="flex items-center space-x-2 transition-transform hover:scale-105">
+            <FaEnvelope className="text-lg text-yellow-400" />
+            <span className="text-sm sm:text-base">Email Us</span>
+          </a>
         </div>
-      </section>
-
+        <Link
+          to="/contact"
+          className="inline-block px-4 py-2 text-gray-800 transition-transform transform bg-yellow-500 rounded-lg shadow-lg hover:bg-yellow-600 hover:scale-110 animate__animated animate__pulse animate__infinite"
+        >
+          Contact Us
+        </Link>
+      </div>
+    </section>
         </div>
  
     </>

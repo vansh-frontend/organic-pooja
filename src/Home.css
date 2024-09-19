@@ -78,8 +78,6 @@
   animation: zoomIn 1s ease-out;
 }
 
-
-
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -91,10 +89,37 @@
 
 .scrolling-wrapper {
   display: flex;
-  animation: scroll 9s linear infinite; /* Adjusted duration for faster scrolling */
+  animation: scroll 7s linear infinite; /* Default duration */
 }
 
 .scrolling-wrapper:hover {
   animation-play-state: paused;
 }
 
+/* Slower animation for larger screens (desktops) */
+@media (min-width: 1024px) {
+  .scrolling-wrapper {
+    animation: scroll 10s linear infinite; /* Slower scroll */
+  }
+}
+
+/* Slightly faster animation for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .scrolling-wrapper {
+    animation: scroll 7s linear infinite;
+  }
+}
+
+/* Faster animation for mobile phones */
+@media (max-width: 767px) {
+  .scrolling-wrapper {
+    animation: scroll 4s linear infinite; /* Faster scroll for phones */
+  }
+}
+
+/* Even faster animation for small phones */
+@media (max-width: 480px) {
+  .scrolling-wrapper {
+    animation: scroll 3s linear infinite; /* Very fast scroll for small phones */
+  }
+}
