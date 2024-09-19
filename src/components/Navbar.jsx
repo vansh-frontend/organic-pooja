@@ -357,7 +357,7 @@ const Navbar = ({ position }) => {
            <input
              type="tel"
              id="phone"
-             className="w-full px-4 py-3 text-base text-gray-900 placeholder-gray-500 transition-all bg-white border border-gray-300 rounded-lg shadow-md bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+             className="w-full px-4 py-3 text-base text-gray-900 placeholder-gray-500 transition-all bg-white border border-gray-300 rounded-lg shadow-md bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
              value={telephone}
              onChange={(e) => {
                if (e.target.value.length <= 10) setTelephone(e.target.value);
@@ -376,7 +376,7 @@ const Navbar = ({ position }) => {
            <input
              type="tel"
              id="otp"
-             className="w-full px-4 py-3 text-base text-gray-900 placeholder-gray-500 transition-all bg-white border border-gray-300 rounded-lg shadow-md bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+             className="w-full px-4 py-3 text-base text-gray-900 placeholder-gray-500 transition-all bg-white border border-gray-300 rounded-lg shadow-md bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
              value={OTP}
              onChange={(e) => {
                if (e.target.value.length <= 6) setotp(e.target.value);
@@ -390,22 +390,24 @@ const Navbar = ({ position }) => {
          </div>
          {error && <p className="text-sm text-red-500">{error}</p>}
          <div className="flex justify-center">
-           <button
-             type="submit"
-             className="w-full px-6 py-3 font-semibold text-white transition-transform duration-300 transform rounded-lg shadow-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-300 hover:scale-105"
-           >
-             Verify
-           </button>
+         <button
+  type="submit"
+  className="w-full px-6 py-3 font-semibold text-white transition-transform duration-300 transform bg-teal-600 rounded-lg shadow-lg hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 hover:scale-105"
+>
+  Verify
+</button>
+
          </div>
        </form>
        <div className="mt-6">
-         <button
-           onClick={handleGoogleLogin}
-           className="flex items-center justify-center w-full px-6 py-3 font-semibold text-gray-800 transition-transform duration-300 transform bg-white border border-gray-300 rounded-lg shadow-md bg-opacity-80 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-purple-300 hover:scale-105"
-         >
-           <IconBrandGoogle size={20} className="mr-2" />
-           Login with Google
-         </button>
+       <button
+  onClick={handleGoogleLogin}
+  className="flex items-center justify-center w-full px-6 py-3 font-semibold text-gray-800 transition-transform duration-300 transform bg-white border border-gray-300 rounded-lg shadow-lg bg-opacity-20 backdrop-blur-md hover:bg-opacity-30 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-teal-300"
+>
+  <IconBrandGoogle size={20} className="mr-2" />
+  Login with Google
+</button>
+
        </div>
      </div>
    </div>
