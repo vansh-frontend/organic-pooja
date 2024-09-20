@@ -1,113 +1,290 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaSeedling, FaTruck, FaChalkboardTeacher, FaCalendarAlt } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaSpa, FaLeaf, FaCut, FaPaintBrush, FaHeart, FaSun, FaSmile, FaLightbulb, FaGem, FaSnowflake, FaStar, FaBars, FaTimes } from 'react-icons/fa';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const Services = () => {
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    const title = container.querySelector('h2');
-    const description = container.querySelector('.services-description');
-    const cards = container.querySelectorAll('.service-card');
-    
-    gsap.set([title, description], { opacity: 0, y: 50 });
-    gsap.set(cards, { opacity: 0, y: 100 });
-    
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: 'top 60%',
-        end: 'bottom 20%',
-        scrub: 1,
+const serviceCategories = [
+  {
+    id: 'skincare',
+    title: 'Skincare Services',
+    icon: <FaSpa className="w-6 h-6" />,
+    services: [
+      {
+        title: 'Laser Hair Treatment',
+        icon: <FaLightbulb className="w-5 h-5" />,
+        description: 'Advanced method to reduce unwanted hair growth using state-of-the-art laser technology.',
+        benefits: [
+          'Long-lasting hair reduction',
+          'Minimal discomfort',
+          'Reduced ingrown hairs',
+          'Improved skin texture'
+        ]
       },
-    });
+      {
+        title: 'Thermage Treatment',
+        icon: <FaSun className="w-5 h-5" />,
+        description: 'Non-invasive skin tightening treatment using radiofrequency energy to stimulate collagen production.',
+        benefits: [
+          'Non-invasive skin tightening',
+          'Stimulates collagen production',
+          'Suitable for face and body',
+          'Long-lasting results'
+        ]
+      },
+      {
+        title: 'Q-Switch Laser Treatment',
+        icon: <FaGem className="w-5 h-5" />,
+        description: 'Powerful solution for pigmentation and tattoo removal using advanced laser technology.',
+        benefits: [
+          'Safe for all skin types',
+          'Effective pigmentation and tattoo removal',
+          'No downtime'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'skinConcerns',
+    title: 'Skin Concerns',
+    icon: <FaLeaf className="w-6 h-6" />,
+    services: [
+      {
+        title: 'Ageing Skin',
+        icon: <FaSnowflake className="w-5 h-5" />,
+        description: 'Rejuvenating treatments to restore youthful elasticity using organic ingredients.',
+        benefits: [
+          'Boosts collagen production for firmness',
+          'Provides deep hydration',
+          'Reduces signs of ageing'
+        ]
+      },
+      {
+        title: 'Acne Scars',
+        icon: <FaHeart className="w-5 h-5" />,
+        description: 'Treatments targeting stubborn acne marks using natural ingredients.',
+        benefits: [
+          'Reduces appearance of scars',
+          'Smoothens skin texture',
+          'Encourages natural skin healing'
+        ]
+      },
+      {
+        title: 'Dull Skin',
+        icon: <FaSmile className="w-5 h-5" />,
+        description: 'Revitalizing treatments to restore radiance using plant-based ingredients.',
+        benefits: [
+          'Enhances natural skin radiance',
+          'Refreshes and revitalizes tired skin',
+          'Deeply hydrates for a supple appearance'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'hairConcerns',
+    title: 'Hair Concerns',
+    icon: <FaCut className="w-6 h-6" />,
+    services: [
+      {
+        title: 'Hair Loss Concern',
+        icon: <FaGem className="w-5 h-5" />,
+        description: 'Comprehensive treatments for hair loss, including PRP GF treatments.',
+        benefits: [
+          'Stimulates natural hair growth',
+          'Strengthens existing hair',
+          'Minimally invasive with no downtime'
+        ]
+      },
+      {
+        title: 'Hair Loss for Women',
+        icon: <FaHeart className="w-5 h-5" />,
+        description: 'Specialized treatments addressing thinning hair in women.',
+        benefits: [
+          'Enhances hair density and volume',
+          'Improves hair strength',
+          'Uses organic ingredients safe for women'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'makeup',
+    title: 'Makeup Services',
+    icon: <FaPaintBrush className="w-6 h-6" />,
+    services: [
+      {
+        title: 'HD Makeup',
+        icon: <FaStar className="w-5 h-5" />,
+        description: 'High-definition beauty that looks flawless on camera.',
+        benefits: [
+          'Provides a smooth finish',
+          'Long-lasting throughout the day',
+          'Ideal for photoshoots'
+        ]
+      },
+      {
+        title: 'Airbrush Makeup',
+        icon: <FaSnowflake className="w-5 h-5" />,
+        description: 'Luxurious airbrush makeup for a radiant finish.',
+        benefits: [
+          'Ensures an even look',
+          'Feels light on the skin',
+          'Long-lasting with minimal touch-ups'
+        ]
+      }
+    ]
+  }
+];
 
-    tl.to(title, { opacity: 1, y: 0, duration: 0.5 })
-      .to(description, { opacity: 1, y: 0, duration: 0.5 }, '-=0.3')
-      .to(cards, { 
-        opacity: 1, 
-        y: 0, 
-        stagger: 0.2, 
-        duration: 0.5,
-        ease: 'power2.out',
-      }, '-=0.2');
-
-    // Parallax effect on cards
-    cards.forEach((card) => {
-      gsap.to(card, {
-        yPercent: -20,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, []);
-
-  return (
-    <section ref={containerRef} className="px-4 py-24 overflow-hidden bg-gradient-to-b from-green-50 to-green-100 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <h2 className="mb-8 text-5xl font-bold tracking-tight text-center text-green-800 sm:text-6xl lg:text-7xl">
-          Our Services
-        </h2>
-        <p className="max-w-3xl mx-auto mb-20 text-xl leading-relaxed text-center text-green-700 services-description">
-          Experience the future of organic farming with our innovative and sustainable services, 
-          bringing nature's finest directly to your table.
-        </p>
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-          <ServiceCard 
-            title="Organic Farming" 
-            description="Cultivate health with our chemical-free, sustainable farming practices."
-            icon={<FaSeedling className="w-8 h-8" />}
-          />
-          <ServiceCard 
-            title="Fresh Delivery" 
-            description="Farm-fresh organic produce, delivered straight to your doorstep."
-            icon={<FaTruck className="w-8 h-8" />}
-          />
-          <ServiceCard 
-            title="Farming Workshops" 
-            description="Master organic techniques through immersive, hands-on learning experiences."
-            icon={<FaChalkboardTeacher className="w-8 h-8" />}
-          />
-          <ServiceCard 
-            title="Crop Planning" 
-            description="Tailored crop strategies for small-scale farmers and home gardeners."
-            icon={<FaCalendarAlt className="w-8 h-8" />}
-          />
-        </div>
+const ServiceItem = ({ item }) => (
+  <div className="p-4 transition-all duration-300 bg-white rounded-lg shadow-md sm:p-6 hover:shadow-lg">
+    <div className="flex items-center mb-4">
+      <div className="p-2 mr-4 text-purple-600 bg-purple-100 rounded-full">
+        {item.icon}
       </div>
-    </section>
-  );
-};
-
-const ServiceCard = ({ title, description, icon }) => (
-  <div className="overflow-hidden transition-all duration-300 transform bg-white shadow-lg service-card rounded-2xl hover:scale-105 hover:shadow-xl">
-    <div className="p-8">
-      <div className="flex items-center justify-center w-16 h-16 mb-6 bg-green-100 rounded-full">
-        {icon}
-      </div>
-      <h3 className="mb-4 text-2xl font-semibold text-green-800">{title}</h3>
-      <p className="mb-6 text-gray-600">{description}</p>
-      <button className="inline-flex items-center px-4 py-2 text-sm font-medium text-white transition-colors duration-300 bg-green-600 rounded-full hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-        Learn More
-        <svg className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-        </svg>
-      </button>
+      <h3 className="text-lg font-semibold text-gray-800 sm:text-xl">{item.title}</h3>
+    </div>
+    <p className="mb-4 text-sm text-gray-600 sm:text-base">{item.description}</p>
+    <div>
+      <h4 className="mb-2 text-xs font-semibold text-gray-700 uppercase sm:text-sm">Benefits:</h4>
+      <ul className="pl-5 text-gray-600 list-disc">
+        {item.benefits.map((benefit, index) => (
+          <li key={index} className="mb-1 text-xs sm:text-sm">{benefit}</li>
+        ))}
+      </ul>
     </div>
   </div>
 );
+
+ServiceItem.propTypes = {
+  item: PropTypes.shape({
+    icon: PropTypes.element.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    benefits: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+};
+
+const ServiceCategory = ({ category }) => (
+  <div className="mb-8 sm:mb-12">
+    <h2 className="mb-4 text-xl font-bold text-gray-800 sm:mb-6 sm:text-2xl">{category.title}</h2>
+    <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {category.services.map((service, index) => (
+        <ServiceItem key={index} item={service} />
+      ))}
+    </div>
+  </div>
+);
+
+ServiceCategory.propTypes = {
+  category: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    icon: PropTypes.element.isRequired,
+    title: PropTypes.string.isRequired,
+    services: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }).isRequired,
+};
+
+const Services = () => {
+  const [activeCategory, setActiveCategory] = useState(serviceCategories[0].id);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const scrollToCategory = (categoryId) => {
+    setActiveCategory(categoryId);
+    const element = document.getElementById(categoryId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (isMobile) {
+      setIsSidebarOpen(false);
+    }
+  };
+
+  return (
+    <div className="flex flex-col min-h-screen bg-gray-100 lg:flex-row">
+      {/* Sidebar */}
+      <AnimatePresence>
+        {(isSidebarOpen || !isMobile) && (
+          <motion.div
+            initial={{ x: -300 }}
+            animate={{ x: 0 }}
+            exit={{ x: -300 }}
+            transition={{ duration: 0.3 }}
+            className={`fixed inset-y-0 left-0 z-30 w-64 bg-white shadow-lg lg:relative lg:translate-x-0`}
+          >
+            <div className="flex items-center justify-between h-16 px-4 bg-purple-600 lg:h-20">
+              <h1 className="text-xl font-bold text-white">Organic Pooja</h1>
+              {isMobile && (
+                <button
+                  onClick={() => setIsSidebarOpen(false)}
+                  className="text-white focus:outline-none"
+                >
+                  <FaTimes size={24} />
+                </button>
+              )}
+            </div>
+            <nav className="mt-6">
+              {serviceCategories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => scrollToCategory(category.id)}
+                  className={`flex items-center w-full px-6 py-3 text-left ${
+                    activeCategory === category.id
+                      ? 'bg-purple-100 text-purple-600'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                >
+                  <span className="mr-3">{category.icon}</span>
+                  {category.title}
+                </button>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Main content */}
+      <div className="flex flex-col flex-1">
+        {/* Header */}
+        <header className="sticky top-0 z-20 flex items-center justify-between px-4 py-4 bg-white shadow-md">
+          {isMobile && (
+            <button
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="text-gray-500 focus:outline-none"
+            >
+              <FaBars size={24} />
+            </button>
+          )}
+          <h1 className="text-xl font-semibold text-gray-800 sm:text-2xl">Services Dashboard</h1>
+        </header>
+
+        {/* Content */}
+        <main className="flex-1 p-4 overflow-y-auto sm:p-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {serviceCategories.map((category) => (
+              <div key={category.id} id={category.id}>
+                <ServiceCategory category={category} />
+              </div>
+            ))}
+          </motion.div>
+        </main>
+      </div>
+    </div>
+  );
+};
 
 export default Services;

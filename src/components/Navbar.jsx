@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { IconHome, IconBook, IconApps,IconChevronDown, IconMenu4, IconX, IconShoppingCart,IconUserCircle,IconBrandGoogle, IconArrowRight} from '@tabler/icons-react';
+import { IconHome, IconBook, IconApps,IconMenu4, IconX, IconShoppingCart,IconUserCircle,IconBrandGoogle, IconArrowRight, IconServicemark} from '@tabler/icons-react';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 
@@ -215,57 +215,17 @@ const Navbar = ({ position }) => {
           <span className="ml-2">Home</span>
         </NavLink>
       </li>
-      <li
-        className="relative"
-        onClick={() => setIsMobileServicesOpen(prev => !prev)}
-      >
-        <button className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75">
-          <IconApps size={20} />
+
+
+      <li>
+        <NavLink
+          to="/Services"
+          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
+          onClick={toggleMenu}
+        >
+          <IconServicemark size={20} />
           <span className="ml-2">Services</span>
-          {isMobileServicesOpen ? <IconX size={20} className="ml-2" /> : <IconChevronDown size={20} className="ml-2" />}
-        </button>
-        {isMobileServicesOpen && (
-          <div className="absolute left-0 w-full p-4 mt-2 space-y-4 overflow-y-auto bg-white shadow-lg max-h-80">
-            <div>
-              <h3 className="font-semibold">Skin</h3>
-              <ul className="space-y-2">
-                <li><NavLink to="/thermage-treatment" className="block text-sm text-gray-700 hover:text-black">Thermage Treatment</NavLink></li>
-                <li><NavLink to="/hifu-treatment" className="block text-sm text-gray-700 hover:text-black">HIFU Treatment</NavLink></li>
-                <li><NavLink to="/dermal-fillers-treatment" className="block text-sm text-gray-700 hover:text-black">Dermal Fillers Treatment</NavLink></li>
-                <li><NavLink to="/chemical-peel-treatment" className="block text-sm text-gray-700 hover:text-black">Chemical Peel Treatment</NavLink></li>
-                <li><NavLink to="/q-switch-laser-treatment" className="block text-sm text-gray-700 hover:text-black">Q-Switch Laser Treatment</NavLink></li>
-                <li><NavLink to="/skin-brightening-lightening-treatment" className="block text-sm text-gray-700 hover:text-black">Skin Brightening and Lightening Treatment</NavLink></li>
-                <li><NavLink to="/ageing-skin" className="block text-sm text-gray-700 hover:text-black">Ageing Skin</NavLink></li>
-                <li><NavLink to="/acne-scars" className="block text-sm text-gray-700 hover:text-black">Acne Scars</NavLink></li>
-                <li><NavLink to="/dull-skin" className="block text-sm text-gray-700 hover:text-black">Dull Skin</NavLink></li>
-                <li><NavLink to="/iv-drips-for-skin" className="block text-sm text-gray-700 hover:text-black">IV Drips For Skin</NavLink></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold">Hair</h3>
-              <ul className="space-y-2">
-                <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
-                <li><NavLink to="/prp-gf-treatment" className="block text-sm text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
-                <li><NavLink to="/hair-thread-treatment" className="block text-sm text-gray-700 hover:text-black">Hair Thread Treatment</NavLink></li>
-                <li><NavLink to="/biocell-therapy" className="block text-sm text-gray-700 hover:text-black">Biocell Therapy</NavLink></li>
-                <li><NavLink to="/hair-loss-in-women" className="block text-sm text-gray-700 hover:text-black">Hair Loss In Women</NavLink></li>
-                <li><NavLink to="/iv-drips-for-hair" className="block text-sm text-gray-700 hover:text-black">IV Drips For Hair</NavLink></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold">Make Up</h3>
-              <ul className="space-y-2">
-                <li><NavLink to="/make-up" className="block text-sm text-gray-700 hover:text-black">Make Up</NavLink></li>
-                <li><NavLink to="/prp-gf-treatment" className="block text-sm text-gray-700 hover:text-black">PRP GF Treatment</NavLink></li>
-                <li><NavLink to="/hair-thread-treatment" className="block text-sm text-gray-700 hover:text-black">Hair Thread Treatment</NavLink></li>
-                <li><NavLink to="/biocell-therapy" className="block text-sm text-gray-700 hover:text-black">Biocell Therapy</NavLink></li>
-                <li><NavLink to="/hair-loss-in-women" className="block text-sm text-gray-700 hover:text-black">Hair Loss In Women</NavLink></li>
-                <li><NavLink to="/iv-drips-for-hair" className="block text-sm text-gray-700 hover:text-black">IV Drips For Hair</NavLink></li>
-                <li><NavLink to="/hair-loss-concern" className="block text-sm text-gray-700 hover:text-black">Hair Loss Concern</NavLink></li>
-              </ul>
-            </div>
-          </div>
-        )}
+        </NavLink>
       </li>
       <li>
       <NavLink
