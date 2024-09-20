@@ -20,11 +20,35 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="relative text-gray-300 bg-gradient-to-b from-gray-900 to-black">
-        <div className="container px-6 py-12 mx-auto">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-6">
+      <footer className="relative mt-auto text-gray-300 bg-gray-900">
+        <div className="container px-4 py-12 mx-auto sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
+            {/* Logo and Social Media */}
+            <div className="col-span-2 md:col-span-3 lg:col-span-2">
+              <img src="img/pooja 2.png" alt="Organic by Pooja" className="h-12 mb-4" />
+              <p className="mb-4 text-sm">Your trusted partner for organic skincare solutions.</p>
+              <div className="flex space-x-4">
+                {[
+                  { Icon: FaFacebookF, href: "https://facebook.com" },
+                  { Icon: FaTwitter, href: "https://twitter.com" },
+                  { Icon: FaLinkedinIn, href: "https://linkedin.com" },
+                  { Icon: FaInstagram, href: "https://instagram.com" },
+                ].map(({ Icon, href }, index) => (
+                  <a 
+                    key={index} 
+                    href={href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-gray-400 transition-colors duration-300 hover:text-white"
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
             {/* Products */}
-            <div className="mb-8">
+            <div>
               <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">Products</h3>
               <ul className="space-y-2">
                 <li><a href="/products/face-wash" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Face Wash</a></li>
@@ -35,7 +59,7 @@ const Footer = () => {
             </div>
 
             {/* Services */}
-            <div className="mb-8">
+            <div>
               <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">Services</h3>
               <ul className="space-y-2">
                 <li><a href="/services/laser-hair-removal" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Laser Hair Removal</a></li>
@@ -46,7 +70,7 @@ const Footer = () => {
             </div>
 
             {/* Skin Type */}
-            <div className="mb-8">
+            <div>
               <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">Skin Type</h3>
               <ul className="space-y-2">
                 <li><a href="/skin-type/oily" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Oily</a></li>
@@ -56,28 +80,8 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Skin Concern */}
-            <div className="mb-8">
-              <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">Skin Concern</h3>
-              <ul className="space-y-2">
-                <li><a href="/skin-concern/acne-prone" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Acne Prone</a></li>
-                <li><a href="/skin-concern/anti-ageing" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Anti Ageing</a></li>
-                <li><a href="/skin-concern/pigmentation" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Pigmentation</a></li>
-                <li><a href="/skin-concern/dullness" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Dullness</a></li>
-              </ul>
-            </div>
-
-            {/* Hair Concern */}
-            <div className="mb-8">
-              <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">Hair Concern</h3>
-              <ul className="space-y-2">
-                <li><a href="/hair-concern/hair-fall" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Hair Fall</a></li>
-                <li><a href="/hair-concern/dandruff" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Dandruff</a></li>
-              </ul>
-            </div>
-
             {/* Company */}
-            <div className="mb-8">
+            <div>
               <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">Company</h3>
               <ul className="space-y-2">
                 <li>
@@ -97,47 +101,34 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-between pt-8 mt-8 border-t border-gray-800 md:flex-row">
-            <div className="flex mb-4 space-x-6 md:mb-0">
-              {[
-                { Icon: FaFacebookF, href: "https://facebook.com" },
-                { Icon: FaTwitter, href: "https://twitter.com" },
-                { Icon: FaLinkedinIn, href: "https://linkedin.com" },
-                { Icon: FaInstagram, href: "https://instagram.com" },
-              ].map(({ Icon, href }, index) => (
-                <a 
-                  key={index} 
-                  href={href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-gray-400 transition-colors duration-300 hover:text-white"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
-              ))}
+          <div className="pt-8 mt-12 border-t border-gray-800">
+            <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
+              <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} Organic by Pooja Skin Clinic. All rights reserved.</p>
+              <div className="flex space-x-4">
+                <a href="/privacy-policy" className="text-sm text-gray-400 hover:text-white">Privacy Policy</a>
+                <a href="/terms-of-service" className="text-sm text-gray-400 hover:text-white">Terms of Service</a>
+              </div>
             </div>
-            <p className="text-sm text-gray-400">&copy; 2023 Organic by Pooja Skin Clinic. All rights reserved.</p>
           </div>
         </div>
       </footer>
 
       {/* Sticky WhatsApp Button */}
       <a
-  href="https://wa.me/918171924503/?text=Hello%0D%0AGot%20this%20number%20from%20Organic%20By%20pooja.%0D%0A"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="fixed bottom-0 left-0 z-50 flex items-center justify-center w-full px-4 py-2 space-x-2 text-white transition-colors duration-300 bg-green-500 shadow-lg hover:bg-green-600"
->
-  <FaWhatsapp className="w-6 h-6" />
-  <span className="font-medium">Message Us on WhatsApp</span>
-</a>
-
+      href="https://wa.me/918171924503/?text=Hello%0D%0AGot%20this%20number%20from%20Organic%20By%20pooja.%0D%0A"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center w-full px-4 py-3 space-x-2 text-white transition-colors duration-300 bg-green-500 shadow-lg hover:bg-green-600"
+    >
+      <FaWhatsapp className="w-6 h-6" />
+      <span className="font-medium">Chat with Us on WhatsApp</span>
+    </a>
 
       {/* Scroll to Top Button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed z-50 p-2 text-white transition-colors duration-300 bg-gray-800 rounded-full shadow-lg bottom-4 right-4 hover:bg-gray-700"
+          className="fixed z-50 p-2 text-white transition-colors duration-300 bg-gray-800 rounded-full shadow-lg bottom-16 right-4 hover:bg-gray-700"
           aria-label="Scroll to top"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
