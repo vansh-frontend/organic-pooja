@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaSpa, FaLeaf, FaCut, FaPaintBrush, FaHeart, FaSun, FaSmile, FaLightbulb, FaGem, FaSnowflake, FaStar, FaBars, FaTimes } from 'react-icons/fa';
+import { FaSpa, FaLeaf, FaCut, FaPaintBrush, FaHeart, FaSun, FaSmile, FaLightbulb, FaGem, FaSnowflake, FaStar, FaBars, FaTimes, FaChevronDown, FaChevronUp, FaMask, FaSprayCan } from 'react-icons/fa';
 
 const serviceCategories = [
   {
@@ -185,14 +185,56 @@ ServiceCategory.propTypes = {
   }).isRequired,
 };
 
+const DropdownButton = ({ title, items, isOpen, toggleDropdown }) => (
+  <div className="mb-2">
+    <button
+      onClick={toggleDropdown}
+      className="flex items-center justify-between w-full px-6 py-3 text-left text-gray-600 hover:bg-gray-100 focus:outline-none"
+    >
+      <span>{title}</span>
+      {isOpen ? <FaChevronUp /> : <FaChevronDown />}
+    </button>
+    {isOpen && (
+      <ul className="pl-8 mt-2">
+        {items.map((item, index) => (
+          <li key={index} className="py-2">
+            <a href="#" className="flex items-center text-gray-600 hover:text-purple-600">
+              <span className="mr-2">{item.icon}</span>
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+);
+
+DropdownButton.propTypes = {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape({
+    icon: PropTypes.element.isRequired,
+    name: PropTypes.string.isRequired,
+  })).isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  toggleDropdown: PropTypes.func.isRequired,
+};
+
 const Services = () => {
   const [activeCategory, setActiveCategory] = useState(serviceCategories[0].id);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [dropdowns, setDropdowns] = useState({
+    skin: false,
+    makeup: false,
+    hair: false,
+  });
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth >= 768) {
+        setIsSidebarOpen(true);
+      }
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -210,8 +252,16 @@ const Services = () => {
     }
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const toggleDropdown = (category) => {
+    setDropdowns((prev) => ({ ...prev, [category]: !prev[category] }));
+  };
+
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 lg:flex-row">
+    <div className="flex flex-col min-h-screen bg-gray-100 md:flex-row">
       {/* Sidebar */}
       <AnimatePresence>
         {(isSidebarOpen || !isMobile) && (
@@ -220,13 +270,15 @@ const Services = () => {
             animate={{ x: 0 }}
             exit={{ x: -300 }}
             transition={{ duration: 0.3 }}
-            className={`fixed inset-y-0 left-0 z-30 w-64 bg-white shadow-lg lg:relative lg:translate-x-0`}
+            className={`fixed inset-y-0 left-0 z-30 w-64 bg-white shadow-lg md:relative md:translate-x-0 ${
+              isMobile ? 'top-16' : ''
+            }`}
           >
-            <div className="flex items-center justify-between h-16 px-4 bg-purple-600 lg:h-20">
+            <div className="flex items-center justify-between h-16 px-4 bg-purple-600 md:h-20">
               <h1 className="text-xl font-bold text-white">Organic Pooja</h1>
               {isMobile && (
                 <button
-                  onClick={() => setIsSidebarOpen(false)}
+                  onClick={toggleSidebar}
                   className="text-white focus:outline-none"
                 >
                   <FaTimes size={24} />
@@ -235,18 +287,53 @@ const Services = () => {
             </div>
             <nav className="mt-6">
               {serviceCategories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => scrollToCategory(category.id)}
-                  className={`flex items-center w-full px-6 py-3 text-left ${
-                    activeCategory === category.id
-                      ? 'bg-purple-100 text-purple-600'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                >
-                  <span className="mr-3">{category.icon}</span>
-                  {category.title}
-                </button>
+                <React.Fragment key={category.id}>
+                  <button
+                    onClick={() => scrollToCategory(category.id)}
+                    className={`flex items-center w-full px-6 py-3 text-left ${
+                      activeCategory === category.id
+                        ? 'bg-purple-100 text-purple-600'
+                        : 'text-gray-600 hover:bg-gray-100'
+                    }`}
+                  >
+                    <span className="mr-3">{category.icon}</span>
+                    {category.title}
+                  </button>
+                  {category.id === 'makeup' && (
+                    <>
+                      <DropdownButton
+                        title="Skin"
+                        items={[
+                          { icon: <FaMask className="w-4 h-4" />, name: 'Facials' },
+                          { icon: <FaSprayCan className="w-4 h-4" />, name: 'Peels' },
+                          { icon: <FaGem className="w-4 h-4" />, name: 'Microdermabrasion' },
+                        ]}
+                        isOpen={dropdowns.skin}
+                        toggleDropdown={() => toggleDropdown('skin')}
+                      />
+                      <DropdownButton
+                        title="Makeup"
+                        items={[
+                          { icon: <FaHeart className="w-4 h-4" />, name: 'Bridal' },
+                          { icon: <FaStar className="w-4 h-4" />, name: 'Special Occasion' },
+                          { icon: <FaLightbulb className="w-4 h-4" />, name: 'Lessons' },
+                        ]}
+                        isOpen={dropdowns.makeup}
+                        toggleDropdown={() => toggleDropdown('makeup')}
+                      />
+                      <DropdownButton
+                        title="Hair"
+                        items={[
+                          { icon: <FaCut className="w-4 h-4" />, name: 'Styling' },
+                          { icon: <FaSprayCan className="w-4 h-4" />, name: 'Treatments' },
+                          { icon: <FaLeaf className="w-4 h-4" />, name: 'Extensions' },
+                        ]}
+                        isOpen={dropdowns.hair}
+                        toggleDropdown={() => toggleDropdown('hair')}
+                      />
+                    </>
+                  )}
+                </React.Fragment>
               ))}
             </nav>
           </motion.div>
@@ -256,15 +343,13 @@ const Services = () => {
       {/* Main content */}
       <div className="flex flex-col flex-1">
         {/* Header */}
-        <header className="sticky top-0 z-20 flex items-center justify-between px-4 py-4 bg-white shadow-md">
-          {isMobile && (
-            <button
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="text-gray-500 focus:outline-none"
-            >
-              <FaBars size={24} />
-            </button>
-          )}
+        <header className="sticky top-0 z-20 flex items-center justify-between px-4 py-4 bg-white shadow-md md:hidden">
+          <button
+            onClick={toggleSidebar}
+            className="text-gray-500 focus:outline-none"
+          >
+            {isSidebarOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
           <h1 className="text-xl font-semibold text-gray-800 sm:text-2xl">Services Dashboard</h1>
         </header>
 
