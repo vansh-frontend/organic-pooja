@@ -49,148 +49,121 @@ const Navbar = ({ position }) => {
       setError('Login failed. Please try again.');
     }
   };
-
-
+  
   const desktopNavItems = position === 'left' ? (
-    <>
-      <ul className="hidden space-x-8 lg:flex">
-        <li>
+    <ul className="items-center hidden space-x-10 lg:flex">
+      {['Home', 'Products', 'Services'].map((item) => (
+        <li key={item}>
           <NavLink
-            to="/"
-            className="relative p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 "
+            to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+            className="relative py-2 group"
           >
-            Home
-            <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
+            <span className="text-lg font-medium text-gray-800 transition-all duration-300 group-hover:text-emerald-600">
+              {item}
+            </span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-600 transform origin-left transition-all duration-300 scale-x-0 group-hover:scale-x-100"></span>
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/products"
-            className="relative p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 "
-          >
-            Products
-            <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/services"
-            className="relative p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 "
-          >
-            Services
-            <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
-          </NavLink>
-        </li>
-      </ul>
-    </>
+      ))}
+    </ul>
   ) : (
-    <>
-     <ul className="items-center hidden space-x-8 lg:flex">
-     <li>
-  <NavLink
-    onClick={openLoginModal}
-    className="relative flex items-center p-2 text-base font-medium text-black transition-all duration-500 group hover:opacity-75"
-  >
-    <span className="items-center hidden gap-2 px-4 py-1.5 font-semibold text-black transition-shadow duration-300 bg-white rounded-full shadow-md md:flex hover:shadow-xl hover:bg-indigo-50">
-      Login <IconArrowRight size={16} />
-    </span>
-    <span className="absolute bottom-0 left-1/2 w-0 h-[1px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
-  </NavLink>
-</li>
-
-  <li>
-    <NavLink
-      to="/Cart"
-      className="relative flex items-center p-3 text-lg font-medium text-black transition-all duration-500 group hover:opacity-75 "
-    >
-      <IconShoppingCart size={28} />
-      <span className="ml-2">Cart</span>
-      <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
-    </NavLink>
-  </li>
-  <li>
-  <NavLink
-    to="/book"
-    className="relative flex items-center p-2.5 text-lg font-medium text-white transition-all duration-500 bg-black hover:opacity-75 group rounded-md"
-  >
-    Book Appointment
-    <span className="absolute bottom-0 left-1/2 w-0 h-[1.5px] bg-white transform origin-left transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
-  </NavLink>
-</li>
-
-</ul>
-
-    </>
-  );
-  const mobileNavItems = (
-    <ul className="relative p-8 mt-10 space-y-8">
-      <li className="absolute top-4 right-4">
+    <ul className="items-center hidden space-x-8 lg:flex">
+      <li>
         <button
-          className="flex items-center p-2 text-black transition-all duration-500 hover:opacity-75"
-          onClick={toggleMenu}
+          onClick={openLoginModal}
+          className="group relative px-6 py-2.5 text-sm font-semibold text-emerald-600 transition-all duration-300 ease-in-out hover:text-white"
         >
-          <IconX size={24} />
+          <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-in-out transform translate-x-1 translate-y-1 bg-emerald-600 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+          <span className="absolute inset-0 w-full h-full border-2 border-emerald-600"></span>
+          <span className="relative flex items-center">
+            Login
+            <IconArrowRight size={16} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+          </span>
         </button>
       </li>
       <li>
         <NavLink
-          to="/"
-          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
-          onClick={toggleMenu}
+          to="/Cart"
+          className="relative flex items-center text-gray-800 transition-all duration-300 group hover:text-emerald-600"
         >
-          <IconHome size={20} />
-          <span className="ml-2">Home</span>
+          <IconShoppingCart size={24} className="transition-transform duration-300 group-hover:scale-110" />
+          <span className="ml-2 text-sm font-medium">Cart</span>
+          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-emerald-600 transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100"></span>
         </NavLink>
       </li>
-
-
       <li>
         <NavLink
-          to="/Services"
-          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
-          onClick={toggleMenu}
+          to="/book"
+          className="relative overflow-hidden px-6 py-3 text-sm font-bold text-white bg-emerald-600 rounded-md transition-all duration-300 ease-in-out hover:bg-emerald-700 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
         >
-          <IconServicemark size={20} />
-          <span className="ml-2">Services</span>
+          <span className="relative z-10">Book Appointment</span>
+          <span className="absolute inset-0 transition-opacity duration-300 ease-in-out bg-white opacity-0 group-hover:opacity-20"></span>
         </NavLink>
       </li>
-      <li>
-      <NavLink
-        onClick={openLoginModal}
-        className="flex items-center p-2 text-base font-medium text-black transition-all duration-300 rounded-lg hover:bg-gray-700"
-      >
-        <span className="flex items-center gap-2">
-          <IconUserCircle size={26} />
-          <p>Login</p>
-          <IconArrowRight size={22} />
-        </span>
-      </NavLink>
-    </li>
-
-      <li>
-        <NavLink
-          to="/products"
-          className="flex items-center p-3 text-lg font-medium text-black transition-all duration-500 hover:opacity-75"
-          onClick={toggleMenu}
-        >
-          <IconApps size={20} />
-          <span className="ml-2">Products</span>
-        </NavLink>
-      </li>
-    
-      <li>
-      <NavLink
-        to="/book"
-        className="flex items-center p-3 text-base font-bold text-white transition-all duration-500 bg-black rounded-lg hover:opacity-75"
-        onClick={toggleMenu}
-      >
-        <IconBook size={20} />
-        <span className="ml-2 text-sm font-bold">Book Appointment</span>
-      </NavLink>
-    </li>
     </ul>
   );
-
+  const mobileNavItems = (
+    <div className="fixed inset-0 z-50 flex flex-col bg-gradient-to-br from-emerald-50 to-teal-100">
+      <div className="flex justify-end p-4">
+        <button
+          className="p-2 transition-all duration-300 transform text-emerald-600 hover:text-emerald-800 hover:rotate-90"
+          onClick={toggleMenu}
+        >
+          <IconX size={28} />
+        </button>
+      </div>
+      
+      <nav className="flex flex-col justify-center flex-grow px-6">
+        {[
+          { to: "/", label: "Home", icon: IconHome },
+          { to: "/services", label: "Services", icon: IconServicemark },
+          { to: "/products", label: "Products", icon: IconApps },
+        ].map(({ to, label, icon: Icon }) => (
+          <NavLink
+            key={to}
+            to={to}
+            className="flex items-center py-4 space-x-4 text-xl font-medium text-gray-800 transition-all duration-300 border-b group border-emerald-200 hover:text-emerald-600"
+            onClick={toggleMenu}
+          >
+            <div className="flex items-center justify-center w-10 h-10 transition-all duration-300 bg-white rounded-full shadow-md group-hover:bg-emerald-600 group-hover:text-white">
+              <Icon size={20} />
+            </div>
+            <span>{label}</span>
+            <div className="flex-grow" />
+            <IconArrowRight size={20} className="opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300" />
+          </NavLink>
+        ))}
+        
+        <button
+          onClick={() => {
+            openLoginModal();
+            toggleMenu();
+          }}
+          className="flex items-center py-4 space-x-4 text-xl font-medium text-gray-800 transition-all duration-300 border-b group border-emerald-200 hover:text-emerald-600"
+        >
+          <div className="flex items-center justify-center w-10 h-10 transition-all duration-300 bg-white rounded-full shadow-md group-hover:bg-emerald-600 group-hover:text-white">
+            <IconUserCircle size={20} />
+          </div>
+          <span>Login</span>
+          <div className="flex-grow" />
+          <IconArrowRight size={20} className="opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300" />
+        </button>
+      </nav>
+      
+      <div className="p-6">
+        <NavLink
+          to="/book"
+          className="block w-full py-4 text-lg font-bold text-center text-white transition-all duration-300 transform rounded-lg shadow-lg bg-gradient-to-r from-emerald-500 to-teal-500 hover:shadow-xl hover:scale-105"
+          onClick={toggleMenu}
+        >
+          <span className="flex items-center justify-center">
+            <IconBook size={24} className="mr-2" />
+            Book Appointment
+          </span>
+        </NavLink>
+      </div>
+    </div>
+  );
   return (
     <nav className="relative">
       <div className="flex items-center justify-between p-4">
