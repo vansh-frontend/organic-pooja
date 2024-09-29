@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { IconPhoneCall } from '@tabler/icons-react';
+import { IconPhoneCall,IconLeaf } from '@tabler/icons-react';
 import Navbar from './Navbar';
 
 const Header = () => {
@@ -23,16 +23,20 @@ const Header = () => {
 
         {/* Centered Logo and Title */}
         <div className="flex justify-center mt-4 md:justify-start md:mt-0 md:ml-8 lg:ml-28">
-  <NavLink to="/" className="flex items-center space-x-2">
-    <img 
-      src="img/pooja 2.png"
-      alt="Logo"
-      className="object-cover w-10 h-10 rounded-full shadow-lg md:w-12 md:h-12"
-    />
-    <h1 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-widest text-gray-800 uppercase font-['Roboto_Slab'] ml-2 md:ml-4">
-      Organic <span className="font-extrabold text-yellow-500">Pooja</span>
-    </h1>
-  </NavLink>
+        <NavLink to="/" className="flex items-center space-x-3 group">
+            <div className="relative">
+              <img 
+                src="img/pooja 2.png"
+                alt="Logo"
+                className="w-16 h-16 transition-all duration-300 rounded-full shadow-lg group-hover:scale-105"
+              />
+              <IconLeaf className="absolute w-6 h-6 -top-2 -right-2 text-emerald-500 animate-bounce" />
+            </div>
+            <h1 className="text-2xl font-bold text-emerald-800 font-['Roboto_Slab']">
+              Organic <span className="text-teal-600">Pooja</span>
+            </h1>
+          </NavLink>
+
 </div>  
 
 
