@@ -148,20 +148,20 @@ const Navbar = ({ position }) => {
           <div className="flex-grow" />
           <IconArrowRight size={20} className="opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300" />
         </button>
+  
+        <div className="mt-6">
+          <NavLink
+            to="/book"
+            className="block w-full py-4 text-lg font-bold text-center text-white transition-all duration-300 transform rounded-lg shadow-lg bg-gradient-to-r from-emerald-500 to-teal-500 hover:shadow-xl hover:scale-105"
+            onClick={toggleMenu}
+          >
+            <span className="flex items-center justify-center">
+              <IconBook size={24} className="mr-2" />
+              Book Appointment
+            </span>
+          </NavLink>
+        </div>
       </nav>
-      
-      <div className="p-6">
-        <NavLink
-          to="/book"
-          className="block w-full py-4 text-lg font-bold text-center text-white transition-all duration-300 transform rounded-lg shadow-lg bg-gradient-to-r from-emerald-500 to-teal-500 hover:shadow-xl hover:scale-105"
-          onClick={toggleMenu}
-        >
-          <span className="flex items-center justify-center">
-            <IconBook size={24} className="mr-2" />
-            Book Appointment
-          </span>
-        </NavLink>
-      </div>
     </div>
   );
   return (
