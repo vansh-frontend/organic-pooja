@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaSpa, FaLeaf, FaCut, FaPaintBrush, FaHeart, FaSun, FaSmile, FaLightbulb, FaGem, FaSnowflake, FaStar, FaBars, FaTimes, FaChevronDown, FaChevronUp, FaMask, FaSprayCan } from 'react-icons/fa';
+import { FaSpa, FaLeaf, FaCut, FaPaintBrush, FaHeart, FaSun, FaSmile, FaLightbulb, FaGem, FaSnowflake, FaStar, FaBars, FaTimes, FaChevronDown, FaChevronUp, FaMask, FaSprayCan,FaSearch } from 'react-icons/fa';
 
 const serviceCategories = [
   {
@@ -135,21 +135,20 @@ const serviceCategories = [
     ]
   }
 ];
-
 const ServiceItem = ({ item }) => (
-  <div className="p-4 transition-all duration-300 bg-white rounded-lg shadow-md sm:p-6 hover:shadow-lg">
+  <div className="p-6 transition-all duration-300 bg-white shadow-lg rounded-xl hover:shadow-xl hover:scale-105">
     <div className="flex items-center mb-4">
-      <div className="p-2 mr-4 text-purple-600 bg-purple-100 rounded-full">
+      <div className="p-3 mr-4 text-teal-600 bg-teal-100 rounded-full">
         {item.icon}
       </div>
-      <h3 className="text-lg font-semibold text-gray-800 sm:text-xl">{item.title}</h3>
+      <h3 className="text-xl font-bold text-gray-800">{item.title}</h3>
     </div>
-    <p className="mb-4 text-sm text-gray-600 sm:text-base">{item.description}</p>
+    <p className="mb-4 text-gray-600">{item.description}</p>
     <div>
-      <h4 className="mb-2 text-xs font-semibold text-gray-700 uppercase sm:text-sm">Benefits:</h4>
+      <h4 className="mb-2 text-sm font-semibold text-teal-700 uppercase">Benefits:</h4>
       <ul className="pl-5 text-gray-600 list-disc">
         {item.benefits.map((benefit, index) => (
-          <li key={index} className="mb-1 text-xs sm:text-sm">{benefit}</li>
+          <li key={index} className="mb-1 text-sm">{benefit}</li>
         ))}
       </ul>
     </div>
@@ -166,9 +165,9 @@ ServiceItem.propTypes = {
 };
 
 const ServiceCategory = ({ category }) => (
-  <div className="mb-8 sm:mb-12">
-    <h2 className="mb-4 text-xl font-bold text-gray-800 sm:mb-6 sm:text-2xl">{category.title}</h2>
-    <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <div className="mb-12">
+    <h2 className="mb-6 text-3xl font-bold text-teal-800">{category.title}</h2>
+    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {category.services.map((service, index) => (
         <ServiceItem key={index} item={service} />
       ))}
@@ -189,17 +188,17 @@ const DropdownButton = ({ title, items, isOpen, toggleDropdown }) => (
   <div className="mb-2">
     <button
       onClick={toggleDropdown}
-      className="flex items-center justify-between w-full px-6 py-3 text-left text-gray-600 hover:bg-gray-100 focus:outline-none"
+      className="flex items-center justify-between w-full px-6 py-3 text-left text-gray-700 transition-colors duration-200 hover:bg-teal-50 focus:outline-none"
     >
       <span>{title}</span>
-      {isOpen ? <FaChevronUp /> : <FaChevronDown />}
+      {isOpen ? <FaChevronUp className="text-teal-600" /> : <FaChevronDown className="text-teal-600" />}
     </button>
     {isOpen && (
       <ul className="pl-8 mt-2">
         {items.map((item, index) => (
           <li key={index} className="py-2">
-            <a href="#" className="flex items-center text-gray-600 hover:text-purple-600">
-              <span className="mr-2">{item.icon}</span>
+            <a href="#" className="flex items-center text-gray-600 transition-colors duration-200 hover:text-teal-600">
+              <span className="mr-2 text-teal-500">{item.icon}</span>
               {item.name}
             </a>
           </li>
@@ -228,6 +227,7 @@ const Services = () => {
     makeup: false,
     hair: false,
   });
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const handleResize = () => {
@@ -260,6 +260,14 @@ const Services = () => {
     setDropdowns((prev) => ({ ...prev, [category]: !prev[category] }));
   };
 
+  const filteredCategories = serviceCategories.map(category => ({
+    ...category,
+    services: category.services.filter(service =>
+      service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      service.description.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  })).filter(category => category.services.length > 0);
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 md:flex-row">
       {/* Sidebar */}
@@ -270,12 +278,12 @@ const Services = () => {
             animate={{ x: 0 }}
             exit={{ x: -300 }}
             transition={{ duration: 0.3 }}
-            className={`fixed inset-y-0 left-0 z-30 w-64 bg-white shadow-lg md:relative md:translate-x-0 ${
+            className={`fixed inset-y-0 left-0 z-30 w-64 bg-white shadow-xl md:relative md:translate-x-0 ${
               isMobile ? 'top-16' : ''
             }`}
           >
-            <div className="flex items-center justify-between h-16 px-4 bg-purple-600 md:h-20">
-              <h1 className="text-xl font-bold text-white">Organic Pooja</h1>
+            <div className="flex items-center justify-between h-20 px-6 bg-teal-700">
+              <h1 className="text-2xl font-bold text-white">Organic Pooja</h1>
               {isMobile && (
                 <button
                   onClick={toggleSidebar}
@@ -285,18 +293,18 @@ const Services = () => {
                 </button>
               )}
             </div>
-            <nav className="mt-6">
+            <nav className="mt-8">
               {serviceCategories.map((category) => (
                 <React.Fragment key={category.id}>
                   <button
                     onClick={() => scrollToCategory(category.id)}
-                    className={`flex items-center w-full px-6 py-3 text-left ${
+                    className={`flex items-center w-full px-6 py-4 text-left transition-colors duration-200 ${
                       activeCategory === category.id
-                        ? 'bg-purple-100 text-purple-600'
-                        : 'text-gray-600 hover:bg-gray-100'
+                        ? 'bg-teal-100 text-teal-700'
+                        : 'text-gray-600 hover:bg-teal-50'
                     }`}
                   >
-                    <span className="mr-3">{category.icon}</span>
+                    <span className="mr-4 text-teal-500">{category.icon}</span>
                     {category.title}
                   </button>
                   {category.id === 'makeup' && (
@@ -343,24 +351,36 @@ const Services = () => {
       {/* Main content */}
       <div className="flex flex-col flex-1">
         {/* Header */}
-        <header className="sticky top-0 z-20 flex items-center justify-between px-4 py-4 bg-white shadow-md md:hidden">
-          <button
-            onClick={toggleSidebar}
-            className="text-gray-500 focus:outline-none"
-          >
-            {isSidebarOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
-          <h1 className="text-xl font-semibold text-gray-800 sm:text-2xl">Services Dashboard</h1>
+        <header className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-white shadow-md">
+          {isMobile && (
+            <button
+              onClick={toggleSidebar}
+              className="text-gray-500 focus:outline-none"
+            >
+              {isSidebarOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
+          )}
+          <h1 className="text-2xl font-semibold text-teal-800">Services Dashboard</h1>
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search services..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="px-4 py-2 pl-10 text-sm bg-gray-100 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+            <FaSearch className="absolute text-gray-400 transform -translate-y-1/2 left-3 top-1/2" />
+          </div>
         </header>
 
         {/* Content */}
-        <main className="flex-1 p-4 overflow-y-auto sm:p-6">
+        <main className="flex-1 p-6 overflow-y-auto sm:p-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {serviceCategories.map((category) => (
+            {filteredCategories.map((category) => (
               <div key={category.id} id={category.id}>
                 <ServiceCategory category={category} />
               </div>

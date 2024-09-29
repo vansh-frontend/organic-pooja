@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import ProductCard from './components/ProductCard';
 import ProductModal from './components/ProductModal'; // Import the modal
 
@@ -45,42 +46,102 @@ const Products = ({ addToCart }) => {
   const handleCloseModal = () => {
     setSelectedProduct(null); // Close the modal
   };
-
+  
   return (
-    <div className="container px-4 py-8 mx-auto">
-      {/* Category Filter */}
-      <div className="flex flex-wrap justify-center gap-2 mb-8 sm:gap-4">
-  {categories.map((category) => (
-    <button
-      key={category}
-      className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-300 ease-in-out ${
-        selectedCategory === category
-          ? 'bg-blue-600 text-white'
-          : 'bg-gray-200 text-gray-700 hover:bg-blue-500 hover:text-white'
-      }`}
-      onClick={() => setSelectedCategory(category)}
-    >
-      {category}
-    </button>
-  ))}
-</div>
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-blue-50 to-white">
+    {/* Ocean wave background */}
+    <div className="absolute inset-0 overflow-hidden">
+      <svg className="absolute w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg">
+        <motion.path 
+          d="M0,192L48,202.7C96,213,192,235,288,229.3C384,224,480,192,576,165.3C672,139,768,117,864,133.3C960,149,1056,203,1152,213.3C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          fill="rgba(224, 242, 254, 0.7)"
+          initial={{ d: "M0,192L48,202.7C96,213,192,235,288,229.3C384,224,480,192,576,165.3C672,139,768,117,864,133.3C960,149,1056,203,1152,213.3C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" }}
+          animate={{ d: "M0,160L48,181.3C96,203,192,245,288,261.3C384,277,480,267,576,234.7C672,203,768,149,864,138.7C960,128,1056,160,1152,186.7C1248,213,1344,235,1392,245.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" }}
+          transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
+          style={{ transform: `translateY(${scrollY * 0.2}px)` }}
+        />
+        <motion.path 
+          d="M0,64L48,85.3C96,107,192,149,288,160C384,171,480,149,576,149.3C672,149,768,171,864,176C960,181,1056,171,1152,176C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          fill="rgba(186, 230, 253, 0.5)"
+          initial={{ d: "M0,64L48,85.3C96,107,192,149,288,160C384,171,480,149,576,149.3C672,149,768,171,864,176C960,181,1056,171,1152,176C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" }}
+          animate={{ d: "M0,96L48,112C96,128,192,160,288,176C384,192,480,192,576,176C672,160,768,128,864,128C960,128,1056,160,1152,176C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" }}
+          transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+        />
+      </svg>
+    </div>
 
+    {/* Content */}
+    <div className="container relative px-4 py-16 mx-auto">
+      <motion.h1 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-12 text-5xl font-bold text-center text-blue-800"
+      >
+        Our Products
+      </motion.h1>
+
+      {/* Category Filter */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="mb-16"
+      >
+        <div className="flex flex-wrap justify-center gap-4">
+          {categories.map((category) => (
+            <motion.button
+              key={category}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-6 py-3 text-sm font-medium rounded-full transition-all duration-300 ease-in-out ${
+                selectedCategory === category
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-white text-blue-700 hover:bg-blue-100 border border-blue-200'
+              }`}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </motion.button>
+          ))}
+        </div>
+      </motion.div>
 
       {/* Products Section */}
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {filteredProducts.map(product => (
-          <ProductCard key={product.id} product={product} onAddToCart={addToCart} onMoreDetails={handleProductDetails} />
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      >
+        {filteredProducts.map((product, index) => (
+          <motion.div 
+            key={product.id} 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
+          >
+            <ProductCard
+              product={product}
+              onAddToCart={addToCart}
+              onMoreDetails={handleProductDetails}
+            />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Modal Section */}
       {selectedProduct && (
         <ProductModal
           product={selectedProduct}
-          onClose={handleCloseModal} // Close modal handler
+          onClose={handleCloseModal}
+          onAddToCart={addToCart}
         />
       )}
     </div>
+  </div>
+
   );
 };
 

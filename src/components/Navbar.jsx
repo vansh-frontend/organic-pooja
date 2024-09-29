@@ -198,80 +198,74 @@ const Navbar = ({ position }) => {
         </div>
       )}
       {isLoginModalOpen && (
-     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-80">
-     <div className="relative w-full max-w-lg p-8 mx-auto bg-white border border-gray-200 shadow-2xl bg-opacity-90 rounded-2xl backdrop-filter backdrop-blur-lg">
-       <button
-         className="absolute p-2 text-gray-700 transition-transform transform top-4 right-4 hover:text-gray-900 hover:scale-110"
-         onClick={closeLoginModal}
-       >
-         <IconX size={24} />
-       </button>
-       <h2 className="mb-6 text-3xl font-bold text-center text-gray-900">
-         Login
-       </h2>
-       <form onSubmit={handleLogin} className="space-y-6">
-         <div>
-           <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-800">
-             Phone Number
-           </label>
-           <input
-             type="tel"
-             id="phone"
-             className="w-full px-4 py-3 text-base text-gray-900 placeholder-gray-500 transition-all bg-white border border-gray-300 rounded-lg shadow-md bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-             value={telephone}
-             onChange={(e) => {
-               if (e.target.value.length <= 10) setTelephone(e.target.value);
-             }}
-             required
-             maxLength="10"
-             placeholder="Enter your 10-digit phone number"
-             pattern="\d{10}"
-             title="Please enter a valid 10-digit phone number"
-           />
-         </div>
-         <div>
-           <label htmlFor="otp" className="block mb-2 text-sm font-medium text-gray-800">
-             OTP
-           </label>
-           <input
-             type="tel"
-             id="otp"
-             className="w-full px-4 py-3 text-base text-gray-900 placeholder-gray-500 transition-all bg-white border border-gray-300 rounded-lg shadow-md bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-             value={OTP}
-             onChange={(e) => {
-               if (e.target.value.length <= 6) setotp(e.target.value);
-             }}
-             required
-             maxLength="6"
-             placeholder="Enter 6-digit OTP"
-             pattern="\d{6}"
-             title="Please enter a valid 6-digit OTP"
-           />
-         </div>
-         {error && <p className="text-sm text-red-500">{error}</p>}
-         <div className="flex justify-center">
-         <button
-  type="submit"
-  className="w-full px-6 py-3 font-semibold text-white transition-transform duration-300 transform bg-teal-600 rounded-lg shadow-lg hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 hover:scale-105"
->
-  Verify
-</button>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md">
+    <div className="relative w-full max-w-md p-8 bg-white shadow-2xl bg-opacity-20 rounded-2xl backdrop-filter backdrop-blur-lg animate-fadeIn">
+      <button
+        className="absolute p-2 text-white transition-transform transform cursor-pointer top-4 right-4 hover:scale-110"
+        onClick={closeLoginModal}
+      >
+        <IconX size={24} />
+      </button>
+      <div className="relative z-10">
+        <h2 className="mb-6 text-4xl font-bold text-white">Welcome Back</h2>
+        <form onSubmit={handleLogin} className="space-y-6">
+          <div className="space-y-2">
+            <label htmlFor="phone" className="block text-sm font-medium text-white">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              className="w-full px-4 py-3 text-white placeholder-gray-300 transition-all duration-300 bg-white rounded-lg bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-white animate-slideInFromLeft"
+              value={telephone}
+              onChange={(e) => {
+                if (e.target.value.length <= 10) setTelephone(e.target.value);
+              }}
+              required
+              maxLength="10"
+              placeholder="Enter your 10-digit phone number"
+              pattern="\d{10}"
+            />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="otp" className="block text-sm font-medium text-white">
+              OTP
+            </label>
+            <input
+              type="tel"
+              id="otp"
+              className="w-full px-4 py-3 text-white placeholder-gray-300 transition-all duration-300 bg-white rounded-lg bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-white animate-slideInFromRight"
+              value={OTP}
+              onChange={(e) => {
+                if (e.target.value.length <= 6) setotp(e.target.value);
+              }}
+              required
+              maxLength="6"
+              placeholder="Enter 6-digit OTP"
+              pattern="\d{6}"
+            />
+          </div>
+          {error && <p className="text-sm text-red-300 animate-pulse">{error}</p>}
+          <button
+            type="submit"
+            className="w-full px-6 py-3 font-semibold text-white transition-all duration-300 bg-blue-600 rounded-lg shadow-lg bg-opacity-20 hover:bg-opacity-30 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50 animate-bo"
+          >
+            Verify & Login
+          </button>
+        </form>
+        <div className="mt-6">
+          <button
+            onClick={handleGoogleLogin}
+            className="flex items-center justify-center w-full px-6 py-3 font-semibold text-white transition-all duration-300 bg-white rounded-lg shadow-md bg-opacity-10 hover:bg-opacity-20 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50 animate-fadeIn"
+          >
+            <IconBrandGoogle size={20} className="mr-2" />
+            Login with Google
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-         </div>
-       </form>
-       <div className="mt-6">
-       <button
-  onClick={handleGoogleLogin}
-  className="flex items-center justify-center w-full px-6 py-3 font-semibold text-gray-800 transition-transform duration-300 transform bg-white border border-gray-300 rounded-lg shadow-lg bg-opacity-20 backdrop-blur-md hover:bg-opacity-30 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-teal-300"
->
-  <IconBrandGoogle size={20} className="mr-2" />
-  Login with Google
-</button>
-
-       </div>
-     </div>
-   </div>
-   
       )}
 
     </nav>

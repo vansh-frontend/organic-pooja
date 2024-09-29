@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { memo } from 'react';
+import { motion } from 'framer-motion';
 
 const ProductCard = memo(({ product, onAddToCart, onMoreDetails }) => {
   const handleAddToCart = () => {
@@ -8,42 +9,48 @@ const ProductCard = memo(({ product, onAddToCart, onMoreDetails }) => {
   };
 
   return (
-    <div className="overflow-hidden transition-transform transform bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl hover:scale-105">
+    <motion.div
+      className="overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-md hover:shadow-lg"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
       <div className="relative">
-        <img
+        <motion.img
           src={product.image}
           alt={product.name}
-          className="object-cover w-full h-56 sm:h-64 md:h-72"
+          className="object-cover w-full h-60"
           loading="lazy"
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 0.3 }}
         />
-        <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 ease-in-out bg-black opacity-0 bg-opacity-40 hover:opacity-90">
-          <div className="p-6 text-center text-white">
-            <h3 className="text-xl font-bold">{product.name}</h3>
-            <button
-              className="px-4 py-2 mt-4 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              onClick={() => onMoreDetails(product)} // Call the passed function when clicked
-            >
-              More Details
-            </button>
-          </div>
+        <div className="absolute px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full top-2 right-2">
+          In Stock
         </div>
       </div>
-      <div className="p-6">
-        <div className="flex flex-col gap-2">
-          <h3 className="text-lg font-semibold text-gray-900">{product.name}</h3>
-          <p className="text-gray-600 text-md">{product.price}</p>
-          <div className="flex items-center justify-between mt-4">
-            <span className="text-sm font-medium text-green-500">In Stock</span>
-            <button
-              onClick={handleAddToCart}
-              className="px-4 py-2 text-sm font-semibold text-gray-800 bg-gray-100 rounded-lg shadow-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
-            >
-              Add to Cart
-            </button>
-          </div>
+      <div className="p-4">
+        <h3 className="mb-2 text-lg font-semibold text-gray-800 line-clamp-2">{product.name}</h3>
+        <p className="mb-4 text-xl font-bold text-gray-900">{product.price}</p>
+        <div className="flex space-x-2">
+          <motion.button
+            onClick={() => onMoreDetails(product)}
+            className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            More Details
+          </motion.button>
+          <motion.button
+            onClick={handleAddToCart}
+            className="flex-1 px-4 py-2 text-sm font-medium text-white transition-colors duration-200 bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Add to Cart
+          </motion.button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 });
 
@@ -57,7 +64,7 @@ ProductCard.propTypes = {
     price: PropTypes.string.isRequired,
   }).isRequired,
   onAddToCart: PropTypes.func.isRequired,
-  onMoreDetails: PropTypes.func.isRequired, // New prop for handling the "More Details" click
+  onMoreDetails: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
