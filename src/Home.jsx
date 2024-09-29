@@ -64,143 +64,236 @@ const Home = () => {
    
         <div className="relative w-full overflow-hidden bg-gray-50">
           {/* Organic By Pooja Section */}
-          <section className="relative flex flex-col items-center justify-center h-auto px-6 py-12 overflow-hidden text-white bg-teal-500 lg:px-12 lg:py-16">
-  <div className="absolute inset-0">
-    <img
-      src="img/section.jpg"
-      alt="Background"
-      className="object-cover w-full h-full opacity-40"
-    />
-    <div className="absolute inset-0 bg-black opacity-30"></div> {/* Overlay for better text readability */}
+          <section className="relative flex flex-col items-center min-h-screen overflow-hidden font-sans bg-gradient-to-br from-emerald-50 to-teal-100">
+  {/* Abstract background shapes */}
+  <div className="absolute inset-0 opacity-20">
+    <div className="absolute top-0 left-0 w-full h-full bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+    <div className="absolute top-0 right-0 w-full h-full bg-pink-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+    <div className="absolute bottom-0 left-0 w-full h-full bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
   </div>
-  <div className="relative z-10 flex flex-col items-center space-y-6 text-center lg:space-y-8">
-    <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-      ORGANIC <span className="block text-5xl font-extrabold text-yellow-300 sm:text-6xl lg:text-7xl">BY POOJA</span>
-    </h1>
+
+  {/* Content */}
+  <div className="relative z-10 flex flex-col items-center w-full max-w-4xl px-4 pt-16 mx-auto text-center sm:px-6 lg:px-8 sm:pt-24 md:pt-32">
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="mb-6 sm:mb-8"
+    >
+      <span className="inline-block px-4 py-2 text-sm font-bold rounded-full text-emerald-800 bg-emerald-200 sm:text-base md:text-lg">
+        100% Natural & Organic
+      </span>
+    </motion.div>
+
+    <motion.h1 
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+      className="mb-6 font-serif text-4xl font-bold tracking-tight text-emerald-900 sm:text-6xl md:text-7xl lg:text-8xl"
+    >
+      <span className="block">ORGANIC</span>
+      <span className="block mt-2 text-teal-600">BY POOJA</span>
+    </motion.h1>
     
-    <p className="text-lg font-light sm:text-xl lg:text-2xl">
-      Elevate your skincare routine with our premium body and facial products.
-    </p>
+    <motion.p 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+      className="max-w-2xl mx-auto mb-8 text-lg font-medium text-emerald-800 sm:text-xl md:text-2xl"
+    >
+      Elevate your skincare routine with our <span className="font-bold">premium body and facial products</span>.
+    </motion.p>
     
-    <div className="flex flex-col gap-4 mt-6 sm:flex-row sm:gap-6">
-      <button className="px-8 py-4 text-lg font-semibold text-gray-800 transition-transform transform bg-yellow-500 rounded-full shadow-lg hover:scale-105 hover:shadow-xl">
-        SHOP NOW
-      </button>
-      <button className="px-8 py-4 text-lg font-semibold text-yellow-500 transition-transform transform border border-yellow-500 rounded-full shadow-lg hover:bg-yellow-500 hover:text-gray-800 hover:shadow-xl hover:scale-105">
-        ASK US ANYTHING
-      </button>
-    </div>
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.6 }}
+      className="flex flex-col items-center justify-center w-full gap-4 sm:flex-row sm:gap-6"
+    >
+      <a 
+        href="#shop" 
+        className="w-full px-8 py-4 text-lg font-bold text-white transition duration-300 transform rounded-full shadow-lg bg-emerald-600 sm:w-auto hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 hover:scale-105"
+      >
+        Shop Now
+      </a>
+      <a 
+        href="#contact" 
+        className="w-full px-8 py-4 text-lg font-bold transition duration-300 transform bg-transparent border-2 rounded-full shadow-lg text-emerald-600 border-emerald-600 sm:w-auto hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 hover:scale-105"
+      >
+        Contact Us
+      </a>
+    </motion.div>
+  </div>
+
+  {/* Curved separator */}
+  <div className="absolute bottom-0 left-0 right-0 mt-auto">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-auto">
+      <path fill="#ffffff" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
   </div>
 </section>
-
+         
+         
           {/* Services Section */}
-          <section className="px-6 py-16 bg-gray-200">
-        <div className="container mx-auto text-center">
-          <h2 className="mb-12 text-3xl font-bold text-gray-800 sm:text-4xl">Our Premium Services</h2>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { title: 'Makeup Services', img: 'img/section.jpg', desc: 'Get stunning makeup looks for any occasion with our professional services.', link: '/makeup' },
-              { title: 'Skin Care', img: 'img/skin.jpg', desc: 'Achieve radiant skin with our specialized skincare treatments and products.', link: '/skin-care' },
-              { title: 'Hair Styling', img: 'img/shampoo.jpg', desc: 'Transform your look with our expert hair styling services.', link: '/hair-styling' },
-              { title: 'Salon Products', img: 'img/sec2.jpg', desc: 'Explore our exclusive range of salon-quality products.', link: '/products' },
-              { title: 'Salon Masterclass', img: 'img/sec3.jpg', desc: 'Pamper yourself with our luxurious body treatments.', link: '/body-treatments' },
-              { title: ' Nail Extension', img: 'img/pro5.jpg', desc: 'Book a consultation to get personalized beauty advice and recommendations.', link: '/consultations' },
-            ].map((service, index) => (
-              <div key={index} className="overflow-hidden transition-transform transform bg-white rounded-lg shadow-lg hover:scale-105">
-                <img src={service.img} alt={service.title} className="object-cover w-full h-48"/>
-                <div className="p-6">
-                  <h3 className="mb-2 text-xl font-semibold text-gray-800">{service.title}</h3>
-                  <p className="mb-4 text-gray-600">{service.desc}</p>
-                  <Link to={service.link} className="font-semibold text-teal-500 hover:text-teal-600">
-                    Learn More
-                  </Link>
-                </div>
-              </div>
-            ))}
+          <section className="relative py-24 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+  {/* Curved background */}
+  <div className="absolute inset-0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="absolute top-0 w-full h-auto">
+      <path fill="#e2e8f0" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+    </svg>
+  </div>
+
+  <div className="container relative z-10 px-6 mx-auto">
+    <motion.h2 
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="mb-16 text-4xl font-bold text-center text-gray-800 sm:text-5xl"
+    >
+      Our Premium Services
+    </motion.h2>
+
+    <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+      {[
+        { title: 'Makeup Services', img: 'img/section.jpg', desc: 'Get stunning makeup looks for any occasion with our professional services.', link: '/makeup' },
+        { title: 'Skin Care', img: 'img/skin.jpg', desc: 'Achieve radiant skin with our specialized skincare treatments and products.', link: '/skin-care' },
+        { title: 'Hair Styling', img: 'img/shampoo.jpg', desc: 'Transform your look with our expert hair styling services.', link: '/hair-styling' },
+        { title: 'Salon Products', img: 'img/sec2.jpg', desc: 'Explore our exclusive range of salon-quality products.', link: '/products' },
+        { title: 'Salon Masterclass', img: 'img/sec3.jpg', desc: 'Pamper yourself with our luxurious body treatments.', link: '/body-treatments' },
+        { title: 'Nail Extension', img: 'img/pro5.jpg', desc: 'Book a consultation to get personalized beauty advice and recommendations.', link: '/consultations' },
+      ].map((service, index) => (
+        <motion.div 
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: index * 0.1 }}
+          className="relative overflow-hidden transition-all duration-300 bg-white shadow-xl rounded-2xl hover:shadow-2xl group"
+        >
+          <div className="absolute top-0 right-0 z-10 p-2 m-2 text-xs font-semibold text-white bg-teal-500 rounded-full">
+            Popular
           </div>
-        </div>
-      </section>
+          <div className="relative overflow-hidden">
+            <img src={service.img} alt={service.title} className="object-cover w-full h-64 transition-transform duration-300 transform group-hover:scale-110"/>
+            <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black to-transparent group-hover:opacity-70"></div>
+          </div>
+          <div className="p-6">
+            <h3 className="mb-3 text-2xl font-semibold text-gray-800">{service.title}</h3>
+            <p className="mb-4 text-gray-600">{service.desc}</p>
+            <Link 
+              to={service.link} 
+              className="inline-block px-6 py-2 font-semibold text-white transition-colors duration-300 bg-teal-500 rounded-full hover:bg-teal-600"
+            >
+              Learn More
+            </Link>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+
+  {/* Decorative elements */}
+  <div className="absolute left-0 w-32 h-32 -translate-x-1/2 bg-teal-100 rounded-full top-1/4 opacity-20"></div>
+  <div className="absolute right-0 w-40 h-40 translate-x-1/2 bg-yellow-100 rounded-full bottom-1/4 opacity-20"></div>
+</section>
 
       {/* about us */}
-      <div className="px-4 py-16 bg-white lg:py-24 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        {/* Main Content Section */}
-        <div className="flex flex-col items-center justify-center gap-8 lg:gap-16 lg:flex-row lg:items-center lg:justify-center">
-          {/* Text Section */}
-          <div className="flex flex-col items-center justify-center w-full text-center">
-            <h2 className="max-w-full mb-4 text-4xl font-bold text-gray-700">
-              Behind the brand
-            </h2>
-            <p className="max-w-full text-base leading-6 text-gray-600 sm:text-lg lg:text-xl">
-              Organic by Pooja began in 2019 with a simple mission: to offer natural, homemade solutions for skin and hair that heal and nourish from within. What started as a small initiative quickly gained the trust of customers seeking authenticity and quality. Combining modern treatments with organic, handmade products, Organic by Pooja has become a trusted name for personalized care. Our goal is to bring out your natural beauty while making you feel good inside and out.
+      <section className="py-20 bg-gradient-to-b from-white to-teal-50">
+        <div className="container px-4 mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-16 text-center"
+          >
+            <h2 className="mb-4 text-4xl font-bold text-gray-800">Behind the Brand</h2>
+            <div className="w-24 h-1 mx-auto mb-8 bg-teal-500"></div>
+            <p className="max-w-3xl mx-auto text-lg leading-relaxed text-gray-600">
+              Organic by Pooja began in 2019 with a simple mission: to offer natural, homemade solutions for skin and hair that heal and nourish from within. What started as a small initiative quickly gained the trust of customers seeking authenticity and quality.
             </p>
-          </div>
-        </div>
+          </motion.div>
 
-        {/* Icon Section */}
-        <div className="mt-16">
-          <h3 className="mb-8 text-2xl font-semibold text-center text-gray-800">Our Values</h3>
-          <div className="flex flex-wrap justify-center gap-12">
-            <div className="text-center transition-colors duration-300 transform hover:text-green-500 hover:scale-110">
-              <FaLeaf className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Natural Ingredients</p>
-            </div>
-            <div className="text-center transition-colors duration-300 transform hover:text-yellow-500 hover:scale-110">
-              <FaStar className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Quality Assurance</p>
-            </div>
-            <div className="text-center transition-colors duration-300 transform hover:text-red-500 hover:scale-110">
-              <FaHeart className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Customer Love</p>
-            </div>
-            <div className="text-center transition-colors duration-300 transform hover:text-blue-500 hover:scale-110">
-              <FaGift className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Special Offers</p>
-            </div>
-            <div className="text-center transition-colors duration-300 transform hover:text-purple-500 hover:scale-110">
-              <FaRegClock className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Timely Service</p>
-            </div>
-            <div className="text-center transition-colors duration-300 transform hover:text-teal-500 hover:scale-110">
-              <FaHandsHelping className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Community Support</p>
-            </div>
-          </div>
-        </div>
+          <div className="grid items-center grid-cols-1 gap-12 md:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <img src="/path-.jpg" alt="Organic by Pooja" className="rounded-lg shadow-2xl" />
+            </motion.div>
 
-        {/* New Section: Our Services */}
-        <div className="mt-16">
-          <h3 className="mb-8 text-2xl font-semibold text-center text-gray-800">Our Services</h3>
-          <div className="flex flex-wrap justify-center gap-12">
-            <motion.div 
-              className="text-center transition-colors duration-300 transform hover:text-teal-500 hover:scale-110"
-              whileHover={{ scale: 1.1, rotate: 10 }}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="space-y-6"
             >
-              <FaHandSparkles className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Personalized Treatments</p>
-            </motion.div>
-            <motion.div 
-              className="text-center transition-colors duration-300 transform hover:text-blue-500 hover:scale-110"
-              whileHover={{ scale: 1.1, rotate: -10 }}
-            >
-              <FaShieldAlt className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Safe & Effective</p>
-            </motion.div>
-            <motion.div 
-              className="text-center transition-colors duration-300 transform hover:text-green-500 hover:scale-110"
-              whileHover={{ scale: 1.1, rotate: 10 }}
-            >
-              <FaUsers className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Expert Team</p>
+              <p className="leading-relaxed text-gray-600">
+                Combining modern treatments with organic, handmade products, Organic by Pooja has become a trusted name for personalized care. Our goal is to bring out your natural beauty while making you feel good inside and out.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <span className="px-4 py-2 text-sm font-semibold text-teal-800 bg-teal-100 rounded-full">100% Organic</span>
+                <span className="px-4 py-2 text-sm font-semibold text-green-800 bg-green-100 rounded-full">Cruelty-Free</span>
+                <span className="px-4 py-2 text-sm font-semibold text-yellow-800 bg-yellow-100 rounded-full">Eco-Friendly</span>
+              </div>
             </motion.div>
           </div>
-        </div>
 
-      
-        {/* Call-to-Action Section */}
-      
-      </div>
-    </div>
+          {/* Our Values Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-20"
+          >
+            <h3 className="mb-12 text-3xl font-semibold text-center text-gray-800">Our Values</h3>
+            <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
+              {[
+                { icon: FaLeaf, text: "Natural Ingredients", color: "text-green-500" },
+                { icon: FaStar, text: "Quality Assurance", color: "text-yellow-500" },
+                { icon: FaHeart, text: "Customer Love", color: "text-red-500" },
+                { icon: FaGift, text: "Special Offers", color: "text-blue-500" },
+                { icon: FaRegClock, text: "Timely Service", color: "text-purple-500" },
+                { icon: FaHandsHelping, text: "Community Support", color: "text-teal-500" },
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex flex-col items-center"
+                >
+                  <item.icon className={`text-4xl ${item.color} mb-4`} />
+                  <p className="font-medium text-center text-gray-700">{item.text}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Our Services Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-20"
+          >
+            <h3 className="mb-12 text-3xl font-semibold text-center text-gray-800">Our Services</h3>
+            <div className="flex flex-wrap justify-center gap-8">
+              {[
+                { icon: FaHandSparkles, text: "Personalized Treatments", color: "bg-teal-100 text-teal-800" },
+                { icon: FaShieldAlt, text: "Safe & Effective", color: "bg-blue-100 text-blue-800" },
+                { icon: FaUsers, text: "Expert Team", color: "bg-green-100 text-green-800" },
+              ].map((service, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.05, rotate: 5 }}
+                  className={`flex flex-col items-center p-6 rounded-lg shadow-lg ${service.color}`}
+                >
+                  <service.icon className="mb-4 text-5xl" />
+                  <p className="font-semibold text-center">{service.text}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
 
       {/* about us */}
@@ -249,32 +342,23 @@ const Home = () => {
               <Accordion />
             </div>
           </section>
-          <section className="px-4 py-8 text-white bg-teal-500 sm:px-6 sm:py-12">
-      <div className="container mx-auto text-center">
-        <h2 className="mb-4 text-xl font-bold sm:text-2xl md:text-3xl animate__animated animate__fadeIn animate__delay-1s">
-          Get in Touch
-        </h2>
-        <p className="mb-6 text-sm sm:text-base md:text-lg animate__animated animate__fadeIn animate__delay-2s">
-          We'd love to hear from you! Reach out to us for any inquiries or to schedule an appointment.
-        </p>
-        <div className="flex justify-center mb-6 space-x-4 animate__animated animate__fadeIn animate__delay-3s">
-          <a href="tel:+1234567890" className="flex items-center space-x-2 transition-transform hover:scale-105">
-            <FaPhone className="text-lg text-yellow-400" />
-            <span className="text-sm sm:text-base">Call Us</span>
-          </a>
-          <a href="mailto:info@example.com" className="flex items-center space-x-2 transition-transform hover:scale-105">
-            <FaEnvelope className="text-lg text-yellow-400" />
-            <span className="text-sm sm:text-base">Email Us</span>
-          </a>
+          <section ref={el => sectionRefs.current[4] = el} className="py-16 text-white bg-teal-500">
+        <div className="container px-4 mx-auto text-center">
+          <h2 className="mb-8 text-3xl font-bold md:text-4xl">Get in Touch</h2>
+          <p className="mb-8 text-xl">We'd love to hear from you! Reach out for inquiries or to book an appointment.</p>
+          <div className="flex flex-col items-center justify-center mb-8 space-y-4 md:flex-row md:space-y-0 md:space-x-8">
+            <a href="tel:+1234567890" className="flex items-center justify-center w-full px-6 py-3 text-lg font-semibold text-teal-500 transition duration-300 bg-white rounded-full md:w-auto hover:bg-yellow-400">
+              <FaPhone className="mr-2" /> Call Us
+            </a>
+            <a href="mailto:info@organicbypooja.com" className="flex items-center justify-center w-full px-6 py-3 text-lg font-semibold text-teal-500 transition duration-300 bg-white rounded-full md:w-auto hover:bg-yellow-400">
+              <FaEnvelope className="mr-2" /> Email Us
+            </a>
+          </div>
+          <Link to="/contact" className="inline-block px-8 py-3 text-lg font-semibold text-teal-500 transition duration-300 bg-white rounded-full hover:bg-yellow-400">
+            Contact Us
+          </Link>
         </div>
-        <Link
-          to="/contact"
-          className="inline-block px-4 py-2 text-gray-800 transition-transform transform bg-yellow-500 rounded-lg shadow-lg hover:bg-yellow-600 hover:scale-110 animate__animated animate__pulse animate__infinite"
-        >
-          Contact Us
-        </Link>
-      </div>
-    </section>
+      </section>
         </div>
  
     </>
