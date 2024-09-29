@@ -161,7 +161,7 @@ const Navbar = ({ position }) => {
             </span>
           </NavLink>
         </div>
-      </nav>
+      </nav>  
     </div>
   );
   return (
