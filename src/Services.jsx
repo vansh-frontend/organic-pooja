@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaSpa, FaLeaf, FaCut, FaPaintBrush, FaHeart, FaSun, FaSmile, FaLightbulb, FaGem, FaSnowflake, FaStar, FaBars, FaTimes, FaChevronDown, FaChevronUp, FaMask, FaSprayCan, FaSearch } from 'react-icons/fa';
@@ -135,7 +135,6 @@ const serviceCategories = [
     ]
   }
 ];
-
 const ServiceItem = ({ item }) => (
   <div className="p-3 transition-all duration-300 bg-white shadow-lg rounded-xl hover:shadow-xl hover:scale-105 sm:p-4 md:p-6">
     <div className="flex items-center mb-2 sm:mb-3 md:mb-4">
@@ -229,6 +228,8 @@ const Services = () => {
     hair: false,
   });
   const [searchTerm, setSearchTerm] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const searchInputRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -239,6 +240,16 @@ const Services = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchInputRef.current && !searchInputRef.current.contains(event.target)) {
+        setIsSearchFocused(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const scrollToCategory = (categoryId) => {
@@ -293,7 +304,7 @@ const Services = () => {
                 </button>
               )}
             </div>
-            <nav className="mt-3 sm:mt-4 md:mt-6">
+            <nav className="mt-3 sm:mt-4 md:mt-6 overflow-y-auto max-h-[calc(100vh-5rem)]">
               {serviceCategories.map((category) => (
                 <React.Fragment key={category.id}>
                   <button
@@ -361,13 +372,16 @@ const Services = () => {
             </button>
           )}
           <h1 className="text-lg font-semibold text-teal-800 sm:text-xl md:text-2xl">Services Dashboard</h1>
-          <div className="relative">
+          <div className="relative" ref={searchInputRef}>
             <input
               type="text"
               placeholder="Search services..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-2 py-1 pl-7 text-xs bg-gray-100 border border-gray-300 rounded-full sm:text-sm md:text-base sm:px-3 sm:py-1.5 sm:pl-8 md:px-4 md:py-2 md:pl-10 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              onFocus={() => setIsSearchFocused(true)}
+              className={`px-2 py-1 pl-7 text-xs bg-gray-100 border border-gray-300 rounded-full sm:text-sm md:text-base sm:px-3 sm:py-1.5 sm:pl-8 md:px-4 md:py-2 md:pl-10 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-300 ${
+                isSearchFocused ? 'w-48 sm:w-64 md:w-80' : 'w-32 sm:w-40 md:w-48'
+              }`}
             />
             <FaSearch className="absolute text-gray-400 transform -translate-y-1/2 left-2 top-1/2 sm:left-3" />
           </div>
@@ -383,13 +397,13 @@ const Services = () => {
             {filteredCategories.map((category) => (
               <div key={category.id} id={category.id}>
                 <ServiceCategory category={category} />
-              </div>
-            ))}
-          </motion.div>
-        </main>
-      </div>
-    </div>
-  );
+</div>
+))}
+</motion.div>
+</main>
+</div>
+</div>
+);
 };
 
 export default Services;
