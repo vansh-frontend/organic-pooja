@@ -371,7 +371,7 @@ const Services = () => {
               {isSidebarOpen ? <FaTimes size={20} className="sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <FaBars size={20} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />}
             </button>
           )}
-          <h1 className="text-lg font-semibold text-teal-800 sm:text-xl md:text-2xl">Services Dashboard</h1>
+          <h1 className="text-lg font-semibold text-teal-800 sm:text-xl md:text-2xl">Our Services</h1>
           <div className="relative" ref={searchInputRef}>
             <input
               type="text"
