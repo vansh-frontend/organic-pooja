@@ -7,11 +7,11 @@ const serviceCategories = [
   {
     id: 'skincare',
     title: 'Skincare Services',
-    icon: <FaSpa className="w-6 h-6" />,
+    icon: <FaSpa className="w-5 h-5 md:w-6 md:h-6" />,
     services: [
       {
         title: 'Laser Hair Treatment',
-        icon: <FaLightbulb className="w-5 h-5" />,
+        icon: <FaLightbulb className="w-4 h-4 md:w-5 md:h-5" />,
         description: 'Advanced method to reduce unwanted hair growth using state-of-the-art laser technology.',
         benefits: [
           'Long-lasting hair reduction',
@@ -22,7 +22,7 @@ const serviceCategories = [
       },
       {
         title: 'Thermage Treatment',
-        icon: <FaSun className="w-5 h-5" />,
+        icon: <FaSun className="w-4 h-4 md:w-5 md:h-5" />,
         description: 'Non-invasive skin tightening treatment using radiofrequency energy to stimulate collagen production.',
         benefits: [
           'Non-invasive skin tightening',
@@ -33,7 +33,7 @@ const serviceCategories = [
       },
       {
         title: 'Q-Switch Laser Treatment',
-        icon: <FaGem className="w-5 h-5" />,
+        icon: <FaGem className="w-4 h-4 md:w-5 md:h-5" />,
         description: 'Powerful solution for pigmentation and tattoo removal using advanced laser technology.',
         benefits: [
           'Safe for all skin types',
@@ -46,11 +46,11 @@ const serviceCategories = [
   {
     id: 'skinConcerns',
     title: 'Skin Concerns',
-    icon: <FaLeaf className="w-6 h-6" />,
+    icon: <FaLeaf className="w-5 h-5 md:w-6 md:h-6" />,
     services: [
       {
         title: 'Ageing Skin',
-        icon: <FaSnowflake className="w-5 h-5" />,
+        icon: <FaSnowflake className="w-4 h-4 md:w-5 md:h-5" />,
         description: 'Rejuvenating treatments to restore youthful elasticity using organic ingredients.',
         benefits: [
           'Boosts collagen production for firmness',
@@ -60,7 +60,7 @@ const serviceCategories = [
       },
       {
         title: 'Acne Scars',
-        icon: <FaHeart className="w-5 h-5" />,
+        icon: <FaHeart className="w-4 h-4 md:w-5 md:h-5" />,
         description: 'Treatments targeting stubborn acne marks using natural ingredients.',
         benefits: [
           'Reduces appearance of scars',
@@ -70,7 +70,7 @@ const serviceCategories = [
       },
       {
         title: 'Dull Skin',
-        icon: <FaSmile className="w-5 h-5" />,
+        icon: <FaSmile className="w-4 h-4 md:w-5 md:h-5" />,
         description: 'Revitalizing treatments to restore radiance using plant-based ingredients.',
         benefits: [
           'Enhances natural skin radiance',
@@ -83,11 +83,11 @@ const serviceCategories = [
   {
     id: 'hairConcerns',
     title: 'Hair Concerns',
-    icon: <FaCut className="w-6 h-6" />,
+    icon: <FaCut className="w-5 h-5 md:w-6 md:h-6" />,
     services: [
       {
         title: 'Hair Loss Concern',
-        icon: <FaGem className="w-5 h-5" />,
+        icon: <FaGem className="w-4 h-4 md:w-5 md:h-5" />,
         description: 'Comprehensive treatments for hair loss, including PRP GF treatments.',
         benefits: [
           'Stimulates natural hair growth',
@@ -97,7 +97,7 @@ const serviceCategories = [
       },
       {
         title: 'Hair Loss for Women',
-        icon: <FaHeart className="w-5 h-5" />,
+        icon: <FaHeart className="w-4 h-4 md:w-5 md:h-5" />,
         description: 'Specialized treatments addressing thinning hair in women.',
         benefits: [
           'Enhances hair density and volume',
@@ -110,11 +110,11 @@ const serviceCategories = [
   {
     id: 'makeup',
     title: 'Makeup Services',
-    icon: <FaPaintBrush className="w-6 h-6" />,
+    icon: <FaPaintBrush className="w-5 h-5 md:w-6 md:h-6" />,
     services: [
       {
         title: 'HD Makeup',
-        icon: <FaStar className="w-5 h-5" />,
+        icon: <FaStar className="w-4 h-4 md:w-5 md:h-5" />,
         description: 'High-definition beauty that looks flawless on camera.',
         benefits: [
           'Provides a smooth finish',
@@ -124,7 +124,7 @@ const serviceCategories = [
       },
       {
         title: 'Airbrush Makeup',
-        icon: <FaSnowflake className="w-5 h-5" />,
+        icon: <FaSnowflake className="w-4 h-4 md:w-5 md:h-5" />,
         description: 'Luxurious airbrush makeup for a radiant finish.',
         benefits: [
           'Ensures an even look',
@@ -137,19 +137,19 @@ const serviceCategories = [
 ];
 
 const ServiceItem = ({ item }) => (
-  <div className="p-4 transition-all duration-300 bg-white shadow-lg rounded-xl hover:shadow-xl hover:scale-105 sm:p-6">
-    <div className="flex items-center mb-4">
-      <div className="p-2 mr-3 text-teal-600 bg-teal-100 rounded-full sm:p-3 sm:mr-4">
+  <div className="p-3 transition-all duration-300 bg-white shadow-lg rounded-xl hover:shadow-xl hover:scale-105 sm:p-4 md:p-6">
+    <div className="flex items-center mb-2 sm:mb-3 md:mb-4">
+      <div className="p-2 mr-2 text-teal-600 bg-teal-100 rounded-full sm:p-2.5 md:p-3 sm:mr-3 md:mr-4">
         {item.icon}
       </div>
-      <h3 className="text-lg font-bold text-gray-800 sm:text-xl">{item.title}</h3>
+      <h3 className="text-base font-bold text-gray-800 sm:text-lg md:text-xl">{item.title}</h3>
     </div>
-    <p className="mb-4 text-sm text-gray-600 sm:text-base">{item.description}</p>
+    <p className="mb-2 text-xs text-gray-600 sm:text-sm md:text-base sm:mb-3 md:mb-4">{item.description}</p>
     <div>
-      <h4 className="mb-2 text-xs font-semibold text-teal-700 uppercase sm:text-sm">Benefits:</h4>
+      <h4 className="mb-1 text-xs font-semibold text-teal-700 uppercase sm:text-sm md:mb-2">Benefits:</h4>
       <ul className="pl-4 text-gray-600 list-disc sm:pl-5">
         {item.benefits.map((benefit, index) => (
-          <li key={index} className="mb-1 text-xs sm:text-sm">{benefit}</li>
+          <li key={index} className="mb-0.5 text-xs sm:text-sm md:mb-1">{benefit}</li>
         ))}
       </ul>
     </div>
@@ -166,9 +166,9 @@ ServiceItem.propTypes = {
 };
 
 const ServiceCategory = ({ category }) => (
-  <div className="mb-8 sm:mb-12">
-    <h2 className="mb-4 text-2xl font-bold text-teal-800 sm:mb-6 sm:text-3xl">{category.title}</h2>
-    <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <div className="mb-6 sm:mb-8 md:mb-12">
+    <h2 className="mb-3 text-xl font-bold text-teal-800 sm:text-2xl md:text-3xl sm:mb-4 md:mb-6">{category.title}</h2>
+    <div className="grid gap-3 sm:gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {category.services.map((service, index) => (
         <ServiceItem key={index} item={service} />
       ))}
@@ -186,19 +186,19 @@ ServiceCategory.propTypes = {
 };
 
 const DropdownButton = ({ title, items, isOpen, toggleDropdown }) => (
-  <div className="mb-2">
+  <div className="mb-1 sm:mb-2">
     <button
       onClick={toggleDropdown}
-      className="flex items-center justify-between w-full px-4 py-2 text-left text-gray-700 transition-colors duration-200 sm:px-6 sm:py-3 hover:bg-teal-50 focus:outline-none"
+      className="flex items-center justify-between w-full px-3 py-2 text-left text-gray-700 transition-colors duration-200 sm:px-4 md:px-6 sm:py-2.5 md:py-3 hover:bg-teal-50 focus:outline-none"
     >
-      <span>{title}</span>
+      <span className="text-sm sm:text-base">{title}</span>
       {isOpen ? <FaChevronUp className="text-teal-600" /> : <FaChevronDown className="text-teal-600" />}
     </button>
     {isOpen && (
-      <ul className="pl-6 mt-2 sm:pl-8">
+      <ul className="pl-4 mt-1 sm:pl-6 md:pl-8 sm:mt-1.5 md:mt-2">
         {items.map((item, index) => (
-          <li key={index} className="py-1 sm:py-2">
-            <a href="#" className="flex items-center text-sm text-gray-600 transition-colors duration-200 sm:text-base hover:text-teal-600">
+          <li key={index} className="py-1 sm:py-1.5 md:py-2">
+            <a href="#" className="flex items-center text-xs text-gray-600 transition-colors duration-200 sm:text-sm md:text-base hover:text-teal-600">
               <span className="mr-2 text-teal-500">{item.icon}</span>
               {item.name}
             </a>
@@ -232,12 +232,9 @@ const Services = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-      if (window.innerWidth >= 768) {
-        setIsSidebarOpen(true);
-      } else {
-        setIsSidebarOpen(false);
-      }
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setIsSidebarOpen(!mobile);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -285,39 +282,39 @@ const Services = () => {
               isMobile ? 'top-16' : ''
             }`}
           >
-            <div className="flex items-center justify-between h-16 px-4 bg-teal-700 sm:h-20 sm:px-6">
-              <h1 className="text-xl font-bold text-white sm:text-2xl">Organic Pooja</h1>
+            <div className="flex items-center justify-between px-3 bg-teal-700 h-14 sm:h-16 md:h-20 sm:px-4 md:px-6">
+              <h1 className="text-lg font-bold text-white sm:text-xl md:text-2xl">Organic Pooja</h1>
               {isMobile && (
                 <button
                   onClick={toggleSidebar}
                   className="text-white focus:outline-none"
                 >
-                  <FaTimes size={24} />
+                  <FaTimes size={20} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
                 </button>
               )}
             </div>
-            <nav className="mt-4 sm:mt-8">
+            <nav className="mt-3 sm:mt-4 md:mt-6">
               {serviceCategories.map((category) => (
                 <React.Fragment key={category.id}>
                   <button
                     onClick={() => scrollToCategory(category.id)}
-                    className={`flex items-center w-full px-4 py-3 text-left transition-colors duration-200 sm:px-6 sm:py-4 ${
+                    className={`flex items-center w-full px-3 py-2 text-left transition-colors duration-200 sm:px-4 md:px-6 sm:py-2.5 md:py-3 ${
                       activeCategory === category.id
                         ? 'bg-teal-100 text-teal-700'
                         : 'text-gray-600 hover:bg-teal-50'
                     }`}
                   >
-                    <span className="mr-3 text-teal-500 sm:mr-4">{category.icon}</span>
-                    {category.title}
+                    <span className="mr-2 text-teal-500 sm:mr-3 md:mr-4">{category.icon}</span>
+                    <span className="text-sm sm:text-base">{category.title}</span>
                   </button>
                   {category.id === 'makeup' && (
                     <>
                       <DropdownButton
                         title="Skin"
                         items={[
-                          { icon: <FaMask className="w-4 h-4" />, name: 'Facials' },
-                          { icon: <FaSprayCan className="w-4 h-4" />, name: 'Peels' },
-                          { icon: <FaGem className="w-4 h-4" />, name: 'Microdermabrasion' },
+                          { icon: <FaMask className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Facials' },
+                          { icon: <FaSprayCan className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Peels' },
+                          { icon: <FaGem className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Microdermabrasion' },
                         ]}
                         isOpen={dropdowns.skin}
                         toggleDropdown={() => toggleDropdown('skin')}
@@ -325,9 +322,9 @@ const Services = () => {
                       <DropdownButton
                         title="Makeup"
                         items={[
-                          { icon: <FaHeart className="w-4 h-4" />, name: 'Bridal' },
-                          { icon: <FaStar className="w-4 h-4" />, name: 'Special Occasion' },
-                          { icon: <FaLightbulb className="w-4 h-4" />, name: 'Lessons' },
+                          { icon: <FaHeart className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Bridal' },
+                          { icon: <FaStar className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Special Occasion' },
+                          { icon: <FaLightbulb className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Lessons' },
                         ]}
                         isOpen={dropdowns.makeup}
                         toggleDropdown={() => toggleDropdown('makeup')}
@@ -335,9 +332,9 @@ const Services = () => {
                       <DropdownButton
                         title="Hair"
                         items={[
-                          { icon: <FaCut className="w-4 h-4" />, name: 'Styling' },
-                          { icon: <FaSprayCan className="w-4 h-4" />, name: 'Treatments' },
-                          { icon: <FaLeaf className="w-4 h-4" />, name: 'Extensions' },
+                          { icon: <FaCut className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Styling' },
+                          { icon: <FaSprayCan className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Treatments' },
+                          { icon: <FaLeaf className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Extensions' },
                         ]}
                         isOpen={dropdowns.hair}
                         toggleDropdown={() => toggleDropdown('hair')}
@@ -354,30 +351,30 @@ const Services = () => {
       {/* Main content */}
       <div className="flex flex-col flex-1">
         {/* Header */}
-        <header className="sticky top-0 z-20 flex items-center justify-between px-4 py-3 bg-white shadow-md sm:-4 sm:px-6 sm:py-4">
+        <header className="sticky top-0 z-20 flex items-center justify-between px-3 py-2 bg-white shadow-md sm:px-4 md:px-6 sm:py-3 md:py-4">
           {isMobile && (
             <button
               onClick={toggleSidebar}
               className="text-gray-500 focus:outline-none"
             >
-              {isSidebarOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              {isSidebarOpen ? <FaTimes size={20} className="sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <FaBars size={20} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />}
             </button>
           )}
-          <h1 className="text-xl font-semibold text-teal-800 sm:text-2xl">Services Dashboard</h1>
+          <h1 className="text-lg font-semibold text-teal-800 sm:text-xl md:text-2xl">Services Dashboard</h1>
           <div className="relative">
             <input
               type="text"
               placeholder="Search services..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-3 py-1 pl-8 text-sm bg-gray-100 border border-gray-300 rounded-full sm:px-4 sm:py-2 sm:pl-10 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="px-2 py-1 pl-7 text-xs bg-gray-100 border border-gray-300 rounded-full sm:text-sm md:text-base sm:px-3 sm:py-1.5 sm:pl-8 md:px-4 md:py-2 md:pl-10 focus:outline-none focus:ring-2 focus:ring-teal-500"
             />
             <FaSearch className="absolute text-gray-400 transform -translate-y-1/2 left-2 top-1/2 sm:left-3" />
           </div>
         </header>
 
         {/* Content */}
-        <main className="flex-1 p-4 overflow-y-auto sm:p-6 md:p-8">
+        <main className="flex-1 p-3 overflow-y-auto sm:p-4 md:p-6 lg:p-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
