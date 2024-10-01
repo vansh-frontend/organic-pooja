@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaClock, FaEnvelope, FaPhone, FaInstagram, FaFacebookF, FaTwitter } from 'react-icons/fa';
 import { MdSpa, MdEventAvailable, MdMessage } from 'react-icons/md';

@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useState, useCallback, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import Home from './Home';
 import Book from './Book';
@@ -28,6 +28,16 @@ const theme = {
   media: { mobile: '768px', tab: '998px' },
 };
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  
+  return null;
+}
+
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
 
@@ -51,10 +61,10 @@ const App = () => {
       prevCartItems
         .map(item =>
           item.id === product.id
-            ? { ...item, quantity: Math.max(0, quantity) } // Ensure quantity is not negative
+            ? { ...item, quantity: Math.max(0, quantity) }
             : item
         )
-        .filter(item => item.quantity > 0) // Remove items with zero quantity
+        .filter(item => item.quantity > 0)
     );
   }, []);
 
@@ -67,6 +77,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <ScrollToTop />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -78,10 +89,10 @@ const App = () => {
               cartItems={cartItems}
               updateQuantity={updateQuantity}
               removeFromCart={removeFromCart}
-              onBuyNow={(product) => console.log(`Buy now ${product.name}`)} // Placeholder for buy now function
+              onBuyNow={(product) => console.log(`Buy now ${product.name}`)}
             />
           } />
-          <Route path='/About' element={<About></About>}></Route>
+          <Route path="/about" element={<About />} />
         </Routes> 
         <Footer />
       </BrowserRouter>
