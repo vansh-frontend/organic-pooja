@@ -131,9 +131,6 @@ const Navbar = ({ position }) => {
               <NavLink to="/wishlist" className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600">
                 Wishlist
               </NavLink>
-              <NavLink to="/contact" className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600">
-                Contact Us
-              </NavLink>
               <NavLink to='/help-center' className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600">
                 Help Center
               </NavLink>
