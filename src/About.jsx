@@ -1,153 +1,176 @@
-import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaStarHalfAlt } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const About = () => {
+  const [activeSection, setActiveSection] = useState(null);
+
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    exit: { opacity: 0, y: -50, transition: { duration: 0.4 } }
+  };
+
+  const values = [
+    { icon: FaLeaf, text: "Natural Ingredients", color: "green" },
+    { icon: FaStar, text: "Quality Assurance", color: "yellow" },
+    { icon: FaHeart, text: "Customer Love", color: "red" },
+    { icon: FaGift, text: "Special Offers", color: "blue" },
+    { icon: FaRegClock, text: "Timely Service", color: "purple" },
+    { icon: FaHandsHelping, text: "Community Support", color: "teal" },
+  ];
+
+  const services = [
+    { icon: FaHandSparkles, text: "Personalized Treatments", color: "teal" },
+    { icon: FaShieldAlt, text: "Safe & Effective", color: "blue" },
+    { icon: FaUsers, text: "Expert Team", color: "green" },
+  ];
+
+  const testimonials = [
+    {
+      text: "Organic by Pooja has completely transformed my skin!",
+      name: "Eshita Arora",
+      rating: 4,
+    },
+    {
+      text: "I love the special offers and quality of products.",
+      name: "Kanika",
+      rating: 3,
+    },
+    {
+      text: "The team at Organic by Pooja truly cares about their customers.",
+      name: "Nandini Pathak",
+      rating: 5,
+    },
+  ];
+
   return (
-    <div className="px-4 py-16 bg-white lg:py-24 sm:px-6 lg:px-8">
+    <div className="min-h-screen p-8 bg-gradient-to-br from-teal-50 to-green-100">
       <div className="mx-auto max-w-7xl">
-        {/* Main Content Section */}
-        <div className="flex flex-col items-center justify-center gap-8 lg:gap-16 lg:flex-row lg:items-center lg:justify-center">
-          {/* Text Section */}
-          <div className="flex flex-col items-center justify-center w-full text-center">
-            <h2 className="max-w-full mb-4 text-4xl font-bold text-gray-700">
-              Organic by Pooja
-            </h2>
-            <p className="max-w-full text-base leading-6 text-gray-600 sm:text-lg lg:text-xl">
-              Organic by Pooja began in 2019 with a simple mission: to offer natural, homemade solutions for skin and hair that heal and nourish from within. What started as a small initiative quickly gained the trust of customers seeking authenticity and quality. Combining modern treatments with organic, handmade products, Organic by Pooja has become a trusted name for personalized care. Our goal is to bring out your natural beauty while making you feel good inside and out.
+        <motion.h1 
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-12 text-6xl font-extrabold text-center text-teal-800"
+        >
+          Organic by Pooja
+        </motion.h1>
+
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="p-8 transform bg-white shadow-2xl rounded-3xl -rotate-3"
+          >
+            <h2 className="mb-4 text-3xl font-bold text-teal-700">Our Story</h2>
+            <p className="leading-relaxed text-gray-600">
+              Since 2019, we've been on a mission to provide natural, homemade solutions for skin and hair that heal and nourish from within. Our journey from a small initiative to a trusted name in personalized care is a testament to our commitment to authenticity and quality.
             </p>
+          </motion.div>
+
+          <div className="space-y-6">
+            {['Values', 'Services', 'Testimonials'].map((section) => (
+              <motion.button
+                key={section}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`w-full py-4 px-6 rounded-full text-xl font-semibold transition-colors ${
+                  activeSection === section ? 'bg-teal-600 text-white' : 'bg-white text-teal-600 hover:bg-teal-100'
+                }`}
+                onClick={() => setActiveSection(activeSection === section ? null : section)}
+              >
+                {section}
+              </motion.button>
+            ))}
           </div>
         </div>
 
-        {/* Icon Section */}
-        <div className="mt-16">
-          <h3 className="mb-8 text-2xl font-semibold text-center text-gray-800">Our Values</h3>
-          <div className="flex flex-wrap justify-center gap-12">
-            <div className="text-center transition-colors duration-300 transform hover:text-green-500 hover:scale-110">
-              <FaLeaf className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Natural Ingredients</p>
-            </div>
-            <div className="text-center transition-colors duration-300 transform hover:text-yellow-500 hover:scale-110">
-              <FaStar className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Quality Assurance</p>
-            </div>
-            <div className="text-center transition-colors duration-300 transform hover:text-red-500 hover:scale-110">
-              <FaHeart className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Customer Love</p>
-            </div>
-            <div className="text-center transition-colors duration-300 transform hover:text-blue-500 hover:scale-110">
-              <FaGift className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Special Offers</p>
-            </div>
-            <div className="text-center transition-colors duration-300 transform hover:text-purple-500 hover:scale-110">
-              <FaRegClock className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Timely Service</p>
-            </div>
-            <div className="text-center transition-colors duration-300 transform hover:text-teal-500 hover:scale-110">
-              <FaHandsHelping className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Community Support</p>
-            </div>
-          </div>
-        </div>
+        <AnimatePresence>
+          {activeSection === 'Values' && (
+            <motion.div
+              key="values"
+              variants={sectionVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="grid grid-cols-2 gap-6 mt-12 md:grid-cols-3"
+            >
+              {values.map((item, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.05, rotate: 5 }}
+                  className={`p-6 bg-white rounded-xl shadow-lg flex flex-col items-center justify-center`}
+                >
+                  <item.icon className={`text-5xl mb-4 text-${item.color}-500`} />
+                  <p className={`font-semibold text-${item.color}-700`}>{item.text}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
 
-        {/* New Section: Our Services */}
-        <div className="mt-16">
-          <h3 className="mb-8 text-2xl font-semibold text-center text-gray-800">Our Services</h3>
-          <div className="flex flex-wrap justify-center gap-12">
-            <motion.div 
-              className="text-center transition-colors duration-300 transform hover:text-teal-500 hover:scale-110"
-              whileHover={{ scale: 1.1, rotate: 10 }}
+          {activeSection === 'Services' && (
+            <motion.div
+              key="services"
+              variants={sectionVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="grid grid-cols-1 gap-6 mt-12 md:grid-cols-3"
             >
-              <FaHandSparkles className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Personalized Treatments</p>
+              {services.map((item, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 3 : -3 }}
+                  className={`p-8 bg-white rounded-xl shadow-lg flex flex-col items-center justify-center`}
+                >
+                  <item.icon className={`text-6xl mb-4 text-${item.color}-500`} />
+                  <p className={`text-xl font-semibold text-${item.color}-700`}>{item.text}</p>
+                </motion.div>
+              ))}
             </motion.div>
-            <motion.div 
-              className="text-center transition-colors duration-300 transform hover:text-blue-500 hover:scale-110"
-              whileHover={{ scale: 1.1, rotate: -10 }}
-            >
-              <FaShieldAlt className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Safe & Effective</p>
-            </motion.div>
-            <motion.div 
-              className="text-center transition-colors duration-300 transform hover:text-green-500 hover:scale-110"
-              whileHover={{ scale: 1.1, rotate: 10 }}
-            >
-              <FaUsers className="mx-auto mb-2 text-4xl" />
-              <p className="text-gray-600">Expert Team</p>
-            </motion.div>
-          </div>
-        </div>
+          )}
 
-        {/* New Section: Customer Testimonials */}
-        <div className="mt-16">
-          <h3 className="mb-8 text-2xl font-semibold text-center text-gray-800">Customer Testimonials</h3>
-          <div className="flex flex-wrap justify-center gap-12">
-            <motion.div 
-              className="p-6 text-center transition-transform duration-300 bg-gray-100 rounded-lg shadow-lg hover:scale-105"
-              whileHover={{ scale: 1.05 }}
+          {activeSection === 'Testimonials' && (
+            <motion.div
+              key="testimonials"
+              variants={sectionVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="grid grid-cols-1 gap-6 mt-12 md:grid-cols-3"
             >
-              <p className="italic text-gray-600">"Organic by Pooja has completely transformed my skin! The personalized care and natural ingredients are unmatched."</p>
-              <p className="mt-4 font-semibold text-gray-800">Eshita Arora</p>
-              <div className="flex justify-center mt-4">
-                <div className="flex">
-                  {[...Array(5)].map((_, index) => (
-                    <FaStar 
-                      key={index} 
-                      className={`text-2xl ${index < 4 ? 'text-yellow-500' : 'text-gray-300'} transition-transform duration-300 hover:scale-110`} 
-                    />
-                  ))}
-                </div>
-              </div>
+              {testimonials.map((item, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.05 }}
+                  className="p-6 bg-white shadow-lg rounded-xl"
+                >
+                  <p className="mb-4 italic text-gray-600">"{item.text}"</p>
+                  <p className="font-semibold text-teal-700">{item.name}</p>
+                  <div className="flex mt-2">
+                    {[...Array(5)].map((_, i) => (
+                      <FaStar key={i} className={`${i < item.rating ? 'text-yellow-400' : 'text-gray-300'} mr-1`} />
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
-            <motion.div 
-              className="p-6 text-center transition-transform duration-300 bg-gray-100 rounded-lg shadow-lg hover:scale-105"
-              whileHover={{ scale: 1.05 }}
-            >
-              <p className="italic text-gray-600">"I love the special offers and quality of products. It's a refreshing experience every time."</p>
-              <p className="mt-4 font-semibold text-gray-800">Kanika.</p>
-              <div className="flex justify-center mt-4">
-                <div className="flex">
-                  {[...Array(5)].map((_, index) => (
-                    <FaStar 
-                      key={index} 
-                      className={`text-2xl ${index < 3 ? 'text-yellow-500' : 'text-gray-300'} transition-transform duration-300 hover:scale-110`} 
-                    />
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-            <motion.div 
-              className="p-6 text-center transition-transform duration-300 bg-gray-100 rounded-lg shadow-lg hover:scale-105"
-              whileHover={{ scale: 1.05 }}
-            >
-              <p className="italic text-gray-600">"The team at Organic by Pooja truly cares about their customers. The community support is amazing!"</p>
-              <p className="mt-4 font-semibold text-gray-800">Nandini Pathak</p>
-              <div className="flex justify-center mt-4">
-                <div className="flex">
-                  {[...Array(5)].map((_, index) => (
-                    <FaStar 
-                      key={index} 
-                      className={`text-2xl ${index < 5 ? 'text-yellow-500' : 'text-gray-300'} transition-transform duration-300 hover:scale-110`} 
-                    />
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+          )}
+        </AnimatePresence>
 
-        {/* Call-to-Action Section */}
-        <div className="mt-16 text-center">
-          <h3 className="mb-4 text-2xl font-semibold text-gray-800">Ready to Experience the Difference?</h3>
-          <p className="mb-8 text-gray-600">Join us today and discover the benefits of organic, handmade beauty treatments tailored just for you.</p>
-          <a href="/contact">
-            <motion.button 
-              className="px-6 py-3 font-semibold text-white transition-transform duration-300 bg-teal-500 rounded-lg shadow-lg hover:scale-105"
-              whileHover={{ scale: 1.05 }}
-            >
-              Contact Us
-            </motion.button>
-          </a>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-16 text-center"
+        >
+          <h3 className="mb-6 text-4xl font-bold text-teal-800">Ready to Experience the Difference?</h3>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-10 py-4 text-xl font-semibold text-white transition-colors bg-teal-600 rounded-full shadow-lg hover:bg-teal-700"
+          >
+            Contact Us
+          </motion.button>
+        </motion.div>
       </div>
     </div>
   );
