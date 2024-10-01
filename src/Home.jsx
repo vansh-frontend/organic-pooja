@@ -65,75 +65,138 @@ const Home = () => {
         <div className="relative w-full overflow-hidden bg-gray-50">
           {/* Organic By Pooja Section */}
           <section className="relative flex flex-col items-center min-h-screen overflow-hidden font-sans bg-gradient-to-br from-emerald-50 to-teal-100">
-  {/* Abstract background shapes */}
-  <div className="absolute inset-0 opacity-20">
-    <div className="absolute top-0 left-0 w-full h-full bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-    <div className="absolute top-0 right-0 w-full h-full bg-pink-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-    <div className="absolute bottom-0 left-0 w-full h-full bg-teal-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-  </div>
+  {/* Dynamic background effect */}
+  <motion.div 
+    className="absolute inset-0 opacity-30"
+    animate={{ 
+      background: [
+        "radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 95, 70, 0) 50%)",
+        "radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 95, 70, 0) 50%)",
+        "radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 95, 70, 0) 50%)"
+      ]
+    }}
+    transition={{ duration: 10, repeat: Infinity }}
+  />
+
+  {/* Animated organic shapes */}
+  <motion.div className="absolute inset-0 opacity-40">
+    {[...Array(5)].map((_, index) => (
+      <motion.div
+        key={index}
+        className="absolute rounded-full mix-blend-multiply filter blur-xl"
+        style={{
+          background: `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.4)`,
+          width: `${Math.random() * 300 + 100}px`,
+          height: `${Math.random() * 300 + 100}px`,
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+        }}
+        animate={{
+          x: [0, Math.random() * 100 - 50, 0],
+          y: [0, Math.random() * 100 - 50, 0],
+          scale: [1, Math.random() * 0.5 + 1, 1],
+          rotate: [0, Math.random() * 360, 0],
+        }}
+        transition={{
+          duration: Math.random() * 10 + 10,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      />
+    ))}
+  </motion.div>
 
   {/* Content */}
-  <div className="relative z-10 flex flex-col items-center w-full max-w-4xl px-4 pt-16 mx-auto text-center sm:px-6 lg:px-8 sm:pt-24 md:pt-32">
+  <div className="relative z-10 flex flex-col items-center justify-center w-full h-full max-w-6xl px-4 mx-auto text-center sm:px-6 lg:px-8">
     <motion.div
-      initial={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="mb-6 sm:mb-8"
+      transition={{ duration: 1, delay: 0.2 }}
     >
-      <span className="inline-block px-4 py-2 text-sm font-bold rounded-full text-emerald-800 bg-emerald-200 sm:text-base md:text-lg">
+      <motion.span 
+        className="inline-block px-6 py-3 text-sm font-bold rounded-full shadow-lg text-emerald-800 bg-emerald-200 sm:text-base md:text-lg backdrop-blur-sm"
+        whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(16, 185, 129, 0.5)" }}
+      >
         100% Natural & Organic
-      </span>
+      </motion.span>
     </motion.div>
 
     <motion.h1 
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.2 }}
-      className="mb-6 font-serif text-4xl font-bold tracking-tight text-emerald-900 sm:text-6xl md:text-7xl lg:text-8xl"
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1, delay: 0.4 }}
+      className="my-8 font-serif text-6xl font-bold tracking-tight text-emerald-900 sm:text-7xl md:text-8xl lg:text-9xl"
     >
-      <span className="block">ORGANIC</span>
-      <span className="block mt-2 text-teal-600">BY POOJA</span>
+      <motion.span 
+        className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500"
+        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+        transition={{ duration: 5, repeat: Infinity }}
+      >
+        ORGANIC
+      </motion.span>
+      <motion.span 
+        className="block mt-2 text-teal-600"
+      >
+        BY POOJA
+      </motion.span>
     </motion.h1>
     
     <motion.p 
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.4 }}
-      className="max-w-2xl mx-auto mb-8 text-lg font-medium text-emerald-800 sm:text-xl md:text-2xl"
+      transition={{ duration: 1, delay: 0.6 }}
+      className="max-w-3xl mx-auto mb-12 text-xl font-medium text-emerald-800 sm:text-2xl md:text-3xl"
     >
-      Elevate your skincare routine with our <span className="font-bold">premium body and facial products</span>.
+      Elevate your skincare routine with our <motion.span 
+        className="font-bold"
+        whileHover={{ scale: 1.05, color: "#047857" }}
+      >premium body and facial products</motion.span>.
     </motion.p>
     
     <motion.div 
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.6 }}
-      className="flex flex-col items-center justify-center w-full gap-4 sm:flex-row sm:gap-6"
+      transition={{ duration: 1, delay: 0.8 }}
+      className="flex flex-col items-center justify-center w-full gap-6 mb-16 sm:flex-row sm:gap-8"
     >
-      <a 
+      <motion.a 
         href="#shop" 
-        className="w-full px-8 py-4 text-lg font-bold text-white transition duration-300 transform rounded-full shadow-lg bg-emerald-600 sm:w-auto hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 hover:scale-105"
+        className="w-full px-10 py-5 text-xl font-bold text-white transition duration-300 rounded-full shadow-2xl bg-gradient-to-r from-emerald-500 to-teal-600 sm:w-auto hover:from-emerald-600 hover:to-teal-700 focus:outline-none focus:ring-4 focus:ring-emerald-500 focus:ring-offset-4"
+        whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(16, 185, 129, 0.5)" }}
+        whileTap={{ scale: 0.95 }}
       >
         Shop Now
-      </a>
-      <a 
+      </motion.a>
+      <motion.a 
         href="#contact" 
-        className="w-full px-8 py-4 text-lg font-bold transition duration-300 transform bg-transparent border-2 rounded-full shadow-lg text-emerald-600 border-emerald-600 sm:w-auto hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 hover:scale-105"
+        className="w-full px-10 py-5 text-xl font-bold transition duration-300 bg-transparent border-2 rounded-full shadow-2xl text-emerald-600 border-emerald-600 sm:w-auto hover:bg-emerald-50 focus:outline-none focus:ring-4 focus:ring-emerald-500 focus:ring-offset-4 backdrop-blur-sm"
+        whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(16, 185, 129, 0.3)" }}
+        whileTap={{ scale: 0.95 }}
       >
         Contact Us
-      </a>
+      </motion.a>
     </motion.div>
   </div>
 
-  {/* Curved separator */}
-  <div className="absolute bottom-0 left-0 right-0 mt-auto">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-auto">
-      <path fill="#ffffff" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+  {/* Animated wave separator */}
+  <motion.div 
+    className="absolute bottom-0 left-0 w-full"
+    initial={{ y: 100 }}
+    animate={{ y: 0 }}
+    transition={{ duration: 1, delay: 1.2 }}
+  >
+    <svg viewBox="0 0 1440 320" className="w-full h-auto">
+      <motion.path 
+        fill="#ffffff" 
+        fillOpacity="1" 
+        d="M0,160L48,170.7C96,181,192,203,288,202.7C384,203,480,181,576,165.3C672,149,768,139,864,154.7C960,171,1056,213,1152,218.7C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        initial={{ pathLength: 0, pathOffset: 1 }}
+        animate={{ pathLength: 1, pathOffset: 0 }}
+        transition={{ duration: 2, ease: "easeInOut" }}
+      />
     </svg>
-  </div>
+  </motion.div>
 </section>
-         
-         
           {/* Services Section */}
           <section className="relative py-24 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
   {/* Curved background */}
