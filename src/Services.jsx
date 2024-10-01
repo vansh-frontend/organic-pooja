@@ -283,81 +283,88 @@ const Services = () => {
     <div className="flex flex-col min-h-screen bg-gray-100 md:flex-row">
       {/* Sidebar */}
       <AnimatePresence>
-        {(isSidebarOpen || !isMobile) && (
-          <motion.div
-            initial={{ x: -300 }}
-            animate={{ x: 0 }}
-            exit={{ x: -300 }}
-            transition={{ duration: 0.3 }}
-            className={`fixed inset-y-0 left-0 z-30 w-64 bg-white shadow-xl md:relative md:translate-x-0 ${
-              isMobile ? 'top-16' : ''
-            }`}
-          >
-            <div className="flex items-center justify-between px-3 bg-teal-700 h-14 sm:h-16 md:h-20 sm:px-4 md:px-6">
-              <h1 className="text-lg font-bold text-white sm:text-xl md:text-2xl">Organic Pooja</h1>
-              {isMobile && (
-                <button
-                  onClick={toggleSidebar}
-                  className="text-white focus:outline-none"
-                >
-                  <FaTimes size={20} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
-                </button>
+  {(isSidebarOpen || !isMobile) && (
+    <motion.div
+      initial={{ x: -300 }}
+      animate={{ x: 0 }}
+      exit={{ x: -300 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className={`fixed inset-y-0 left-0 z-30 w-72 bg-white shadow-lg md:sticky md:top-0 md:h-screen ${
+        isMobile ? 'top-16' : ''
+      }`}
+    >
+      <div className="flex flex-col h-full">
+        <div className="flex items-center justify-between px-6 py-4 bg-teal-600">
+          <h1 className="text-2xl font-bold text-white">Organic Pooja</h1>
+          {isMobile && (
+            <button
+              onClick={toggleSidebar}
+              className="text-white focus:outline-none"
+            >
+              <FaTimes size={24} />
+            </button>
+          )}
+        </div>
+        <nav className="flex-grow px-4 py-6 overflow-y-auto">
+          {serviceCategories.map((category) => (
+            <motion.div
+              key={category.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <button
+                onClick={() => scrollToCategory(category.id)}
+                className={`flex items-center w-full px-4 py-3 mb-2 text-left transition-all duration-200 rounded-lg ${
+                  activeCategory === category.id
+                    ? 'bg-teal-600 text-white shadow-md'
+                    : 'text-teal-800 hover:bg-teal-50'
+                }`}
+              >
+                <span className="mr-3 text-xl">{category.icon}</span>
+                <span className="text-sm font-medium">{category.title}</span>
+              </button>
+              {category.id === 'makeup' && (
+                <div className="mt-2 mb-4 ml-4 space-y-2">
+                  <DropdownButton
+                    title="Skin"
+                    items={[
+                      { icon: <FaMask className="w-4 h-4" />, name: 'Facials' },
+                      { icon: <FaSprayCan className="w-4 h-4" />, name: 'Peels' },
+                      { icon: <FaGem className="w-4 h-4" />, name: 'Microdermabrasion' },
+                    ]}
+                    isOpen={dropdowns.skin}
+                    toggleDropdown={() => toggleDropdown('skin')}
+                  />
+                  <DropdownButton
+                    title="Makeup"
+                    items={[
+                      { icon: <FaHeart className="w-4 h-4" />, name: 'Bridal' },
+                      { icon: <FaStar className="w-4 h-4" />, name: 'Special Occasion' },
+                      { icon: <FaLightbulb className="w-4 h-4" />, name: 'Lessons' },
+                    ]}
+                    isOpen={dropdowns.makeup}
+                    toggleDropdown={() => toggleDropdown('makeup')}
+                  />
+                  <DropdownButton
+                    title="Hair"
+                    items={[
+                      { icon: <FaCut className="w-4 h-4" />, name: 'Styling' },
+                      { icon: <FaSprayCan className="w-4 h-4" />, name: 'Treatments' },
+                      { icon: <FaLeaf className="w-4 h-4" />, name: 'Extensions' },
+                    ]}
+                    isOpen={dropdowns.hair}
+                    toggleDropdown={() => toggleDropdown('hair')}
+                  />
+                </div>
               )}
-            </div>
-            <nav className="mt-3 sm:mt-4 md:mt-6 overflow-y-auto max-h-[calc(100vh-5rem)]">
-              {serviceCategories.map((category) => (
-                <React.Fragment key={category.id}>
-                  <button
-                    onClick={() => scrollToCategory(category.id)}
-                    className={`flex items-center w-full px-3 py-2 text-left transition-colors duration-200 sm:px-4 md:px-6 sm:py-2.5 md:py-3 ${
-                      activeCategory === category.id
-                        ? 'bg-teal-100 text-teal-700'
-                        : 'text-gray-600 hover:bg-teal-50'
-                    }`}
-                  >
-                    <span className="mr-2 text-teal-500 sm:mr-3 md:mr-4">{category.icon}</span>
-                    <span className="text-sm sm:text-base">{category.title}</span>
-                  </button>
-                  {category.id === 'makeup' && (
-                    <>
-                      <DropdownButton
-                        title="Skin"
-                        items={[
-                          { icon: <FaMask className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Facials' },
-                          { icon: <FaSprayCan className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Peels' },
-                          { icon: <FaGem className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Microdermabrasion' },
-                        ]}
-                        isOpen={dropdowns.skin}
-                        toggleDropdown={() => toggleDropdown('skin')}
-                      />
-                      <DropdownButton
-                        title="Makeup"
-                        items={[
-                          { icon: <FaHeart className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Bridal' },
-                          { icon: <FaStar className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Special Occasion' },
-                          { icon: <FaLightbulb className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Lessons' },
-                        ]}
-                        isOpen={dropdowns.makeup}
-                        toggleDropdown={() => toggleDropdown('makeup')}
-                      />
-                      <DropdownButton
-                        title="Hair"
-                        items={[
-                          { icon: <FaCut className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Styling' },
-                          { icon: <FaSprayCan className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Treatments' },
-                          { icon: <FaLeaf className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />, name: 'Extensions' },
-                        ]}
-                        isOpen={dropdowns.hair}
-                        toggleDropdown={() => toggleDropdown('hair')}
-                      />
-                    </>
-                  )}
-                </React.Fragment>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          ))}
+        </nav>
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
 
       {/* Main content */}
       <div className="flex flex-col flex-1">
