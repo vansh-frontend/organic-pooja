@@ -23,9 +23,9 @@ const allProducts = [
   { id: 15, name: 'Organic Hair Serum', image: 'img/pro1.jpg', price: '₹139.99', category: 'Haircare' },
   { id: 16, name: 'Cleansing Oil', image: 'img/sc.png', price: '₹109.99', category: 'Skincare' },
   { id: 17, name: 'Rejuvenating Face Mask', image: 'img/sec2.jpg', price: '₹159.99', category: 'Skincare' },
-  { id: 18, name: 'Foot Cream', image: 'img/sec6.jpg', price: '119.99', category: 'Bodycare' },
-  { id: 19, name: 'Revitalizing Eye Cream', image: 'img/skin.jpg', price: '189.99', category: 'Skincare' },
-  { id: 20, name: 'Essential Oil Blend', image: 'img/sc.png', price: '139.99', category: 'Bodycare' },
+  { id: 18, name: 'Foot Cream', image: 'img/sec6.jpg', price: '₹119.99', category: 'Bodycare' },
+  { id: 19, name: 'Revitalizing Eye Cream', image: 'img/skin.jpg', price: '₹189.99', category: 'Skincare' },
+  { id: 20, name: 'Essential Oil Blend', image: 'img/sc.png', price: '₹139.99', category: 'Bodycare' },
   // (Other products...)
 ];
 

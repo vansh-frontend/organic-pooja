@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useCallback, useState } from 'react';
+import {Link} from 'react-router-dom';  
 import { FaTrash, FaShoppingCart, FaMinus, FaPlus, FaArrowRight, FaTruck, FaPercent, FaCreditCard, FaInfoCircle, FaBox, FaMoneyBillWave } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -98,7 +99,11 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
             <FaShoppingCart className="mx-auto mb-4 text-6xl text-gray-300 sm:mb-6 sm:text-8xl animate-bounce" />
             <p className="mb-6 text-xl text-gray-600 sm:mb-8 sm:text-2xl">Your cart is empty. Start shopping to fill it up!</p>
             <button className="w-full px-6 py-3 text-base font-semibold text-white transition-colors bg-indigo-600 rounded-full sm:w-auto sm:px-8 sm:py-4 sm:text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-              <FaArrowRight className="inline-block mr-2" /> Continue Shopping
+              <FaArrowRight className="inline-block mr-2" />
+              <Link to="/products">
+              Continue Shopping
+              </Link>
+           
             </button>
           </motion.div>
         ) : (
@@ -208,11 +213,11 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
                 <div className="mb-4 space-y-3 sm:mb-6 sm:space-y-4">
                   <div className="flex justify-between">
                     <span className="text-gray-600"><FaBox className="inline-block mr-2" /> Subtotal</span>
-                    <span className="font-semibold">${subtotal.toFixed(2)}</span>
+                    <span className="font-semibold">₹{subtotal.toFixed(2)}</span> 
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600"><FaMoneyBillWave className="inline-block mr-2" /> Tax</span>
-                    <span className="font-semibold">${tax.toFixed(2)}</span>
+                    <span className="font-semibold">₹{tax.toFixed(2)}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-gray-600"><FaTruck className="inline-block mr-2" /> Shipping</span>
@@ -221,8 +226,8 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
                       onChange={(e) => setShippingMethod(e.target.value)}
                       className="p-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     >
-                      <option value="standard">Standard - $10</option>
-                      <option value="express">Express - $20</option>
+                      <option value="standard">Standard - ₹10</option>
+                      <option value="express">Express - ₹20</option>
                     </select>
                   </div>
                   {appliedCoupon && (
@@ -235,7 +240,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
                 <div className="pt-4 mb-4 border-t sm:mb-6">
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-bold sm:text-xl">Total</span>
-                    <span className="text-xl font-bold text-indigo-600 sm:text-2xl">${total.toFixed(2)}</span>
+                    <span className="text-xl font-bold text-indigo-600 sm:text-2xl">₹{total.toFixed(2)}</span>
                   </div>
                 </div>
                 <button
