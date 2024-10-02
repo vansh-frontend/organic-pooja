@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState } from 'react';
 import { FaTrash, FaShoppingCart, FaMinus, FaPlus, FaArrowRight, FaTruck, FaPercent, FaCreditCard, FaInfoCircle, FaBox, FaMoneyBillWave } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -98,7 +98,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
             <FaShoppingCart className="mx-auto mb-4 text-6xl text-gray-300 sm:mb-6 sm:text-8xl animate-bounce" />
             <p className="mb-6 text-xl text-gray-600 sm:mb-8 sm:text-2xl">Your cart is empty. Start shopping to fill it up!</p>
             <button className="w-full px-6 py-3 text-base font-semibold text-white transition-colors bg-indigo-600 rounded-full sm:w-auto sm:px-8 sm:py-4 sm:text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-              Continue Shopping
+              <FaArrowRight className="inline-block mr-2" /> Continue Shopping
             </button>
           </motion.div>
         ) : (
@@ -120,7 +120,10 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
                       </div>
                       <div className="flex-1 p-4 sm:p-6">
                         <h3 className="mb-2 text-lg font-semibold text-gray-800 sm:text-xl">{item.name}</h3>
-                        <p className="mb-4 text-xl font-bold text-indigo-600 sm:text-2xl">{item.price}</p>
+                        <p className="mb-4 text-xl font-bold text-indigo-600 sm:text-2xl">
+                          <FaMoneyBillWave className="inline-block mr-2" />
+                          {item.price}
+                        </p>
                         <div className="flex flex-col items-center justify-between sm:flex-row">
                           <div className="flex items-center mb-4 overflow-hidden border rounded-lg sm:mb-0">
                             <button
@@ -204,15 +207,15 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
                 <h3 className="mb-4 text-xl font-semibold sm:mb-6 sm:text-2xl">Order Summary</h3>
                 <div className="mb-4 space-y-3 sm:mb-6 sm:space-y-4">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Subtotal</span>
+                    <span className="text-gray-600"><FaBox className="inline-block mr-2" /> Subtotal</span>
                     <span className="font-semibold">${subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Tax</span>
+                    <span className="text-gray-600"><FaMoneyBillWave className="inline-block mr-2" /> Tax</span>
                     <span className="font-semibold">${tax.toFixed(2)}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-600">Shipping</span>
+                    <span className="text-gray-600"><FaTruck className="inline-block mr-2" /> Shipping</span>
                     <select
                       value={shippingMethod}
                       onChange={(e) => setShippingMethod(e.target.value)}
@@ -224,7 +227,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
                   </div>
                   {appliedCoupon && (
                     <div className="flex justify-between text-green-600">
-                      <span>Discount</span>
+                      <span><FaPercent className="inline-block mr-2" /> Discount</span>
                       <span>-${discount.toFixed(2)}</span>
                     </div>
                   )}
@@ -261,62 +264,78 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
                 className="w-full max-w-md p-6 bg-white rounded-lg sm:p-8"
               >
                 <h2 className="mb-4 text-xl font-bold sm:text-2xl">Checkout</h2>
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  value={customerInfo.name}
-                  onChange={(e) => setCustomerInfo({...customerInfo, name: e.target.value})}
-                  className="w-full p-2 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={customerInfo.email}
-                  onChange={(e) => setCustomerInfo({...customerInfo, email: e.target.value})}
-                  className="w-full p-2 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-   <textarea
-                  placeholder="Shipping Address"
-                  value={customerInfo.address}
-                  onChange={(e) => setCustomerInfo({...customerInfo, address: e.target.value})}
-                  className="w-full p-2 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                ></textarea>
-                <div className="flex flex-col justify-between sm:flex-row">
-                  <button
-                    onClick={() => setIsCheckingOut(false)}
-                    className="w-full px-4 py-2 mb-2 text-gray-600 transition-colors bg-gray-200 rounded sm:w-auto sm:mb-0 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handlePlaceOrder}
-                    className="w-full px-4 py-2 text-white transition-colors bg-indigo-600 rounded sm:w-auto hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    Place Order
-                  </button>
-                </div>
+                <div className="mb-4">
+                  <label className="block mb-1 text-sm font-medium text-gray-700">
+                    <FaInfoCircle className="inline-block mr-2" /> Full Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="your name"
+                    value={customerInfo.name}
+                    onChange={(e) => setCustomerInfo({...customerInfo, name: e.target.value})}
+                    className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-1 text-sm font-medium text-gray-700">
+                      <FaInfoCircle className="inline-block mr-2" /> Email
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="email@example.com"
+                      value={customerInfo.email}
+                      onChange={(e) => setCustomerInfo({...customerInfo, email: e.target.value})}
+                      className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    />
+                  </div>
+                  <div className="mb-6">
+                    <label className="block mb-1 text-sm font-medium text-gray-700">
+                      <FaInfoCircle className="inline-block mr-2" /> Shipping Address
+                    </label>
+                    <textarea
+                      placeholder="#123 address, City, Country"
+                      value={customerInfo.address}
+                      onChange={(e) => setCustomerInfo({...customerInfo, address: e.target.value})}
+                      className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                  <div className="flex flex-col justify-between sm:flex-row">
+                    <button
+                      onClick={() => setIsCheckingOut(false)}
+                      className="w-full px-4 py-2 mb-2 text-gray-600 transition-colors bg-gray-200 rounded sm:w-auto sm:mb-0 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={handlePlaceOrder}
+                      className="w-full px-4 py-2 text-white transition-colors bg-indigo-600 rounded sm:w-auto hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    >
+                      Place Order
+                    </button>
+                  </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.div>
-  );
-};
-
-Cart.propTypes = {
-  cartItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      quantity: PropTypes.number.isRequired,
-    })
-  ).isRequired,
-  updateQuantity: PropTypes.func.isRequired,
-  removeFromCart: PropTypes.func.isRequired,
-  onBuyNow: PropTypes.func.isRequired,
-};
-
-export default Cart;
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.div>
+    );
+  };
+  
+  Cart.propTypes = {
+    cartItems: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
+        quantity: PropTypes.number.isRequired,
+      })
+    ).isRequired,
+    updateQuantity: PropTypes.func.isRequired,
+    removeFromCart: PropTypes.func.isRequired,
+    onBuyNow: PropTypes.func.isRequired,
+  };
+  
+  export default Cart;
