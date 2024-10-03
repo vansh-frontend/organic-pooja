@@ -204,53 +204,119 @@ const Navbar = ({ position }) => {
   );
 
   const mobileNavItems = (
-    <div className="fixed inset-0 z-50 flex flex-col bg-gradient-to-br from-emerald-50 to-teal-100">
-      <div className="flex justify-end p-4">
-        <button
-          className="p-2 transition-all duration-300 transform text-emerald-600 hover:text-emerald-800 hover:rotate-90"
-          onClick={toggleMenu}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-50 flex flex-col overflow-hidden bg-gradient-to-br from-emerald-50 to-teal-100"
+    >
+      {/* Header */}
+      <div className="relative p-6">
+        <div className="flex items-center justify-between">
+          <motion.div
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="text-2xl font-bold text-emerald-700"
+          >
+            Organic Pooja
+          </motion.div>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="p-2 text-emerald-600 hover:text-emerald-800"
+            onClick={toggleMenu}
+          >
+            <IconX size={28} />
+          </motion.button>
+        </div>
+        <motion.div
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="mt-4"
         >
-          <IconX size={28} />
-        </button>
+          <UserMenu isMobile={true} />
+        </motion.div>
       </div>
-      
-      <nav className="flex flex-col justify-center flex-grow px-6">
+
+      {/* Navigation Links */}
+      <nav className="flex-grow px-8 py-6 overflow-y-auto">
         {[
           { to: "/", label: "Home", icon: IconHome },
           { to: "/services", label: "Services", icon: IconServicemark },
           { to: "/products", label: "Products", icon: IconApps },
-        ].map(({ to, label, icon: Icon }) => (
-          <NavLink
+        ].map(({ to, label, icon: Icon }, index) => (
+          <motion.div
             key={to}
-            to={to}
-            className="flex items-center py-4 space-x-4 text-xl font-medium text-gray-800 transition-all duration-300 border-b group border-emerald-200 hover:text-emerald-600"
-            onClick={toggleMenu}
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
           >
-            <div className="flex items-center justify-center w-10 h-10 transition-all duration-300 bg-white rounded-full shadow-md group-hover:bg-emerald-600 group-hover:text-white">
-              <Icon size={20} />
-            </div>
-            <span>{label}</span>
-            <div className="flex-grow" />
-            <IconArrowRight size={20} className="opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300" />
-          </NavLink>
+            <NavLink
+              to={to}
+              className="flex items-center py-4 group"
+              onClick={toggleMenu}
+            >
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 10 }}
+                whileTap={{ scale: 0.9 }}
+                className="flex items-center justify-center w-12 h-12 mr-4 transition-all duration-300 bg-white rounded-full shadow-lg text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white"
+              >
+                <Icon size={24} />
+              </motion.div>
+              <span className="text-xl font-medium text-gray-700 transition-colors duration-300 group-hover:text-emerald-600">
+                {label}
+              </span>
+            </NavLink>
+          </motion.div>
         ))}
-        
-        <UserMenu isMobile={true} />
-  
-        <div className="mt-6">
-          <NavLink
-            to="/book"
-            className="block w-full py-4 text-lg font-bold text-center text-white transition-all duration-300 transform rounded-lg shadow-lg bg-gradient-to-r from-emerald-500 to-teal-500 hover:shadow-xl hover:scale-105"
-            onClick={toggleMenu}
-          >
-            <span className="flex items-center justify-center">
-              <IconBook size={24} className="mr-2" />
-              Book Appointment
-            </span>
-          </NavLink>
-        </div>
-      </nav>  
-    </div>
+
+        {/* Book Appointment Button */}
+        <motion.div
+  initial={{ x: -50, opacity: 0 }}
+  animate={{ x: 0, opacity: 1 }}
+  transition={{ delay: 0.6, duration: 0.5 }}
+  className="mt-8"
+>
+  <NavLink
+    to="/book"
+    className="relative flex items-center justify-center px-6 py-4 overflow-hidden rounded-full group"
+    onClick={toggleMenu}
+  >
+    <motion.div
+      className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-500"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    />
+    <motion.div
+      className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"
+      initial={{ rotate: 0 }}
+      whileHover={{ rotate: 180 }}
+      transition={{ duration: 0.7 }}
+    />
+    <motion.div
+      className="absolute inset-0 flex items-center justify-center"
+      initial={{ rotate: 0, scale: 0 }}
+      whileHover={{ rotate: 360, scale: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <IconBook size={28} className="text-white" />
+    </motion.div>
+    <span className="relative z-10 text-xl font-bold text-white transition-all duration-300 group-hover:tracking-widest">
+      Book Appointment
+    </span>
+    <motion.span
+      className="absolute bottom-0 left-0 w-full h-1 bg-white"
+      initial={{ scaleX: 0 }}
+      whileHover={{ scaleX: 1 }}
+      transition={{ duration: 0.3 }}
+    />
+  </NavLink>
+</motion.div>
+      </nav>
+    </motion.div>
   );
 
   return (
