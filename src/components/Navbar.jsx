@@ -202,123 +202,120 @@ const Navbar = ({ position }) => {
       </li>
     </ul>
   );
-
   const mobileNavItems = (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-50 flex flex-col overflow-hidden bg-gradient-to-br from-emerald-50 to-teal-100"
+      className="fixed inset-0 z-50 overflow-hidden text-white bg-emerald-900"
     >
-      {/* Header */}
-      <div className="relative p-6">
-        <div className="flex items-center justify-between">
-          <motion.div
-            initial={{ x: -20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            className="text-2xl font-bold text-emerald-700"
-          >
-            Organic Pooja
-          </motion.div>
+      {/* Decorative elements */}
+      <div className="absolute inset-0 overflow-hidden opacity-10">
+        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="white" strokeWidth="0.5">
+            <animate attributeName="d" dur="20s" repeatCount="indefinite"
+              values="M0,0 Q50,0 100,0 L100,100 Q50,100 0,100 Z;
+                      M0,0 Q50,50 100,0 L100,100 Q50,50 0,100 Z;
+                      M0,0 Q50,0 100,0 L100,100 Q50,100 0,100 Z" />
+          </path>
+        </svg>
+      </div>
+  
+      {/* Content wrapper */}
+      <div className="relative z-10 flex flex-col h-full p-6">
+        {/* Header */}
+        <motion.div
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.1, duration: 0.4 }}
+          className="flex items-center justify-between mb-10"
+        >
+          <div className="text-2xl font-bold tracking-tight">Organic Pooja</div>
           <motion.button
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ rotate: 90 }}
             whileTap={{ scale: 0.9 }}
-            className="p-2 text-emerald-600 hover:text-emerald-800"
+            className="p-2 transition-colors duration-200 text-emerald-300 hover:text-white"
             onClick={toggleMenu}
           >
-            <IconX size={28} />
+            <IconX size={28} strokeWidth={2} />
           </motion.button>
-        </div>
-        <motion.div
-          initial={{ y: -10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="mt-4"
-        >
-          <UserMenu isMobile={true} />
         </motion.div>
-      </div>
-
-      {/* Navigation Links */}
-      <nav className="flex-grow px-8 py-6 overflow-y-auto">
-        {[
-          { to: "/", label: "Home", icon: IconHome },
-          { to: "/services", label: "Services", icon: IconServicemark },
-          { to: "/products", label: "Products", icon: IconApps },
-        ].map(({ to, label, icon: Icon }, index) => (
-          <motion.div
-            key={to}
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-          >
-            <NavLink
-              to={to}
-              className="flex items-center py-4 group"
-              onClick={toggleMenu}
+  
+        {/* UserMenu */}
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
+          className="mb-10"
+        >
+          <div className="p-4 rounded-lg shadow-lg bg-emerald-800">
+            <UserMenu isMobile={true} />
+          </div>
+        </motion.div>
+  
+        {/* Navigation Links */}
+        <nav className="flex-grow mb-8 space-y-2">
+          {[
+            { to: "/", label: "Home", icon: IconHome },
+            { to: "/services", label: "Services", icon: IconServicemark },
+            { to: "/products", label: "Products", icon: IconApps },
+          ].map(({ to, label, icon: Icon }, index) => (
+            <motion.div
+              key={to}
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
             >
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 10 }}
-                whileTap={{ scale: 0.9 }}
-                className="flex items-center justify-center w-12 h-12 mr-4 transition-all duration-300 bg-white rounded-full shadow-lg text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white"
+              <NavLink
+                to={to}
+                className="flex items-center p-3 transition-all duration-200 rounded-lg hover:bg-emerald-800 group"
+                onClick={toggleMenu}
               >
-                <Icon size={24} />
-              </motion.div>
-              <span className="text-xl font-medium text-gray-700 transition-colors duration-300 group-hover:text-emerald-600">
-                {label}
-              </span>
-            </NavLink>
-          </motion.div>
-        ))}
-
+                <div className="flex items-center justify-center w-10 h-10 mr-4 transition-all duration-200 rounded-lg bg-emerald-700 text-emerald-300 group-hover:bg-emerald-600 group-hover:text-white">
+                  <Icon size={20} />
+                </div>
+                <span className="text-lg font-medium transition-transform duration-200 group-hover:translate-x-1">
+                  {label}
+                </span>
+              </NavLink>
+            </motion.div>
+          ))}
+        </nav>
+  
         {/* Book Appointment Button */}
         <motion.div
-  initial={{ x: -50, opacity: 0 }}
-  animate={{ x: 0, opacity: 1 }}
-  transition={{ delay: 0.6, duration: 0.5 }}
-  className="mt-8"
->
-  <NavLink
-    to="/book"
-    className="relative flex items-center justify-center px-6 py-4 overflow-hidden rounded-full group"
-    onClick={toggleMenu}
-  >
-    <motion.div
-      className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-500"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    />
-    <motion.div
-      className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"
-      initial={{ rotate: 0 }}
-      whileHover={{ rotate: 180 }}
-      transition={{ duration: 0.7 }}
-    />
-    <motion.div
-      className="absolute inset-0 flex items-center justify-center"
-      initial={{ rotate: 0, scale: 0 }}
-      whileHover={{ rotate: 360, scale: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <IconBook size={28} className="text-white" />
-    </motion.div>
-    <span className="relative z-10 text-xl font-bold text-white transition-all duration-300 group-hover:tracking-widest">
-      Book Appointment
-    </span>
-    <motion.span
-      className="absolute bottom-0 left-0 w-full h-1 bg-white"
-      initial={{ scaleX: 0 }}
-      whileHover={{ scaleX: 1 }}
-      transition={{ duration: 0.3 }}
-    />
-  </NavLink>
-</motion.div>
-      </nav>
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.4 }}
+          className="mb-8"
+        >
+          <NavLink
+            to="/book"
+            className="flex items-center justify-center w-full p-4 transition-all duration-200 rounded-lg shadow-lg bg-emerald-500 hover:bg-emerald-400 group"
+            onClick={toggleMenu}
+          >
+            <IconBook size={24} className="mr-2 transition-transform duration-200 group-hover:scale-110" />
+            <span className="text-lg font-semibold transition-all duration-200 group-hover:tracking-wider">
+              Book Appointment
+            </span>
+          </NavLink>
+        </motion.div>
+  
+        {/* Footer */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.4 }}
+          className="text-center"
+        >
+          <div className="text-sm transition-colors duration-200 text-emerald-300 hover:text-white">
+            © 2023 Organic Pooja. All rights reserved.
+          </div>
+        </motion.div>
+      </div>
     </motion.div>
   );
-
   return (
     <nav className="relative">
       <div className="flex items-center justify-between p-4">
