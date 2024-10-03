@@ -202,23 +202,22 @@ const Navbar = ({ position }) => {
       </li>
     </ul>
   );
-
   const mobileNavItems = (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-50 overflow-hidden text-white bg-emerald-900"
+      className="fixed inset-0 z-50 overflow-hidden text-gray-800 bg-gray-100"
     >
-      {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden opacity-10">
+      {/* Abstract background */}
+      <div className="absolute inset-0 opacity-20">
         <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="white" strokeWidth="0.5">
-            <animate attributeName="d" dur="20s" repeatCount="indefinite"
-              values="M0,0 Q50,0 100,0 L100,100 Q50,100 0,100 Z;
-                      M0,0 Q50,50 100,0 L100,100 Q50,50 0,100 Z;
-                      M0,0 Q50,0 100,0 L100,100 Q50,100 0,100 Z" />
+          <path d="M0,0 C25,50 75,50 100,0 L100,100 C75,50 25,50 0,100 Z" fill="#4CAF50">
+            <animate attributeName="d" dur="15s" repeatCount="indefinite"
+              values="M0,0 C25,50 75,50 100,0 L100,100 C75,50 25,50 0,100 Z;
+                      M0,0 C25,25 75,75 100,0 L100,100 C75,75 25,25 0,100 Z;
+                      M0,0 C25,50 75,50 100,0 L100,100 C75,50 25,50 0,100 Z" />
           </path>
         </svg>
       </div>
@@ -232,11 +231,11 @@ const Navbar = ({ position }) => {
           transition={{ delay: 0.1, duration: 0.4 }}
           className="flex items-center justify-between mb-10"
         >
-          <div className="text-2xl font-bold tracking-tight">Organic Pooja</div>
+          <div className="text-3xl font-bold text-green-700">Organic Pooja</div>
           <motion.button
-            whileHover={{ rotate: 90 }}
+            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="p-2 transition-colors duration-200 text-emerald-300 hover:text-white"
+            className="p-2 text-green-700 transition-colors duration-200 hover:text-green-500"
             onClick={toggleMenu}
           >
             <IconX size={28} strokeWidth={2} />
@@ -245,18 +244,18 @@ const Navbar = ({ position }) => {
   
         {/* UserMenu */}
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.4 }}
           className="mb-10"
         >
-          <div className="p-4 rounded-lg shadow-lg bg-emerald-800">
+          <div className="p-4 bg-white border border-green-200 shadow-lg rounded-2xl">
             <UserMenu isMobile={true} />
           </div>
         </motion.div>
   
         {/* Navigation Links */}
-        <nav className="flex-grow mb-8 space-y-2">
+        <nav className="flex-grow mb-8">
           {[
             { to: "/", label: "Home", icon: IconHome },
             { to: "/services", label: "Services", icon: IconServicemark },
@@ -270,13 +269,13 @@ const Navbar = ({ position }) => {
             >
               <NavLink
                 to={to}
-                className="flex items-center p-3 transition-all duration-200 rounded-lg hover:bg-emerald-800 group"
+                className="flex items-center p-4 mb-3 transition-all duration-300 bg-white shadow-sm rounded-2xl hover:bg-green-50 group"
                 onClick={toggleMenu}
               >
-                <div className="flex items-center justify-center w-10 h-10 mr-4 transition-all duration-200 rounded-lg bg-emerald-700 text-emerald-300 group-hover:bg-emerald-600 group-hover:text-white">
-                  <Icon size={20} />
+                <div className="flex items-center justify-center w-12 h-12 mr-4 text-green-600 transition-all duration-300 bg-green-100 rounded-xl group-hover:bg-green-200">
+                  <Icon size={24} />
                 </div>
-                <span className="text-lg font-medium transition-transform duration-200 group-hover:translate-x-1">
+                <span className="text-xl font-medium text-gray-700 transition-colors duration-300 group-hover:text-green-700">
                   {label}
                 </span>
               </NavLink>
@@ -293,11 +292,11 @@ const Navbar = ({ position }) => {
         >
           <NavLink
             to="/book"
-            className="flex items-center justify-center w-full p-4 transition-all duration-200 rounded-lg shadow-lg bg-emerald-500 hover:bg-emerald-400 group"
+            className="flex items-center justify-center w-full p-5 text-white transition-all duration-300 bg-green-600 shadow-lg rounded-2xl hover:bg-green-500 group"
             onClick={toggleMenu}
           >
-            <IconBook size={24} className="mr-2 transition-transform duration-200 group-hover:scale-110" />
-            <span className="text-lg font-semibold transition-all duration-200 group-hover:tracking-wider">
+            <IconBook size={28} className="mr-3 transition-transform duration-300 group-hover:scale-110" />
+            <span className="text-xl font-bold transition-all duration-300 group-hover:tracking-wider">
               Book Appointment
             </span>
           </NavLink>
