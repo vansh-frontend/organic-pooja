@@ -202,6 +202,7 @@ const Navbar = ({ position }) => {
       </li>
     </ul>
   );
+
   const mobileNavItems = (
     <motion.div
       initial={{ opacity: 0 }}
@@ -300,18 +301,6 @@ const Navbar = ({ position }) => {
               Book Appointment
             </span>
           </NavLink>
-        </motion.div>
-  
-        {/* Footer */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.4 }}
-          className="text-center"
-        >
-          <div className="text-sm transition-colors duration-200 text-emerald-300 hover:text-white">
-            © 2023 Organic Pooja. All rights reserved.
-          </div>
         </motion.div>
       </div>
     </motion.div>
