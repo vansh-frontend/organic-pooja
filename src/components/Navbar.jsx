@@ -205,58 +205,62 @@ const Navbar = ({ position }) => {
   );
   const mobileNavItems = (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-50 overflow-hidden text-gray-800 bg-gray-100"
+      initial={{ opacity: 0, x: "-100%" }}
+      animate={{ opacity: 1, x: "0%" }}
+      exit={{ opacity: 0, x: "-100%" }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="fixed inset-0 z-50 shadow-xl bg-white/70 backdrop-blur-xl"
     >
-      {/* Abstract background */}
-      <div className="absolute inset-0 opacity-20">
-        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path d="M0,0 C25,50 75,50 100,0 L100,100 C75,50 25,50 0,100 Z" fill="#4CAF50">
-            <animate attributeName="d" dur="15s" repeatCount="indefinite"
-              values="M0,0 C25,50 75,50 100,0 L100,100 C75,50 25,50 0,100 Z;
-                      M0,0 C25,25 75,75 100,0 L100,100 C75,75 25,25 0,100 Z;
-                      M0,0 C25,50 75,50 100,0 L100,100 C75,50 25,50 0,100 Z" />
+      {/* Background with subtle abstract gradient */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-gradient-to-b from-blue-50 to-blue-200">
+        <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+          <path
+            fill="rgba(173, 216, 230, 0.15)"
+            d="M0,0 C200,150 400,0 600,150 C800,300 1000,150 1200,0 L1200,1200 L0,1200 Z"
+          >
+            <animate
+              attributeName="d"
+              dur="15s"
+              repeatCount="indefinite"
+              values="
+                M0,0 C150,100 350,0 500,100 C650,200 850,100 1000,0 L1000,1000 L0,1000 Z;
+                M0,0 C150,200 350,100 500,200 C650,300 850,200 1000,0 L1000,1000 L0,1000 Z;
+                M0,0 C150,50 350,50 500,150 C650,250 850,50 1000,0 L1000,1000 L0,1000 Z;
+                M0,0 C150,100 350,0 500,100 C650,200 850,100 1000,0 L1000,1000 L0,1000 Z"
+            />
           </path>
         </svg>
       </div>
   
-      {/* Content wrapper */}
-      <div className="relative z-10 flex flex-col h-full p-6">
-        {/* Header */}
-        <motion.div
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.1, duration: 0.4 }}
-          className="flex items-center justify-between mb-10"
-        >
-          <div className="text-3xl font-bold text-green-700">Organic Pooja</div>
+      {/* Content Wrapper */}
+      <div className="relative z-10 flex flex-col h-full p-6 overflow-y-auto">
+        {/* Header with branding */}
+        <div className="flex items-center justify-between mb-10">
+          <div className="text-3xl font-extrabold text-gray-800">Organic Pooja</div>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="p-2 text-green-700 transition-colors duration-200 hover:text-green-500"
+            className="p-2 text-gray-700 transition duration-200 rounded-full hover:bg-gray-100"
             onClick={toggleMenu}
           >
-            <IconX size={28} strokeWidth={2} />
+            <IconX size={32} />
           </motion.button>
-        </motion.div>
+        </div>
   
-        {/* UserMenu */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.4 }}
-          className="mb-10"
-        >
-          <div className="p-4 bg-white border border-green-200 shadow-lg rounded-2xl">
+        {/* User Menu */}
+        <div className="mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+            className="p-4 border border-gray-200 shadow-lg bg-white/80 backdrop-blur-md rounded-xl"
+          >
             <UserMenu isMobile={true} />
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
   
         {/* Navigation Links */}
-        <nav className="flex-grow mb-8">
+        <nav className="flex-grow mb-8 space-y-4">
           {[
             { to: "/", label: "Home", icon: IconHome },
             { to: "/services", label: "Services", icon: IconServicemark },
@@ -264,21 +268,19 @@ const Navbar = ({ position }) => {
           ].map(({ to, label, icon: Icon }, index) => (
             <motion.div
               key={to}
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 + index * 0.1, duration: 0.4 }}
             >
               <NavLink
                 to={to}
-                className="flex items-center p-4 mb-3 transition-all duration-300 bg-white shadow-sm rounded-2xl hover:bg-green-50 group"
+                className="flex items-center p-4 transition-all duration-300 border border-gray-200 rounded-lg shadow-md bg-white/80 hover:bg-blue-100"
                 onClick={toggleMenu}
               >
-                <div className="flex items-center justify-center w-12 h-12 mr-4 text-green-600 transition-all duration-300 bg-green-100 rounded-xl group-hover:bg-green-200">
-                  <Icon size={24} />
+                <div className="p-3 mr-3 text-blue-500 rounded-full shadow-sm bg-blue-50">
+                  <Icon size={26} />
                 </div>
-                <span className="text-xl font-medium text-gray-700 transition-colors duration-300 group-hover:text-green-700">
-                  {label}
-                </span>
+                <span className="text-lg font-semibold text-gray-800">{label}</span>
               </NavLink>
             </motion.div>
           ))}
@@ -293,18 +295,17 @@ const Navbar = ({ position }) => {
         >
           <NavLink
             to="/book"
-            className="flex items-center justify-center w-full p-5 text-white transition-all duration-300 bg-green-600 shadow-lg rounded-2xl hover:bg-green-500 group"
+            className="flex items-center justify-center w-full p-4 text-white transition-all duration-300 bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600"
             onClick={toggleMenu}
           >
             <IconBook size={28} className="mr-3 transition-transform duration-300 group-hover:scale-110" />
-            <span className="text-xl font-bold transition-all duration-300 group-hover:tracking-wider">
-              Book Appointment
-            </span>
+            <span className="text-xl font-bold tracking-wide">Book Appointment</span>
           </NavLink>
         </motion.div>
       </div>
     </motion.div>
   );
+  
   return (
     <nav className="relative">
       <div className="flex items-center justify-between p-4">
