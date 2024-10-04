@@ -5,6 +5,8 @@ import { IconHome, IconBook, IconApps, IconMenu4, IconX, IconShoppingCart, IconU
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 import { motion, AnimatePresence } from 'framer-motion';
+import './DataDeletionPage';
+import './Help';
 
 const Navbar = ({ position }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -132,7 +134,7 @@ const Navbar = ({ position }) => {
               <NavLink to="/wishlist" className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600">
                 Wishlist
               </NavLink>
-              <NavLink to='/help-center' className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600">
+              <NavLink to='/Help' className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600">
                 Help Center
               </NavLink>
             </div>

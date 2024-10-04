@@ -9,6 +9,9 @@ import Cart from './components/Cart';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './About';
+import HelpCenter from './components/Help';
+import './components/DataDeletionPage';
+import DataDeletionPage from './components/DataDeletionPage';
 
 const theme = {
   colors: {
@@ -83,6 +86,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/book" element={<Book />} />
+          <Route path='/help' element={<HelpCenter></HelpCenter>}></Route>
+          <Route path='delete' element={<DataDeletionPage></DataDeletionPage>}></Route>
+
           <Route path="/products" element={<Products addToCart={addToCart} />} />
           <Route path="/cart" element={
             <Cart
