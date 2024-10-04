@@ -1,7 +1,7 @@
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useCallback, useState } from 'react';
-import {Link} from 'react-router-dom';  
-import { FaTrash, FaShoppingCart, FaMinus, FaPlus, FaArrowRight, FaTruck, FaPercent, FaCreditCard, FaInfoCircle, FaBox, FaMoneyBillWave } from 'react-icons/fa';
+import { Link } from 'react-router-dom';  
+import { FaTrash, FaShoppingCart, FaMinus, FaPlus, FaArrowRight, FaTruck, FaPercent, FaMoneyBillWave } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -15,8 +15,11 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
     name: '',
     email: '',
     address: '',
+    PhoneNo:'',
+    Pincode:'',
   });
 
+  // Handle quantity changes for items
   const handleQuantityChange = useCallback(
     (product, newQuantity) => {
       if (newQuantity <= 0) {
@@ -34,7 +37,6 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
     (total, item) => total + parseFloat(item.price.slice(1)) * item.quantity,
     0
   );
-
   const tax = subtotal * 0.1;
   const shippingCost = shippingMethod === 'express' ? 20 : 10;
   const discount = appliedCoupon ? subtotal * appliedCoupon.discountPercentage : 0;
@@ -43,9 +45,6 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
   const applyCoupon = () => {
     if (couponCode === 'SAVE10') {
       setAppliedCoupon({ code: 'SAVE10', discountPercentage: 0.1 });
-      toast.success('Coupon applied successfully!');
-    } else if (couponCode === 'SAVE20') {
-      setAppliedCoupon({ code: 'SAVE20', discountPercentage: 0.2 });
       toast.success('Coupon applied successfully!');
     } else {
       toast.error('Invalid coupon code');
@@ -66,15 +65,29 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
     setIsCheckingOut(true);
   };
 
-  const handlePlaceOrder = () => {
-    if (!customerInfo.name || !customerInfo.email || !customerInfo.address) {
-      toast.error('Please fill in all customer information');
-      return;
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "2a83fafa-3cb5-48ba-9e38-48544d68b19c");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: json
+    }).then((res) => res.json());
+
+    if (res.success) {
+      toast.success("Form submitted successfully");
+    } else {
+      toast.error("Failed to submit the form");
     }
-    // Here you would typically send the order to a backend service
-    toast.success('Order placed successfully!');
-    onBuyNow(cartItems);
-    setIsCheckingOut(false);
   };
 
   return (
@@ -88,7 +101,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
         <h1 className="mb-6 text-2xl font-bold text-center text-gray-800 sm:mb-8 sm:text-4xl">Your Shopping Cart</h1>
         
         <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
-        
+
         {cartItems.length === 0 ? (
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
@@ -100,10 +113,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
             <p className="mb-6 text-xl text-gray-600 sm:mb-8 sm:text-2xl">Your cart is empty. Start shopping to fill it up!</p>
             <button className="w-full px-6 py-3 text-base font-semibold text-white transition-colors bg-indigo-600 rounded-full sm:w-auto sm:px-8 sm:py-4 sm:text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
               <FaArrowRight className="inline-block mr-2" />
-              <Link to="/products">
-              Continue Shopping
-              </Link>
-           
+              <Link to="/products">Continue Shopping</Link>
             </button>
           </motion.div>
         ) : (
@@ -162,7 +172,8 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
                   </motion.div>
                 ))}
               </AnimatePresence>
-              
+
+              {/* Apply Coupon Section */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -177,23 +188,23 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
                     <span className="text-green-700">Coupon {appliedCoupon.code} applied</span>
                     <button
                       onClick={removeCoupon}
-                      className="px-3 py-1 text-red-600 transition-colors bg-red-100 rounded-full hover:bg-red-200 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                      className="px-3 py-1 text-red-600 transition-colors bg-red-100 rounded-lg hover:bg-red-200 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                     >
                       Remove
                     </button>
                   </div>
                 ) : (
-                  <div className="flex flex-col sm:flex-row">
+                  <div className="flex flex-col items-center justify-between sm:flex-row">
                     <input
                       type="text"
                       value={couponCode}
                       onChange={(e) => setCouponCode(e.target.value)}
+                      className="w-full px-3 py-2 mb-4 text-center border rounded-lg sm:w-auto sm:mb-0 sm:text-left focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-inset"
                       placeholder="Enter coupon code"
-                      className="flex-grow p-2 mb-2 border border-gray-300 rounded-lg sm:mb-0 sm:mr-2 sm:rounded-l-lg sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     />
                     <button
                       onClick={applyCoupon}
-                      className="px-4 py-2 text-white transition-colors bg-indigo-600 rounded-lg sm:rounded-l-none sm:rounded-r-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="px-6 py-3 font-semibold text-white transition-colors bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                       Apply
                     </button>
@@ -201,146 +212,167 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, onBuyNow }) => {
                 )}
               </motion.div>
             </div>
-            
+
+            {/* Summary Section */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.4 }}
-              className="lg:col-span-1"
+              className="p-6 bg-white shadow-md sm:p-8 rounded-2xl"
             >
-              <div className="sticky p-4 bg-white shadow-md sm:p-6 rounded-2xl top-6">
-                <h3 className="mb-4 text-xl font-semibold sm:mb-6 sm:text-2xl">Order Summary</h3>
-                <div className="mb-4 space-y-3 sm:mb-6 sm:space-y-4">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600"><FaBox className="inline-block mr-2" /> Subtotal</span>
-                    <span className="font-semibold">₹{subtotal.toFixed(2)}</span> 
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600"><FaMoneyBillWave className="inline-block mr-2" /> Tax</span>
-                    <span className="font-semibold">₹{tax.toFixed(2)}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600"><FaTruck className="inline-block mr-2" /> Shipping</span>
-                    <select
-                      value={shippingMethod}
-                      onChange={(e) => setShippingMethod(e.target.value)}
-                      className="p-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    >
-                      <option value="standard">Standard - ₹10</option>
-                      <option value="express">Express - ₹20</option>
-                    </select>
-                  </div>
-                  {appliedCoupon && (
-                    <div className="flex justify-between text-green-600">
-                      <span><FaPercent className="inline-block mr-2" /> Discount</span>
-                      <span>-${discount.toFixed(2)}</span>
-                    </div>
-                  )}
-                </div>
-                <div className="pt-4 mb-4 border-t sm:mb-6">
-                  <div className="flex items-center justify-between">
-                    <span className="text-lg font-bold sm:text-xl">Total</span>
-                    <span className="text-xl font-bold text-indigo-600 sm:text-2xl">₹{total.toFixed(2)}</span>
-                  </div>
-                </div>
-                <button
-                  onClick={handleCheckout}
-                  className="flex items-center justify-center w-full px-4 py-2 text-base font-semibold text-white transition-colors bg-indigo-600 rounded-full sm:px-6 sm:py-3 sm:text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  <FaCreditCard className="mr-2" /> Proceed to Checkout
-                </button>
+              <h2 className="mb-4 text-xl font-semibold text-gray-800 sm:text-2xl">Order Summary</h2>
+              <div className="flex items-center justify-between mb-2 text-lg font-medium">
+                <span>Subtotal</span>
+                <span>${subtotal.toFixed(2)}</span>
               </div>
+              <div className="flex items-center justify-between mb-2 text-lg font-medium">
+                <span>Tax (10%)</span>
+                <span>${tax.toFixed(2)}</span>
+              </div>
+              <div className="flex items-center justify-between mb-2 text-lg font-medium">
+                <span>Shipping</span>
+                <span>${shippingCost.toFixed(2)}</span>
+              </div>
+              {appliedCoupon && (
+                <div className="flex items-center justify-between mb-4 text-lg font-medium">
+                  <span>Discount</span>
+                  <span>-${discount.toFixed(2)}</span>
+                </div>
+              )}
+              <div className="flex items-center justify-between mb-6 text-lg font-bold">
+                <span>Total</span>
+                <span>${total.toFixed(2)}</span>
+              </div>
+              <button
+                onClick={handleCheckout}
+                className="w-full px-6 py-3 text-base font-semibold text-white transition-colors bg-indigo-600 rounded-full sm:w-auto sm:px-8 sm:py-4 sm:text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                Proceed to Checkout
+              </button>
             </motion.div>
           </div>
         )}
-        
-        <AnimatePresence>
-          {isCheckingOut && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50"
-            >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                className="w-full max-w-md p-6 bg-white rounded-lg sm:p-8"
-              >
-                <h2 className="mb-4 text-xl font-bold sm:text-2xl">Checkout</h2>
-                <div className="mb-4">
-                  <label className="block mb-1 text-sm font-medium text-gray-700">
-                    <FaInfoCircle className="inline-block mr-2" /> Full Name
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="your name"
-                    value={customerInfo.name}
-                    onChange={(e) => setCustomerInfo({...customerInfo, name: e.target.value})}
-                    className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block mb-1 text-sm font-medium text-gray-700">
-                      <FaInfoCircle className="inline-block mr-2" /> Email
-                    </label>
-                    <input
-                      type="email"
-                      placeholder="email@example.com"
-                      value={customerInfo.email}
-                      onChange={(e) => setCustomerInfo({...customerInfo, email: e.target.value})}
-                      className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <label className="block mb-1 text-sm font-medium text-gray-700">
-                      <FaInfoCircle className="inline-block mr-2" /> Shipping Address
-                    </label>
-                    <textarea
-                      placeholder="#123 address, City, Country"
-                      value={customerInfo.address}
-                      onChange={(e) => setCustomerInfo({...customerInfo, address: e.target.value})}
-                      className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                      rows="3"
-                    ></textarea>
-                  </div>
-                  <div className="flex flex-col justify-between sm:flex-row">
-                    <button
-                      onClick={() => setIsCheckingOut(false)}
-                      className="w-full px-4 py-2 mb-2 text-gray-600 transition-colors bg-gray-200 rounded sm:w-auto sm:mb-0 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      onClick={handlePlaceOrder}
-                      className="w-full px-4 py-2 text-white transition-colors bg-indigo-600 rounded sm:w-auto hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                      Place Order
-                    </button>
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </motion.div>
-    );
-  };
-  
-  Cart.propTypes = {
-    cartItems: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
-        quantity: PropTypes.number.isRequired,
-      })
-    ).isRequired,
-    updateQuantity: PropTypes.func.isRequired,
-    removeFromCart: PropTypes.func.isRequired,
-    onBuyNow: PropTypes.func.isRequired,
-  };
-  
-  export default Cart;
+
+        {/* Checkout Form */}
+        {isCheckingOut && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="p-6 mt-8 bg-white shadow-md sm:p-8 rounded-2xl"
+          >
+         <h2 className="mb-6 text-2xl font-semibold text-gray-900">Customer Information</h2>
+<form onSubmit={onSubmit} className="space-y-6">
+  <div>
+    <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      value={customerInfo.name}
+      onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
+      className="block w-full px-4 py-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600"
+      required
+    />
+  </div>
+
+  <div>
+    <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      value={customerInfo.email}
+      onChange={(e) => setCustomerInfo({ ...customerInfo, email: e.target.value })}
+      className="block w-full px-4 py-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600"
+      required
+    />
+  </div>
+
+  <div>
+    <label htmlFor="tel" className="block text-sm font-medium text-gray-700">Phone Number</label>
+    <input
+      type="tel"
+      id="tel"
+      name="tel"
+      value={customerInfo.tel}
+      onChange={(e) => setCustomerInfo({ ...customerInfo, tel: e.target.value })}
+      className="block w-full px-4 py-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600"
+      required
+    />
+  </div>
+
+  <div>
+    <label htmlFor="pincode" className="block text-sm font-medium text-gray-700">Pincode</label>
+    <input
+      type="text"
+      id="pincode"
+      name="pincode"
+      value={customerInfo.pincode}
+      onChange={(e) => setCustomerInfo({ ...customerInfo, pincode: e.target.value })}
+      className="block w-full px-4 py-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600"
+      required
+    />
+  </div>
+
+  <div>
+    <label htmlFor="address" className="block text-sm font-medium text-gray-700">Address</label>
+    <input
+      type="text"
+      id="address"
+      name="address"
+      value={customerInfo.address}
+      onChange={(e) => setCustomerInfo({ ...customerInfo, address: e.target.value })}
+      className="block w-full px-4 py-3 mt-1 transition duration-150 ease-in-out border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600"
+      required
+    />
+  </div>
+
+  <div className="flex justify-between">
+    <button
+      type="button"
+      onClick={() => {
+        setCustomerInfo({
+          name: '',
+          email: '',
+          tel: '',
+          pincode: '',
+          address: '',
+        });
+      }}
+      className="w-full px-6 py-3 text-base font-semibold text-gray-700 transition duration-200 bg-gray-200 rounded-full sm:w-auto sm:px-8 sm:py-4 sm:text-lg hover:bg-gray-300 focus:outline-none"
+    >
+      Cancel
+    </button>
+    
+    <button
+      type="submit"
+      className="w-full px-6 py-3 text-base font-semibold text-white transition duration-200 bg-indigo-600 rounded-full sm:w-auto sm:px-8 sm:py-4 sm:text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+    >
+      Submit Order
+    </button>
+  </div>
+</form>
+
+          </motion.div>
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
+Cart.propTypes = {
+  cartItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      quantity: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  updateQuantity: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+};
+
+export default Cart;
