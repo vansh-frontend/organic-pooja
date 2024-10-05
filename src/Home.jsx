@@ -6,6 +6,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import './Home.css';
 
+const toggleBodyScroll = (disable) => {
+  document.body.style.overflow = disable ? 'hidden' : 'visible';
+};
+
 const Home = () => {
   const sectionRefs = useRef([]);
   const [scrollDirection, setScrollDirection] = useState(null);
@@ -97,37 +101,37 @@ const Home = () => {
   return (
     <div className="relative w-full overflow-hidden bg-gray-50">
       {/* Organic By Pooja Section */}
-      <section className="relative min-h-screen bg-gradient-to-br from-emerald-50 to-teal-100 overflow-hidden flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <section className="relative flex items-center justify-center min-h-screen px-4 overflow-hidden bg-gradient-to-br from-emerald-50 to-teal-100 sm:px-6 lg:px-8">
   {/* Background elements */}
   <div className="absolute inset-0 overflow-hidden">
-    <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-    <div className="absolute top-0 right-0 w-96 h-96 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-    <div className="absolute -bottom-32 left-20 w-96 h-96 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    <div className="absolute top-0 left-0 rounded-full w-96 h-96 bg-emerald-200 mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+    <div className="absolute top-0 right-0 bg-teal-200 rounded-full w-96 h-96 mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+    <div className="absolute bg-green-200 rounded-full -bottom-32 left-20 w-96 h-96 mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
   </div>
 
-  <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center">
+  <div className="relative z-10 flex flex-col items-center mx-auto max-w-7xl md:flex-row">
     {/* Content */}
-    <div className="w-full md:w-1/2 text-center md:text-left mb-12 md:mb-0">
-      <span className="inline-block px-4 py-2 bg-emerald-200 text-emerald-800 rounded-full text-sm font-semibold tracking-wide mb-6 shadow-md transform hover:scale-105 transition-transform duration-300">
+    <div className="w-full mb-12 text-center md:w-1/2 md:text-left md:mb-0">
+      <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wide transition-transform duration-300 transform rounded-full shadow-md bg-emerald-200 text-emerald-800 hover:scale-105">
         100% Natural & Organic
       </span>
-      <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 leading-tight mb-6 animate-gradient">
+      <h1 className="mb-6 text-5xl font-extrabold leading-tight text-transparent sm:text-6xl lg:text-7xl bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 animate-gradient">
         <span className="block">ORGANIC</span>
         <span className="block">BY POOJA</span>
       </h1>
-      <p className="text-xl text-emerald-800 mb-10 max-w-2xl mx-auto md:mx-0 leading-relaxed">
+      <p className="max-w-2xl mx-auto mb-10 text-xl leading-relaxed text-emerald-800 md:mx-0">
         Elevate your skincare routine with our premium body and facial products, crafted with nature's finest ingredients.
       </p>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+      <div className="flex flex-col justify-center gap-4 sm:flex-row md:justify-start">
         <a 
           href="/products" 
-          className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full font-semibold hover:from-emerald-600 hover:to-teal-600 transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          className="px-8 py-4 font-semibold text-white transition duration-300 transform rounded-full shadow-lg bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 hover:scale-105 hover:shadow-xl"
         >
           Shop Now
         </a>
         <a 
           href="/services" 
-          className="px-8 py-4 border-2 border-emerald-600 text-emerald-600 rounded-full font-semibold hover:bg-emerald-600 hover:text-white transition duration-300 transform hover:scale-105 hover:shadow-lg"
+          className="px-8 py-4 font-semibold transition duration-300 transform border-2 rounded-full border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white hover:scale-105 hover:shadow-lg"
         >
           Our Services
         </a>
@@ -135,34 +139,34 @@ const Home = () => {
     </div>
 
     {/* Image - hidden on mobile, visible on md and up */}
-    <div className="w-full md:w-1/2 relative hidden md:block">
+    <div className="relative hidden w-full md:w-1/2 md:block">
       <div className="relative w-full h-[500px] rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300">
         <img 
           src="img/section.jpg" 
           alt="Organic skincare products" 
           className="object-cover w-full h-full"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-emerald-900 to-transparent opacity-50"></div>
+        <div className="absolute inset-0 opacity-50 bg-gradient-to-t from-emerald-900 to-transparent"></div>
       </div>
       {/* Decorative elements */}
-      <div className="absolute top-10 -left-10 w-20 h-20 bg-gradient-to-br from-emerald-300 to-teal-400 rounded-full flex items-center justify-center animate-float shadow-lg">
-        <FaLeaf className="text-white text-3xl" />
+      <div className="absolute flex items-center justify-center w-20 h-20 rounded-full shadow-lg top-10 -left-10 bg-gradient-to-br from-emerald-300 to-teal-400 animate-float">
+        <FaLeaf className="text-3xl text-white" />
       </div>
-      <div className="absolute bottom-10 -right-10 w-24 h-24 bg-gradient-to-br from-teal-400 to-green-500 rounded-full flex items-center justify-center animate-float animation-delay-2000 shadow-lg">
-        <FaStar className="text-white text-4xl" />
+      <div className="absolute flex items-center justify-center w-24 h-24 rounded-full shadow-lg bottom-10 -right-10 bg-gradient-to-br from-teal-400 to-green-500 animate-float animation-delay-2000">
+        <FaStar className="text-4xl text-white" />
       </div>
-      <div className="absolute top-1/2 -right-5 w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center animate-pulse shadow-lg">
-        <FaHeart className="text-white text-2xl" />
+      <div className="absolute flex items-center justify-center w-16 h-16 rounded-full shadow-lg top-1/2 -right-5 bg-gradient-to-br from-emerald-500 to-teal-600 animate-pulse">
+        <FaHeart className="text-2xl text-white" />
       </div>
     </div>
   </div>
 
   {/* Mobile-only decorative elements */}
-  <div className="absolute top-10 left-5 w-16 h-16 bg-gradient-to-br from-emerald-300 to-teal-400 rounded-full flex items-center justify-center animate-float shadow-lg md:hidden">
-    <FaLeaf className="text-white text-2xl" />
+  <div className="absolute flex items-center justify-center w-16 h-16 rounded-full shadow-lg top-10 left-5 bg-gradient-to-br from-emerald-300 to-teal-400 animate-float md:hidden">
+    <FaLeaf className="text-2xl text-white" />
   </div>
-  <div className="absolute bottom-10 right-5 w-20 h-20 bg-gradient-to-br from-teal-400 to-green-500 rounded-full flex items-center justify-center animate-float animation-delay-2000 shadow-lg md:hidden">
-    <FaStar className="text-white text-3xl" />
+  <div className="absolute flex items-center justify-center w-20 h-20 rounded-full shadow-lg bottom-10 right-5 bg-gradient-to-br from-teal-400 to-green-500 animate-float animation-delay-2000 md:hidden">
+    <FaStar className="text-3xl text-white" />
   </div>
 </section>
       {/* Services Section */}
@@ -213,129 +217,134 @@ const Home = () => {
   </div>
 </section>
       {/* About Us Section */}
-      <section className="py-24 overflow-hidden bg-gradient-to-b from-white to-teal-50">
-  <div className="min-h-screen p-4 sm:p-8 bg-gradient-to-br from-teal-50 to-green-100">
-    <div className="mx-auto max-w-7xl">
-      <motion.h1 
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-16 text-4xl font-extrabold leading-tight text-center text-teal-800 sm:text-5xl md:text-6xl"
-      >
-        Discover <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-green-600">Organic by Pooja</span>
-      </motion.h1>
+      <section className="relative py-12 sm:py-16 md:py-24 bg-teal-50">
+  <div className="container px-4 mx-auto max-w-7xl">
+    <h2 className="mb-8 text-3xl font-extrabold text-center text-teal-800 sm:mb-12 md:mb-16 sm:text-4xl md:text-5xl">
+      Discover <span className="text-teal-600">Organic by Pooja</span>
+    </h2>
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="relative p-6 transition-all duration-300 transform bg-white shadow-2xl sm:p-8 rounded-3xl hover:rotate-0 group"
-          style={{ transform: 'rotate(-2deg)' }}
-        >
-          <div className="absolute top-0 left-0 w-20 h-20 transition-transform duration-300 -translate-x-1/2 -translate-y-1/2 bg-teal-400 rounded-full opacity-20 group-hover:scale-150"></div>
-          <h2 className="mb-6 text-3xl font-bold text-teal-700 sm:text-4xl">Our Story</h2>
-          <p className="text-base leading-relaxed text-gray-600 sm:text-lg">
-            Founded in 2019, Organic by Pooja embarked on a mission to revolutionize skincare with natural, homemade solutions. Our journey from a small initiative to a trusted name in personalized care is a testament to our unwavering commitment to authenticity and quality.
-          </p>
-          <div className="absolute bottom-0 right-0 w-16 h-16 transition-transform duration-300 translate-x-1/2 translate-y-1/2 bg-green-400 rounded-full opacity-20 group-hover:scale-150"></div>
-        </motion.div>
+    <div className="grid gap-6 mb-8 sm:mb-12 md:mb-16 sm:gap-8 md:grid-cols-2">
+    <div className="relative overflow-hidden transition-all duration-500 bg-white shadow-xl rounded-3xl hover:shadow-2xl">
+  <div className="absolute top-0 right-0 w-40 h-40 bg-teal-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+  <div className="absolute w-40 h-40 bg-green-100 rounded-full -bottom-8 -left-8 mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+  
+  <div className="relative p-8 sm:p-10">
+    <div className="flex items-center mb-6">
+      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-teal-400 to-green-400">
+        <span className="text-2xl font-bold text-white">OP</span>
+      </div>
+      <h3 className="ml-4 text-3xl font-extrabold text-gray-800 sm:text-4xl">Our Story</h3>
+    </div>
+    
+    <div className="space-y-6">
+      <p className="relative text-lg leading-relaxed text-gray-700">
+        <span className="absolute top-0 text-5xl text-teal-200 opacity-50 -left-4">"</span>
+        Founded in <span className="font-semibold text-teal-600">2019</span>, <span className="font-semibold text-teal-600">Organic by Pooja</span> embarked on a mission to revolutionize skincare with natural, homemade solutions. Our journey from a small initiative to a trusted name in personalized care is a testament to our unwavering commitment to authenticity and quality.
+      </p>
+      <p className="text-lg leading-relaxed text-gray-700">
+        We believe in harnessing the power of nature to bring out your inner beauty, offering a range of organic products and services tailored to your unique needs.
+      </p>
+    </div>
+    
+    <div className="flex justify-end mt-8">
+      <div className="px-6 py-2 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-teal-500 to-green-500">
+        Est. 2019
+      </div>
+    </div>
+  </div>
+  
+  <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-teal-400 via-green-400 to-teal-400"></div>
+</div>
 
-        <div className="space-y-4 sm:space-y-6">
-          {['Values', 'Services', 'Testimonials'].map((section) => (
-            <motion.button
-              key={section}
-              whileHover={{ scale: 1.03, boxShadow: '0 10px 20px rgba(0,0,0,0.1)' }}
-              whileTap={{ scale: 0.98 }}
-              className={`w-full py-4 sm:py-5 px-6 sm:px-8 rounded-2xl text-lg sm:text-xl font-semibold transition-all duration-300 ${
-                activeSection === section 
-                  ? 'bg-gradient-to-r from-teal-500 to-green-500 text-white shadow-lg' 
-                  : 'bg-white text-teal-600 hover:bg-teal-50'
-              }`}
-              onClick={() => setActiveSection(activeSection === section ? null : section)}
-            >
-              {section}
-            </motion.button>
-          ))}
+      <div className="overflow-hidden transition-all duration-300 bg-white shadow-lg rounded-xl hover:shadow-xl">
+        <img src="img/1.jpg" alt="Organic by Pooja" className="object-cover w-full h-48 sm:h-56 md:h-64" />
+        <div className="p-6 sm:p-8">
+          <h3 className="mb-4 text-2xl font-bold text-teal-800 sm:text-3xl">Our Promise</h3>
+          <ul className="space-y-2 text-gray-700 list-disc list-inside">
+            <li>100% Natural Ingredients</li>
+            <li>Personalized Skincare Solutions</li>
+            <li>Eco-friendly Practices</li>
+            <li>Cruelty-free Products</li>
+          </ul>
         </div>
       </div>
+    </div>
 
-      <AnimatePresence>
-        {activeSection === 'Values' && (
-          <motion.div
-            key="values"
-            variants={sectionVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 sm:mt-16"
-          >
-            {values.map((item, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05, rotate: 2, boxShadow: '0 10px 20px rgba(0,0,0,0.1)' }}
-                className={`p-6 sm:p-8 bg-white rounded-2xl shadow-lg flex flex-col items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-${item.color}-50 hover:to-${item.color}-100`}
-              >
-                <item.icon className={`text-5xl sm:text-6xl mb-4 sm:mb-6 text-${item.color}-500`} />
-                <p className={`text-lg sm:text-xl font-semibold text-${item.color}-700 text-center`}>{item.text}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
+    <div className="relative z-10 grid gap-6 mb-16 sm:grid-cols-2 lg:grid-cols-3">
+      {['Values', 'Services', 'Testimonials'].map((section) => (
+        <button
+          key={section}
+          className="relative px-8 py-6 overflow-hidden text-xl font-semibold text-white transition-all duration-300 bg-teal-600 shadow-lg group rounded-xl hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+          onClick={() => setActiveSection(section)}
+        >
+          <span className="relative z-10">{section}</span>
+          <div className="absolute inset-0 transition-transform duration-300 origin-left transform scale-x-0 bg-teal-500 group-hover:scale-x-100"></div>
+          <div className="absolute top-0 right-0 w-12 h-12 transition-transform duration-300 transform translate-x-full translate-y-full bg-teal-400 rounded-bl-full group-hover:translate-x-0 group-hover:translate-y-0"></div>
+        </button>
+      ))}
+    </div>
 
-        {activeSection === 'Services' && (
-          <motion.div
-            key="services"
-            variants={sectionVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 sm:mt-16"
-          >
-            {services.map((item, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2, boxShadow: '0 10px 20px rgba(0,0,0,0.1)' }}
-                className={`p-8 sm:p-10 bg-white rounded-2xl shadow-lg flex flex-col items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-${item.color}-50 hover:to-${item.color}-100`}
-              >
-                <item.icon className={`text-6xl sm:text-7xl mb-4 sm:mb-6 text-${item.color}-500`} />
-                <p className={`text-xl sm:text-2xl font-semibold text-${item.color}-700 text-center`}>{item.text}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-
-        {activeSection === 'Testimonials' && (
-          <motion.div
-            key="testimonials"
-            variants={sectionVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 sm:mt-16"
-          >
-            {testimonials.map((item, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(0,0,0,0.1)' }}
-                className="flex flex-col justify-between h-full p-6 transition-all duration-300 bg-white shadow-lg sm:p-8 rounded-2xl hover:bg-gradient-to-br hover:from-teal-50 hover:to-green-100"
-              >
-                <div>
-                  <p className="mb-4 text-base italic text-gray-600 sm:mb-6 sm:text-lg">"{item.text}"</p>
-                  <p className="text-lg font-semibold text-teal-700 sm:text-xl">{item.name}</p>
+    <div className={`transition-all duration-500 overflow-hidden ${activeSection ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div className="w-full overflow-hidden bg-white shadow-2xl rounded-xl">
+        <div className="p-6 sm:p-8">
+          <h3 className="mb-6 text-2xl font-bold text-teal-800 sm:text-3xl">{activeSection}</h3>
+          {activeSection === 'Values' && (
+            <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {values.map((item, index) => (
+                <div key={index} className="flex flex-col items-center p-4 text-center transition-all duration-300 shadow-md bg-teal-50 rounded-xl sm:p-6 hover:shadow-lg">
+                  <div className="flex items-center justify-center w-16 h-16 mb-4 bg-teal-100 rounded-full sm:w-20 sm:h-20">
+                    <item.icon className="text-2xl text-teal-600 sm:text-3xl" />
+                  </div>
+                  <h4 className="mb-2 text-lg font-bold text-teal-800 sm:text-xl">{item.text}</h4>
+                  <p className="text-sm text-gray-700 sm:text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
-                <div className="flex mt-4">
-                  {[...Array(5)].map((_, i) => (
-                    <FaStar key={i} className={`${i < item.rating ? 'text-yellow-400' : 'text-gray-300'} text-xl sm:text-2xl mr-1`} />
-                  ))}
+              ))}
+            </div>
+          )}
+          {activeSection === 'Services' && (
+            <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {services.map((item, index) => (
+                <div key={index} className="p-4 transition-all duration-300 shadow-md bg-teal-50 rounded-xl sm:p-6 hover:shadow-lg">
+                  <item.icon className="mb-4 text-3xl text-teal-600 sm:text-4xl" />
+                  <h4 className="mb-2 text-lg font-bold text-teal-800 sm:text-xl">{item.text}</h4>
+                  <p className="text-sm text-gray-700 sm:text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+              ))}
+            </div>
+          )}
+          {activeSection === 'Testimonials' && (
+            <div className="grid gap-6 sm:gap-8 sm:grid-cols-2">
+              {testimonials.map((item, index) => (
+                <div key={index} className="p-4 transition-all duration-300 shadow-md bg-teal-50 rounded-xl sm:p-6 hover:shadow-lg">
+                  <div className="flex items-center mb-4">
+                    <div className="flex items-center justify-center w-10 h-10 mr-4 bg-teal-200 rounded-full sm:w-12 sm:h-12">
+                      <span className="text-xl font-bold text-teal-600 sm:text-2xl">{item.name[0]}</span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-teal-800">{item.name}</p>
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <FaStar key={i} className={`${i < item.rating ? 'text-yellow-400' : 'text-gray-300'} text-xs sm:text-sm`} />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-sm italic text-gray-700 sm:text-base">"{item.text}"</p>
+                </div>
+              ))}
+            </div>
+          )}
+          <button
+            className="px-4 py-2 mt-6 text-white transition-all duration-300 bg-teal-600 rounded-full sm:mt-8 sm:py-3 sm:px-6 hover:bg-teal-700 hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+            onClick={() => setActiveSection(null)}
+          >
+            Close
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
-
       {/* Testimonials Section */}
       <section className="py-24 overflow-hidden bg-gradient-to-br from-teal-50 to-green-100">
   <div className="container px-4 mx-auto">
