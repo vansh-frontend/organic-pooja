@@ -107,7 +107,8 @@ const Footer = () => {
     <div className="flex flex-wrap justify-between gap-4 pt-12 mt-12 border-t border-gray-700 border-opacity-50">
   <div className="flex items-center space-x-2">
     <FaMapMarkerAlt className="text-gray-400" />
-    <span className="text-sm">123 Skincare Street, Beauty City, 12345</span>
+    <span className="text-sm">#762 JanakPuri, Bareilly 243122
+</span>
   </div>
   <div className="flex items-center space-x-2">
     <FaPhone className="text-gray-400" />
