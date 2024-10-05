@@ -228,66 +228,50 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-teal-50 to-teal-100">
-  <div className="absolute inset-0">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="absolute top-0 w-full h-auto">
-      <path fill="#b2f5ea" fillOpacity="0.4" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
-    </svg>
-  </div>
-
-  <div className="container relative z-10 px-6 mx-auto">
+      <section className="relative flex items-center justify-center min-h-screen py-16 bg-gradient-to-br from-teal-50 to-green-100">
+  <div className="container px-4 mx-auto sm:px-6 lg:px-8">
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="mb-16 text-center"
+      className="mb-12 text-center"
     >
-      <h2 className="mb-4 text-5xl font-extrabold text-teal-800">Our Premium Services</h2>
-      <p className="max-w-2xl mx-auto text-xl text-teal-600">Indulge in luxury and transform your look with our exclusive range of premium beauty services.</p>
+      <h2 className="mb-4 text-4xl font-extrabold text-teal-800 sm:text-5xl">Our Premium Services</h2>
+      <p className="max-w-2xl mx-auto text-lg text-teal-600 sm:text-xl">Indulge in luxury and transform your look with our exclusive range of premium beauty services.</p>
     </motion.div>
 
-    <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {[
-        { title: 'Luxury Makeup', img: 'img/section.jpg', desc: 'Experience red carpet-worthy looks with our high-end makeup services.', link: '/makeup' },
-        { title: 'Advanced Skin Care', img: 'img/skin.jpg', desc: 'Rejuvenate your skin with cutting-edge treatments and premium products.', link: '/skin-care' },
-        { title: 'Couture Hair Styling', img: 'img/shampoo.jpg', desc: 'Get runway-ready hair with our expert styling and coloring services.', link: '/hair-styling' },
-        { title: 'Exclusive Product Line', img: 'img/sec2.jpg', desc: 'Shop our curated collection of luxury beauty and skincare products.', link: '/products' },
-        { title: 'VIP Beauty Masterclass', img: 'img/sec3.jpg', desc: 'Learn from industry experts in our exclusive beauty workshops.', link: '/masterclass' },
-        { title: 'Bespoke Nail Artistry', img: 'img/pro5.jpg', desc: 'Elevate your style with our custom nail designs and premium extensions.', link: '/nail-art' },
+        { title: 'Luxury Makeup', icon: '💄', desc: 'Experience red carpet-worthy looks with our high-end makeup services.', link: '/makeup' },
+        { title: 'Advanced Skin Care', icon: '✨', desc: 'Rejuvenate your skin with cutting-edge treatments and premium products.', link: '/skin-care' },
+        { title: 'Couture Hair Styling', icon: '💇‍♀️', desc: 'Get runway-ready hair with our expert styling and coloring services.', link: '/hair-styling' },
+        { title: 'Exclusive Product Line', icon: '🛍️', desc: 'Shop our curated collection of luxury beauty and skincare products.', link: '/products' },
+        { title: 'VIP Beauty Masterclass', icon: '👩‍🏫', desc: 'Learn from industry experts in our exclusive beauty workshops.', link: '/masterclass' },
+        { title: 'Bespoke Nail Artistry', icon: '💅', desc: 'Elevate your style with our custom nail designs and premium extensions.', link: '/nail-art' },
       ].map((service, index) => (
         <motion.div 
           key={index}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: index * 0.1 }}
-          className="relative overflow-hidden transition-all duration-300 bg-white shadow-xl rounded-2xl hover:shadow-2xl group"
+          className="flex flex-col h-full p-6 transition-all duration-300 bg-white border-2 border-teal-200 rounded-lg hover:border-teal-400 hover:shadow-lg"
         >
-          <div className="absolute top-0 right-0 z-10 p-2 m-3 text-xs font-semibold text-white bg-teal-500 rounded-full">
-            Premium
+          <div className="flex items-center mb-4">
+            <span className="mr-4 text-4xl">{service.icon}</span>
+            <h3 className="text-xl font-bold text-teal-800">{service.title}</h3>
           </div>
-          <div className="relative overflow-hidden">
-            <img src={service.img} alt={service.title} className="object-cover w-full h-64 transition-transform duration-300 transform group-hover:scale-110"/>
-            <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black to-transparent group-hover:opacity-70"></div>
-          </div>
-          <div className="p-6">
-            <h3 className="mb-3 text-2xl font-bold text-teal-800">{service.title}</h3>
-            <p className="mb-4 text-teal-600">{service.desc}</p>
-            <Link 
-              to={service.link} 
-              className="inline-block px-6 py-2 font-semibold text-white transition-colors duration-300 bg-teal-500 rounded-full hover:bg-teal-600 hover:shadow-lg"
-            >
-              Discover More
-            </Link>
-          </div>
+          <p className="flex-grow mb-4 text-teal-600">{service.desc}</p>
+          <Link 
+            to={service.link} 
+            className="inline-block px-4 py-2 mt-auto text-sm font-semibold text-teal-600 transition-all duration-300 border-b-2 border-teal-600 hover:text-teal-800 hover:border-teal-800"
+          >
+            Learn More →
+          </Link>
         </motion.div>
       ))}
     </div>
   </div>
-
-  <div className="absolute left-0 w-40 h-40 -translate-x-1/2 bg-yellow-100 rounded-full top-1/4 opacity-20 animate-pulse"></div>
-  <div className="absolute right-0 w-48 h-48 translate-x-1/2 bg-teal-100 rounded-full bottom-1/4 opacity-20 animate-pulse"></div>
 </section>
-
       {/* About Us Section */}
       <section className="py-24 overflow-hidden bg-gradient-to-b from-white to-teal-50">
   <div className="min-h-screen p-4 sm:p-8 bg-gradient-to-br from-teal-50 to-green-100">
