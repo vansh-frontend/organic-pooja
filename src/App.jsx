@@ -9,7 +9,7 @@ import Cart from './components/Cart';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './About';
-import HelpCenter from './components/Help';
+import Help from './components/Help';
 import './components/DataDeletionPage';
 import DataDeletionPage from './components/DataDeletionPage';
 
@@ -86,7 +86,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/book" element={<Book />} />
-          <Route path='/help' element={<HelpCenter></HelpCenter>}></Route>
+          <Route path='/help' element={<Help></Help>}></Route>
           <Route path='/delete' element={<DataDeletionPage></DataDeletionPage>}></Route>
 
           <Route path="/products" element={<Products addToCart={addToCart} />} />
