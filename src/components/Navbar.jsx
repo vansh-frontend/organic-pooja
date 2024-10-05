@@ -101,68 +101,98 @@ const Navbar = ({ position }) => {
       console.error('Logout error:', error);
     }
   };
-  const UserMenu = ({ isMobile }) => (
-    <div ref={userMenuRef} className={isMobile ? "" : "relative"}>
-      <button
-        onClick={toggleUserMenu}
-        className={`flex items-center px-4 py-2 text-sm font-semibold text-gray-800 transition-all duration-300 ease-in-out ${
-          isMobile ? "w-full justify-start" : "rounded-full hover:bg-emerald-100"
-        }`}
-      >
-        <IconUserCircle size={24} className="mr-2 text-emerald-600" />
-        <span className="truncate max-w-[100px]">{isLoggedIn ? userName : 'Guest'}</span>
-      </button>
-      <AnimatePresence>
-        {isUserMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: isMobile ? 0 : -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: isMobile ? 0 : -10, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className={`${
-              isMobile ? "mt-2" : "absolute right-0 z-20 w-56 mt-2 bg-white rounded-lg shadow-xl border border-gray-200"
-            }`}
-          >
-            <div className="p-4 border-b border-gray-200">
-              <p className="text-sm font-medium text-gray-900">Hello, {isLoggedIn ? userName : 'Guest'}</p>
-              <p className="text-xs text-gray-500">{isLoggedIn ? 'Manage your account' : 'Sign in to your account'}</p>
-            </div>
-            <div className="py-2">
-              <NavLink to="/orders" className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600">
-                Orders
-              </NavLink>
-              <NavLink to="/wishlist" className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600">
-                Wishlist
-              </NavLink>
-              <NavLink to='/Help' className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600">
-                Help Center
-              </NavLink>
-            </div>
-            <div className="pt-2 border-t border-gray-200">
-              {isLoggedIn ? (
-                <button
-                  onClick={handleLogout}
-                  className="flex items-center w-full px-4 py-2 text-sm text-left text-red-600 transition-colors duration-150 hover:bg-red-50"
-                >
-                  <IconLogout size={18} className="mr-2" />
-                  Logout
-                </button>
-              ) : (
-                <button
-                  onClick={openLoginModal}
-                  className="flex items-center w-full px-4 py-2 text-sm text-left transition-colors duration-150 text-emerald-600 hover:bg-emerald-50"
-                >
-                  {/* <IconLogin size={18} className="mr-2" /> */}
-                  Login
-                </button>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <div className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-600 transform origin-left transition-all duration-300 scale-x-0 group-hover:scale-x-100"></div>
-    </div>
-  );
+
+ const UserMenu = ({ isMobile, setIsOpen }) => (
+  <div ref={userMenuRef} className={isMobile ? "" : "relative"}>
+    <button
+      onClick={toggleUserMenu}
+      className={`flex items-center px-4 py-2 text-sm font-semibold text-gray-800 transition-all duration-300 ease-in-out ${
+        isMobile ? "w-full justify-start" : "rounded-full hover:bg-emerald-100"
+      }`}
+    >
+      <IconUserCircle size={24} className="mr-2 text-emerald-600" />
+      <span className="truncate max-w-[100px]">{isLoggedIn ? userName : 'Guest'}</span>
+    </button>
+    <AnimatePresence>
+      {isUserMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: isMobile ? 0 : -10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: isMobile ? 0 : -10, scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+          className={`${
+            isMobile ? "mt-2" : "absolute right-0 z-20 w-56 mt-2 bg-white rounded-lg shadow-xl border border-gray-200"
+          }`}
+        >
+          <div className="p-4 border-b border-gray-200">
+            <p className="text-sm font-medium text-gray-900">Hello, {isLoggedIn ? userName : 'Guest'}</p>
+            <p className="text-xs text-gray-500">{isLoggedIn ? 'Manage your account' : 'Sign in to your account'}</p>
+          </div>
+          <div className="py-2">
+            <NavLink 
+              to="/orders" 
+              className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600"
+              onClick={() => {
+                setIsUserMenuOpen(false);
+                if (isMobile) setIsOpen(false);
+              }}
+            >
+              Orders
+            </NavLink>
+            <NavLink 
+              to="/wishlist" 
+              className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600"
+              onClick={() => {
+                setIsUserMenuOpen(false);
+                if (isMobile) setIsOpen(false);
+              }}
+            >
+              Wishlist
+            </NavLink>
+            <NavLink 
+              to='/Help' 
+              className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600"
+              onClick={() => {
+                setIsUserMenuOpen(false);
+                if (isMobile) setIsOpen(false);
+              }}
+            >
+              Help Center
+            </NavLink>
+          </div>
+          <div className="pt-2 border-t border-gray-200">
+            {isLoggedIn ? (
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsUserMenuOpen(false);
+                  if (isMobile) setIsOpen(false);
+                }}
+                className="flex items-center w-full px-4 py-2 text-sm text-left text-red-600 transition-colors duration-150 hover:bg-red-50"
+              >
+                <IconLogout size={18} className="mr-2" />
+                Logout
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  openLoginModal();
+                  setIsUserMenuOpen(false);
+                  if (isMobile) setIsOpen(false);
+                }}
+                className="flex items-center w-full px-4 py-2 text-sm text-left transition-colors duration-150 text-emerald-600 hover:bg-emerald-50"
+              >
+                {/* <IconLogin size={18} className="mr-2" /> */}
+                Login
+              </button>
+            )}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-600 transform origin-left transition-all duration-300 scale-x-0 group-hover:scale-x-100"></div>
+  </div>
+);
   const desktopNavItems = position === 'left' ? (
     <ul className="items-center hidden space-x-10 lg:flex">
       {['Home', 'Products', 'Services'].map((item) => (
