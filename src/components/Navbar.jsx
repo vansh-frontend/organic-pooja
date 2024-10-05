@@ -7,6 +7,7 @@ import { auth } from './firebaseConfig';
 import { motion, AnimatePresence } from 'framer-motion';
 import './DataDeletionPage';
 import './Help';
+import './Orders';
 
 const Navbar = ({ position }) => {
   const [isOpen, setIsOpen] = useState(false);

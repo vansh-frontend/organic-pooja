@@ -12,6 +12,7 @@ import About from './About';
 import Help from './components/Help';
 import './components/DataDeletionPage';
 import DataDeletionPage from './components/DataDeletionPage';
+import Orders from './components/Orders';
 
 const theme = {
   colors: {
@@ -86,6 +87,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/book" element={<Book />} />
+          <Route path="/orders" element={<Orders />} />
           <Route path='/Help' element={<Help></Help>}></Route>
           <Route path='/delete' element={<DataDeletionPage></DataDeletionPage>}></Route>
 
