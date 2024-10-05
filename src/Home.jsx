@@ -189,22 +189,31 @@ const Home = () => {
             transition={{ duration: 1, delay: 0.8 }}
             className="flex flex-col items-center justify-center w-full gap-6 mb-16 sm:flex-row sm:gap-8"
           >
-            <motion.a 
-              href="#shop" 
-              className="w-full px-10 py-5 text-xl font-bold text-white transition duration-300 rounded-full shadow-2xl bg-gradient-to-r from-emerald-500 to-teal-600 sm:w-auto hover:from-emerald-600 hover:to-teal-700 focus:outline-none focus:ring-4 focus:ring-emerald-500 focus:ring-offset-4"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(16, 185, 129, 0.5)" }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Shop Now
-            </motion.a>
-            <motion.a 
-              href="#contact" 
-              className="w-full px-10 py-5 text-xl font-bold transition duration-300 bg-transparent border-2 rounded-full shadow-2xl text-emerald-600 border-emerald-600 sm:w-auto hover:bg-emerald-50 focus:outline-none focus:ring-4 focus:ring-emerald-500 focus:ring-offset-4 backdrop-blur-sm"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(16, 185, 129, 0.3)" }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Contact Us
-            </motion.a>
+          <div className="flex flex-col items-center justify-center w-full gap-6 mb-16 sm:flex-row sm:gap-8">
+  <motion.a 
+    href="/products" 
+    className="relative w-full px-10 py-5 overflow-hidden text-xl font-bold text-white transition-all duration-300 rounded-full shadow-lg sm:w-auto group"
+    style={{
+      background: "linear-gradient(45deg, #10B981, #0D9488)",
+      boxShadow: "0 4px 6px rgba(16, 185, 129, 0.25)"
+    }}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <span className="relative z-10">Shop Now</span>
+    <span className="absolute inset-0 w-full h-full transition-all duration-300 opacity-0 bg-gradient-to-r from-emerald-600 to-teal-700 group-hover:opacity-100"></span>
+  </motion.a>
+
+  <motion.a 
+    href="/services" 
+    className="relative w-full px-10 py-5 overflow-hidden text-xl font-bold transition-all duration-300 bg-transparent border-2 rounded-full shadow-lg sm:w-auto group text-emerald-600 border-emerald-600"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <span className="relative z-10 transition-colors duration-300 group-hover:text-white">Our Services</span>
+    <span className="absolute inset-0 w-full h-full transition-all duration-300 scale-x-0 bg-emerald-600 group-hover:scale-x-100"></span>
+  </motion.a>
+</div>
           </motion.div>
         </div>
 
@@ -214,16 +223,7 @@ const Home = () => {
           animate={{ y: 0 }}
           transition={{ duration: 1, delay: 1.2 }}
         >
-          <svg viewBox="0 0 1440 320" className="w-full h-auto">
-            <motion.path 
-              fill="#ffffff" 
-              fillOpacity="1" 
-              d="M0,160L48,170.7C96,181,192,203,288,202.7C384,203,480,181,576,165.3C672,149,768,139,864,154.7C960,171,1056,213,1152,218.7C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              initial={{ pathLength: 0, pathOffset: 1 }}
-              animate={{ pathLength: 1, pathOffset: 0 }}
-              transition={{ duration: 2, ease: "easeInOut" }}
-            />
-          </svg>
+          
         </motion.div>
       </section>
 
@@ -287,6 +287,7 @@ const Home = () => {
   <div className="absolute left-0 w-40 h-40 -translate-x-1/2 bg-yellow-100 rounded-full top-1/4 opacity-20 animate-pulse"></div>
   <div className="absolute right-0 w-48 h-48 translate-x-1/2 bg-teal-100 rounded-full bottom-1/4 opacity-20 animate-pulse"></div>
 </section>
+
       {/* About Us Section */}
       <section className="py-24 overflow-hidden bg-gradient-to-b from-white to-teal-50">
   <div className="min-h-screen p-4 sm:p-8 bg-gradient-to-br from-teal-50 to-green-100">
