@@ -228,19 +228,19 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className="relative flex items-center justify-center min-h-screen py-16 bg-gradient-to-br from-teal-50 to-green-100">
-  <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+      <section className="relative flex items-center justify-center min-h-screen px-4 py-16 bg-gradient-to-br from-teal-50 to-green-100">
+  <div className="w-full mx-auto max-w-7xl">
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       className="mb-12 text-center"
     >
-      <h2 className="mb-4 text-4xl font-extrabold text-teal-800 sm:text-5xl">Our Premium Services</h2>
-      <p className="max-w-2xl mx-auto text-lg text-teal-600 sm:text-xl">Indulge in luxury and transform your look with our exclusive range of premium beauty services.</p>
+      <h2 className="mb-4 text-3xl font-extrabold text-teal-800 md:text-4xl lg:text-5xl">Our Premium Services</h2>
+      <p className="max-w-2xl mx-auto text-base text-teal-600 md:text-lg lg:text-xl">Indulge in luxury and transform your look with our exclusive range of premium beauty services.</p>
     </motion.div>
 
-    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="flex flex-wrap -mx-4">
       {[
         { title: 'Luxury Makeup', icon: '💄', desc: 'Experience red carpet-worthy looks with our high-end makeup services.', link: '/makeup' },
         { title: 'Advanced Skin Care', icon: '✨', desc: 'Rejuvenate your skin with cutting-edge treatments and premium products.', link: '/skin-care' },
@@ -254,19 +254,21 @@ const Home = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: index * 0.1 }}
-          className="flex flex-col h-full p-6 transition-all duration-300 bg-white border-2 border-teal-200 rounded-lg hover:border-teal-400 hover:shadow-lg"
+          className="w-full px-4 mb-8 sm:w-1/2 lg:w-1/3"
         >
-          <div className="flex items-center mb-4">
-            <span className="mr-4 text-4xl">{service.icon}</span>
-            <h3 className="text-xl font-bold text-teal-800">{service.title}</h3>
+          <div className="flex flex-col h-full p-6 transition-all duration-300 bg-white border-2 border-teal-200 rounded-lg hover:border-teal-400 hover:shadow-lg">
+            <div className="flex items-center mb-4">
+              <span className="mr-4 text-4xl">{service.icon}</span>
+              <h3 className="text-xl font-bold text-teal-800">{service.title}</h3>
+            </div>
+            <p className="flex-grow mb-4 text-teal-600">{service.desc}</p>
+            <Link 
+              to={service.link} 
+              className="inline-block px-4 py-2 mt-auto text-sm font-semibold text-teal-600 transition-all duration-300 border-b-2 border-teal-600 hover:text-teal-800 hover:border-teal-800"
+            >
+              Learn More →
+            </Link>
           </div>
-          <p className="flex-grow mb-4 text-teal-600">{service.desc}</p>
-          <Link 
-            to={service.link} 
-            className="inline-block px-4 py-2 mt-auto text-sm font-semibold text-teal-600 transition-all duration-300 border-b-2 border-teal-600 hover:text-teal-800 hover:border-teal-800"
-          >
-            Learn More →
-          </Link>
         </motion.div>
       ))}
     </div>
