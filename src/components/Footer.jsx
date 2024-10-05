@@ -1,6 +1,6 @@
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaPhone, FaChevronUp } from 'react-icons/fa';
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -20,110 +20,137 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="relative mt-auto text-gray-300 bg-gray-900">
-        <div className="container px-4 py-12 mx-auto sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
-            {/* Logo and Social Media */}
-            <div className="col-span-2 md:col-span-3 lg:col-span-2">
-              <img src="img/pooja 2.png" alt="Organic by Pooja" className="h-12 mb-4" />
-              <p className="mb-4 text-sm">Your trusted partner for organic skincare solutions.</p>
-              <div className="flex space-x-4">
-                {[
-                  { Icon: FaFacebookF, href: "https://facebook.com" },
-                  { Icon: FaTwitter, href: "https://twitter.com" },
-                  { Icon: FaLinkedinIn, href: "https://linkedin.com" },
-                  { Icon: FaInstagram, href: "https://instagram.com" },
-                ].map(({ Icon, href }, index) => (
-                  <a 
-                    key={index} 
-                    href={href} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-gray-400 transition-colors duration-300 hover:text-white"
-                  >
-                    <Icon className="w-5 h-5" />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Products */}
-            <div>
-              <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">Products</h3>
-              <ul className="space-y-2">
-                <li><a href="/products/face-wash" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Face Wash</a></li>
-                <li><a href="/products/face-cleansers" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Face Cleansers</a></li>
-                <li><a href="/products/moisturizers-creams" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Moisturizers</a></li>
-                <li><a href="/products/serum" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Serum</a></li>
-              </ul>
-            </div>
-
-            {/* Services */}
-            <div>
-              <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">Services</h3>
-              <ul className="space-y-2">
-                <li><a href="/services/laser-hair-removal" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Laser Hair Removal</a></li>
-                <li><a href="/services/acne" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Acne</a></li>
-                <li><a href="/services/anti-ageing" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Anti-Ageing</a></li>
-                <li><a href="/services/facials" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Facials</a></li>
-              </ul>
-            </div>
-
-            {/* Skin Type */}
-            <div>
-              <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">Skin Type</h3>
-              <ul className="space-y-2">
-                <li><a href="/skin-type/oily" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Oily</a></li>
-                <li><a href="/skin-type/sensitive" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Sensitive</a></li>
-                <li><a href="/skin-type/dry" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Dry</a></li>
-                <li><a href="/skin-type/combination" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Combination</a></li>
-              </ul>
-            </div>
-
-            {/* Company */}
-            <div>
-              <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">Company</h3>
-              <ul className="space-y-2">
-                <li>
-                  <NavLink 
-                    to="/About" 
-                    className={({ isActive }) => 
-                      `text-sm transition-colors duration-300 ${isActive ? 'text-white font-semibold' : 'hover:text-white hover:underline'}`
-                    }
-                  >
-                    About Us
-                  </NavLink>
-                </li>
-                <li><a href="/company/contact-us" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Contact Us</a></li>
-                <li><a href="/company/terms-conditions" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Terms & Conditions</a></li>
-                <li><a href="/company/privacy-policy" className="text-sm transition-colors duration-300 hover:text-white hover:underline">Privacy Policy</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="pt-8 mt-12 border-t border-gray-800">
-            <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
-              <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} Organic by Pooja Skin Clinic. All rights reserved.</p>
-              <div className="flex space-x-4">
-                <a href="/privacy-policy" className="text-sm text-gray-400 hover:text-white">Privacy Policy</a>
-                <a href="/terms-of-service" className="text-sm text-gray-400 hover:text-white">Terms of Service</a>
-              </div>
-            </div>
-          </div>
+   <footer className="relative mt-auto text-gray-300 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 backdrop-filter backdrop-blur-lg bg-opacity-80">
+  <div className="container px-4 py-16 mx-auto sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+      {/* Logo and Social Media */}
+      <div className="space-y-6">
+        <img src="img/pooja 2.png" alt="Organic by Pooja" className="h-16 transition-transform duration-300 hover:scale-105" />
+        <p className="text-sm text-gray-300">Your trusted partner for organic skincare solutions.</p>
+        <div className="flex space-x-4">
+          {[
+            { Icon: FaFacebookF, href: "https://facebook.com" },
+            { Icon: FaTwitter, href: "https://twitter.com" },
+            { Icon: FaLinkedinIn, href: "https://linkedin.com" },
+            { Icon: FaInstagram, href: "https://instagram.com" },
+          ].map(({ Icon, href }, index) => (
+            <a 
+              key={index} 
+              href={href} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="p-2 text-gray-400 transition-all duration-300 bg-gray-800 bg-opacity-50 rounded-full hover:text-white hover:bg-opacity-70 hover:scale-110"
+            >
+              <Icon className="w-5 h-5" />
+            </a>
+          ))}
         </div>
-      </footer>
+      </div>
 
-      {/* Sticky WhatsApp Button */}
-      <a
-      href="https://wa.me/918171924503/?text=Hello%0D%0AGot%20this%20number%20from%20Organic%20By%20pooja.%0D%0A"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center w-full px-4 py-3 space-x-2 text-white transition-colors duration-300 bg-green-500 shadow-lg hover:bg-green-600"
+      {/* Quick Links */}
+      <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-2 lg:col-span-3">
+        {/* Products */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold text-white">Products</h3>
+          <ul className="space-y-2">
+            {['Face Wash', 'Face Cleansers', 'Moisturizers', 'Serum'].map((item, index) => (
+              <li key={index}>
+                <a href={`/products/${item.toLowerCase().replace(' ', '-')}`} className="text-sm transition-colors duration-300 hover:text-white hover:underline">
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Services */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold text-white">Services</h3>
+          <ul className="space-y-2">
+            {['Laser Hair Removal', 'Acne', 'Anti-Ageing', 'Facials'].map((item, index) => (
+              <li key={index}>
+                <a href={`/services/${item.toLowerCase().replace(' ', '-')}`} className="text-sm transition-colors duration-300 hover:text-white hover:underline">
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Company */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold text-white">Company</h3>
+          <ul className="space-y-2">
+            <li>
+              <NavLink 
+                to="/About" 
+                className={({ isActive }) => 
+                  `text-sm transition-colors duration-300 ${isActive ? 'text-white font-semibold' : 'hover:text-white hover:underline'}`
+                }
+              >
+                About Us
+              </NavLink>
+            </li>
+            {['Contact Us', 'Terms & Conditions', 'Privacy Policy'].map((item, index) => (
+              <li key={index}>
+                <a href={`/company/${item.toLowerCase().replace(' & ', '-').replace(' ', '-')}`} className="text-sm transition-colors duration-300 hover:text-white hover:underline">
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    {/* Contact Information */}
+    <div className="flex flex-wrap justify-between gap-4 pt-12 mt-12 border-t border-gray-700 border-opacity-50">
+  <div className="flex items-center space-x-2">
+    <FaMapMarkerAlt className="text-gray-400" />
+    <span className="text-sm">123 Skincare Street, Beauty City, 12345</span>
+  </div>
+  <div className="flex items-center space-x-2">
+    <FaPhone className="text-gray-400" />
+    <a 
+      href="tel:+ +918171924503" 
+      className="text-sm transition-colors duration-300 hover:text-white"
     >
-      <FaWhatsapp className="w-6 h-6" />
-      <span className="font-medium">Chat with Us on WhatsApp</span>
+       +91 8171924503
     </a>
+  </div>
+  <div className="flex items-center space-x-2">
+    <FaEnvelope className="text-gray-400" />
+    <a 
+      href="mailto:organicbypooja@gmail.com" 
+      className="text-sm transition-colors duration-300 hover:text-white"
+    >
+      organicbypooja@gmail.com
+    </a>
+  </div>
+</div>
 
+    {/* Copyright */}
+    <div className="pt-8 mt-12 text-center border-t border-gray-700 border-opacity-50">
+      <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} Organic by Pooja Skin Clinic. All rights reserved.</p>
+      <div className="flex justify-center mt-4 space-x-4">
+        <a href="/privacy-policy" className="text-sm text-gray-400 transition-colors duration-300 hover:text-white">Privacy Policy</a>
+        <a href="/terms-of-service" className="text-sm text-gray-400 transition-colors duration-300 hover:text-white">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+      {/* Sticky WhatsApp Button */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center w-full px-4 py-2">
+      <a
+  href="https://wa.me/918171924503/?text=Hello%0D%0AGot%20this%20number%20from%20Organic%20By%20pooja.%0D%0A"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center w-full px-4 py-2 space-x-2 text-white transition-all duration-300 bg-green-500 shadow-lg hover:bg-green-600"
+>
+  <FaWhatsapp className="w-5 h-5 md:w-6 md:h-6" />
+  <span className="text-sm font-medium md:text-base">Chat with Us on WhatsApp</span>
+</a>
+</div>
       {/* Scroll to Top Button */}
       {showScrollTop && (
         <button

@@ -465,11 +465,11 @@ const Home = () => {
       </section>
 
       {/* Contact Section */}
-      <section ref={el => sectionRefs.current[4] = el} className="relative py-24 overflow-hidden bg-black">
+      <section ref={el => sectionRefs.current[4] = el} className="relative py-24 overflow-hidden bg-gradient-to-br from-teal-900 to-green-900">
   {/* Animated background */}
   <div className="absolute inset-0 z-0">
-    <div className="absolute inset-0 opacity-50 bg-gradient-to-r from-teal-500 to-green-500"></div>
-    <div className="absolute inset-0 bg-[url('data:image/svg+xml,...')] opacity-30 animate-slide"></div>
+    <div className="absolute inset-0 opacity-30 bg-[url('data:image/svg+xml,...')] animate-slide"></div>
+    <div className="absolute inset-0 bg-black opacity-50"></div>
   </div>
 
   <div className="container relative z-10 px-4 mx-auto sm:px-6 lg:px-8">
@@ -482,15 +482,15 @@ const Home = () => {
       <h2 className="mb-4 text-5xl font-extrabold tracking-tight text-white">
         Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-green-400">Touch</span>
       </h2>
-      <p className="max-w-2xl mx-auto text-xl text-gray-300">
+      <p className="max-w-2xl mx-auto text-xl text-teal-100">
         We'd love to hear from you! Reach out for inquiries or to book an appointment.
       </p>
     </motion.div>
 
     <div className="grid gap-8 md:grid-cols-3">
       {[
-        { icon: FaPhone, text: "Call Us", href: "tel:+1234567890" },
-        { icon: FaEnvelope, text: "Email Us", href: "mailto:info@organicbypooja.com" },
+        { icon: FaPhone, text: "Call Us", href: "tel:+918171924503" },
+        { icon: FaEnvelope, text: "Email Us", href: "mailto:organicbypooja@gmail.com" },
         { icon: FaComments, text: "Contact Us", href: "/contact" }
       ].map((item, index) => (
         <motion.div
@@ -501,13 +501,13 @@ const Home = () => {
         >
           <Link 
             to={item.href}
-            className="block p-8 transition-all duration-300 transform bg-white group bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-3xl hover:bg-opacity-20 hover:scale-105"
+            className="block p-8 transition-all duration-300 transform bg-white/10 backdrop-filter backdrop-blur-lg rounded-2xl hover:bg-white/20 hover:scale-105 group"
           >
             <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 text-3xl text-white rounded-full bg-gradient-to-r from-teal-500 to-green-500 group-hover:animate-bounce">
               <item.icon />
             </div>
             <h3 className="mb-2 text-xl font-semibold text-white">{item.text}</h3>
-            <p className="text-gray-400 transition-colors duration-300 group-hover:text-teal-300">
+            <p className="text-teal-200 transition-colors duration-300 group-hover:text-white">
               Click to {item.text.toLowerCase()}
             </p>
           </Link>
