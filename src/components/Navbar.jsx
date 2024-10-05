@@ -102,7 +102,7 @@ const Navbar = ({ position }) => {
     }
   };
 
- const UserMenu = ({ isMobile, setIsOpen }) => (
+ const UserMenu = ({ isMobile }) => (
   <div ref={userMenuRef} className={isMobile ? "" : "relative"}>
     <button
       onClick={toggleUserMenu}
