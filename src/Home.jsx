@@ -97,136 +97,74 @@ const Home = () => {
   return (
     <div className="relative w-full overflow-hidden bg-gray-50">
       {/* Organic By Pooja Section */}
-      <section className="relative flex flex-col items-center min-h-screen overflow-hidden font-sans bg-gradient-to-br from-emerald-50 to-teal-100">
-        <motion.div 
-          className="absolute inset-0 opacity-30"
-          animate={{ 
-            background: [
-              "radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 95, 70, 0) 50%)",
-              "radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 95, 70, 0) 50%)",
-              "radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 95, 70, 0) 50%)"
-            ]
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
+      <section className="relative min-h-screen bg-gradient-to-br from-emerald-50 to-teal-100 overflow-hidden flex items-center justify-center px-4 sm:px-6 lg:px-8">
+  {/* Background elements */}
+  <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+    <div className="absolute top-0 right-0 w-96 h-96 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+    <div className="absolute -bottom-32 left-20 w-96 h-96 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+  </div>
 
-        <motion.div className="absolute inset-0 opacity-40">
-          {[...Array(5)].map((_, index) => (
-            <motion.div
-              key={index}
-              className="absolute rounded-full mix-blend-multiply filter blur-xl"
-              style={{
-                background: `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.4)`,
-                width: `${Math.random() * 300 + 100}px`,
-                height: `${Math.random() * 300 + 100}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                x: [0, Math.random() * 100 - 50, 0],
-                y: [0, Math.random() * 100 - 50, 0],
-                scale: [1, Math.random() * 0.5 + 1, 1],
-                rotate: [0, Math.random() * 360, 0],
-              }}
-              transition={{
-                duration: Math.random() * 10 + 10,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            />
-          ))}
-        </motion.div>
-
-        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full max-w-6xl px-4 mx-auto text-center sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-          >
-            <motion.span 
-              className="inline-block px-6 py-3 text-sm font-bold rounded-full shadow-lg text-emerald-800 bg-emerald-200 sm:text-base md:text-lg backdrop-blur-sm"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(16, 185, 129, 0.5)" }}
-            >
-              100% Natural & Organic
-            </motion.span>
-          </motion.div>
-
-          <motion.h1 
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="my-8 font-serif text-6xl font-bold tracking-tight text-emerald-900 sm:text-6xl md:text-8xl lg:text-8xl"
-          >
-            <motion.span 
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500"
-              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-              transition={{ duration: 5, repeat: Infinity }}
-            >
-              ORGANIC
-            </motion.span>
-            <motion.span 
-              className="block mt-2 text-teal-600"
-            >
-              BY POOJA
-            </motion.span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            className="max-w-3xl mx-auto mb-12 text-xl font-medium text-emerald-800 sm:text-1xl md:text-2xl"
-          >
-            Elevate your skincare routine with our <motion.span 
-              className="font-bold"
-              whileHover={{ scale: 1.05, color: "#047857" }}
-            >premium body and facial products</motion.span>.
-          </motion.p>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="flex flex-col items-center justify-center w-full gap-6 mb-16 sm:flex-row sm:gap-8"
-          >
-          <div className="flex flex-col items-center justify-center w-full gap-6 mb-16 sm:flex-row sm:gap-8">
-  <motion.a 
-    href="/products" 
-    className="relative w-full px-10 py-5 overflow-hidden text-xl font-bold text-white transition-all duration-300 rounded-full shadow-lg sm:w-auto group"
-    style={{
-      background: "linear-gradient(45deg, #10B981, #0D9488)",
-      boxShadow: "0 4px 6px rgba(16, 185, 129, 0.25)"
-    }}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    <span className="relative z-10">Shop Now</span>
-    <span className="absolute inset-0 w-full h-full transition-all duration-300 opacity-0 bg-gradient-to-r from-emerald-600 to-teal-700 group-hover:opacity-100"></span>
-  </motion.a>
-
-  <motion.a 
-    href="/services" 
-    className="relative w-full px-10 py-5 overflow-hidden text-xl font-bold transition-all duration-300 bg-transparent border-2 rounded-full shadow-lg sm:w-auto group text-emerald-600 border-emerald-600"
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    <span className="relative z-10 transition-colors duration-300 group-hover:text-white">Our Services</span>
-    <span className="absolute inset-0 w-full h-full transition-all duration-300 scale-x-0 bg-emerald-600 group-hover:scale-x-100"></span>
-  </motion.a>
-</div>
-          </motion.div>
-        </div>
-
-        <motion.div 
-          className="absolute bottom-0 left-0 w-full"
-          initial={{ y: 100 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 1, delay: 1.2 }}
+  <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center">
+    {/* Content */}
+    <div className="w-full md:w-1/2 text-center md:text-left mb-12 md:mb-0">
+      <span className="inline-block px-4 py-2 bg-emerald-200 text-emerald-800 rounded-full text-sm font-semibold tracking-wide mb-6 shadow-md transform hover:scale-105 transition-transform duration-300">
+        100% Natural & Organic
+      </span>
+      <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 leading-tight mb-6 animate-gradient">
+        <span className="block">ORGANIC</span>
+        <span className="block">BY POOJA</span>
+      </h1>
+      <p className="text-xl text-emerald-800 mb-10 max-w-2xl mx-auto md:mx-0 leading-relaxed">
+        Elevate your skincare routine with our premium body and facial products, crafted with nature's finest ingredients.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+        <a 
+          href="/products" 
+          className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full font-semibold hover:from-emerald-600 hover:to-teal-600 transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
         >
-          
-        </motion.div>
-      </section>
+          Shop Now
+        </a>
+        <a 
+          href="/services" 
+          className="px-8 py-4 border-2 border-emerald-600 text-emerald-600 rounded-full font-semibold hover:bg-emerald-600 hover:text-white transition duration-300 transform hover:scale-105 hover:shadow-lg"
+        >
+          Our Services
+        </a>
+      </div>
+    </div>
 
+    {/* Image - hidden on mobile, visible on md and up */}
+    <div className="w-full md:w-1/2 relative hidden md:block">
+      <div className="relative w-full h-[500px] rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300">
+        <img 
+          src="img/section.jpg" 
+          alt="Organic skincare products" 
+          className="object-cover w-full h-full"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-emerald-900 to-transparent opacity-50"></div>
+      </div>
+      {/* Decorative elements */}
+      <div className="absolute top-10 -left-10 w-20 h-20 bg-gradient-to-br from-emerald-300 to-teal-400 rounded-full flex items-center justify-center animate-float shadow-lg">
+        <FaLeaf className="text-white text-3xl" />
+      </div>
+      <div className="absolute bottom-10 -right-10 w-24 h-24 bg-gradient-to-br from-teal-400 to-green-500 rounded-full flex items-center justify-center animate-float animation-delay-2000 shadow-lg">
+        <FaStar className="text-white text-4xl" />
+      </div>
+      <div className="absolute top-1/2 -right-5 w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+        <FaHeart className="text-white text-2xl" />
+      </div>
+    </div>
+  </div>
+
+  {/* Mobile-only decorative elements */}
+  <div className="absolute top-10 left-5 w-16 h-16 bg-gradient-to-br from-emerald-300 to-teal-400 rounded-full flex items-center justify-center animate-float shadow-lg md:hidden">
+    <FaLeaf className="text-white text-2xl" />
+  </div>
+  <div className="absolute bottom-10 right-5 w-20 h-20 bg-gradient-to-br from-teal-400 to-green-500 rounded-full flex items-center justify-center animate-float animation-delay-2000 shadow-lg md:hidden">
+    <FaStar className="text-white text-3xl" />
+  </div>
+</section>
       {/* Services Section */}
       <section className="relative flex items-center justify-center min-h-screen px-4 py-16 bg-gradient-to-br from-teal-50 to-green-100">
   <div className="w-full mx-auto max-w-7xl">
