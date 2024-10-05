@@ -155,7 +155,7 @@ const Home = () => {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="my-8 font-serif text-6xl font-bold tracking-tight text-emerald-900 sm:text-7xl md:text-8xl lg:text-9xl"
+            className="my-8 font-serif text-6xl font-bold tracking-tight text-emerald-900 sm:text-6xl md:text-8xl lg:text-8xl"
           >
             <motion.span 
               className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500"
@@ -175,7 +175,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="max-w-3xl mx-auto mb-12 text-xl font-medium text-emerald-800 sm:text-2xl md:text-3xl"
+            className="max-w-3xl mx-auto mb-12 text-xl font-medium text-emerald-800 sm:text-1xl md:text-2xl"
           >
             Elevate your skincare routine with our <motion.span 
               className="font-bold"
