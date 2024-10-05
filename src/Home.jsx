@@ -97,124 +97,135 @@ const Home = () => {
   return (
     <div className="relative w-full overflow-hidden bg-gray-50">
       {/* Organic By Pooja Section */}
-      <section className="relative flex flex-col items-center justify-center min-h-screen px-4 py-16 overflow-hidden font-sans bg-gradient-to-br from-emerald-50 to-teal-100 sm:px-6 lg:px-8">
-  <motion.div 
-    className="absolute inset-0 opacity-30"
-    animate={{ 
-      background: [
-        "radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 95, 70, 0) 50%)",
-        "radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 95, 70, 0) 50%)",
-        "radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 95, 70, 0) 50%)"
-      ]
+      <section className="relative flex flex-col items-center min-h-screen overflow-hidden font-sans bg-gradient-to-br from-emerald-50 to-teal-100">
+        <motion.div 
+          className="absolute inset-0 opacity-30"
+          animate={{ 
+            background: [
+              "radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 95, 70, 0) 50%)",
+              "radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 95, 70, 0) 50%)",
+              "radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 95, 70, 0) 50%)"
+            ]
+          }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
+
+        <motion.div className="absolute inset-0 opacity-40">
+          {[...Array(5)].map((_, index) => (
+            <motion.div
+              key={index}
+              className="absolute rounded-full mix-blend-multiply filter blur-xl"
+              style={{
+                background: `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.4)`,
+                width: `${Math.random() * 300 + 100}px`,
+                height: `${Math.random() * 300 + 100}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                x: [0, Math.random() * 100 - 50, 0],
+                y: [0, Math.random() * 100 - 50, 0],
+                scale: [1, Math.random() * 0.5 + 1, 1],
+                rotate: [0, Math.random() * 360, 0],
+              }}
+              transition={{
+                duration: Math.random() * 10 + 10,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+          ))}
+        </motion.div>
+
+        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full max-w-6xl px-4 mx-auto text-center sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <motion.span 
+              className="inline-block px-6 py-3 text-sm font-bold rounded-full shadow-lg text-emerald-800 bg-emerald-200 sm:text-base md:text-lg backdrop-blur-sm"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(16, 185, 129, 0.5)" }}
+            >
+              100% Natural & Organic
+            </motion.span>
+          </motion.div>
+
+          <motion.h1 
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="my-8 font-serif text-6xl font-bold tracking-tight text-emerald-900 sm:text-6xl md:text-8xl lg:text-8xl"
+          >
+            <motion.span 
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500"
+              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+              transition={{ duration: 5, repeat: Infinity }}
+            >
+              ORGANIC
+            </motion.span>
+            <motion.span 
+              className="block mt-2 text-teal-600"
+            >
+              BY POOJA
+            </motion.span>
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="max-w-3xl mx-auto mb-12 text-xl font-medium text-emerald-800 sm:text-1xl md:text-2xl"
+          >
+            Elevate your skincare routine with our <motion.span 
+              className="font-bold"
+              whileHover={{ scale: 1.05, color: "#047857" }}
+            >premium body and facial products</motion.span>.
+          </motion.p>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="flex flex-col items-center justify-center w-full gap-6 mb-16 sm:flex-row sm:gap-8"
+          >
+          <div className="flex flex-col items-center justify-center w-full gap-6 mb-16 sm:flex-row sm:gap-8">
+  <motion.a 
+    href="/products" 
+    className="relative w-full px-10 py-5 overflow-hidden text-xl font-bold text-white transition-all duration-300 rounded-full shadow-lg sm:w-auto group"
+    style={{
+      background: "linear-gradient(45deg, #10B981, #0D9488)",
+      boxShadow: "0 4px 6px rgba(16, 185, 129, 0.25)"
     }}
-    transition={{ duration: 10, repeat: Infinity }}
-  />
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <span className="relative z-10">Shop Now</span>
+    <span className="absolute inset-0 w-full h-full transition-all duration-300 opacity-0 bg-gradient-to-r from-emerald-600 to-teal-700 group-hover:opacity-100"></span>
+  </motion.a>
 
-  <motion.div className="absolute inset-0 opacity-40">
-    {[...Array(5)].map((_, index) => (
-      <motion.div
-        key={index}
-        className="absolute rounded-full mix-blend-multiply filter blur-xl"
-        style={{
-          background: `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.4)`,
-          width: `${Math.random() * 300 + 100}px`,
-          height: `${Math.random() * 300 + 100}px`,
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-        }}
-        animate={{
-          x: [0, Math.random() * 100 - 50, 0],
-          y: [0, Math.random() * 100 - 50, 0],
-          scale: [1, Math.random() * 0.5 + 1, 1],
-          rotate: [0, Math.random() * 360, 0],
-        }}
-        transition={{
-          duration: Math.random() * 10 + 10,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
-    ))}
-  </motion.div>
+  <motion.a 
+    href="/services" 
+    className="relative w-full px-10 py-5 overflow-hidden text-xl font-bold transition-all duration-300 bg-transparent border-2 rounded-full shadow-lg sm:w-auto group text-emerald-600 border-emerald-600"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <span className="relative z-10 transition-colors duration-300 group-hover:text-white">Our Services</span>
+    <span className="absolute inset-0 w-full h-full transition-all duration-300 scale-x-0 bg-emerald-600 group-hover:scale-x-100"></span>
+  </motion.a>
+</div>
+          </motion.div>
+        </div>
 
-  <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-6xl mx-auto text-center">
-    <motion.div
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, delay: 0.2 }}
-    >
-      <motion.span 
-        className="inline-block px-4 py-2 text-sm font-bold rounded-full shadow-lg text-emerald-800 bg-emerald-200 sm:text-base md:text-lg backdrop-blur-sm sm:px-6 sm:py-3"
-        whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(16, 185, 129, 0.5)" }}
-      >
-        100% Natural & Organic
-      </motion.span>
-    </motion.div>
-
-    <motion.h1 
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1, delay: 0.4 }}
-      className="my-6 font-serif text-4xl font-bold tracking-tight text-emerald-900 sm:text-5xl md:text-6xl lg:text-7xl sm:my-8"
-    >
-      <motion.span 
-        className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500"
-        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-        transition={{ duration: 5, repeat: Infinity }}
-      >
-        ORGANIC
-      </motion.span>
-      <motion.span 
-        className="block mt-2 text-teal-600"
-      >
-        BY POOJA
-      </motion.span>
-    </motion.h1>
-    
-    <motion.p 
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, delay: 0.6 }}
-      className="max-w-3xl mx-auto mb-8 text-lg font-medium text-emerald-800 sm:text-xl md:text-2xl sm:mb-10"
-    >
-      Elevate your skincare routine with our <motion.span 
-        className="font-bold"
-        whileHover={{ scale: 1.05, color: "#047857" }}
-      >premium body and facial products</motion.span>.
-    </motion.p>
-    
-    <motion.div 
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, delay: 0.8 }}
-      className="flex flex-col items-center justify-center w-full gap-4 sm:flex-row sm:gap-6"
-    >
-      <motion.a 
-        href="/products" 
-        className="relative w-full px-8 py-3 overflow-hidden text-lg font-bold text-white transition-all duration-300 rounded-full shadow-lg sm:w-auto group sm:px-10 sm:py-4"
-        style={{
-          background: "linear-gradient(45deg, #10B981, #0D9488)",
-          boxShadow: "0 4px 6px rgba(16, 185, 129, 0.25)"
-        }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <span className="relative z-10">Shop Now</span>
-        <span className="absolute inset-0 w-full h-full transition-all duration-300 opacity-0 bg-gradient-to-r from-emerald-600 to-teal-700 group-hover:opacity-100"></span>
-      </motion.a>
-
-      <motion.a 
-        href="/services" 
-        className="relative w-full px-8 py-3 overflow-hidden text-lg font-bold transition-all duration-300 bg-transparent border-2 rounded-full shadow-lg sm:w-auto group text-emerald-600 border-emerald-600 sm:px-10 sm:py-4"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <span className="relative z-10 transition-colors duration-300 group-hover:text-white">Our Services</span>
-        <span className="absolute inset-0 w-full h-full transition-all duration-300 scale-x-0 bg-emerald-600 group-hover:scale-x-100"></span>
-      </motion.a>
-    </motion.div>
-  </div>
-</section>
+        <motion.div 
+          className="absolute bottom-0 left-0 w-full"
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 1, delay: 1.2 }}
+        >
+          
+        </motion.div>
+      </section>
 
       {/* Services Section */}
       <section className="relative flex items-center justify-center min-h-screen px-4 py-16 bg-gradient-to-br from-teal-50 to-green-100">
