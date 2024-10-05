@@ -1,14 +1,88 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaBox, FaTruck, FaCalendarAlt, FaMoneyBillWave } from 'react-icons/fa';
+import { FaBox, FaTruck, FaCalendarAlt, FaMoneyBillWave, FaSearch, FaFilter, FaDownload } from 'react-icons/fa';
+import jsPDF from 'jspdf';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  const [filteredOrders, setFilteredOrders] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [sortBy, setSortBy] = useState('date');
+  const [sortOrder, setSortOrder] = useState('desc');
 
   useEffect(() => {
     const storedOrders = JSON.parse(localStorage.getItem('orders') || '[]');
     setOrders(storedOrders);
+    filterAndSortOrders(storedOrders, searchTerm, statusFilter, sortBy, sortOrder);
   }, []);
+
+  const filterAndSortOrders = (orderList, search, status, sort, order) => {
+    let filtered = orderList;
+    if (search) {
+      filtered = filtered.filter(order => 
+        order.id.toString().includes(search) || 
+        order.items.some(item => item.name.toLowerCase().includes(search.toLowerCase()))
+      );
+    }
+    if (status !== 'all') {
+      filtered = filtered.filter(order => order.status === status);
+    }
+    filtered.sort((a, b) => {
+      if (sort === 'date') {
+        return order === 'asc' ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date);
+      } else if (sort === 'total') {
+        return order === 'asc' ? a.total - b.total : b.total - a.total;
+      }
+      return 0;
+    });
+    setFilteredOrders(filtered);
+  };
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    filterAndSortOrders(orders, e.target.value, statusFilter, sortBy, sortOrder);
+  };
+
+  const handleStatusFilter = (status) => {
+    setStatusFilter(status);
+    filterAndSortOrders(orders, searchTerm, status, sortBy, sortOrder);
+  };
+
+  const handleSort = (sort) => {
+    const newOrder = sort === sortBy && sortOrder === 'desc' ? 'asc' : 'desc';
+    setSortBy(sort);
+    setSortOrder(newOrder);
+    filterAndSortOrders(orders, searchTerm, statusFilter, sort, newOrder);
+  };
+
+  const downloadOrderDetails = (order) => {
+    const pdf = new jsPDF();
+    
+    // Set font size and style
+    pdf.setFontSize(18);
+    pdf.setFont("helvetica", "bold");
+    pdf.text(`Order #${order.id}`, 20, 20);
+    
+    pdf.setFontSize(12);
+    pdf.setFont("helvetica", "normal");
+    pdf.text(`Date: ${new Date(order.date).toLocaleDateString()}`, 20, 30);
+    pdf.text(`Status: ${order.status}`, 20, 40);
+    pdf.text(`Shipping: ${order.shippingMethod}`, 20, 50);
+    pdf.text(`Total: $${order.total.toFixed(2)}`, 20, 60);
+    
+    pdf.setFont("helvetica", "bold");
+    pdf.text("Items:", 20, 75);
+    pdf.setFont("helvetica", "normal");
+    
+    let yPosition = 85;
+    order.items.forEach((item, index) => {
+      pdf.text(`${index + 1}. ${item.name} (Qty: ${item.quantity}) - $${item.price}`, 25, yPosition);
+      yPosition += 10;
+    });
+    
+    pdf.save(`order-${order.id}-details.pdf`);
+  };
 
   if (orders.length === 0) {
     return (
@@ -31,8 +105,48 @@ const Orders = () => {
     >
       <div className="container px-4 mx-auto max-w-7xl">
         <h1 className="mb-8 text-3xl font-bold text-center text-gray-800">Your Orders</h1>
+        
+        {/* Search and Filter Section */}
+        <div className="mb-6 space-y-4 md:space-y-0 md:flex md:items-center md:justify-between">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search orders..."
+              value={searchTerm}
+              onChange={handleSearch}
+              className="w-full px-4 py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+            <FaSearch className="absolute text-gray-400 transform -translate-y-1/2 left-3 top-1/2" />
+          </div>
+          <div className="flex items-center space-x-4">
+            <select
+              value={statusFilter}
+              onChange={(e) => handleStatusFilter(e.target.value)}
+              className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="all">All Statuses</option>
+              <option value="Processing">Processing</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+            </select>
+            <button
+              onClick={() => handleSort('date')}
+              className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              Sort by Date {sortBy === 'date' && (sortOrder === 'asc' ? '↑' : '↓')}
+            </button>
+            <button
+              onClick={() => handleSort('total')}
+              className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              Sort by Total {sortBy === 'total' && (sortOrder === 'asc' ? '↑' : '↓')}
+            </button>
+          </div>
+        </div>
+
+        {/* Orders List */}
         <div className="space-y-6">
-          {orders.map((order) => (
+          {filteredOrders.map((order) => (
             <motion.div
               key={order.id}
               initial={{ y: 50, opacity: 0 }}
@@ -59,6 +173,15 @@ const Orders = () => {
                   <FaMoneyBillWave className="mr-2 text-indigo-600" />
                   <span className="text-gray-600">Total: ${order.total.toFixed(2)}</span>
                 </div>
+                <div className="flex items-center">
+                  <button
+                    onClick={() => downloadOrderDetails(order)}
+                    className="flex items-center px-3 py-1 text-sm font-medium text-indigo-600 bg-indigo-100 rounded-full hover:bg-indigo-200"
+                  >
+                    <FaDownload className="mr-2" />
+                    Download PDF
+                  </button>
+                </div>
               </div>
               <div className="mt-4 border-t border-gray-200">
                 <h3 className="mt-4 mb-2 text-lg font-semibold text-gray-800">Items</h3>
@@ -73,7 +196,7 @@ const Orders = () => {
                             <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
                           </div>
                         </div>
-                        <span className="text-sm font-medium text-gray-800">{item.price}</span>
+                        <span className="text-sm font-medium text-gray-800">${item.price}</span>
                       </div>
                     </li>
                   ))}
