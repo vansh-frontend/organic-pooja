@@ -190,7 +190,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
             <FaCheckCircle className="mx-auto mb-6 text-6xl text-green-500" />
             <h2 className="mb-4 text-3xl font-bold text-center text-gray-800">Order Confirmed!</h2>
             <p className="mb-6 text-xl text-center text-gray-600">Thank you for your purchase. Your order ID is: {orderId}</p>
-            <p className="mb-8 text-center text-gray-600">We've sent a confirmation email to {customerInfo.email} with your order details.</p>
+            {/* <p className="mb-8 text-center text-gray-600">We've sent a confirmation email to {customerInfo.email} with your order details.</p> */}
             <div className="flex justify-center">
               <button
                 onClick={() => navigate('/products')}
