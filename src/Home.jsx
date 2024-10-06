@@ -2,25 +2,20 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accordion from './components/Accordion';
 import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope, FaStarHalfAlt,FaComments } from 'react-icons/fa';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, } from 'framer-motion';
 
 import './Home.css';
 
-const toggleBodyScroll = (disable) => {
-  document.body.style.overflow = disable ? 'hidden' : 'visible';
-};
+// const toggleBodyScroll = (disable) => {
+//   document.body.style.overflow = disable ? 'hidden' : 'visible';
+// };
 
 const Home = () => {
   const sectionRefs = useRef([]);
   const [scrollDirection, setScrollDirection] = useState(null);
   const [activeSection, setActiveSection] = useState(null);
 
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-    exit: { opacity: 0, y: -50, transition: { duration: 0.4 } }
-  };
-
+ 
   const values = [
     { icon: FaLeaf, text: "Natural Ingredients", color: "green" },
     { icon: FaStar, text: "Quality Assurance", color: "yellow" },
@@ -101,72 +96,149 @@ const Home = () => {
   return (
     <div className="relative w-full overflow-hidden bg-gray-50">
       {/* Organic By Pooja Section */}
-      <section className="relative flex items-center justify-center min-h-screen px-4 overflow-hidden bg-gradient-to-br from-emerald-50 to-teal-100 sm:px-6 lg:px-8">
-  {/* Background elements */}
+      <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-emerald-50 to-teal-100">
+  {/* Decorative background elements */}
   <div className="absolute inset-0 overflow-hidden">
-    <div className="absolute top-0 left-0 rounded-full w-96 h-96 bg-emerald-200 mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-    <div className="absolute top-0 right-0 bg-teal-200 rounded-full w-96 h-96 mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-    <div className="absolute bg-green-200 rounded-full -bottom-32 left-20 w-96 h-96 mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style={{ stopColor: '#10B981', stopOpacity: 0.1 }} />
+          <stop offset="100%" style={{ stopColor: '#14B8A6', stopOpacity: 0.1 }} />
+        </linearGradient>
+      </defs>
+      <circle cx="0" cy="0" r="200" fill="url(#grad1)" />
+      <circle cx="100%" cy="100%" r="200" fill="url(#grad1)" />
+    </svg>
   </div>
 
-  <div className="relative z-10 flex flex-col items-center mx-auto max-w-7xl md:flex-row">
-    {/* Content */}
-    <div className="w-full mb-12 text-center md:w-1/2 md:text-left md:mb-0">
-      <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold tracking-wide transition-transform duration-300 transform rounded-full shadow-md bg-emerald-200 text-emerald-800 hover:scale-105">
-        100% Natural & Organic
-      </span>
-      <h1 className="mb-6 text-5xl font-extrabold leading-tight text-transparent sm:text-6xl lg:text-7xl bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 animate-gradient">
-        <span className="block">ORGANIC</span>
-        <span className="block">BY POOJA</span>
-      </h1>
-      <p className="max-w-2xl mx-auto mb-10 text-xl leading-relaxed text-emerald-800 md:mx-0">
-        Elevate your skincare routine with our premium body and facial products, crafted with nature's finest ingredients.
-      </p>
-      <div className="flex flex-col justify-center gap-4 sm:flex-row md:justify-start">
-        <a 
-          href="/products" 
-          className="px-8 py-4 font-semibold text-white transition duration-300 transform rounded-full shadow-lg bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 hover:scale-105 hover:shadow-xl"
+  {/* Background image for mobile and vertical layouts */}
+  <div className="absolute inset-0 bg-center bg-cover md:hidden" style={{ backgroundImage: "url('img/section.jpg')" }}>
+    <div className="absolute inset-0 bg-black opacity-50"></div>
+  </div>
+
+  <div className="container relative z-10 flex flex-col items-center justify-center min-h-screen px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="grid gap-12 md:grid-cols-2 md:items-center"
+    >
+      {/* Left column: Content */}
+      <div className="text-center md:text-left">
+        <motion.h2 
+          className="mb-4 text-sm font-bold tracking-wider uppercase text-emerald-400 md:text-emerald-600 md:font-semibold"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
         >
-          Shop Now
-        </a>
-        <a 
-          href="/services" 
-          className="px-8 py-4 font-semibold transition duration-300 transform border-2 rounded-full border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white hover:scale-105 hover:shadow-lg"
+          Nature's Best Kept Secret
+        </motion.h2>
+        <motion.h1 
+          className="mb-6 text-5xl font-extrabold leading-tight text-white md:text-gray-900 sm:text-5xl lg:text-6xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
         >
-          Our Services
-        </a>
+          <span className="block italic font-bold">ORGANIC</span>
+          <span className="block font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300 md:from-emerald-600 md:to-teal-500">BY POOJA</span>
+        </motion.h1>
+        <motion.p 
+          className="max-w-xl mx-auto mb-8 text-2xl leading-relaxed text-gray-200 md:text-xl md:text-gray-600 md:mx-0"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
+          Discover the power of nature with our premium organic skincare products, 
+          crafted to nourish and rejuvenate your skin naturally.
+        </motion.p>
+        <motion.div 
+          className="flex flex-wrap justify-center gap-4 md:justify-start"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+        >
+          <motion.a 
+            href="/products" 
+            className="px-8 py-4 text-xl font-bold text-white transition-all duration-300 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 hover:shadow-lg md:text-lg md:py-3"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Shop Now
+          </motion.a>
+          <motion.a 
+            href="/Services" 
+            className="px-8 py-4 text-xl font-bold transition-all duration-300 bg-white border-2 rounded-full text-emerald-600 border-emerald-600 hover:bg-emerald-50 hover:shadow-lg md:text-lg md:py-3"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Our Services
+          </motion.a>
+        </motion.div>
       </div>
-    </div>
 
-    {/* Image - hidden on mobile, visible on md and up */}
-    <div className="relative hidden w-full md:w-1/2 md:block">
-      <div className="relative w-full h-[500px] rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300">
-        <img 
-          src="img/section.jpg" 
-          alt="Organic skincare products" 
-          className="object-cover w-full h-full"
-        />
-        <div className="absolute inset-0 opacity-50 bg-gradient-to-t from-emerald-900 to-transparent"></div>
-      </div>
-      {/* Decorative elements */}
-      <div className="absolute flex items-center justify-center w-20 h-20 rounded-full shadow-lg top-10 -left-10 bg-gradient-to-br from-emerald-300 to-teal-400 animate-float">
-        <FaLeaf className="text-3xl text-white" />
-      </div>
-      <div className="absolute flex items-center justify-center w-24 h-24 rounded-full shadow-lg bottom-10 -right-10 bg-gradient-to-br from-teal-400 to-green-500 animate-float animation-delay-2000">
-        <FaStar className="text-4xl text-white" />
-      </div>
-      <div className="absolute flex items-center justify-center w-16 h-16 rounded-full shadow-lg top-1/2 -right-5 bg-gradient-to-br from-emerald-500 to-teal-600 animate-pulse">
-        <FaHeart className="text-2xl text-white" />
-      </div>
-    </div>
-  </div>
+      {/* Right column: Product showcase (hidden on mobile and vertical layouts) */}
+      <motion.div 
+        className="relative hidden md:block"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="relative w-full h-[500px] bg-white rounded-3xl shadow-2xl overflow-hidden">
+          <img 
+            src="img/section.jpg" 
+            alt="Organic skincare products" 
+            className="object-cover w-full h-full"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <h3 className="mb-2 text-2xl font-bold">Featured Products</h3>
+            <p className="mb-4">Explore our bestselling organic skincare line</p>
+            <a href="/products" className="inline-block px-4 py-2 font-semibold transition-colors duration-300 bg-white rounded-full text-emerald-600 hover:bg-emerald-100">
+              View All →
+            </a>
+          </div>
+        </div>
+        {/* Floating elements */}
+        <motion.div 
+          className="absolute flex items-center justify-center w-20 h-20 rounded-full top-4 -left-4 bg-emerald-100"
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <FaLeaf className="text-3xl text-emerald-600" />
+        </motion.div>
+        <motion.div 
+          className="absolute flex items-center justify-center w-24 h-24 bg-teal-100 rounded-full bottom-4 -right-4"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, delay: 0.5, repeat: Infinity }}
+        >
+          <FaStar className="text-4xl text-teal-600" />
+        </motion.div>
+      </motion.div>
+    </motion.div>
 
-  {/* Mobile-only decorative elements */}
-  <div className="absolute flex items-center justify-center w-16 h-16 rounded-full shadow-lg top-10 left-5 bg-gradient-to-br from-emerald-300 to-teal-400 animate-float md:hidden">
-    <FaLeaf className="text-2xl text-white" />
-  </div>
-  <div className="absolute flex items-center justify-center w-20 h-20 rounded-full shadow-lg bottom-10 right-5 bg-gradient-to-br from-teal-400 to-green-500 animate-float animation-delay-2000 md:hidden">
-    <FaStar className="text-3xl text-white" />
+    {/* Feature highlights (hidden on mobile and vertical layouts) */}
+    <motion.div 
+      className="hidden grid-cols-1 gap-6 mt-16 sm:grid-cols-2 lg:grid-cols-3 md:grid"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1, duration: 0.8 }}
+    >
+      {[
+        { icon: FaLeaf, title: "100% Organic", description: "Pure, natural ingredients" },
+        { icon: FaStar, title: "Premium Quality", description: "Carefully crafted formulas" },
+        { icon: FaHeart, title: "Cruelty-Free", description: "Kind to animals and skin" }
+      ].map((feature, index) => (
+        <motion.div 
+          key={index}
+          className="p-6 transition-all duration-300 bg-white rounded-lg shadow-md hover:shadow-xl"
+          whileHover={{ scale: 1.05 }}
+        >
+          <feature.icon className="mb-4 text-4xl text-emerald-500" />
+          <h3 className="mb-2 text-xl font-semibold text-gray-800">{feature.title}</h3>
+          <p className="text-gray-600">{feature.description}</p>
+        </motion.div>
+      ))}
+    </motion.div>
   </div>
 </section>
       {/* Services Section */}
