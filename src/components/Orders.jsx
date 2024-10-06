@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaBox, FaTruck, FaCalendarAlt, FaMoneyBillWave, FaSearch, FaFilter, FaDownload } from 'react-icons/fa';
 import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -58,30 +59,65 @@ const Orders = () => {
 
   const downloadOrderDetails = (order) => {
     const pdf = new jsPDF();
-    
-    // Set font size and style
-    pdf.setFontSize(18);
+
+    // Set font styles
     pdf.setFont("helvetica", "bold");
-    pdf.text(`Order #${order.id}`, 20, 20);
-    
+    pdf.setFontSize(20);
+    pdf.setTextColor(44, 62, 80);
+    pdf.text("Organic by Pooja - Invoice", 14, 20);
+
+    // Add order details
     pdf.setFontSize(12);
     pdf.setFont("helvetica", "normal");
-    pdf.text(`Date: ${new Date(order.date).toLocaleDateString()}`, 20, 30);
-    pdf.text(`Status: ${order.status}`, 20, 40);
-    pdf.text(`Shipping: ${order.shippingMethod}`, 20, 50);
-    pdf.text(`Total: $${order.total.toFixed(2)}`, 20, 60);
-    
+    pdf.setTextColor(52, 73, 94);
+    pdf.text(`Order #: ${order.id}`, 14, 30);
+    pdf.text(`Date: ${new Date(order.date).toLocaleDateString()}`, 14, 36);
+    pdf.text(`Status: ${order.status}`, 14, 42);
+
+    // Add customer details
     pdf.setFont("helvetica", "bold");
-    pdf.text("Items:", 20, 75);
+    pdf.text("Bill To:", 14, 52);
     pdf.setFont("helvetica", "normal");
-    
-    let yPosition = 85;
-    order.items.forEach((item, index) => {
-      pdf.text(`${index + 1}. ${item.name} (Qty: ${item.quantity}) - $${item.price}`, 25, yPosition);
-      yPosition += 10;
+    pdf.text("Customer Name", 14, 58);
+    pdf.text("Customer Address", 14, 64);
+    pdf.text("City, State, ZIP", 14, 70);
+
+    // Add order items table
+    pdf.autoTable({
+      startY: 80,
+      head: [['Item', 'Quantity', 'Price', 'Total']],
+      body: order.items.map(item => [
+        item.name,
+        item.quantity,
+        `$${parseFloat(item.price).toFixed(2)}`,
+        `$${(item.quantity * parseFloat(item.price)).toFixed(2)}`
+      ]),
+      foot: [
+        ['', '', 'Subtotal:', `$${order.total.toFixed(2)}`],
+        ['', '', 'Shipping:', `$${(order.shippingCost || 0).toFixed(2)}`],
+        ['', '', 'Total:', `$${(order.total + (order.shippingCost || 0)).toFixed(2)}`]
+      ],
+      theme: 'striped',
+      headStyles: { fillColor: [39, 174, 96], textColor: 255 },
+      footStyles: { fillColor: [39, 174, 96], textColor: 255, fontStyle: 'bold' },
     });
-    
-    pdf.save(`order-${order.id}-details.pdf`);
+
+    // Add thank you message
+    pdf.setFont("helvetica", "italic");
+    pdf.setFontSize(11);
+    pdf.setTextColor(44, 62, 80);
+    const thankYouMessage = "Thank you for your order! We appreciate your business and hope you enjoy your organic products.";
+    pdf.text(thankYouMessage, 14, pdf.autoTable.previous.finalY + 20, { maxWidth: 180 });
+
+    // Add footer
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(10);
+    pdf.setTextColor(127, 140, 141);
+    pdf.text("Organic by Pooja", 14, 280);
+    pdf.text("123 Green Street, Eco City, Nature State 12345", 14, 285);
+    pdf.text("Phone: (555) 123-4567 | Email: info@organicbypooja.com", 14, 290);
+
+    pdf.save(`organic-by-pooja-invoice-${order.id}.pdf`);
   };
 
   if (orders.length === 0) {
@@ -179,7 +215,7 @@ const Orders = () => {
                     className="flex items-center px-3 py-1 text-sm font-medium text-indigo-600 bg-indigo-100 rounded-full hover:bg-indigo-200"
                   >
                     <FaDownload className="mr-2" />
-                    Download PDF
+                    Download Invoice
                   </button>
                 </div>
               </div>
@@ -196,7 +232,7 @@ const Orders = () => {
                             <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
                           </div>
                         </div>
-                        <span className="text-sm font-medium text-gray-800">${item.price}</span>
+                        <span className="text-sm font-medium text-gray-800">${parseFloat(item.price).toFixed(2)}</span>
                       </div>
                     </li>
                   ))}
