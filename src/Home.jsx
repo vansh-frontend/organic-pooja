@@ -112,21 +112,16 @@ const Home = () => {
   </div>
 
   {/* Background image for mobile and vertical layouts */}
-  <div className="absolute inset-0 bg-center bg-cover md:hidden" style={{ backgroundImage: "url('img/section.jpg')" }}>
+  <div className="absolute inset-0 bg-center bg-cover lg:hidden" style={{ backgroundImage: "url('img/section.jpg')" }}>
     <div className="absolute inset-0 bg-black opacity-50"></div>
   </div>
 
   <div className="container relative z-10 flex flex-col items-center justify-center min-h-screen px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="grid gap-12 md:grid-cols-2 md:items-center"
-    >
+    <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
       {/* Left column: Content */}
-      <div className="text-center md:text-left">
+      <div className="text-center lg:text-left">
         <motion.h2 
-          className="mb-4 text-sm font-bold tracking-wider uppercase text-emerald-400 md:text-emerald-600 md:font-semibold"
+          className="mb-4 text-sm font-bold tracking-wider uppercase text-emerald-400 lg:text-emerald-600 lg:font-semibold sm:text-base"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
@@ -134,16 +129,16 @@ const Home = () => {
           Nature's Best Kept Secret
         </motion.h2>
         <motion.h1 
-          className="mb-6 text-5xl font-extrabold leading-tight text-white md:text-gray-900 sm:text-5xl lg:text-6xl"
+          className="mb-6 text-4xl font-extrabold leading-tight text-white lg:text-gray-900 sm:text-5xl lg:text-6xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
           <span className="block italic font-bold">ORGANIC</span>
-          <span className="block font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300 md:from-emerald-600 md:to-teal-500">BY POOJA</span>
+          <span className="block font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300 lg:from-emerald-600 lg:to-teal-500">BY POOJA</span>
         </motion.h1>
         <motion.p 
-          className="max-w-xl mx-auto mb-8 text-2xl leading-relaxed text-gray-200 md:text-xl md:text-gray-600 md:mx-0"
+          className="max-w-xl mx-auto mb-8 text-lg leading-relaxed text-gray-200 sm:text-xl lg:text-gray-600 lg:mx-0 lg:text-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
@@ -152,14 +147,14 @@ const Home = () => {
           crafted to nourish and rejuvenate your skin naturally.
         </motion.p>
         <motion.div 
-          className="flex flex-wrap justify-center gap-4 md:justify-start"
+          className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
           <motion.a 
             href="/products" 
-            className="px-8 py-4 text-xl font-bold text-white transition-all duration-300 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 hover:shadow-lg md:text-lg md:py-3"
+            className="px-8 py-3 text-lg font-bold text-white transition-all duration-300 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 hover:shadow-lg sm:text-xl"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -167,7 +162,7 @@ const Home = () => {
           </motion.a>
           <motion.a 
             href="/Services" 
-            className="px-8 py-4 text-xl font-bold transition-all duration-300 bg-white border-2 rounded-full text-emerald-600 border-emerald-600 hover:bg-emerald-50 hover:shadow-lg md:text-lg md:py-3"
+            className="px-8 py-3 text-lg font-bold transition-all duration-300 bg-white border-2 rounded-full text-emerald-600 border-emerald-600 hover:bg-emerald-50 hover:shadow-lg sm:text-xl"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -178,7 +173,7 @@ const Home = () => {
 
       {/* Right column: Product showcase (hidden on mobile and vertical layouts) */}
       <motion.div 
-        className="relative hidden md:block"
+        className="relative hidden lg:block"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
@@ -214,11 +209,11 @@ const Home = () => {
           <FaStar className="text-4xl text-teal-600" />
         </motion.div>
       </motion.div>
-    </motion.div>
+    </div>
 
     {/* Feature highlights (hidden on mobile and vertical layouts) */}
     <motion.div 
-      className="hidden grid-cols-1 gap-6 mt-16 sm:grid-cols-2 lg:grid-cols-3 md:grid"
+      className="hidden grid-cols-1 gap-6 mt-16 sm:grid-cols-2 lg:grid-cols-3 lg:grid"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1, duration: 0.8 }}
