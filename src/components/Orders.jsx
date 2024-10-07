@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaBox, FaTruck, FaCalendarAlt, FaMoneyBillWave, FaSearch, FaFilter, FaDownload } from 'react-icons/fa';
+import { FaBox, FaTruck, FaCalendarAlt, FaMoneyBillWave, FaSearch, FaDownload } from 'react-icons/fa';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
@@ -59,63 +59,104 @@ const Orders = () => {
 
   const downloadOrderDetails = (order) => {
     const pdf = new jsPDF();
+    const pageWidth = pdf.internal.pageSize.width;
+    const pageHeight = pdf.internal.pageSize.height;
 
-    // Set font styles
-    pdf.setFont("helvetica", "bold");
-    pdf.setFontSize(20);
+    // Helper function to add a border to the page
+    const addBorder = () => {
+      pdf.setDrawColor(200);
+      pdf.rect(10, 10, pageWidth - 20, pageHeight - 20);
+    };
+
+    // Add border
+    addBorder();
+
+    // Header
+    pdf.setFontSize(24);
     pdf.setTextColor(44, 62, 80);
-    pdf.text("Organic by Pooja - Invoice", 14, 20);
-
-    // Add order details
-    pdf.setFontSize(12);
+    pdf.setFont("helvetica", "bold");
+    pdf.text("Organic by Pooja", 20, 30);
+    
+    pdf.setFontSize(10);
     pdf.setFont("helvetica", "normal");
     pdf.setTextColor(52, 73, 94);
-    pdf.text(`Order #: ${order.id}`, 14, 30);
-    pdf.text(`Date: ${new Date(order.date).toLocaleDateString()}`, 14, 36);
-    pdf.text(`Status: ${order.status}`, 14, 42);
+    pdf.text("123 Green Street, Eco City, Nature State 12345", 20, 40);
+    pdf.text("Phone: (555) 123-4567 | Email: info@organicbypooja.com", 20, 45);
 
-    // Add customer details
+    // Invoice details
+    pdf.setFontSize(16);
     pdf.setFont("helvetica", "bold");
-    pdf.text("Bill To:", 14, 52);
+    pdf.setTextColor(41, 128, 185);
+    pdf.text("INVOICE", pageWidth - 20, 30, { align: "right" });
+    
+    pdf.setFontSize(10);
     pdf.setFont("helvetica", "normal");
-    pdf.text("Customer Name", 14, 58);
-    pdf.text("Customer Address", 14, 64);
-    pdf.text("City, State, ZIP", 14, 70);
+    pdf.setTextColor(52, 73, 94);
+    pdf.text(`Invoice #: ${order.id}`, pageWidth - 20, 40, { align: "right" });
+    pdf.text(`Date: ${new Date(order.date).toLocaleDateString()}`, pageWidth - 20, 45, { align: "right" });
 
-    // Add order items table
+    // Billing details
+    pdf.setFontSize(12);
+    pdf.setFont("helvetica", "bold");
+    pdf.setTextColor(44, 62, 80);
+    pdf.text("Bill To:", 20, 60);
+    
+    pdf.setFont("helvetica", "normal");
+    pdf.setTextColor(52, 73, 94);
+    pdf.text("Customer Name", 20, 70);
+    pdf.text("Customer Address", 20, 75);
+    pdf.text("City, State, ZIP", 20, 80);
+
+    // Order details
+    pdf.setFont("helvetica", "bold");
+    pdf.setTextColor(44, 62, 80);
+    pdf.text("Order Details:", pageWidth - 90, 60);
+    
+    pdf.setFont("helvetica", "normal");
+    pdf.setTextColor(52, 73, 94);
+    pdf.text(`Order Date: ${new Date(order.date).toLocaleDateString()}`, pageWidth - 90, 70);
+    pdf.text(`Status: ${order.status}`, pageWidth - 90, 75);
+    pdf.text(`Shipping Method: ${order.shippingMethod}`, pageWidth - 90, 80);
+
+    // Calculate totals
+    const subtotal = order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const shippingCost = order.shippingCost || 0;
+    const total = subtotal + shippingCost;
+
+    // Items table
     pdf.autoTable({
-      startY: 80,
+      startY: 90,
       head: [['Item', 'Quantity', 'Price', 'Total']],
       body: order.items.map(item => [
         item.name,
         item.quantity,
-        `$${parseFloat(item.price).toFixed(2)}`,
-        `$${(item.quantity * parseFloat(item.price)).toFixed(2)}`
+        `₹${parseFloat(item.price).toFixed(2)}`,
+        `₹${(item.quantity * parseFloat(item.price)).toFixed(2)}`
       ]),
       foot: [
-        ['', '', 'Subtotal:', `$${order.total.toFixed(2)}`],
-        ['', '', 'Shipping:', `$${(order.shippingCost || 0).toFixed(2)}`],
-        ['', '', 'Total:', `$${(order.total + (order.shippingCost || 0)).toFixed(2)}`]
+        ['', '', 'Subtotal:', `₹${subtotal.toFixed(2)}`],
+        ['', '', 'Shipping:', `₹${shippingCost.toFixed(2)}`],
+        ['', '', 'Total:', `₹${total.toFixed(2)}`]
       ],
       theme: 'striped',
-      headStyles: { fillColor: [39, 174, 96], textColor: 255 },
-      footStyles: { fillColor: [39, 174, 96], textColor: 255, fontStyle: 'bold' },
+      headStyles: { fillColor: [41, 128, 185], textColor: 255, fontStyle: 'bold' },
+      footStyles: { fillColor: [236, 240, 241], textColor: 44, fontStyle: 'bold' },
+      bodyStyles: { textColor: 52 },
+      alternateRowStyles: { fillColor: [245, 247, 250] },
     });
 
-    // Add thank you message
-    pdf.setFont("helvetica", "italic");
-    pdf.setFontSize(11);
-    pdf.setTextColor(44, 62, 80);
-    const thankYouMessage = "Thank you for your order! We appreciate your business and hope you enjoy your organic products.";
-    pdf.text(thankYouMessage, 14, pdf.autoTable.previous.finalY + 20, { maxWidth: 180 });
-
-    // Add footer
-    pdf.setFont("helvetica", "normal");
+    // Thank you message
     pdf.setFontSize(10);
+    pdf.setFont("helvetica", "italic");
+    pdf.setTextColor(52, 73, 94);
+    const thankYouMessage = "Thank you for your order! We appreciate your business and hope you enjoy your organic products.";
+    pdf.text(thankYouMessage, 20, pdf.autoTable.previous.finalY + 20, { maxWidth: pageWidth - 40 });
+
+    // Footer
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(8);
     pdf.setTextColor(127, 140, 141);
-    pdf.text("Organic by Pooja", 14, 280);
-    pdf.text("123 Green Street, Eco City, Nature State 12345", 14, 285);
-    pdf.text("Phone: (555) 123-4567 | Email: info@organicbypooja.com", 14, 290);
+    pdf.text("Organic by Pooja | 123 Green Street, Eco City, Nature State 12345 | (555) 123-4567", pageWidth / 2, pageHeight - 15, { align: "center" });
 
     pdf.save(`organic-by-pooja-invoice-${order.id}.pdf`);
   };
@@ -207,7 +248,7 @@ const Orders = () => {
                 </div>
                 <div className="flex items-center">
                   <FaMoneyBillWave className="mr-2 text-indigo-600" />
-                  <span className="text-gray-600">Total: ${order.total.toFixed(2)}</span>
+                  <span className="text-gray-600">Total: ₹{order.total.toFixed(2)}</span>
                 </div>
                 <div className="flex items-center">
                   <button
@@ -232,7 +273,7 @@ const Orders = () => {
                             <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
                           </div>
                         </div>
-                        <span className="text-sm font-medium text-gray-800">${parseFloat(item.price).toFixed(2)}</span>
+                        <span className="text-sm font-medium text-gray-800">₹{parseFloat(item.price).toFixed(2)}</span>
                       </div>
                     </li>
                   ))}

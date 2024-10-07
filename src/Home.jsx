@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accordion from './components/Accordion';
-import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope, FaStarHalfAlt,FaComments } from 'react-icons/fa';
+import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope, FaStarHalfAlt,FaComments,FaChevronDown } from 'react-icons/fa';
 import { motion, } from 'framer-motion';
 
 import './Home.css';
@@ -96,146 +96,148 @@ const Home = () => {
   return (
     <div className="relative w-full overflow-hidden bg-gray-50">
       {/* Organic By Pooja Section */}
-      <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-emerald-50 to-teal-100">
-  {/* Decorative background elements */}
-  <div className="absolute inset-0 overflow-hidden">
+      <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-emerald-900 to-teal-800">
+  {/* Animated background */}
+  <div className="absolute inset-0">
     <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style={{ stopColor: '#10B981', stopOpacity: 0.1 }} />
-          <stop offset="100%" style={{ stopColor: '#14B8A6', stopOpacity: 0.1 }} />
-        </linearGradient>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
+        </pattern>
       </defs>
-      <circle cx="0" cy="0" r="200" fill="url(#grad1)" />
-      <circle cx="100%" cy="100%" r="200" fill="url(#grad1)" />
+      <rect width="100%" height="100%" fill="url(#grid)" />
     </svg>
   </div>
 
-  {/* Background image for mobile and vertical layouts */}
-  <div className="absolute inset-0 bg-center bg-cover lg:hidden" style={{ backgroundImage: "url('img/section.jpg')" }}>
-    <div className="absolute inset-0 bg-black opacity-50"></div>
-  </div>
-
-  <div className="container relative z-10 flex flex-col items-center justify-center min-h-screen px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-    <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-      {/* Left column: Content */}
-      <div className="text-center lg:text-left">
-        <motion.h2 
-          className="mb-4 text-sm font-bold tracking-wider uppercase text-emerald-400 lg:text-emerald-600 lg:font-semibold sm:text-base"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
+  {/* Main content */}
+  <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div className="grid gap-8 lg:grid-cols-2">
+      {/* Left column: Text and CTA */}
+      <div className="flex flex-col justify-center">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          Nature's Best Kept Secret
-        </motion.h2>
-        <motion.h1 
-          className="mb-6 text-4xl font-extrabold leading-tight text-white lg:text-gray-900 sm:text-5xl lg:text-6xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-        >
-          <span className="block italic font-bold">ORGANIC</span>
-          <span className="block font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300 lg:from-emerald-600 lg:to-teal-500">BY POOJA</span>
-        </motion.h1>
-        <motion.p 
-          className="max-w-xl mx-auto mb-8 text-lg leading-relaxed text-gray-200 sm:text-xl lg:text-gray-600 lg:mx-0 lg:text-2xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-        >
-          Discover the power of nature with our premium organic skincare products, 
-          crafted to nourish and rejuvenate your skin naturally.
-        </motion.p>
-        <motion.div 
-          className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-        >
-          <motion.a 
-            href="/products" 
-            className="px-8 py-3 text-lg font-bold text-white transition-all duration-300 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 hover:shadow-lg sm:text-xl"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Shop Now
-          </motion.a>
-          <motion.a 
-            href="/Services" 
-            className="px-8 py-3 text-lg font-bold transition-all duration-300 bg-white border-2 rounded-full text-emerald-600 border-emerald-600 hover:bg-emerald-50 hover:shadow-lg sm:text-xl"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Our Services
-          </motion.a>
+          <h1 className="mb-6 text-5xl font-extrabold leading-tight text-white lg:text-6xl">
+            <span className="block">ORGANIC</span>
+            <span className="relative inline-block">
+              BY POOJA
+              <motion.span
+                className="absolute bottom-0 left-0 w-full h-2 bg-teal-400"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              />
+            </span>
+          </h1>
+          <p className="mb-8 text-xl text-teal-100">
+            Unveil nature's secrets with our exquisite organic skincare collection.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <motion.a
+              href="/products"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 text-lg font-bold transition-all duration-300 bg-teal-300 rounded-full text-emerald-900 hover:bg-teal-200"
+            >
+              Explore Collection
+            </motion.a>
+            <motion.a
+              href="/services"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 text-lg font-bold text-teal-300 transition-all duration-300 border-2 border-teal-300 rounded-full hover:bg-teal-800"
+            >
+              Our Services
+            </motion.a>
+          </div>
         </motion.div>
       </div>
 
-      {/* Right column: Product showcase (hidden on mobile and vertical layouts) */}
-      <motion.div 
-        className="relative hidden lg:block"
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="relative w-full h-[500px] bg-white rounded-3xl shadow-2xl overflow-hidden">
-          <img 
-            src="img/section.jpg" 
-            alt="Organic skincare products" 
-            className="object-cover w-full h-full"
+      {/* Right column: Interactive 3D product showcase */}
+      <div className="relative">
+        <motion.div
+          initial={{ opacity: 0, rotateY: -30 }}
+          animate={{ opacity: 1, rotateY: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="relative w-full h-[500px]"
+        >
+          <img
+            src="/img/section.jpg"
+            alt="Product Showcase"
+            className="object-cover w-full h-full rounded-lg shadow-2xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-            <h3 className="mb-2 text-2xl font-bold">Featured Products</h3>
-            <p className="mb-4">Explore our bestselling organic skincare line</p>
-            <a href="/products" className="inline-block px-4 py-2 font-semibold transition-colors duration-300 bg-white rounded-full text-emerald-600 hover:bg-emerald-100">
-              View All →
-            </a>
-          </div>
-        </div>
-        {/* Floating elements */}
-        <motion.div 
-          className="absolute flex items-center justify-center w-20 h-20 rounded-full top-4 -left-4 bg-emerald-100"
-          animate={{ y: [0, -10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <FaLeaf className="text-3xl text-emerald-600" />
+          <motion.div
+            className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 mix-blend-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.6 }}
+            transition={{ duration: 1, delay: 1 }}
+          />
         </motion.div>
-        <motion.div 
-          className="absolute flex items-center justify-center w-24 h-24 bg-teal-100 rounded-full bottom-4 -right-4"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, delay: 0.5, repeat: Infinity }}
-        >
-          <FaStar className="text-4xl text-teal-600" />
-        </motion.div>
-      </motion.div>
+        {/* Floating product highlights */}
+        {[
+          { top: '10%', left: '10%', text: '100% Organic' },
+          { top: '30%', right: '10%', text: 'Cruelty-Free' },
+          { bottom: '20%', left: '20%', text: 'Eco-Friendly' },
+        ].map((item, index) => (
+          <motion.div
+            key={index}
+            className="absolute px-4 py-2 text-sm font-semibold text-white bg-teal-600 rounded-full shadow-lg"
+            style={{ ...item }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1 + index * 0.2 }}
+          >
+            {item.text}
+          </motion.div>
+        ))}
+      </div>
     </div>
-
-    {/* Feature highlights (hidden on mobile and vertical layouts) */}
-    <motion.div 
-      className="hidden grid-cols-1 gap-6 mt-16 sm:grid-cols-2 lg:grid-cols-3 lg:grid"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1, duration: 0.8 }}
-    >
-      {[
-        { icon: FaLeaf, title: "100% Organic", description: "Pure, natural ingredients" },
-        { icon: FaStar, title: "Premium Quality", description: "Carefully crafted formulas" },
-        { icon: FaHeart, title: "Cruelty-Free", description: "Kind to animals and skin" }
-      ].map((feature, index) => (
-        <motion.div 
-          key={index}
-          className="p-6 transition-all duration-300 bg-white rounded-lg shadow-md hover:shadow-xl"
-          whileHover={{ scale: 1.05 }}
-        >
-          <feature.icon className="mb-4 text-4xl text-emerald-500" />
-          <h3 className="mb-2 text-xl font-semibold text-gray-800">{feature.title}</h3>
-          <p className="text-gray-600">{feature.description}</p>
-        </motion.div>
-      ))}
-    </motion.div>
   </div>
+
+  {/* Animated particles */}
+  {[...Array(20)].map((_, i) => (
+    <motion.div
+      key={i}
+      className="absolute w-2 h-2 bg-teal-300 rounded-full"
+      style={{
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+      }}
+      animate={{
+        y: [0, Math.random() * 100 - 50],
+        x: [0, Math.random() * 100 - 50],
+        scale: [0, 1, 0],
+        opacity: [0, 1, 0],
+      }}
+      transition={{
+        duration: Math.random() * 5 + 5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    />
+  ))}
+
+  {/* Scroll indicator */}
+  <motion.div
+    className="absolute transform -translate-x-1/2 bottom-8 left-1/2"
+    animate={{ y: [0, 10, 0] }}
+    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+  >
+    <FaChevronDown className="text-3xl text-teal-300" />
+  </motion.div>
 </section>
+
+
+
+
+
+
+
+
+
+
       {/* Services Section */}
       <section className="relative flex items-center justify-center min-h-screen px-4 py-16 bg-gradient-to-br from-teal-50 to-green-100">
   <div className="w-full mx-auto max-w-7xl">
