@@ -103,97 +103,97 @@ const Navbar = ({ position }) => {
     }
   };
 
- const UserMenu = ({ isMobile }) => (
-  <div ref={userMenuRef} className={isMobile ? "" : "relative"}>
-    <button
-      onClick={toggleUserMenu}
-      className={`flex items-center px-4 py-2 text-sm font-semibold text-gray-800 transition-all duration-300 ease-in-out ${
-        isMobile ? "w-full justify-start" : "rounded-full hover:bg-emerald-100"
-      }`}
-    >
-      <IconUserCircle size={24} className="mr-2 text-emerald-600" />
-      <span className="truncate max-w-[100px]">{isLoggedIn ? userName : 'Guest'}</span>
-    </button>
-    <AnimatePresence>
-      {isUserMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: isMobile ? 0 : -10, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: isMobile ? 0 : -10, scale: 0.95 }}
-          transition={{ duration: 0.2 }}
-          className={`${
-            isMobile ? "mt-2" : "absolute right-0 z-20 w-56 mt-2 bg-white rounded-lg shadow-xl border border-gray-200"
-          }`}
-        >
-          <div className="p-4 border-b border-gray-200">
-            <p className="text-sm font-medium text-gray-900">Hello, {isLoggedIn ? userName : 'Guest'}</p>
-            <p className="text-xs text-gray-500">{isLoggedIn ? 'Manage your account' : 'Sign in to your account'}</p>
-          </div>
-          <div className="py-2">
-            <NavLink 
-              to="/orders" 
-              className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600"
-              onClick={() => {
-                setIsUserMenuOpen(false);
-                if (isMobile) setIsOpen(false);
-              }}
-            >
-              Orders
-            </NavLink>
-            <NavLink 
-              to="/wishlist" 
-              className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600"
-              onClick={() => {
-                setIsUserMenuOpen(false);
-                if (isMobile) setIsOpen(false);
-              }}
-            >
-              Wishlist
-            </NavLink>
-            <NavLink 
-              to='/Help' 
-              className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-emerald-50 hover:text-emerald-600"
-              onClick={() => {
-                setIsUserMenuOpen(false);
-                if (isMobile) setIsOpen(false);
-              }}
-            >
-              Help Center
-            </NavLink>
-          </div>
-          <div className="pt-2 border-t border-gray-200">
-            {isLoggedIn ? (
-              <button
+  const UserMenu = ({ isMobile }) => (
+    <div ref={userMenuRef} className={isMobile ? "" : "relative"}>
+      <button
+        onClick={toggleUserMenu}
+        className={`flex items-center px-4 py-2 text-sm font-semibold text-white transition-all duration-300 ease-in-out ${
+          isMobile ? "w-full justify-start" : "rounded-full hover:bg-purple-700"
+        }`}
+      >
+        <IconUserCircle size={24} className="mr-2 text-pink-400" />
+        <span className="truncate max-w-[100px]">{isLoggedIn ? userName : 'Guest'}</span>
+      </button>
+      <AnimatePresence>
+        {isUserMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: isMobile ? 0 : -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: isMobile ? 0 : -10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className={`${
+              isMobile ? "mt-2" : "absolute right-0 z-20 w-56 mt-2 bg-gray-800 rounded-lg shadow-xl border border-gray-700"
+            }`}
+          >
+            <div className="p-4 border-b border-gray-700">
+              <p className="text-sm font-medium text-white">Hello, {isLoggedIn ? userName : 'Guest'}</p>
+              <p className="text-xs text-gray-400">{isLoggedIn ? 'Manage your account' : 'Sign in to your account'}</p>
+            </div>
+            <div className="py-2">
+              <NavLink 
+                to="/orders" 
+                className="flex items-center px-4 py-2 text-sm text-gray-300 transition-colors duration-150 hover:bg-purple-700 hover:text-white"
                 onClick={() => {
-                  handleLogout();
                   setIsUserMenuOpen(false);
                   if (isMobile) setIsOpen(false);
                 }}
-                className="flex items-center w-full px-4 py-2 text-sm text-left text-red-600 transition-colors duration-150 hover:bg-red-50"
               >
-                <IconLogout size={18} className="mr-2" />
-                Logout
-              </button>
-            ) : (
-              <button
+                Orders
+              </NavLink>
+              <NavLink 
+                to="/wishlist" 
+                className="flex items-center px-4 py-2 text-sm text-gray-300 transition-colors duration-150 hover:bg-purple-700 hover:text-white"
                 onClick={() => {
-                  openLoginModal();
                   setIsUserMenuOpen(false);
                   if (isMobile) setIsOpen(false);
                 }}
-                className="flex items-center w-full px-4 py-2 text-sm text-left transition-colors duration-150 text-emerald-600 hover:bg-emerald-50"
               >
-                {/* <IconLogin size={18} className="mr-2" /> */}
-                Login
-              </button>
-            )}
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-600 transform origin-left transition-all duration-300 scale-x-0 group-hover:scale-x-100"></div>
-  </div>
-);
+                Wishlist
+              </NavLink>
+              <NavLink 
+                to='/Help' 
+                className="flex items-center px-4 py-2 text-sm text-gray-300 transition-colors duration-150 hover:bg-purple-700 hover:text-white"
+                onClick={() => {
+                  setIsUserMenuOpen(false);
+                  if (isMobile) setIsOpen(false);
+                }}
+              >
+                Help Center
+              </NavLink>
+            </div>
+            <div className="pt-2 border-t border-gray-700">
+              {isLoggedIn ? (
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setIsUserMenuOpen(false);
+                    if (isMobile) setIsOpen(false);
+                  }}
+                  className="flex items-center w-full px-4 py-2 text-sm text-left text-red-400 transition-colors duration-150 hover:bg-red-900 hover:text-red-200"
+                >
+                  <IconLogout size={18} className="mr-2" />
+                  Logout
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    openLoginModal();
+                    setIsUserMenuOpen(false);
+                    if (isMobile) setIsOpen(false);
+                  }}
+                  className="flex items-center w-full px-4 py-2 text-sm text-left text-pink-400 transition-colors duration-150 hover:bg-purple-700 hover:text-pink-200"
+                >
+                  Login
+                </button>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <div className="absolute bottom-0 left-0 w-full h-0.5 bg-pink-400 transform origin-left transition-all duration-300 scale-x-0 group-hover:scale-x-100"></div>
+    </div>
+  );
+  
   const desktopNavItems = position === 'left' ? (
     <ul className="items-center hidden space-x-10 lg:flex">
       {['Home', 'Products', 'Services'].map((item) => (
@@ -202,10 +202,10 @@ const Navbar = ({ position }) => {
             to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
             className="relative py-2 group"
           >
-            <span className="text-lg font-medium text-gray-800 transition-all duration-300 group-hover:text-emerald-600">
+            <span className="text-lg font-medium text-white transition-all duration-300 group-hover:text-pink-400">
               {item}
             </span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-600 transform origin-left transition-all duration-300 scale-x-0 group-hover:scale-x-100"></span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-pink-400 transform origin-left transition-all duration-300 scale-x-0 group-hover:scale-x-100"></span>
           </NavLink>
         </li>
       ))}
@@ -218,17 +218,17 @@ const Navbar = ({ position }) => {
       <li>
         <NavLink
           to="/Cart"
-          className="relative flex items-center text-gray-800 transition-all duration-300 group hover:text-emerald-600"
+          className="relative flex items-center text-white transition-all duration-300 group hover:text-pink-400"
         >
           <IconShoppingCart size={24} className="transition-transform duration-300 group-hover:scale-110" />
           <span className="ml-2 text-sm font-medium">Cart</span>
-          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-emerald-600 transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100"></span>
+          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-pink-400 transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100"></span>
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/book"
-          className="relative overflow-hidden px-6 py-3 text-sm font-bold text-white bg-emerald-600 rounded-md transition-all duration-300 ease-in-out hover:bg-emerald-700 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+          className="relative overflow-hidden px-6 py-3 text-sm font-bold text-white bg-purple-600 rounded-md transition-all duration-300 ease-in-out hover:bg-purple-700 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
         >
           <span className="relative z-10">Book Appointment</span>
           <span className="absolute inset-0 transition-opacity duration-300 ease-in-out bg-white opacity-0 group-hover:opacity-20"></span>
@@ -236,19 +236,20 @@ const Navbar = ({ position }) => {
       </li>
     </ul>
   );
+  
   const mobileNavItems = (
     <motion.div
       initial={{ opacity: 0, x: "-100%" }}
       animate={{ opacity: 1, x: "0%" }}
       exit={{ opacity: 0, x: "-100%" }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="fixed inset-0 z-50 shadow-xl bg-white/70 backdrop-blur-xl"
+      className="fixed inset-0 z-50 shadow-xl bg-gray-900/95 backdrop-blur-xl"
     >
       {/* Background with subtle abstract gradient */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-gradient-to-b from-blue-50 to-blue-200">
+      <div className="absolute inset-0 z-0 overflow-hidden bg-gradient-to-b from-purple-900 to-black">
         <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
           <path
-            fill="rgba(173, 216, 230, 0.15)"
+            fill="rgba(216, 180, 254, 0.15)"
             d="M0,0 C200,150 400,0 600,150 C800,300 1000,150 1200,0 L1200,1200 L0,1200 Z"
           >
             <animate
@@ -269,11 +270,11 @@ const Navbar = ({ position }) => {
       <div className="relative z-10 flex flex-col h-full p-6 overflow-y-auto">
         {/* Header with branding */}
         <div className="flex items-center justify-between mb-10">
-          <div className="text-3xl font-extrabold text-gray-800">Organic Pooja</div>
+          <div className="text-3xl font-extrabold text-white">Organic Pooja</div>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="p-2 text-gray-700 transition duration-200 rounded-full hover:bg-gray-100"
+            className="p-2 text-white transition duration-200 rounded-full hover:bg-purple-700"
             onClick={toggleMenu}
           >
             <IconX size={32} />
@@ -286,7 +287,7 @@ const Navbar = ({ position }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.4 }}
-            className="p-4 border border-gray-200 shadow-lg bg-white/80 backdrop-blur-md rounded-xl"
+            className="p-4 border border-gray-700 shadow-lg bg-gray-800/80 backdrop-blur-md rounded-xl"
           >
             <UserMenu isMobile={true} />
           </motion.div>
@@ -307,13 +308,13 @@ const Navbar = ({ position }) => {
             >
               <NavLink
                 to={to}
-                className="flex items-center p-4 transition-all duration-300 border border-gray-200 rounded-lg shadow-md bg-white/80 hover:bg-blue-100"
+                className="flex items-center p-4 transition-all duration-300 border border-gray-700 rounded-lg shadow-md bg-gray-800/80 hover:bg-purple-700"
                 onClick={toggleMenu}
               >
-                <div className="p-3 mr-3 text-blue-500 rounded-full shadow-sm bg-blue-50">
+                <div className="p-3 mr-3 text-pink-400 bg-gray-700 rounded-full shadow-sm">
                   <Icon size={26} />
                 </div>
-                <span className="text-lg font-semibold text-gray-800">{label}</span>
+                <span className="text-lg font-semibold text-white">{label}</span>
               </NavLink>
             </motion.div>
           ))}
@@ -328,7 +329,7 @@ const Navbar = ({ position }) => {
         >
           <NavLink
             to="/book"
-            className="flex items-center justify-center w-full p-4 text-white transition-all duration-300 bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600"
+            className="flex items-center justify-center w-full p-4 text-white transition-all duration-300 bg-purple-600 rounded-lg shadow-lg hover:bg-purple-700"
             onClick={toggleMenu}
           >
             <IconBook size={28} className="mr-3 transition-transform duration-300 group-hover:scale-110" />
@@ -342,27 +343,28 @@ const Navbar = ({ position }) => {
   return (
     <nav className="relative">
       <div className="flex items-center justify-between p-4">
+
         <div className="flex items-center space-x-4">
           {desktopNavItems}
         </div>
-
+  
         <div className="flex items-center space-x-4 lg:hidden">
           <NavLink
             to="/Cart"
-            className="flex items-center p-2 text-black"
+            className="flex items-center p-2 text-white"
           >
             <IconShoppingCart size={28} />
           </NavLink>
-
+  
           <button
-            className="p-2"
+            className="p-2 text-white"
             onClick={toggleMenu}
           >
             {isOpen ? <IconX size={24} /> : <IconMenu4 size={24} />}
           </button>
         </div>
       </div>
-
+  
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -370,13 +372,13 @@ const Navbar = ({ position }) => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed inset-0 z-50 bg-white"
+            className="fixed inset-0 z-50 bg-gray-900"
           >
             {mobileNavItems}
           </motion.div>
         )}
       </AnimatePresence>
-
+  
       <AnimatePresence>
         {isLoginModalOpen && (
           <motion.div
@@ -389,10 +391,10 @@ const Navbar = ({ position }) => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-md p-8 bg-white shadow-2xl bg-opacity-20 rounded-2xl backdrop-filter backdrop-blur-lg animate-fadeIn"
+              className="relative w-full max-w-md p-8 bg-gray-800 shadow-2xl rounded-2xl backdrop-filter backdrop-blur-lg animate-fadeIn"
             >
               <button
-                className="absolute p-2 text-white transition-transform transform cursor-pointer top-4 right-4 hover:scale-110"
+                className="absolute p-2 text-gray-400 transition-transform transform cursor-pointer top-4 right-4 hover:scale-110"
                 onClick={closeLoginModal}
               >
                 <IconX size={24} />
@@ -401,65 +403,65 @@ const Navbar = ({ position }) => {
                 <h2 className="mb-6 text-4xl font-bold text-white">Welcome Back</h2>
                 <form onSubmit={handleLogin} className="space-y-6">
                   <div className="space-y-2">
-                    <label htmlFor="phone" className="block text-sm font-medium text-white">
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-300">
                       Phone Number
                     </label>
                     <input
                       type="tel"
                       id="phone"
-                      className="w-full px-4 py-3 text-white placeholder-gray-300 transition-all duration-300 bg-white rounded-lg bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-white animate-slideInFromLeft"
+                      className="w-full px-4 py-3 text-white placeholder-gray-500 transition-all duration-300 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 animate-slideInFromLeft"
                       value={telephone}
                       onChange={(e) => {
                         if (e.target.value.length <= 10) setTelephone(e.target.value);
                       }}
                       required
                       maxLength="10"
-                      placeholder="Enter your 10-digit phone number"
-                      pattern="\d{10}"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="otp" className="block text-sm font-medium text-white">
-                      OTP
-                    </label>
-                    <input
-                      type="tel"
-                      id="otp"
-                      className="w-full px-4 py-3 text-white placeholder-gray-300 transition-all duration-300 bg-white rounded-lg bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-white animate-slideInFromRight"
-                      value={OTP}
-                      onChange={(e) => {
-                        if (e.target.value.length <= 6) setotp(e.target.value);
-                      }}
-                      required
-                      maxLength="6"
-                      placeholder="Enter 6-digit OTP"
-                      pattern="\d{6}"
-                    />
-                  </div>
-                  {error && <p className="text-sm text-red-300 animate-pulse">{error}</p>}
-                  <button
-                    type="submit"
-                    className="w-full px-6 py-3 font-semibold text-white transition-all duration-300 bg-blue-600 rounded-lg shadow-lg bg-opacity-20 hover:bg-opacity-30 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50"
-                  >
-                    Verify & Login
-                  </button>
-                </form>
-                <div className="mt-6">
-                  <button
-                    onClick={handleGoogleLogin}
-                    className="flex items-center justify-center w-full px-6 py-3 font-semibold text-white transition-all duration-300 bg-white rounded-lg shadow-md bg-opacity-10 hover:bg-opacity-20 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50 animate-fadeIn"
-                  >
-                    <IconBrandGoogle size={20} className="mr-2" />
-                    Login with Google
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-    );
-    };
-    
-    export default Navbar;
+                         placeholder="Enter your 10-digit phone number"
+      pattern="\d{10}"
+    />
+  </div>
+  <div className="space-y-2">
+    <label htmlFor="otp" className="block text-sm font-medium text-gray-300">
+      OTP
+    </label>
+    <input
+      type="tel"
+      id="otp"
+      className="w-full px-4 py-3 text-white placeholder-gray-500 transition-all duration-300 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 animate-slideInFromRight"
+      value={OTP}
+      onChange={(e) => {
+        if (e.target.value.length <= 6) setOTP(e.target.value);
+      }}
+      required
+      maxLength="6"
+      placeholder="Enter 6-digit OTP"
+      pattern="\d{6}"
+    />
+  </div>
+  {error && <p className="text-sm text-red-400 animate-pulse">{error}</p>}
+  <button
+    type="submit"
+    className="w-full px-6 py-3 font-semibold text-white transition-all duration-300 bg-purple-600 rounded-lg shadow-lg hover:bg-purple-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50"
+  >
+    Verify & Login
+  </button>
+  </form>
+  <div className="mt-6">
+  <button
+    onClick={handleGoogleLogin}
+    className="flex items-center justify-center w-full px-6 py-3 font-semibold text-white transition-all duration-300 bg-gray-700 rounded-lg shadow-md hover:bg-gray-600 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 animate-fadeIn"
+  >
+    <IconBrandGoogle size={20} className="mr-2" />
+    Login with Google
+  </button>
+  </div>
+  </div>
+  </motion.div>
+  </motion.div>
+  )}
+  </AnimatePresence>
+  </nav>
+  );
+  };
+  
+  export default Navbar;
