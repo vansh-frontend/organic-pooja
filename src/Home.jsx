@@ -96,148 +96,217 @@ const Home = () => {
   return (
     <div className="relative w-full overflow-hidden bg-gray-50">
       {/* Organic By Pooja Section */}
-      <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-emerald-900 to-teal-800">
-  {/* Animated background */}
-  <div className="absolute inset-0">
-    <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid)" />
-    </svg>
-  </div>
+      <section className="relative min-h-screen overflow-hidden text-white bg-black perspective-1000">
+  {/* Enhanced 3D background animation */}
+  <motion.div 
+    className="absolute inset-0 z-0"
+    initial={{ scale: 1.5, opacity: 0, y: "-100%" }}
+    animate={{ 
+      scale: 1,
+      opacity: 1,
+      y: "0%"
+    }}
+    transition={{ 
+      duration: 1.5,
+      ease: "easeOut"
+    }}
+    style={{
+      backgroundImage: 'url("/img/section.jpg")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      transformStyle: 'preserve-3d',
+    }}
+  >
+    {/* Continuous subtle animation after initial setup */}
+    <motion.div
+      className="absolute inset-0"
+      animate={{ 
+        scale: [1, 1.05, 1],
+        rotateX: [0, 1, 0],
+        rotateY: [0, -1, 0]
+      }}
+      transition={{
+        duration: 20,
+        repeat: Infinity,
+        repeatType: "reverse",
+        ease: "easeInOut"
+      }}
+    />
+  </motion.div>
+  
+  {/* Overlay */}
+  <div className="absolute inset-0 opacity-75 bg-gradient-to-br from-purple-900 to-black"></div>
 
-  {/* Main content */}
-  <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
-    <div className="grid gap-8 lg:grid-cols-2">
-      {/* Left column: Text and CTA */}
-      <div className="flex flex-col justify-center">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+  <div className="container relative z-10 flex flex-col items-center justify-between min-h-screen px-4 py-16 mx-auto">
+    {/* Header with enhanced 3D parallax effect */}
+    <motion.header 
+      className="mb-8 text-center md:mb-16"
+      initial={{ opacity: 0, y: -50, rotateX: -20 }}
+      animate={{ opacity: 1, y: 0, rotateX: 0 }}
+      transition={{ duration: 1.2, ease: "easeOut" }}
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      <motion.h1 
+        className="relative mb-4 text-4xl font-bold md:text-7xl lg:text-9xl"
+        style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
+      >
+        <motion.span
+          className="block"
+          initial={{ opacity: 0, rotateX: -90, z: -100 }}
+          animate={{ opacity: 1, rotateX: 0, z: 0 }}
+          transition={{ duration: 1.2, delay: 0.5 }}
         >
-          <h1 className="mb-6 text-5xl font-extrabold leading-tight text-white lg:text-6xl">
-            <span className="block">ORGANIC</span>
-            <span className="relative inline-block">
-              BY POOJA
-              <motion.span
-                className="absolute bottom-0 left-0 w-full h-2 bg-teal-400"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              />
-            </span>
-          </h1>
-          <p className="mb-8 text-xl text-teal-100">
-            Unveil nature's secrets with our exquisite organic skincare collection.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <motion.a
-              href="/products"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 text-lg font-bold transition-all duration-300 bg-teal-300 rounded-full text-emerald-900 hover:bg-teal-200"
-            >
-              Explore Collection
-            </motion.a>
-            <motion.a
-              href="/services"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 text-lg font-bold text-teal-300 transition-all duration-300 border-2 border-teal-300 rounded-full hover:bg-teal-800"
-            >
-              Our Services
-            </motion.a>
-          </div>
-        </motion.div>
-      </div>
+          Organic
+        </motion.span>
+        <motion.span
+          className="block text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-600"
+          initial={{ opacity: 0, rotateX: 90, z: -100 }}
+          animate={{ opacity: 1, rotateX: 0, z: 0 }}
+          transition={{ duration: 1.2, delay: 1 }}
+        >
+          By Pooja
+        </motion.span>
+      </motion.h1>
+      <motion.p 
+        className="text-xl text-gray-300 md:text-3xl lg:text-4xl"
+        initial={{ opacity: 0, y: 20, rotateX: 20 }}
+        animate={{ opacity: 1, y: 0, rotateX: 0 }}
+        transition={{ duration: 1.2, delay: 1.5 }}
+      >
+        Elevate Your Natural Beauty
+      </motion.p>
+    </motion.header>
 
-      {/* Right column: Interactive 3D product showcase */}
-      <div className="relative">
-        <motion.div
-          initial={{ opacity: 0, rotateY: -30 }}
-          animate={{ opacity: 1, rotateY: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="relative w-full h-[500px]"
-        >
-          <img
-            src="/img/section.jpg"
-            alt="Product Showcase"
-            className="object-cover w-full h-full rounded-lg shadow-2xl"
-          />
-          <motion.div
-            className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 mix-blend-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.6 }}
-            transition={{ duration: 1, delay: 1 }}
-          />
-        </motion.div>
-        {/* Floating product highlights */}
+    {/* Main content with enhanced 3D staggered animation */}
+    <motion.div 
+      className="w-full max-w-6xl mb-8 md:mb-16"
+      variants={{
+        hidden: { opacity: 0 },
+        show: {
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.3
+          }
+        }
+      }}
+      initial="hidden"
+      animate="show"
+      style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
+    >
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
         {[
-          { top: '10%', left: '10%', text: '100% Organic' },
-          { top: '30%', right: '10%', text: 'Cruelty-Free' },
-          { bottom: '20%', left: '20%', text: 'Eco-Friendly' },
-        ].map((item, index) => (
-          <motion.div
+          { title: "Luxurious Facials", description: "Revitalize your skin with our premium organic treatments" },
+          { title: "Holistic Massages", description: "Experience total relaxation and rejuvenation" },
+          { title: "Natural Hair Care", description: "Nourish and style with nature's finest ingredients" },
+        ].map((service, index) => (
+          <motion.div 
             key={index}
-            className="absolute px-4 py-2 text-sm font-semibold text-white bg-teal-600 rounded-full shadow-lg"
-            style={{ ...item }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1 + index * 0.2 }}
+            className="p-4 text-center bg-white md:p-8 bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl"
+            variants={{
+              hidden: { opacity: 0, y: 50, rotateY: -15, z: -100 },
+              show: { opacity: 1, y: 0, rotateY: 0, z: 0 }
+            }}
+            whileHover={{ 
+              scale: 1.05, 
+              rotateY: 5,
+              z: 50,
+              backgroundColor: "rgba(255,255,255,0.2)",
+              boxShadow: "0 0 20px rgba(255,255,255,0.3)"
+            }}
+            transition={{ duration: 0.4, type: 'spring' }}
           >
-            {item.text}
+            <h3 className="mb-2 text-xl font-semibold md:mb-4 md:text-2xl">{service.title}</h3>
+            <p className="text-sm text-gray-300 md:text-base">{service.description}</p>
           </motion.div>
         ))}
       </div>
-    </div>
+    </motion.div>
+
+    {/* CTA Section with enhanced 3D hover animation */}
+    <motion.div
+      className="text-center"
+      initial={{ opacity: 0, y: 50, rotateX: 20 }}
+      animate={{ opacity: 1, y: 0, rotateX: 0 }}
+      transition={{ duration: 1.2, delay: 2 }}
+      style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
+    >
+      <motion.p 
+        className="max-w-2xl mx-auto mb-4 text-base md:mb-8 md:text-xl"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, delay: 2.5 }}
+      >
+        Indulge in our luxurious, organic treatments designed to enhance your natural radiance and rejuvenate your spirit.
+      </motion.p>
+      <motion.div 
+  className="flex flex-col items-center justify-center w-full space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4"
+>
+  <motion.a 
+    href="/services" 
+    className="inline-block w-full px-6 py-3 text-base font-semibold text-center text-black transition-all duration-300 bg-white rounded-full sm:w-auto md:px-10 md:py-4 md:text-lg"
+    whileHover={{ 
+      scale: 1.05, 
+      rotateY: 5,
+      z: 50,
+      boxShadow: "0 0 25px rgba(255,255,255,0.5)",
+      textShadow: "0 0 8px rgba(0,0,0,0.5)"
+    }}
+    transition={{ duration: 0.4, type: 'spring' }}
+  >
+    Explore Services
+  </motion.a>
+  <motion.a 
+    href="/products" 
+    className="inline-block w-full px-6 py-3 text-base font-semibold text-center text-white transition-all duration-300 bg-transparent border-2 border-white rounded-full sm:w-auto md:px-10 md:py-4 md:text-lg"
+    whileHover={{ 
+      scale: 1.05, 
+      rotateY: -5,
+      z: 50,
+      boxShadow: "0 0 25px rgba(255,255,255,0.5)",
+      textShadow: "0 0 8px rgba(255,255,255,0.5)"
+    }}
+    transition={{ duration: 0.4, type: 'spring' }}
+  >
+    Our Products
+  </motion.a>
+</motion.div>
+    </motion.div>
   </div>
 
-  {/* Animated particles */}
-  {[...Array(20)].map((_, i) => (
-    <motion.div
-      key={i}
-      className="absolute w-2 h-2 bg-teal-300 rounded-full"
-      style={{
-        top: `${Math.random() * 100}%`,
-        left: `${Math.random() * 100}%`,
-      }}
-      animate={{
-        y: [0, Math.random() * 100 - 50],
-        x: [0, Math.random() * 100 - 50],
-        scale: [0, 1, 0],
-        opacity: [0, 1, 0],
-      }}
-      transition={{
-        duration: Math.random() * 5 + 5,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-    />
-  ))}
-
-  {/* Scroll indicator */}
+  {/* Enhanced floating elements with 3D animations */}
   <motion.div
-    className="absolute transform -translate-x-1/2 bottom-8 left-1/2"
-    animate={{ y: [0, 10, 0] }}
-    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-  >
-    <FaChevronDown className="text-3xl text-teal-300" />
-  </motion.div>
+    className="absolute w-32 h-32 bg-purple-500 rounded-full md:w-64 md:h-64 top-1/4 left-1/4 mix-blend-multiply filter blur-xl opacity-70"
+    animate={{
+      scale: [1, 1.2, 1],
+      rotate: [0, 90, 180, 270, 360],
+      x: [0, 50, 0, -50, 0],
+      y: [0, 50, 0, -50, 0],
+      z: [0, 100, 0, -100, 0],
+    }}
+    transition={{
+      duration: 20,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+    style={{ transformStyle: 'preserve-3d' }}
+  />
+  <motion.div
+    className="absolute w-32 h-32 bg-pink-500 rounded-full md:w-64 md:h-64 bottom-1/4 right-1/4 mix-blend-multiply filter blur-xl opacity-70"
+    animate={{
+      scale: [1, 1.2, 1],
+      rotate: [0, -90, -180, -270, -360],
+      x: [0, -50, 0, 50, 0],
+      y: [0, -50, 0, 50, 0],
+      z: [0, -100, 0, 100, 0],
+    }}
+    transition={{
+      duration: 25,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+    style={{ transformStyle: 'preserve-3d' }}
+  />
 </section>
-
-
-
-
-
-
-
-
-
-
       {/* Services Section */}
       <section className="relative flex items-center justify-center min-h-screen px-4 py-16 bg-gradient-to-br from-teal-50 to-green-100">
   <div className="w-full mx-auto max-w-7xl">
