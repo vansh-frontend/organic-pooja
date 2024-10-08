@@ -11,7 +11,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-80 backdrop-blur-md"
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto bg-black bg-opacity-80 backdrop-blur-md"
       >
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
@@ -24,20 +24,20 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="absolute z-10 text-purple-300 transition-colors duration-200 top-4 right-4 hover:text-purple-100"
+            className="absolute z-10 text-purple-500 transition-colors duration-200 top-2 right-2 sm:top-4 sm:right-4 hover:text-purple-300"
             onClick={onClose}
             aria-label="Close modal"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg className="w-8 h-8 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </motion.button>
 
           {/* Modal Content */}
-          <div className="flex flex-col md:flex-row">
+          <div className="flex flex-col sm:flex-row">
             {/* Product Image */}
             <motion.div 
-              className="relative w-full md:w-1/2"
+              className="relative w-full sm:w-1/2"
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -48,7 +48,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
                 transition={{ duration: 0.5 }}
                 src={product.image}
                 alt={product.name}
-                className="object-cover w-full h-64 md:h-full"
+                className="object-cover w-full h-64 sm:h-full"
                 onLoad={() => setImageLoaded(true)}
               />
               {!imageLoaded && (
@@ -60,13 +60,13 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
 
             {/* Product Details */}
             <motion.div 
-              className="flex flex-col w-full p-6 bg-gray-800 md:w-1/2 md:p-8"
+              className="flex flex-col w-full p-4 bg-gray-800 sm:p-6 sm:w-1/2 md:p-8"
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
               <motion.h3 
-                className="mb-2 text-3xl font-bold text-purple-300"
+                className="mb-2 text-2xl font-bold text-purple-300 sm:text-3xl"
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
@@ -74,7 +74,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
                 {product.name}
               </motion.h3>
               <motion.p 
-                className="mb-4 text-2xl font-semibold text-blue-400"
+                className="mb-4 text-xl font-semibold text-blue-400 sm:text-2xl"
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
@@ -83,13 +83,13 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
               </motion.p>
 
               <motion.div 
-                className="p-4 mb-6 bg-gray-700 rounded-lg"
+                className="p-3 mb-4 bg-gray-700 rounded-lg sm:p-4 sm:mb-6"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
               >
-                <h4 className="mb-2 text-lg font-semibold text-purple-200">Product Description</h4>
-                <p className="leading-relaxed text-gray-300">
+                <h4 className="mb-2 text-base font-semibold text-purple-200 sm:text-lg">Product Description</h4>
+                <p className="text-sm leading-relaxed text-gray-300 sm:text-base">
                   {product.description || "Embark on a cosmic journey with this stellar product. Infused with the essence of distant galaxies, it's designed to elevate your daily routine to interstellar heights. Perfect for the modern space enthusiast seeking a touch of the extraordinary."}
                 </p>
               </motion.div>
@@ -100,11 +100,19 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.7 }}
               >
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center">
-                    <span className="mr-2 text-sm font-medium text-gray-400">Availability:</span>
+                    <span className="mr-2 text-xs font-medium text-gray-400 sm:text-sm">Availability:</span>
                     <span className="px-2 py-1 text-xs font-semibold text-green-300 bg-green-900 rounded-full">In Stock</span>
                   </div>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 bg-purple-600 rounded-lg sm:text-base hover:bg-purple-700"
+                    onClick={() => onAddToCart(product)}
+                  >
+                    Add to Cart
+                  </motion.button>
                 </div>
               </motion.div>
             </motion.div>
