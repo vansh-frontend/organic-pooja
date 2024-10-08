@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaPhone, FaChevronUp } from 'react-icons/fa';
+import { IconLeaf } from '@tabler/icons-react';
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -20,12 +21,20 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="relative mt-auto text-gray-300 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 backdrop-filter backdrop-blur-lg bg-opacity-90">
+      <footer className="relative mt-auto text-gray-300 bg-gray-900">
         <div className="container px-4 py-16 mx-auto sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
             {/* Logo and Social Media */}
             <div className="space-y-6">
-              <img src="img/pooja 2.png" alt="Organic by Pooja" className="h-16 transition-transform duration-300 hover:scale-105 filter brightness-90" />
+              <div className="flex items-center space-x-3">
+                <div className="relative">
+                  <img src="img/pooja 2.png" alt="Organic by Pooja" className="w-16 h-16 transition-transform duration-300 rounded-full shadow-lg hover:scale-105" />
+                  <IconLeaf className="absolute w-6 h-6 text-pink-500 -top-2 -right-2 animate-bounce" />
+                </div>
+                <h2 className="text-2xl font-bold text-white font-['Roboto_Slab']">
+                  Organic <span className="text-pink-400">Pooja</span>
+                </h2>
+              </div>
               <p className="text-sm text-gray-300">Your trusted partner for organic skincare solutions.</p>
               <div className="flex space-x-4">
                 {[
@@ -39,7 +48,7 @@ const Footer = () => {
                     href={href} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="p-2 text-gray-400 transition-all duration-300 bg-gray-800 bg-opacity-50 rounded-full hover:text-pink-400 hover:bg-opacity-70 hover:scale-110"
+                    className="p-2 text-gray-400 transition-all duration-300 bg-gray-800 rounded-full hover:text-pink-400 hover:bg-gray-700 hover:scale-110"
                   >
                     <Icon className="w-5 h-5" />
                   </a>
@@ -104,7 +113,7 @@ const Footer = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="flex flex-wrap justify-between gap-4 pt-12 mt-12 border-t border-purple-700 border-opacity-50">
+          <div className="flex flex-wrap justify-between gap-4 pt-12 mt-12 border-t border-gray-700">
             <div className="flex items-center space-x-2">
               <FaMapMarkerAlt className="text-pink-400" />
               <span className="text-sm">#762 JanakPuri, Bareilly 243122</span>
@@ -130,7 +139,7 @@ const Footer = () => {
           </div>
 
           {/* Copyright */}
-          <div className="pt-8 mt-12 text-center border-t border-purple-700 border-opacity-50">
+          <div className="pt-8 mt-12 text-center border-t border-gray-700">
             <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} Organic by Pooja Skin Clinic. All rights reserved.</p>
             <div className="flex justify-center mt-4 space-x-4">
               <a href="/privacy-policy" className="text-sm text-gray-400 transition-colors duration-300 hover:text-pink-300">Privacy Policy</a>
@@ -141,23 +150,23 @@ const Footer = () => {
       </footer>
       
       {/* Sticky WhatsApp Button */}
-    {/* Sticky WhatsApp Button */}
-<div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center w-full px-4 py-2">
-  <a
-    href="https://wa.me/918171924503/?text=Hello%0D%0AGot%20this%20number%20from%20Organic%20By%20pooja.%0D%0A"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center w-full px-4 py-3 space-x-2 text-white transition-all duration-300 shadow-lg bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600"
-  >
-    <FaWhatsapp className="w-5 h-5 md:w-6 md:h-6" />
-    <span className="text-sm font-medium md:text-base">Chat with Us on WhatsApp</span>
-  </a>
-</div>
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center w-full px-4 py-2">
+        <a
+          href="https://wa.me/918171924503/?text=Hello%0D%0AGot%20this%20number%20from%20Organic%20By%20pooja.%0D%0A"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center w-full px-4 py-3 space-x-2 text-white transition-all duration-300 bg-purple-900 shadow-lg hover:bg-purple-800"
+        >
+          <FaWhatsapp className="w-5 h-5 md:w-6 md:h-6" />
+          <span className="text-sm font-medium md:text-base">Chat with Us on WhatsApp</span>
+        </a>
+      </div>
+
       {/* Scroll to Top Button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed z-50 p-2 text-white transition-colors duration-300 bg-purple-800 rounded-full shadow-lg bottom-16 right-4 hover:bg-purple-700"
+          className="fixed z-50 p-2 text-white transition-colors duration-300 bg-purple-900 rounded-full shadow-lg bottom-16 right-4 hover:bg-purple-800"
           aria-label="Scroll to top"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

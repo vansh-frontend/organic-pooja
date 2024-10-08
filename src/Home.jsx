@@ -1,21 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accordion from './components/Accordion';
-import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope, FaStarHalfAlt,FaComments,FaChevronDown } from 'react-icons/fa';
-import { motion, } from 'framer-motion';
+import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope, FaStarHalfAlt, FaComments} from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 import './Home.css';
-
-// const toggleBodyScroll = (disable) => {
-//   document.body.style.overflow = disable ? 'hidden' : 'visible';
-// };
 
 const Home = () => {
   const sectionRefs = useRef([]);
   const [scrollDirection, setScrollDirection] = useState(null);
   const [activeSection, setActiveSection] = useState(null);
 
- 
   const values = [
     { icon: FaLeaf, text: "Natural Ingredients", color: "green" },
     { icon: FaStar, text: "Quality Assurance", color: "yellow" },
@@ -92,6 +87,21 @@ const Home = () => {
       });
     };
   }, [scrollDirection]);
+
+  // New effect to handle body scroll
+  useEffect(() => {
+    if (activeSection) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
+
+    return () => {
+      document.body.style.overflow = 'visible';
+    };
+  }, [activeSection]);
+
+
 
   return (
     <div className="relative w-full overflow-hidden bg-gray-50">
@@ -310,30 +320,30 @@ const Home = () => {
       {/* Services Section */}
 
  {/* Services Section */}
- <section className="relative min-h-screen py-24 text-white bg-gradient-to-b from-black to-purple-900">
+ <section className="relative min-h-screen py-24 text-gray-300 bg-gradient-to-b from-gray-900 to-purple-900">
   <div className="absolute inset-0 bg-black opacity-50"></div>
   
   <div className="container relative z-10 px-4 mx-auto">
-  <motion.div
-  className="mb-16 text-center"
-  initial={{ opacity: 0, y: -20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 1 }}
->
-  <motion.h2 
-    className="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl"
-  >
-    Our Premium Services
-  </motion.h2>
-  <motion.p
-    className="text-xl text-gray-300 md:text-2xl"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1, delay: 0.5 }}
-  >
-    Indulge in luxury and transform your look
-  </motion.p>
-</motion.div>
+    <motion.div
+      className="mb-16 text-center"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+    >
+      <motion.h2 
+        className="mb-4 text-4xl font-bold text-pink-400 md:text-5xl lg:text-6xl"
+      >
+        Our Premium Services
+      </motion.h2>
+      <motion.p
+        className="text-xl text-purple-300 md:text-2xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
+        Indulge in luxury and transform your look
+      </motion.p>
+    </motion.div>
 
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       {[
@@ -346,16 +356,16 @@ const Home = () => {
       ].map((service, index) => (
         <motion.div 
           key={index}
-          className="p-8 bg-white border border-white bg-opacity-5 backdrop-filter backdrop-blur-sm border-opacity-10"
+          className="p-8 transition-all duration-300 bg-gray-800 border border-purple-700 shadow-lg rounded-xl hover:bg-gray-700"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: index * 0.1 }}
         >
-          <h3 className="mb-4 text-xl font-semibold text-purple-200">{service.title}</h3>
+          <h3 className="mb-4 text-xl font-semibold text-pink-400">{service.title}</h3>
           <p className="mb-6 text-gray-300">{service.desc}</p>
           <a 
             href="#" 
-            className="text-purple-300 transition-colors duration-300 hover:text-white"
+            className="text-purple-400 transition-colors duration-300 hover:text-pink-400"
           >
             Learn more
           </a>
@@ -365,10 +375,20 @@ const Home = () => {
   </div>
 
   <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+
+  {/* Add some floating elements for visual interest */}
+  <div className="absolute w-64 h-64 bg-purple-500 rounded-full top-1/4 left-1/4 mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+  <div className="absolute w-64 h-64 bg-pink-500 rounded-full top-3/4 right-1/4 mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+  <div className="absolute w-64 h-64 bg-yellow-500 rounded-full bottom-1/4 left-1/2 mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
 </section>
       {/* About Us Section */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-black to-purple-900">
-  <div className="absolute inset-0 opacity-30 bg-[url('data:image/svg+xml,...')]"></div>
+      <section className="relative py-24 overflow-hidden bg-gray-900">
+  {/* Dynamic background pattern */}
+  <div className="absolute inset-0 opacity-10">
+    <div className="absolute inset-0 bg-[url('data:image/svg+xml,...')] animate-pulse"></div>
+    <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-pink-600/30"></div>
+  </div>
+
   <div className="container relative z-10 px-4 mx-auto max-w-7xl">
     <motion.h2 
       className="mb-16 text-4xl font-extrabold text-center text-white md:text-5xl lg:text-6xl"
@@ -381,17 +401,19 @@ const Home = () => {
 
     <div className="grid gap-12 mb-16 md:grid-cols-2">
       <motion.div 
-        className="relative p-8 bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-3xl"
+        className="relative p-8 overflow-hidden bg-gray-800 shadow-lg rounded-3xl"
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <div className="absolute top-0 right-0 w-40 h-40 bg-pink-500 rounded-full opacity-30 mix-blend-multiply filter blur-xl animate-pulse"></div>
-        <div className="absolute w-40 h-40 bg-purple-500 rounded-full opacity-30 -bottom-8 -left-8 mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+        {/* Animated background effect */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-600 animate-gradient-xy"></div>
+        </div>
         
         <div className="relative z-10">
           <div className="flex items-center mb-6">
-            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-pink-400 to-purple-400">
+            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-purple-500">
               <span className="text-2xl font-bold text-white">OP</span>
             </div>
             <h3 className="ml-4 text-3xl font-extrabold text-white">Our Story</h3>
@@ -399,8 +421,8 @@ const Home = () => {
           
           <div className="space-y-6">
             <p className="relative text-lg leading-relaxed text-gray-300">
-              <span className="absolute top-0 text-5xl text-pink-400 opacity-30 -left-4">"</span>
-              Founded in <span className="font-semibold text-pink-300">2019</span>, <span className="font-semibold text-pink-300">Organic by Pooja</span> embarked on a mission to revolutionize skincare with natural, homemade solutions. Our journey from a small initiative to a trusted name in personalized care is a testament to our unwavering commitment to authenticity and quality.
+              <span className="absolute top-0 text-5xl text-pink-600 opacity-30 -left-4">"</span>
+              Founded in <span className="font-semibold text-pink-400">2019</span>, <span className="font-semibold text-pink-400">Organic by Pooja</span> embarked on a mission to revolutionize skincare with natural, homemade solutions. Our journey from a small initiative to a trusted name in personalized care is a testament to our unwavering commitment to authenticity and quality.
             </p>
             <p className="text-lg leading-relaxed text-gray-300">
               We believe in harnessing the power of nature to bring out your inner beauty, offering a range of organic products and services tailored to your unique needs.
@@ -416,7 +438,7 @@ const Home = () => {
       </motion.div>
 
       <motion.div 
-        className="relative overflow-hidden rounded-3xl"
+        className="relative overflow-hidden shadow-lg rounded-3xl"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
@@ -425,7 +447,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
         <div className="absolute bottom-0 left-0 right-0 p-8">
           <h3 className="mb-4 text-2xl font-bold text-white sm:text-3xl">Our Promise</h3>
-          <ul className="space-y-2 text-gray-300">
+          <ul className="space-y-2 text-gray-200">
             {['100% Natural Ingredients', 'Personalized Skincare Solutions', 'Eco-friendly Practices', 'Cruelty-free Products'].map((item, index) => (
               <motion.li 
                 key={index}
@@ -452,107 +474,16 @@ const Home = () => {
       {['Values', 'Services', 'Testimonials'].map((section) => (
         <motion.button
           key={section}
-          className="relative px-8 py-6 overflow-hidden text-xl font-semibold text-white transition-all duration-300 bg-gradient-to-br from-pink-500 to-purple-500 rounded-xl hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-50"
+          className="relative px-8 py-6 overflow-hidden text-xl font-semibold text-white transition-all duration-300 bg-gray-800 border-2 border-pink-600 rounded-xl hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-600 focus:ring-opacity-50 group"
           onClick={() => setActiveSection(section)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           <span className="relative z-10">{section}</span>
-          <motion.div 
-            className="absolute inset-0 bg-white"
-            initial={{ scale: 0, opacity: 0 }}
-            whileHover={{ scale: 1, opacity: 0.1 }}
-            transition={{ duration: 0.3 }}
-          />
+          <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-r from-pink-600 to-purple-600 group-hover:opacity-20"></div>
         </motion.button>
       ))}
     </motion.div>
-
-    {activeSection && (
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: 'auto' }}
-        exit={{ opacity: 0, height: 0 }}
-        transition={{ duration: 0.5 }}
-        className="overflow-hidden bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-3xl"
-      >
-        <div className="p-6 sm:p-8">
-          <h3 className="mb-6 text-2xl font-bold text-white sm:text-3xl">{activeSection}</h3>
-          {activeSection === 'Values' && (
-            <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {values.map((item, index) => (
-                <motion.div 
-                  key={index} 
-                  className="flex flex-col items-center p-4 text-center transition-all duration-300 bg-purple-900 bg-opacity-30 rounded-xl sm:p-6 hover:bg-opacity-50"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 sm:w-20 sm:h-20">
-                    <item.icon className="text-2xl text-white sm:text-3xl" />
-                  </div>
-                  <h4 className="mb-2 text-lg font-bold text-white sm:text-xl">{item.text}</h4>
-                  <p className="text-sm text-gray-300 sm:text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </motion.div>
-              ))}
-            </div>
-          )}
-          {activeSection === 'Services' && (
-            <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((item, index) => (
-                <motion.div 
-                  key={index} 
-                  className="p-4 transition-all duration-300 bg-purple-900 bg-opacity-30 rounded-xl sm:p-6 hover:bg-opacity-50"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <item.icon className="mb-4 text-3xl text-pink-400 sm:text-4xl" />
-                  <h4 className="mb-2 text-lg font-bold text-white sm:text-xl">{item.text}</h4>
-                  <p className="text-sm text-gray-300 sm:text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </motion.div>
-              ))}
-            </div>
-          )}
-          {activeSection === 'Testimonials' && (
-            <div className="grid gap-6 sm:gap-8 sm:grid-cols-2">
-              {testimonials.map((item, index) => (
-                <motion.div 
-                  key={index} 
-                  className="p-4 transition-all duration-300 bg-purple-900 bg-opacity-30 rounded-xl sm:p-6 hover:bg-opacity-50"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <div className="flex items-center mb-4">
-                    <div className="flex items-center justify-center w-10 h-10 mr-4 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 sm:w-12 sm:h-12">
-                      <span className="text-xl font-bold text-white sm:text-2xl">{item.name[0]}</span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-white">{item.name}</p>
-                      <div className="flex">
-                        {[...Array(5)].map((_, i) => (
-                          <FaStar key={i} className={`${i < item.rating ? 'text-yellow-400' : 'text-gray-600'} text-xs sm:text-sm`} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-sm italic text-gray-300 sm:text-base">"{item.text}"</p>
-                </motion.div>
-              ))}
-            </div>
-          )}
-          <motion.button
-            className="px-6 py-3 mt-8 text-white transition-all duration-300 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-50"
-            onClick={() => setActiveSection(null)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Close
-          </motion.button>
-        </div>
-      </motion.div>
-    )}
   </div>
 
   {/* Enhanced floating elements with 3D animations */}
@@ -588,6 +519,100 @@ const Home = () => {
     }}
     style={{ transformStyle: 'preserve-3d' }}
   />
+
+  {/* Modal Overlay */}
+  {activeSection && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+    >
+      <motion.div 
+        className="relative w-full max-w-4xl p-8 overflow-y-auto bg-gray-800 rounded-2xl shadow-2xl max-h-[90vh]"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 50, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <button
+          className="absolute text-gray-400 top-4 right-4 hover:text-white"
+          onClick={() => setActiveSection(null)}
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        <h3 className="mb-6 text-3xl font-bold text-white">{activeSection}</h3>
+        {activeSection === 'Values' && (
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {values.map((item, index) => (
+              <motion.div 
+                key={index} 
+                className="flex flex-col items-center p-6 text-center transition-all duration-300 bg-gray-700 rounded-xl hover:bg-gray-600"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gradient-to-br from-pink-500 to-purple-500">
+                  <item.icon className="text-2xl text-white" />
+                </div>
+                <h4 className="mb-2 text-xl font-bold text-white">{item.text}</h4>
+                <p className="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </motion.div>
+            ))}
+          </div>
+        )}
+        {activeSection === 'Services' && (
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((item, index) => (
+              <motion.div 
+                key={index} 
+                className="p-6 transition-all duration-300 bg-gray-700 rounded-xl hover:bg-gray-600"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <item.icon className="mb-4 text-4xl text-pink-400" />
+                <h4 className="mb-2 text-xl font-bold text-white">{item.text}</h4>
+                <p className="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </motion.div>
+            ))}
+          </div>
+        )}
+        {activeSection === 'Testimonials' && (
+          <div className="grid gap-8 sm:grid-cols-2">
+            {testimonials.map((item, index) => (
+              <motion.div 
+                key={index} 
+                className="p-6 transition-all duration-300 bg-gray-700 rounded-xl hover:bg-gray-600"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="flex items-center justify-center w-12 h-12 mr-4 rounded-full bg-gradient-to-br from-pink-500 to-purple-500">
+                    <span className="text-xl font-bold text-white">{item.name[0]}</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">{item.name}</p>
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <FaStar key={i} className={`${i < item.rating ? 'text-yellow-400' : 'text-gray-600'} text-sm`} />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <p className="italic text-gray-300">"{item.text}"</p>
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </motion.div>
+    </motion.div>
+  )}
 </section>
       {/* Testimonials Section */}
       <section className="relative py-24 overflow-hidden bg-gradient-to-br from-black to-purple-900">
