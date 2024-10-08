@@ -343,7 +343,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
     >
       Proceed to Intergalactic Checkout
     </button>
-  </div>
+  </div>x
 </motion.div>
           </div>
         )}

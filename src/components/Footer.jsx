@@ -155,7 +155,7 @@ const Footer = () => {
           href="https://wa.me/918171924503/?text=Hello%0D%0AGot%20this%20number%20from%20Organic%20By%20pooja.%0D%0A"
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center w-full px-4 py-3 space-x-2 text-white transition-all duration-300 bg-purple-900 shadow-lg hover:bg-purple-800"
+          className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center w-full px-4 py-3 space-x-2 text-white transition-all duration-300 bg-green-700 shadow-lg hover:bg-green-800"
         >
           <FaWhatsapp className="w-5 h-5 md:w-6 md:h-6" />
           <span className="text-sm font-medium md:text-base">Chat with Us on WhatsApp</span>
