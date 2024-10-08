@@ -181,13 +181,13 @@ const Contact = () => {
     
                 {/* Submit Button */}
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  type="submit"
-                  className="w-full p-4 font-semibold text-white transition duration-300 ease-in-out bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50"
-                >
-                  Book Your Luxurious Experience
-                </motion.button>
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  type="submit"
+  className="w-full p-4 font-semibold text-white transition duration-300 ease-in-out bg-transparent border-2 border-purple-600 rounded-lg shadow-md hover:bg-purple-600 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50"
+>
+  Book Your Luxurious Experience
+</motion.button>
               </form>
             </motion.div>
     
@@ -270,7 +270,7 @@ const Contact = () => {
                   href="https://www.instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-white transition-colors duration-300 bg-purple-600 rounded-full hover:bg-purple-700"
+                  className="p-2 text-white transition-colors duration-300 bg-pink-500 rounded-full hover:bg-purple-700"
                 >
                   <FaInstagram className="w-6 h-6" />
                 </motion.a>
@@ -279,7 +279,7 @@ const Contact = () => {
                   href="https://www.facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-white transition-colors duration-300 bg-purple-600 rounded-full hover:bg-purple-700"
+                  className="p-2 text-white transition-colors duration-300 bg-blue-600 rounded-full hover:bg-purple-700"
                 >
                   <FaFacebookF className="w-6 h-6" />
                 </motion.a>
@@ -288,7 +288,7 @@ const Contact = () => {
                   href="https://www.twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-white transition-colors duration-300 bg-purple-600 rounded-full hover:bg-purple-700"
+                  className="p-2 text-white transition-colors duration-300 bg-blue-800 rounded-full hover:bg-purple-700"
                 >
                   <FaTwitter className="w-6 h-6" />
                 </motion.a>
