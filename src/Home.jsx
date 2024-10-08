@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accordion from './components/Accordion';
 import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope, FaStarHalfAlt, FaComments} from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { motion, useAnimation, useMotionValue, useTransform, useViewportScroll } from 'framer-motion';
 
 import './Home.css';
 
@@ -10,6 +10,11 @@ const Home = () => {
   const sectionRefs = useRef([]);
   const [scrollDirection, setScrollDirection] = useState(null);
   const [activeSection, setActiveSection] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const controls = useAnimation();
+  const { scrollY } = useViewportScroll();
+  const y = useMotionValue(0);
+  const opacity = useTransform(y, [-100, 0, 100], [0, 1, 0]);
 
   const values = [
     { icon: FaLeaf, text: "Natural Ingredients", color: "green" },
@@ -45,17 +50,26 @@ const Home = () => {
   ];
 
   useEffect(() => {
+    const sequence = async () => {
+      await controls.start({ opacity: 1, y: 0 });
+      setIsLoaded(true);
+    };
+    sequence();
+  }, [controls]);
+
+  useEffect(() => {
     let lastScrollTop = window.pageYOffset;
 
     const handleScroll = () => {
       let currentScrollTop = window.pageYOffset;
       setScrollDirection(currentScrollTop < lastScrollTop ? 'up' : 'down');
       lastScrollTop = currentScrollTop;
+      y.set(currentScrollTop);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [y]);
 
   useEffect(() => {
     const sections = sectionRefs.current;
@@ -64,16 +78,20 @@ const Home = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           if (!entry.target.classList.contains('already-visible')) {
-            entry.target.classList.add(scrollDirection === 'up' ? 'content-visible' : 'content-visible-right');
+            controls.start(i => ({
+              opacity: 1,
+              y: 0,
+              transition: { delay: i * 0.1 }
+            }));
             entry.target.classList.add('already-visible');
           }
         } else {
           entry.target.classList.remove('already-visible');
         }
       });
-    });
+    }, { threshold: 0.1 });
   
-    sections.forEach((section) => {
+    sections.forEach((section, index) => {
       if (section && !section.classList.contains('exclude-animation')) {
         observer.observe(section);
       }
@@ -86,9 +104,8 @@ const Home = () => {
         }
       });
     };
-  }, [scrollDirection]);
+  }, [controls, scrollDirection]);
 
-  // New effect to handle body scroll
   useEffect(() => {
     if (activeSection) {
       document.body.style.overflow = 'hidden';
@@ -101,222 +118,260 @@ const Home = () => {
     };
   }, [activeSection]);
 
-
-
   return (
     <div className="relative w-full overflow-hidden bg-gray-50">
       {/* Organic By Pooja Section */}
-      <section className="relative min-h-screen overflow-hidden text-white bg-black perspective-1000">
-  {/* Enhanced 3D background animation */}
+      <motion.section 
+        className="relative min-h-screen overflow-hidden text-white bg-black perspective-1000"
+        initial={{ opacity: 0 }}
+        animate={controls}
+      >
+        {/* Cinematic background animation */}
+        <motion.div 
+          className="absolute inset-0 z-0"
+          initial={{ scale: 1.5, opacity: 0 }}
+          animate={{ 
+            scale: [1.5, 1.2, 1],
+            opacity: [0, 0.5, 1],
+          }}
+          transition={{ 
+            duration: 4,
+            times: [0, 0.7, 1],
+            ease: "easeOut"
+          }}
+          style={{
+            backgroundImage: 'url("/img/section.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'brightness(0.3) saturate(1.2) contrast(1.2)',
+          }}
+        />
+        
+        {/* Dynamic overlay with animated gradient */}
+        <motion.div 
+          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2, delay: 1 }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900 to-black opacity-80" />
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff)',
+              backgroundSize: '400% 400%',
+              opacity: 0.1,
+            }}
+            animate={{
+              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+            }}
+            transition={{
+              duration: 15,
+              ease: 'linear',
+              repeat: Infinity,
+            }}
+          />
+        </motion.div>
+
+        <div className="container relative z-10 flex flex-col items-center justify-center min-h-screen px-4 mx-auto">
+          {/* Header with complex reveal animation */}
+          <motion.header 
+            className="text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, delay: 0.5 }}
+          >
+            <motion.h1 
+              className="mb-4 text-4xl font-bold md:text-7xl lg:text-9xl"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 2, delay: 1, ease: [0.6, -0.05, 0.01, 0.99] }}
+            >
+              {['Organic', 'By Pooja'].map((word, index) => (
+                <motion.span
+                  key={index}
+                  className={`block ${index === 1 ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-600' : ''}`}
+                  initial={{ y: '100%', opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 1, delay: index * 0.5 + 1.5, ease: [0.6, -0.05, 0.01, 0.99] }}
+                >
+                  {word.split('').map((char, charIndex) => (
+                    <motion.span
+                      key={charIndex}
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: charIndex * 0.05 + index * 0.5 + 2 }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </motion.span>
+              ))}
+            </motion.h1>
+            <motion.p 
+              className="text-xl text-gray-300 md:text-3xl lg:text-4xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 3 }}
+            >
+              Elevate Your Natural Beauty
+            </motion.p>
+          </motion.header>
+
+          {/* Main content with advanced staggered animation */}
+{/* Main content with advanced staggered animation */}
+{isLoaded && (
   <motion.div 
-    className="absolute inset-0 z-0"
-    initial={{ scale: 1.5, opacity: 0, y: "-100%" }}
-    animate={{ 
-      scale: 1,
-      opacity: 1,
-      y: "0%"
-    }}
-    transition={{ 
-      duration: 1.5,
-      ease: "easeOut"
-    }}
-    style={{
-      backgroundImage: 'url("/img/section.jpg")',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      transformStyle: 'preserve-3d',
+    className="w-full max-w-6xl mt-12"
+    initial="hidden"
+    animate="show"
+    variants={{
+      hidden: { opacity: 0 },
+      show: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.3,
+          delayChildren: 3.5
+        }
+      }
     }}
   >
-    {/* Continuous subtle animation after initial setup */}
-    <motion.div
-      className="absolute inset-0"
-      animate={{ 
-        scale: [1, 1.05, 1],
-        rotateX: [0, 1, 0],
-        rotateY: [0, -1, 0]
-      }}
-      transition={{
-        duration: 20,
-        repeat: Infinity,
-        repeatType: "reverse",
-        ease: "easeInOut"
-      }}
-    />
-  </motion.div>
-  
-  {/* Overlay */}
-  <div className="absolute inset-0 opacity-75 bg-gradient-to-br from-purple-900 to-black"></div>
-
-  <div className="container relative z-10 flex flex-col items-center justify-between min-h-screen px-4 py-16 mx-auto">
-    {/* Header with enhanced 3D parallax effect */}
-    <motion.header 
-      className="mb-8 text-center md:mb-16"
-      initial={{ opacity: 0, y: -50, rotateX: -20 }}
-      animate={{ opacity: 1, y: 0, rotateX: 0 }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
-      style={{ transformStyle: 'preserve-3d' }}
-    >
-      <motion.h1 
-        className="relative mb-4 text-4xl font-bold md:text-7xl lg:text-9xl"
-        style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
-      >
-        <motion.span
-          className="block"
-          initial={{ opacity: 0, rotateX: -90, z: -100 }}
-          animate={{ opacity: 1, rotateX: 0, z: 0 }}
-          transition={{ duration: 1.2, delay: 0.5 }}
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
+      {[
+        { title: "Luxurious Facials", description: "Revitalize your skin with our premium organic treatments" },
+        { title: "Holistic Massages", description: "Experience total relaxation and rejuvenation" },
+        { title: "Natural Hair Care", description: "Nourish and style with nature's finest ingredients" },
+      ].map((service, index) => (
+        <motion.div 
+          key={index}
+          className="p-4 text-center bg-black bg-opacity-50 border border-purple-500 backdrop-filter backdrop-blur-lg rounded-2xl"
+          variants={{
+            hidden: { opacity: 0, y: 50, rotateY: -15 },
+            show: { 
+              opacity: 1, 
+              y: 0, 
+              rotateY: 0,
+              transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 10
+              }
+            }
+          }}
+          whileHover={{ 
+            scale: 1.05, 
+            boxShadow: "0 0 30px rgba(147, 51, 234, 0.3)",
+            transition: { duration: 0.3 }
+          }}
         >
-          Organic
-        </motion.span>
-        <motion.span
-          className="block text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-600"
-          initial={{ opacity: 0, rotateX: 90, z: -100 }}
-          animate={{ opacity: 1, rotateX: 0, z: 0 }}
-          transition={{ duration: 1.2, delay: 1 }}
-        >
-          By Pooja
-        </motion.span>
-      </motion.h1>
-      <motion.p 
-        className="text-xl text-gray-300 md:text-3xl lg:text-4xl"
-        initial={{ opacity: 0, y: 20, rotateX: 20 }}
-        animate={{ opacity: 1, y: 0, rotateX: 0 }}
-        transition={{ duration: 1.2, delay: 1.5 }}
-      >
-        Elevate Your Natural Beauty
-      </motion.p>
-    </motion.header>
+          <h3 className="mb-2 text-xl font-semibold md:mb-4 md:text-2xl">{service.title}</h3>
+          <p className="text-sm text-gray-300 md:text-base">{service.description}</p>
+        </motion.div>
+      ))}
+    </div>
 
-    {/* Main content with enhanced 3D staggered animation */}
-    <motion.div 
-      className="w-full max-w-6xl mb-8 md:mb-16"
+    {/* New text before CTA buttons */}
+    <motion.p
+      className="mt-8 mb-6 text-lg text-center text-gray-300 md:text-xl lg:text-1xl"
       variants={{
-        hidden: { opacity: 0 },
-        show: {
-          opacity: 1,
+        hidden: { opacity: 0, y: 20 },
+        show: { 
+          opacity: 1, 
+          y: 0,
           transition: {
-            staggerChildren: 0.3
+            type: "spring",
+            stiffness: 100,
+            damping: 10,
+            delay: 0.5
           }
         }
       }}
-      initial="hidden"
-      animate="show"
-      style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
     >
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
+      Indulge in our luxurious, organic treatments designed to enhance your natural radiance and rejuvenate your spirit.
+    </motion.p>
+
+    {/* CTA Section with advanced hover animation */}
+    <motion.div
+      className="mt-12 text-center"
+      variants={{
+        hidden: { opacity: 0 },
+        show: { 
+          opacity: 1,
+          transition: {
+            delay: 0.7
+          }
+        }
+      }}
+    >
+      <motion.div 
+        className="flex flex-col items-center justify-center w-full space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4"
+      >
         {[
-          { title: "Luxurious Facials", description: "Revitalize your skin with our premium organic treatments" },
-          { title: "Holistic Massages", description: "Experience total relaxation and rejuvenation" },
-          { title: "Natural Hair Care", description: "Nourish and style with nature's finest ingredients" },
-        ].map((service, index) => (
-          <motion.div 
+          { text: "Explore Services", href: "/services", primary: true },
+          { text: "Our Products", href: "/products", primary: false },
+        ].map((button, index) => (
+          <motion.a 
             key={index}
-            className="p-4 text-center bg-white md:p-8 bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl"
-            variants={{
-              hidden: { opacity: 0, y: 50, rotateY: -15, z: -100 },
-              show: { opacity: 1, y: 0, rotateY: 0, z: 0 }
-            }}
+            href={button.href}
+            className={`inline-block w-full px-6 py-3 text-base font-semibold text-center transition-all duration-300 rounded-full sm:w-auto md:px-10 md:py-4 md:text-lg ${
+              button.primary ? 'text-white bg-purple-600' : 'text-purple-400 border-2 border-purple-400'
+            }`}
             whileHover={{ 
               scale: 1.05, 
-              rotateY: 5,
-              z: 50,
-              backgroundColor: "rgba(255,255,255,0.2)",
-              boxShadow: "0 0 20px rgba(255,255,255,0.3)"
+              boxShadow: `0 0 30px ${button.primary ? 'rgba(147, 51, 234, 0.5)' : 'rgba(167, 139, 250, 0.3)'}`,
             }}
-            transition={{ duration: 0.4, type: 'spring' }}
+            whileTap={{ scale: 0.95 }}
           >
-            <h3 className="mb-2 text-xl font-semibold md:mb-4 md:text-2xl">{service.title}</h3>
-            <p className="text-sm text-gray-300 md:text-base">{service.description}</p>
-          </motion.div>
+            {button.text}
+          </motion.a>
         ))}
-      </div>
+      </motion.div>
     </motion.div>
+  </motion.div>
+)}
+        </div>
 
-    {/* CTA Section with enhanced 3D hover animation */}
-    <motion.div
-      className="text-center"
-      initial={{ opacity: 0, y: 50, rotateX: 20 }}
-      animate={{ opacity: 1, y: 0, rotateX: 0 }}
-      transition={{ duration: 1.2, delay: 2 }}
-      style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
-    >
-      <motion.p 
-        className="max-w-2xl mx-auto mb-4 text-base md:mb-8 md:text-xl"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 2.5 }}
-      >
-        Indulge in our luxurious, organic treatments designed to enhance your natural radiance and rejuvenate your spirit.
-      </motion.p>
-      <motion.div 
-  className="flex flex-col items-center justify-center w-full space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4"
->
-  <motion.a 
-    href="/services" 
-    className="inline-block w-full px-6 py-3 text-base font-semibold text-center text-black transition-all duration-300 bg-white rounded-full sm:w-auto md:px-10 md:py-4 md:text-lg"
-    whileHover={{ 
-      scale: 1.05, 
-      rotateY: 5,
-      z: 50,
-      boxShadow: "0 0 25px rgba(255,255,255,0.5)",
-      textShadow: "0 0 8px rgba(0,0,0,0.5)"
-    }}
-    transition={{ duration: 0.4, type: 'spring' }}
-  >
-    Explore Services
-  </motion.a>
-  <motion.a 
-    href="/products" 
-    className="inline-block w-full px-6 py-3 text-base font-semibold text-center text-white transition-all duration-300 bg-transparent border-2 border-white rounded-full sm:w-auto md:px-10 md:py-4 md:text-lg"
-    whileHover={{ 
-      scale: 1.05, 
-      rotateY: -5,
-      z: 50,
-      boxShadow: "0 0 25px rgba(255,255,255,0.5)",
-      textShadow: "0 0 8px rgba(255,255,255,0.5)"
-    }}
-    transition={{ duration: 0.4, type: 'spring' }}
-  >
-    Our Products
-  </motion.a>
-</motion.div>
-    </motion.div>
-  </div>
+        {/* Advanced particle effect */}
+        <motion.div
+          className="absolute inset-0 z-20 pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2, delay: 2 }}
+        >
+          {[...Array(100)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-purple-400 rounded-full"
+              style={{
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+              }}
+              animate={{
+                y: [null, Math.random() * window.innerHeight],
+                opacity: [0, 1, 0],
+                scale: [0, Math.random() * 2, 0],
+              }}
+              transition={{
+                duration: Math.random() * 10 + 10,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </motion.div>
 
-  {/* Enhanced floating elements with 3D animations */}
-  <motion.div
-    className="absolute w-32 h-32 bg-purple-500 rounded-full md:w-64 md:h-64 top-1/4 left-1/4 mix-blend-multiply filter blur-xl opacity-70"
-    animate={{
-      scale: [1, 1.2, 1],
-      rotate: [0, 90, 180, 270, 360],
-      x: [0, 50, 0, -50, 0],
-      y: [0, 50, 0, -50, 0],
-      z: [0, 100, 0, -100, 0],
-    }}
-    transition={{
-      duration: 20,
-      repeat: Infinity,
-      repeatType: "reverse",
-    }}
-    style={{ transformStyle: 'preserve-3d' }}
-  />
-  <motion.div
-    className="absolute w-32 h-32 bg-pink-500 rounded-full md:w-64 md:h-64 bottom-1/4 right-1/4 mix-blend-multiply filter blur-xl opacity-70"
-    animate={{
-      scale: [1, 1.2, 1],
-      rotate: [0, -90, -180, -270, -360],
-      x: [0, -50, 0, 50, 0],
-      y: [0, -50, 0, 50, 0],
-      z: [0, -100, 0, 100, 0],
-    }}
-    transition={{
-      duration: 25,
-      repeat: Infinity,
-      repeatType: "reverse",
-    }}
-    style={{ transformStyle: 'preserve-3d' }}
-  />
-</section>
+        {/* Cinematic light rays effect */}
+        <motion.div
+          className="absolute inset-0 z-10 pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 0.1, 0] }}
+          transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
+          style={{
+            background: 'radial-gradient(ellipse at top, rgba(255,255,255,0.3) 0%, transparent 70%)',
+          }}
+        />
+      </motion.section>
       {/* Services Section */}
 
  {/* Services Section */}
