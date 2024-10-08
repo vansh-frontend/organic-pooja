@@ -70,29 +70,52 @@ const Products = ({ addToCart }) => {
 
         {/* Category Filter */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={controls}
-          transition={{ delay: 0.2 }}
-          className="mb-16"
-        >
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <motion.button
-                key={category}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-6 py-3 text-sm font-medium rounded-full transition-all duration-300 ease-in-out ${
-                  selectedCategory === category
-                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/50'
-                    : 'bg-gray-800 text-purple-300 hover:bg-gray-700 border border-purple-500'
-                }`}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
+  initial={{ opacity: 0, y: 20 }}
+  animate={controls}
+  transition={{ delay: 0.2 }}
+  className="mb-16"
+>
+  <div className="flex flex-wrap justify-center gap-6">
+    {categories.map((category, index) => (
+      <motion.button
+        key={category}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.1 }}
+        className={`relative px-6 py-3 text-sm font-medium transition-all duration-300 ease-in-out overflow-hidden`}
+        onClick={() => setSelectedCategory(category)}
+      >
+        <span className={`relative z-10 ${
+          selectedCategory === category ? 'text-white' : 'text-purple-300'
+        }`}>
+          {category}
+        </span>
+        <motion.div
+    className="absolute inset-0 bg-purple-400"
+          initial={false}
+          animate={{
+            clipPath: selectedCategory === category
+              ? 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
+              : 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)'
+          }}
+          transition={{ duration: 0.3 }}
+        />
+        <motion.div
+          className="absolute inset-0 bg-gray-800 border border-purple-500"
+          initial={false}
+          animate={{
+            clipPath: selectedCategory === category
+              ? 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)'
+              : 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
+          }}
+          transition={{ duration: 0.3 }}
+        />
+      </motion.button>
+    ))}
+  </div>
+</motion.div>
 
         {/* Products Section */}
         <motion.div 
