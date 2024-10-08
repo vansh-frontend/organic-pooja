@@ -52,7 +52,7 @@ const ProductCard = memo(({ product, onAddToCart, onMoreDetails }) => {
         </div>
         <div className="p-4">
           <h3 className="mb-2 text-lg font-semibold text-purple-300 line-clamp-2">{product.name}</h3>
-          <p className="mb-4 text-xl font-bold text-blue-400">{product.price}</p>
+          <p className="mb-4 text-xl font-bold text-gray-300">{product.price}</p>
           <div className="flex space-x-2">
             <motion.button
               onClick={() => onMoreDetails(product)}
@@ -63,13 +63,13 @@ const ProductCard = memo(({ product, onAddToCart, onMoreDetails }) => {
               More Details
             </motion.button>
             <motion.button
-              onClick={handleAddToCart}
-              className="flex-1 px-4 py-2 text-sm font-medium text-white transition-colors duration-200 bg-purple-600 rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Add to Cart
-            </motion.button>
+    onClick={handleAddToCart}
+    className="flex-1 px-4 py-2 text-sm font-medium text-white transition-all duration-200 bg-transparent border border-purple-400 border-opacity-50 rounded backdrop-blur-sm hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-purple-500"
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
+  >
+    Add to Cart
+  </motion.button>
           </div>
         </div>
       </motion.div>

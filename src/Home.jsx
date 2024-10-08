@@ -314,7 +314,7 @@ const Home = () => {
             key={index}
             href={button.href}
             className={`inline-block w-full px-6 py-3 text-base font-semibold text-center transition-all duration-300 rounded-full sm:w-auto md:px-10 md:py-4 md:text-lg ${
-              button.primary ? 'text-white bg-purple-600' : 'text-purple-400 border-2 border-purple-400'
+              button.primary ? 'text-purple-400 bg-white' : 'text-purple-400 border-2 border-purple-400'
             }`}
             whileHover={{ 
               scale: 1.05, 

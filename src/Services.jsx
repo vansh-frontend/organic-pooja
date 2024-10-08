@@ -290,7 +290,7 @@ const Services = () => {
       animate={{ x: 0 }}
       exit={{ x: -300 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className={`fixed inset-y-0 left-0 z-30 w-72 bg-gray-800 shadow-lg md:sticky md:top-0 md:h-screen ${
+      className={`fixed inset-y-0 left-0 z-30 w-72 bg-gray-900 shadow-lg md:sticky md:top-0 md:h-screen ${
         isMobile ? 'top-16' : ''
       }`}
     >
@@ -396,7 +396,7 @@ const Services = () => {
   </header>
 
   {/* Content */}
-  <main className="flex-1 p-3 overflow-y-auto bg-gray-900 sm:p-4 md:p-6 lg:p-8">
+  <main className="flex-1 p-3 overflow-y-auto bg-gray-800 sm:p-4 md:p-6 lg:p-8">
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
