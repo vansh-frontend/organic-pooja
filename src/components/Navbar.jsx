@@ -228,7 +228,7 @@ const Navbar = ({ position }) => {
       <li className="flex-shrink-0">
   <NavLink
     to="/book"
-    className="relative overflow-hidden px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold text-white bg-purple- border-2 border-purple-600 rounded-md transition-all duration-300 ease-in-out hover:bg-purple-600 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 whitespace-nowrap"
+    className="relative overflow-hidden px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold text-white bg-purple-800 border-2 border-purple-600 rounded-md transition-all duration-300 ease-in-out hover:bg-purple-600 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 whitespace-nowrap"
   >
     <span className="relative z-10">Book Appointment</span>
     <span className="absolute inset-0 transition-opacity duration-300 ease-in-out bg-white opacity-0 group-hover:opacity-20"></span>
