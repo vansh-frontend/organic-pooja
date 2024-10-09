@@ -32,22 +32,22 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.5 }}
-      className="mb-6 overflow-hidden transition-all duration-300 bg-purple-900 bg-opacity-50 shadow-lg rounded-xl hover:shadow-2xl"
+      className="mb-6 overflow-hidden transition-all duration-300 bg-gray-900 bg-opacity-50 border rounded-lg shadow-lg hover:shadow-2xl border-amber-900/30"
     >
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => onToggle(id)}
         className={`flex items-center justify-between w-full px-6 py-4 text-left focus:outline-none transition-all duration-300 ${
-          isOpen ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white' : 'text-white'
+          isOpen ? 'bg-gradient-to-r from-amber-700 to-amber-900 text-amber-100' : 'text-amber-100'
         }`}
       >
-        <span className="pr-4 text-lg font-medium">{title}</span>
+        <span className="pr-4 text-lg font-light tracking-wider uppercase">{title}</span>
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <FaStar className={`text-xl ${isOpen ? 'text-yellow-400' : 'text-pink-400'}`} />
+          <FaStar className={`text-xl ${isOpen ? 'text-amber-300' : 'text-amber-500'}`} />
         </motion.span>
       </motion.button>
       <AnimatePresence initial={false}>
@@ -63,7 +63,7 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="px-6 py-4 text-gray-300 bg-purple-800 bg-opacity-50">
+            <div className="px-6 py-4 text-gray-300 bg-gray-800 bg-opacity-50">
               {content}
             </div>
           </motion.div>
@@ -127,27 +127,27 @@ const Accordion = () => {
   ];
 
   return (
-    <section className="py-24 ">
+    <section className="one">
       <style>{styles}</style>
-      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div className="absolute inset-0 opacity-10 bg-[url('/textures/luxury-pattern.png')]"></div>
+      <div className="container relative z-10 max-w-6xl px-4 mx-auto">
         <motion.h2 
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          // className="mb-12 text-4xl font-bold text-center text-white sm:text-5xl"
+          transition={{ duration: 1 }}
+          className="mb-24 text-4xl font-light text-center text-gray-100 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
         >
-
         </motion.h2>
         <div className="relative">
-          <div className="absolute top-0 left-0 w-40 h-40 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-          <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-          <div className="absolute w-40 h-40 bg-blue-500 rounded-full -bottom-8 left-20 mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+          <div className="absolute top-0 left-0 w-40 h-40 rounded-full bg-amber-500 mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+          <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-amber-700 mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+          <div className="absolute w-40 h-40 rounded-full bg-amber-300 -bottom-8 left-20 mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
           
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            className="relative grid gap-6 md:grid-cols-2"
           >
             {faqItems.map((item, index) => (
               <motion.div
@@ -168,6 +168,8 @@ const Accordion = () => {
           </motion.div>
         </div>
       </div>
+      <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"></div>
+      <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"></div>
     </section>
   );
 };

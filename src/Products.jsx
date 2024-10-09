@@ -51,11 +51,11 @@ const Products = ({ addToCart }) => {
   };
   
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black">
+    <div className="relative min-h-screen overflow-hidden bg-gray-900">
       {/* Space background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/img/space-bg.jpg')] bg-cover bg-center opacity-50"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/30 via-blue-900/30 to-black/70"></div>
+        <div className="absolute inset-0 bg-[url('/img/space-bg.jpg')] bg-cover bg-center opacity-30"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/30 via-gray-800/30 to-black/70"></div>
       </div>
 
       {/* Content */}
@@ -63,59 +63,59 @@ const Products = ({ addToCart }) => {
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
           animate={controls}
-          className="mb-12 text-5xl font-bold text-center text-purple-300"
+          className="mb-12 text-5xl font-bold text-center text-amber-300"
         >
           Our Cosmic Collection
         </motion.h1>
 
         {/* Category Filter */}
         <motion.div 
-  initial={{ opacity: 0, y: 20 }}
-  animate={controls}
-  transition={{ delay: 0.2 }}
-  className="mb-16"
->
-  <div className="flex flex-wrap justify-center gap-6">
-    {categories.map((category, index) => (
-      <motion.button
-        key={category}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: index * 0.1 }}
-        className={`relative px-6 py-3 text-sm font-medium transition-all duration-300 ease-in-out overflow-hidden`}
-        onClick={() => setSelectedCategory(category)}
-      >
-        <span className={`relative z-10 ${
-          selectedCategory === category ? 'text-white' : 'text-purple-300'
-        }`}>
-          {category}
-        </span>
-        <motion.div
-    className="absolute inset-0 bg-purple-400"
-          initial={false}
-          animate={{
-            clipPath: selectedCategory === category
-              ? 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
-              : 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)'
-          }}
-          transition={{ duration: 0.3 }}
-        />
-        <motion.div
-          className="absolute inset-0 bg-gray-800 border border-purple-500"
-          initial={false}
-          animate={{
-            clipPath: selectedCategory === category
-              ? 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)'
-              : 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
-          }}
-          transition={{ duration: 0.3 }}
-        />
-      </motion.button>
-    ))}
-  </div>
-</motion.div>
+          initial={{ opacity: 0, y: 20 }}
+          animate={controls}
+          transition={{ delay: 0.2 }}
+          className="mb-16"
+        >
+          <div className="flex flex-wrap justify-center gap-6">
+            {categories.map((category, index) => (
+              <motion.button
+                key={category}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className={`relative px-6 py-3 text-sm font-medium transition-all duration-300 ease-in-out overflow-hidden`}
+                onClick={() => setSelectedCategory(category)}
+              >
+                <span className={`relative z-10 ${
+                  selectedCategory === category ? 'text-gray-900' : 'text-amber-300'
+                }`}>
+                  {category}
+                </span>
+                <motion.div
+                  className="absolute inset-0 bg-amber-400"
+                  initial={false}
+                  animate={{
+                    clipPath: selectedCategory === category
+                      ? 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
+                      : 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)'
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.div
+                  className="absolute inset-0 bg-gray-800 border border-amber-500"
+                  initial={false}
+                  animate={{
+                    clipPath: selectedCategory === category
+                      ? 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)'
+                      : 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Products Section */}
         <motion.div 
@@ -135,7 +135,7 @@ const Products = ({ addToCart }) => {
                 product={product}
                 onAddToCart={addToCart}
                 onMoreDetails={handleProductDetails}
-                className="bg-gray-900 border border-purple-500 shadow-lg shadow-purple-500/20"
+                className="bg-gray-800 border shadow-lg border-amber-500 shadow-amber-500/20"
               />
             </motion.div>
           ))}
@@ -147,7 +147,7 @@ const Products = ({ addToCart }) => {
             product={selectedProduct}
             onClose={handleCloseModal}
             onAddToCart={addToCart}
-            className="bg-gray-900 border border-purple-500"
+            className="bg-gray-800 border border-amber-500"
           />
         )}
       </div>

@@ -9,11 +9,11 @@ const CustomAlert = ({ message, onClose }) => (
     exit={{ opacity: 0, y: -50 }}
     className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
   >
-    <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
-      <p className="mb-4 text-lg text-purple-300">{message}</p>
+    <div className="p-6 bg-gray-900 border rounded-lg shadow-lg border-amber-500/30">
+      <p className="mb-4 text-lg text-amber-100">{message}</p>
       <button
         onClick={onClose}
-        className="px-4 py-2 text-sm font-medium text-white transition-colors duration-200 bg-purple-600 rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        className="px-4 py-2 text-sm font-medium text-gray-900 transition-colors duration-200 rounded bg-amber-400 hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
       >
         Close
       </button>
@@ -32,7 +32,7 @@ const ProductCard = memo(({ product, onAddToCart, onMoreDetails }) => {
   return (
     <>
       <motion.div
-        className="overflow-hidden transition-all duration-300 bg-gray-900 border border-purple-500 rounded-lg shadow-md hover:shadow-lg"
+        className="overflow-hidden transition-all duration-300 bg-gray-900 border rounded-lg shadow-md border-amber-500/30 hover:shadow-lg"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
@@ -46,30 +46,30 @@ const ProductCard = memo(({ product, onAddToCart, onMoreDetails }) => {
             whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.3 }}
           />
-          <div className="absolute px-2 py-1 text-xs font-medium text-green-300 bg-green-900 rounded-full top-2 right-2">
+          <div className="absolute px-2 py-1 text-xs font-medium rounded-full text-amber-900 bg-amber-400 top-2 right-2">
             In Stock
           </div>
         </div>
         <div className="p-4">
-          <h3 className="mb-2 text-lg font-semibold text-purple-300 line-clamp-2">{product.name}</h3>
-          <p className="mb-4 text-xl font-bold text-gray-300">{product.price}</p>
+          <h3 className="mb-2 text-lg font-semibold text-amber-100 line-clamp-2">{product.name}</h3>
+          <p className="mb-4 text-xl font-bold text-amber-300">{product.price}</p>
           <div className="flex space-x-2">
             <motion.button
               onClick={() => onMoreDetails(product)}
-              className="flex-1 px-4 py-2 text-sm font-medium text-purple-200 transition-colors duration-200 bg-gray-800 rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="flex-1 px-4 py-2 text-sm font-medium transition-colors duration-200 bg-gray-800 rounded text-amber-100 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               More Details
             </motion.button>
             <motion.button
-    onClick={handleAddToCart}
-    className="flex-1 px-4 py-2 text-sm font-medium text-white transition-all duration-200 bg-transparent border border-purple-400 border-opacity-50 rounded backdrop-blur-sm hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-purple-500"
-    whileHover={{ scale: 1.02 }}
-    whileTap={{ scale: 0.98 }}
-  >
-    Add to Cart
-  </motion.button>
+              onClick={handleAddToCart}
+              className="flex-1 px-4 py-2 text-sm font-medium transition-all duration-200 bg-transparent border border-opacity-50 rounded text-amber-100 border-amber-400 backdrop-blur-sm hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Add to Cart
+            </motion.button>
           </div>
         </div>
       </motion.div>

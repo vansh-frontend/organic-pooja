@@ -6,10 +6,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    // Add overflow-hidden to body when modal opens
     document.body.classList.add('overflow-hidden');
-
-    // Remove overflow-hidden from body when modal closes
     return () => {
       document.body.classList.remove('overflow-hidden');
     };
@@ -28,13 +25,13 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-4xl overflow-hidden bg-gray-900 border border-purple-500 shadow-2xl rounded-xl"
+          className="relative w-full max-w-4xl overflow-hidden bg-gray-900 border shadow-2xl border-amber-500/30 rounded-xl"
         >
           {/* Close Button */}
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="absolute z-10 text-purple-500 transition-colors duration-200 top-2 right-2 sm:top-4 sm:right-4 hover:text-purple-300"
+            className="absolute z-10 transition-colors duration-200 text-amber-400 top-2 right-2 sm:top-4 sm:right-4 hover:text-amber-300"
             onClick={onClose}
             aria-label="Close modal"
           >
@@ -63,7 +60,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
               />
               {!imageLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-10 h-10 border-4 border-purple-500 rounded-full border-t-transparent animate-spin"></div>
+                  <div className="w-10 h-10 border-4 rounded-full border-amber-500 border-t-transparent animate-spin"></div>
                 </div>
               )}
             </motion.div>
@@ -76,7 +73,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
               transition={{ delay: 0.3 }}
             >
               <motion.h3 
-                className="mb-2 text-2xl font-bold text-purple-300 sm:text-3xl"
+                className="mb-2 text-2xl font-bold text-amber-100 sm:text-3xl"
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
@@ -84,7 +81,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
                 {product.name}
               </motion.h3>
               <motion.p 
-                className="mb-4 text-xl font-semibold text-blue-400 sm:text-2xl"
+                className="mb-4 text-xl font-semibold text-amber-300 sm:text-2xl"
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
@@ -98,7 +95,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
               >
-                <h4 className="mb-2 text-base font-semibold text-purple-200 sm:text-lg">Product Description</h4>
+                <h4 className="mb-2 text-base font-semibold text-amber-200 sm:text-lg">Product Description</h4>
                 <p className="text-sm leading-relaxed text-gray-300 sm:text-base">
                   {product.description || "Embark on a cosmic journey with this stellar product. Infused with the essence of distant galaxies, it's designed to elevate your daily routine to interstellar heights. Perfect for the modern space enthusiast seeking a touch of the extraordinary."}
                 </p>
@@ -113,7 +110,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center">
                     <span className="mr-2 text-xs font-medium text-gray-400 sm:text-sm">Availability:</span>
-                    <span className="px-2 py-1 text-xs font-semibold text-green-300 bg-green-900 rounded-full">In Stock</span>
+                    <span className="px-2 py-1 text-xs font-semibold rounded-full text-amber-900 bg-amber-400">In Stock</span>
                   </div>
                 </div>
               </motion.div>
