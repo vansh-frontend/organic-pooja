@@ -261,6 +261,15 @@ const Navbar = ({ position }) => {
         </motion.div>
   
         <nav className="px-4 mt-6">
+          <motion.div
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+            className="mb-6"
+          >
+            <UserMenu isMobile={true} />
+          </motion.div>
+  
           {[
             { to: "/", label: "Home", icon: IconHome },
             { to: "/services", label: "Services", icon: IconServicemark },
@@ -270,7 +279,7 @@ const Navbar = ({ position }) => {
               key={to}
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.2 + index * 0.1, duration: 0.4 }}
+              transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
             >
               <NavLink
                 to={to}
@@ -292,7 +301,7 @@ const Navbar = ({ position }) => {
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.4 }}
+            transition={{ delay: 0.6, duration: 0.4 }}
             className="px-2 mt-8"
           >
             <NavLink
