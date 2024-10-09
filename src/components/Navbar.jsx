@@ -225,76 +225,42 @@ const Navbar = ({ position }) => {
           <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-pink-400 transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100"></span>
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/book"
-          className="relative overflow-hidden px-6 py-3 text-sm font-bold text-white bg-purple-600 rounded-md transition-all duration-300 ease-in-out hover:bg-purple-700 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
-        >
-          <span className="relative z-10">Book Appointment</span>
-          <span className="absolute inset-0 transition-opacity duration-300 ease-in-out bg-white opacity-0 group-hover:opacity-20"></span>
-        </NavLink>
-      </li>
+      <li className="flex-shrink-0">
+  <NavLink
+    to="/book"
+    className="relative overflow-hidden px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold text-white bg-purple- border-2 border-purple-600 rounded-md transition-all duration-300 ease-in-out hover:bg-purple-600 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 whitespace-nowrap"
+  >
+    <span className="relative z-10">Book Appointment</span>
+    <span className="absolute inset-0 transition-opacity duration-300 ease-in-out bg-white opacity-0 group-hover:opacity-20"></span>
+  </NavLink>
+</li>
     </ul>
   );
-  
   const mobileNavItems = (
     <motion.div
-      initial={{ opacity: 0, x: "-100%" }}
-      animate={{ opacity: 1, x: "0%" }}
-      exit={{ opacity: 0, x: "-100%" }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="fixed inset-0 z-50 shadow-xl bg-gray-900/95 backdrop-blur-xl"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-50 overflow-hidden bg-gray-50 dark:bg-gray-900"
     >
-      {/* Background with subtle abstract gradient */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-gradient-to-b from-purple-900 to-black">
-        <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
-          <path
-            fill="rgba(216, 180, 254, 0.15)"
-            d="M0,0 C200,150 400,0 600,150 C800,300 1000,150 1200,0 L1200,1200 L0,1200 Z"
-          >
-            <animate
-              attributeName="d"
-              dur="15s"
-              repeatCount="indefinite"
-              values="
-                M0,0 C150,100 350,0 500,100 C650,200 850,100 1000,0 L1000,1000 L0,1000 Z;
-                M0,0 C150,200 350,100 500,200 C650,300 850,200 1000,0 L1000,1000 L0,1000 Z;
-                M0,0 C150,50 350,50 500,150 C650,250 850,50 1000,0 L1000,1000 L0,1000 Z;
-                M0,0 C150,100 350,0 500,100 C650,200 850,100 1000,0 L1000,1000 L0,1000 Z"
-            />
-          </path>
-        </svg>
-      </div>
-  
-      {/* Content Wrapper */}
-      <div className="relative z-10 flex flex-col h-full p-6 overflow-y-auto">
-        {/* Header with branding */}
-        <div className="flex items-center justify-between mb-10">
-          <div className="text-3xl font-extrabold text-white">Organic Pooja</div>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="p-2 text-white transition duration-200 rounded-full hover:bg-purple-700"
+      <div className="relative h-full overflow-y-auto">
+        <motion.div
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.1, duration: 0.4 }}
+          className="flex items-center justify-between p-6 bg-white shadow-md dark:bg-gray-800"
+        >
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Organic Pooja</h1>
+          <button
+            className="p-2 text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
             onClick={toggleMenu}
           >
-            <IconX size={32} />
-          </motion.button>
-        </div>
+            <IconX size={28} />
+          </button>
+        </motion.div>
   
-        {/* User Menu */}
-        <div className="mb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.4 }}
-            className="p-4 border border-gray-700 shadow-lg bg-gray-800/80 backdrop-blur-md rounded-xl"
-          >
-            <UserMenu isMobile={true} />
-          </motion.div>
-        </div>
-  
-        {/* Navigation Links */}
-        <nav className="flex-grow mb-8 space-y-4">
+        <nav className="px-4 mt-6">
           {[
             { to: "/", label: "Home", icon: IconHome },
             { to: "/services", label: "Services", icon: IconServicemark },
@@ -302,44 +268,48 @@ const Navbar = ({ position }) => {
           ].map(({ to, label, icon: Icon }, index) => (
             <motion.div
               key={to}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2 + index * 0.1, duration: 0.4 }}
             >
               <NavLink
                 to={to}
-                className="flex items-center p-4 transition-all duration-300 border border-gray-700 rounded-lg shadow-md bg-gray-800/80 hover:bg-purple-700"
+                className={({ isActive }) =>
+                  `flex items-center px-6 py-4 my-2 rounded-lg text-gray-700 dark:text-gray-200 transition-all duration-200 ${
+                    isActive
+                      ? "bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400 shadow-md"
+                      : "hover:bg-gray-100 dark:hover:bg-gray-800 hover:shadow-sm"
+                  }`
+                }
                 onClick={toggleMenu}
               >
-                <div className="p-3 mr-3 text-pink-400 bg-gray-700 rounded-full shadow-sm">
-                  <Icon size={26} />
-                </div>
-                <span className="text-lg font-semibold text-white">{label}</span>
+                <Icon size={24} className="mr-4" />
+                <span className="text-lg font-medium">{label}</span>
               </NavLink>
             </motion.div>
           ))}
+  
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.4 }}
+            className="px-2 mt-8"
+          >
+            <NavLink
+              to="/book"
+              className="flex items-center justify-center w-full p-4 text-lg font-semibold text-white transition-all duration-200 transform bg-purple-600 rounded-lg shadow-lg hover:bg-purple-700 hover:scale-105"
+              onClick={toggleMenu}
+            >
+              <IconBook size={24} className="mr-3" />
+              <span>Book Appointment</span>
+            </NavLink>
+          </motion.div>
         </nav>
   
-        {/* Book Appointment Button */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.4 }}
-          className="mb-8"
-        >
-          <NavLink
-            to="/book"
-            className="flex items-center justify-center w-full p-4 text-white transition-all duration-300 bg-purple-600 rounded-lg shadow-lg hover:bg-purple-700"
-            onClick={toggleMenu}
-          >
-            <IconBook size={28} className="mr-3 transition-transform duration-300 group-hover:scale-110" />
-            <span className="text-xl font-bold tracking-wide">Book Appointment</span>
-          </NavLink>
-        </motion.div>
+        <div className="absolute bottom-0 left-0 w-full h-16 pointer-events-none bg-gradient-to-t from-gray-50 to-transparent dark:from-gray-900"></div>
       </div>
     </motion.div>
   );
-  
   return (
     <nav className="relative">
       <div className="flex items-center justify-between p-4">
