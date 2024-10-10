@@ -5,29 +5,23 @@ import ProductCard from './components/ProductCard';
 import ProductModal from './components/ProductModal';
 
 const allProducts = [
-  { id: 1, name: 'Face Serum', image: 'img/pro1.jpg', price: '₹99.99', category: 'Skincare' },
-  { id: 2, name: ' Water Spray', image: 'img/pro2.jpg', price: '₹149.99', category: 'Haircare' },
-  { id: 3, name: ' Serum', image: 'img/pro3.jpg', price: '₹149.99', category: 'Skincare' },
-  { id: 4, name: ' Shampoo & Conditioner', image: 'img/pro4.jpg', price: '₹149.99', category: 'Haircare' },
-  { id: 5, name: ' Flare Face Serum', image: 'img/pro5.jpg', price: '₹149.99', category: 'Skincare' },
-  { id: 6, name: ' Body Lotion', image: 'img/sec2.jpg', price: '₹199.99', category: 'Bodycare' },
-  { id: 7, name: ' Hand Cream', image: 'img/section.jpg', price: '₹129.99', category: 'Bodycare' },
-  { id: 8, name: ' Hair Oil', image: 'img/hair.png', price: '₹99.99', category: 'Haircare' },
-  { id: 9, name: ' Vitamin C Serum', image: 'img/shampoo.jpg', price: '₹199.99', category: 'Skincare' },
-  { id: 10, name: ' Hair Mask', image: 'img/sec3.jpg', price: '₹179.99', category: 'Haircare' },
-  { id: 11, name: 'Shower Scrub', image: 'img/sec4.jpg', price: '₹129.99', category: 'Skincare' },
-  { id: 12, name: ' Shampoo', image: 'img/sec5.jpg', price: '₹159.99', category: 'Haircare' },
-  { id: 13, name: ' Body Cream', image: 'img/pro2.jpg', price: '₹219.99', category: 'Bodycare' },
-  { id: 14, name: ' Face Cream', image: 'img/pro5.jpg', price: '₹249.99', category: 'Skincare' },
-  { id: 15, name: ' Star Hair Serum', image: 'img/pro1.jpg', price: '₹139.99', category: 'Haircare' },
-  { id: 16, name: ' Cleansing Oil', image: 'img/sc.png', price: '₹109.99', category: 'Skincare' },
-  { id: 17, name: ' Face Mask', image: 'img/sec2.jpg', price: '₹159.99', category: 'Skincare' },
-  { id: 18, name: ' Foot Cream', image: 'img/sec6.jpg', price: '₹119.99', category: 'Bodycare' },
-  { id: 19, name: ' Eye Cream', image: 'img/skin.jpg', price: '₹189.99', category: 'Skincare' },
-  { id: 20, name: ' Oil Blend', image: 'img/sc.png', price: '₹139.99', category: 'Bodycare' },
+  { id: 1, name: 'Face Serum with With Jojoba Oil & Rosehip Oil', image: 'img/faceserum.jpg', price: '₹895.00', category: 'Skincare' },
+  { id: 2, name: 'Water Spray', image: 'img/Rice Water Coco.jpg', price: '₹350.00', category: 'Haircare' },
+  { id: 3, name: 'Body Lotion with Shea Butter', image: 'img/body lotion.jpg', price: '₹750.00', category: 'Skincare' },
+  { id: 4, name: 'Combo Pack of Aloe Butter, Skin Toner & Face Serum', image: 'img/combo 1.jpg', price: '₹1400.00', category: 'Combo' },
+  { id: 5, name: 'Combo Pack Rosemary Oil, Rice Water & Hair Oil', image: 'img/combo.jpg', price: '₹1200.00', category: 'Combo' },
+  { id: 6, name: 'Combo Pack of Sandalwood Water & Body Lotion', image: 'img/combo 3.jpg', price: '₹1000.00', category: 'Combo' },
+  { id: 7, name: 'Hair Conditioner', image: 'img/conditioner.jpg', price: '₹525.00', category: 'Haircare' },
+  { id: 8, name: 'Face Serum With Rosehip Oil', image: 'img/faceserum.jpg', price: '₹895.00', category: 'Skincare' },
+  { id: 9, name: 'Hair Oil With Hibiscus Flower Extract', image: 'img/Hair Oil.jpg', price: '₹650.00', category: 'Haircare' },
+  { id: 10, name: 'Kokum and Aloe Butter', image: 'img/Kokum.jpg', price: '₹800.00', category: 'Skincare' },
+  { id: 11, name: 'Rice Water With Ginger & Coconut', image: 'img/Rice Water Coco.jpg', price: '₹350.00', category: 'Haircare' },
+  { id: 12, name: 'Asli Gel With Rosemary Oil', image: 'img/Rosemary oill.jpg', price: '₹250.00', category: 'Skincare' },
+  { id: 13, name: 'Skin Toner With Aloe, Glycerin & Apple Cider Vinegar', image: 'img/skin toner.jpg', price: '₹295.00', category: 'Skincare' },
+  { id: 14, name: 'Ubtan With Sandalwood Powder', image: 'img/Ubtan Powder.jpg', price: '₹550.00', category: 'Skincare' },
 ];
 
-const categories = ['All', 'Skincare', 'Haircare', 'Bodycare'];
+const categories = ['All', 'Skincare', 'Haircare', 'Combo'];
 
 const Products = ({ addToCart }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -75,7 +69,7 @@ const Products = ({ addToCart }) => {
           transition={{ delay: 0.2 }}
           className="mb-16"
         >
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
             {categories.map((category, index) => (
               <motion.button
                 key={category}
@@ -84,7 +78,7 @@ const Products = ({ addToCart }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={`relative px-6 py-3 text-sm font-medium transition-all duration-300 ease-in-out overflow-hidden`}
+                className="relative px-4 py-2 overflow-hidden text-sm font-medium transition-all duration-300 ease-in-out sm:px-6 sm:py-3"
                 onClick={() => setSelectedCategory(category)}
               >
                 <span className={`relative z-10 ${
@@ -103,7 +97,7 @@ const Products = ({ addToCart }) => {
                   transition={{ duration: 0.3 }}
                 />
                 <motion.div
-                  className="absolute inset-0 bg-gray-800 border border-amber-500"
+                  className="absolute inset-0 bg-gray-800"
                   initial={false}
                   animate={{
                     clipPath: selectedCategory === category
@@ -122,7 +116,7 @@ const Products = ({ addToCart }) => {
           initial={{ opacity: 0 }}
           animate={controls}
           transition={{ delay: 0.4 }}
-          className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
           {filteredProducts.map((product, index) => (
             <motion.div 
@@ -135,7 +129,7 @@ const Products = ({ addToCart }) => {
                 product={product}
                 onAddToCart={addToCart}
                 onMoreDetails={handleProductDetails}
-                className="bg-gray-800 border shadow-lg border-amber-500 shadow-amber-500/20"
+                className="bg-gray-800 shadow-lg shadow-amber-500/20"
               />
             </motion.div>
           ))}
@@ -147,7 +141,7 @@ const Products = ({ addToCart }) => {
             product={selectedProduct}
             onClose={handleCloseModal}
             onAddToCart={addToCart}
-            className="bg-gray-800 border border-amber-500"
+            className="bg-gray-800"
           />
         )}
       </div>

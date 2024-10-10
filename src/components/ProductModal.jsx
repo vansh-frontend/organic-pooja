@@ -97,7 +97,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
               >
                 <h4 className="mb-2 text-base font-semibold text-amber-200 sm:text-lg">Product Description</h4>
                 <p className="text-sm leading-relaxed text-gray-300 sm:text-base">
-                  {product.description || "Embark on a cosmic journey with this stellar product. Infused with the essence of distant galaxies, it's designed to elevate your daily routine to interstellar heights. Perfect for the modern space enthusiast seeking a touch of the extraordinary."}
+                  {product.description || `Experience the cosmic benefits of ${product.name}. This product is designed to enhance your daily routine with its unique blend of natural ingredients. Perfect for those seeking a touch of luxury in their self-care regimen.`}
                 </p>
               </motion.div>
 
@@ -107,7 +107,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.7 }}
               >
-                <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                   <div className="flex items-center">
                     <span className="mr-2 text-xs font-medium text-gray-400 sm:text-sm">Availability:</span>
                     <span className="px-2 py-1 text-xs font-semibold rounded-full text-amber-900 bg-amber-400">In Stock</span>
