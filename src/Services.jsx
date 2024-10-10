@@ -139,14 +139,14 @@ const serviceCategories = [
 const ServiceItem = ({ item }) => (
   <div className="p-3 transition-all duration-300 bg-gray-800 shadow-lg rounded-xl hover:shadow-pink-500/20 hover:scale-105 sm:p-4 md:p-6">
   <div className="flex items-center mb-2 sm:mb-3 md:mb-4">
-    <div className="p-2 mr-2 text-pink-400 bg-purple-900 bg-opacity-50 rounded-full sm:p-2.5 md:p-3 sm:mr-3 md:mr-4">
+    <div className="p-2 mr-2 text-purple-400 bg-purple-900 bg-opacity-50 rounded-full sm:p-2.5 md:p-3 sm:mr-3 md:mr-4">
       {item.icon}
     </div>
     <h3 className="text-base font-bold text-white sm:text-lg md:text-xl">{item.title}</h3>
   </div>
   <p className="mb-2 text-xs text-gray-300 sm:text-sm md:text-base sm:mb-3 md:mb-4">{item.description}</p>
   <div>
-    <h4 className="mb-1 text-xs font-semibold text-pink-400 uppercase sm:text-sm md:mb-2">Benefits:</h4>
+    <h4 className="mb-1 text-xs font-semibold text-purple-400 uppercase sm:text-sm md:mb-2">Benefits:</h4>
     <ul className="pl-4 text-gray-300 list-disc sm:pl-5">
       {item.benefits.map((benefit, index) => (
         <li key={index} className="mb-0.5 text-xs sm:text-sm md:mb-1">{benefit}</li>
@@ -167,7 +167,7 @@ ServiceItem.propTypes = {
 
 const ServiceCategory = ({ category }) => (
   <div className="mb-6 sm:mb-8 md:mb-12">
-  <h2 className="mb-3 text-xl font-bold text-pink-400 sm:text-2xl md:text-3xl sm:mb-4 md:mb-6">{category.title}</h2>
+  <h2 className="mb-3 text-xl font-bold text-purple-400 sm:text-2xl md:text-3xl sm:mb-4 md:mb-6">{category.title}</h2>
   <div className="grid gap-3 sm:gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {category.services.map((service, index) => (
       <ServiceItem key={index} item={service} />
@@ -192,13 +192,13 @@ const DropdownButton = ({ title, items, isOpen, toggleDropdown }) => (
     className="flex items-center justify-between w-full px-3 py-2 text-left text-gray-300 transition-colors duration-200 sm:px-4 md:px-6 sm:py-2.5 md:py-3 hover:bg-gray-700 focus:outline-none"
   >
     <span className="text-sm sm:text-base">{title}</span>
-    {isOpen ? <FaChevronUp className="text-pink-400" /> : <FaChevronDown className="text-pink-400" />}
+    {isOpen ? <FaChevronUp className="text-purple-400" /> : <FaChevronDown className="text-purple-400" />}
   </button>
   {isOpen && (
     <ul className="pl-4 mt-1 sm:pl-6 md:pl-8 sm:mt-1.5 md:mt-2">
       {items.map((item, index) => (
         <li key={index} className="py-1 sm:py-1.5 md:py-2">
-          <a href="#" className="flex items-center text-xs text-gray-400 transition-colors duration-200 sm:text-sm md:text-base hover:text-pink-400">
+          <a href="#" className="flex items-center text-xs text-gray-400 transition-colors duration-200 sm:text-sm md:text-base hover:text-purple-400">
             <span className="mr-2 text-purple-400">{item.icon}</span>
             {item.name}
           </a>
@@ -318,7 +318,7 @@ const Services = () => {
           onClick={() => scrollToCategory(category.id)}
           className={`flex items-center w-full px-4 py-3 mb-2 text-left transition-all duration-200 rounded-lg ${
             activeCategory === category.id
-              ? 'bg-pink-600 text-white shadow-md'
+              ? 'bg-purple-600 text-white shadow-md'
               : 'text-gray-300 hover:bg-gray-700'
           }`}
         >
@@ -379,7 +379,7 @@ const Services = () => {
         {isSidebarOpen ? <FaTimes size={20} className="sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <FaBars size={20} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />}
       </button>
     )}
-    <h1 className="text-lg font-semibold text-pink-400 sm:text-xl md:text-2xl">Our Services</h1>
+    <h1 className="text-lg font-semibold text-purple-400 sm:text-xl md:text-2xl">Our Services</h1>
     <div className="relative" ref={searchInputRef}>
       <input
         type="text"

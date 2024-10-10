@@ -31,7 +31,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="absolute z-10 transition-colors duration-200 text-amber-400 top-2 right-2 sm:top-4 sm:right-4 hover:text-amber-300"
+            className="absolute z-10 text-purple-400 transition-colors duration-200 top-2 right-2 sm:top-4 sm:right-4 hover:text-purple-300"
             onClick={onClose}
             aria-label="Close modal"
           >
@@ -73,7 +73,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
               transition={{ delay: 0.3 }}
             >
               <motion.h3 
-                className="mb-2 text-2xl font-bold text-amber-100 sm:text-3xl"
+                className="mb-2 text-2xl font-bold text-purple-100 sm:text-3xl"
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
@@ -81,7 +81,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
                 {product.name}
               </motion.h3>
               <motion.p 
-                className="mb-4 text-xl font-semibold text-amber-300 sm:text-2xl"
+                className="mb-4 text-xl font-semibold text-purple-300 sm:text-2xl"
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
@@ -95,7 +95,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
               >
-                <h4 className="mb-2 text-base font-semibold text-amber-200 sm:text-lg">Product Description</h4>
+                <h4 className="mb-2 text-base font-semibold text-purple-200 sm:text-lg">Product Description</h4>
                 <p className="text-sm leading-relaxed text-gray-300 sm:text-base">
                   {product.description || `Experience the cosmic benefits of ${product.name}. This product is designed to enhance your daily routine with its unique blend of natural ingredients. Perfect for those seeking a touch of luxury in their self-care regimen.`}
                 </p>
@@ -110,7 +110,7 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                   <div className="flex items-center">
                     <span className="mr-2 text-xs font-medium text-gray-400 sm:text-sm">Availability:</span>
-                    <span className="px-2 py-1 text-xs font-semibold rounded-full text-amber-900 bg-amber-400">In Stock</span>
+                    <span className="px-2 py-1 text-xs font-semibold text-purple-900 bg-purple-400 rounded-full">In Stock</span>
                   </div>
                 </div>
               </motion.div>

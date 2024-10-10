@@ -57,7 +57,7 @@ const Products = ({ addToCart }) => {
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
           animate={controls}
-          className="mb-12 text-5xl font-bold text-center text-amber-300"
+          className="mb-12 text-5xl font-bold text-center text-purple-300"
         >
           Our Cosmic Collection
         </motion.h1>
@@ -82,12 +82,12 @@ const Products = ({ addToCart }) => {
                 onClick={() => setSelectedCategory(category)}
               >
                 <span className={`relative z-10 ${
-                  selectedCategory === category ? 'text-gray-900' : 'text-amber-300'
+                  selectedCategory === category ? 'text-gray-900' : 'text-purple-300'
                 }`}>
                   {category}
                 </span>
                 <motion.div
-                  className="absolute inset-0 bg-amber-400"
+                  className="absolute inset-0 bg-purple-400"
                   initial={false}
                   animate={{
                     clipPath: selectedCategory === category
@@ -129,7 +129,7 @@ const Products = ({ addToCart }) => {
                 product={product}
                 onAddToCart={addToCart}
                 onMoreDetails={handleProductDetails}
-                className="bg-gray-800 shadow-lg shadow-amber-500/20"
+                className="bg-gray-800 shadow-lg"
               />
             </motion.div>
           ))}

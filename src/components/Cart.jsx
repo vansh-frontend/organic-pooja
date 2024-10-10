@@ -160,7 +160,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
         className="min-h-screen py-12 bg-gradient-to-b from-pink-50 to-purple-100"
       >
         <div className="container max-w-3xl px-4 mx-auto">
-          <div className="p-8 bg-white shadow-lg rounded-2xl">
+          <div className="p-8 bg-gray-800 shadow-lg rounded-2xl">
             <FaCheckCircle className="mx-auto mb-6 text-6xl text-green-500" />
             <h2 className="mb-4 text-3xl font-bold text-center text-purple-600">Cosmic Order Confirmed!</h2>
             <p className="mb-6 text-xl text-center text-purple-500">Thank you for your intergalactic purchase. Your order ID is: {orderId}</p>
@@ -183,7 +183,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen py-6 sm:py-12 bg-gradient-to-b from-pink-50 to-purple-100"
+      className="min-h-screen py-6 bg-gray-900 sm:py-12"
     >
       <div className="container px-4 mx-auto max-w-7xl">
         <h1 className="mb-6 text-2xl font-bold text-center text-purple-600 sm:mb-8 sm:text-4xl">Your Cosmic Cart</h1>
@@ -195,10 +195,10 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="p-6 text-center bg-white shadow-lg sm:p-12 rounded-2xl"
+            className="p-6 text-center bg-gray-800 shadow-lg sm:p-12 rounded-2xl"
           >
             <FaShoppingCart className="mx-auto mb-4 text-6xl text-purple-500 sm:mb-6 sm:text-8xl animate-bounce" />
-            <p className="mb-6 text-xl text-purple-500 sm:mb-8 sm:text-2xl">Your cosmic cart is empty. Start exploring the galaxy of products!</p>
+            <p className="mb-6 text-xl text-gray-4 00 sm:mb-8 sm:text-2xl">Your cosmic cart is empty. Start exploring the galaxy of products!</p>
             <button className="w-full px-6 py-3 text-base font-semibold text-white transition-colors bg-purple-600 rounded-full sm:w-auto sm:px-8 sm:py-4 sm:text-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-pink-50">
               <FaArrowRight className="inline-block mr-2" />
               <Link to="/products">Continue Shopping</Link>
@@ -215,7 +215,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="overflow-hidden transition-shadow duration-300 bg-white shadow-md rounded-2xl hover:shadow-lg hover:shadow-purple-200"
+                    className="overflow-hidden transition-shadow duration-300 bg-gray-800 shadow-md rounded-2xl hover:shadow-lg hover:shadow-purple-200"
                   >
                     <div className="flex flex-col sm:flex-row">
                       <div className="w-full sm:w-1/3">
@@ -239,7 +239,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                               type="number"
                               value={item.quantity}
                               onChange={(e) => handleQuantityChange(item, parseInt(e.target.value, 10))}
-                              className="w-16 text-center text-purple-600 bg-white border-l border-r border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-inset"
+                              className="w-16 text-center text-purple-600 bg-gray-800 border-l border-r border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-inset"
                             />
                             <button
                               onClick={() => handleQuantityChange(item, item.quantity + 1)}
@@ -266,7 +266,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
-                className="p-4 bg-white shadow-md sm:p-6 rounded-2xl"
+                className="p-4 bg-gray-800 shadow-md sm:p-6 rounded-2xl"
               >
                 <h3 className="flex items-center mb-4 text-lg font-semibold text-purple-600 sm:text-xl">
                   <FaPercent className="mr-2 text-purple-500" /> Apply Galactic Coupon
@@ -307,7 +307,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.3, delay: 0.4 }}
-  className="p-6 bg-white shadow-md sm:p-8 rounded-2xl flex flex-col h-[calc(100vh-200px)] sticky top-24"
+  className="p-6 bg-gray-800 shadow-md sm:p-8 rounded-2xl flex flex-col h-[calc(100vh-200px)] sticky top-24"
 >
   <h2 className="mb-4 text-xl font-semibold text-purple-600 sm:text-2xl">Cosmic Order Summary</h2>
   <div className="flex-grow mb-4 overflow-y-auto">
@@ -354,7 +354,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="p-6 mt-8 bg-white shadow-md sm:p-8 rounded-2xl"
+            className="p-6 mt-8 bg-gray-800 shadow-md sm:p-8 rounded-2xl"
           >
             <h2 className="mb-6 text-2xl font-semibold text-purple-600">Cosmic Traveler Information</h2>
             <form onSubmit={onSubmit} className="space-y-6">

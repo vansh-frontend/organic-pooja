@@ -32,14 +32,14 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.5 }}
-      className="mb-6 overflow-hidden transition-all duration-300 bg-white bg-opacity-50 border rounded-lg shadow-lg hover:shadow-xl border-amber-200"
+      className="mb-6 overflow-hidden transition-all duration-300 bg-gray-900 border border-gray-700 rounded-lg shadow-lg hover:shadow-xl"
     >
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => onToggle(id)}
         className={`flex items-center justify-between w-full px-6 py-4 text-left focus:outline-none transition-all duration-300 ${
-          isOpen ? 'bg-gradient-to-r from-amber-100 to-amber-200 text-amber-800' : 'text-amber-700'
+          isOpen ? 'bg-gray-800 text-white' : 'text-gray-300'
         }`}
       >
         <span className="pr-4 text-lg font-light tracking-wider uppercase">{title}</span>
@@ -47,7 +47,7 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <FaStar className={`text-xl ${isOpen ? 'text-amber-600' : 'text-amber-400'}`} />
+          <FaStar className={`text-xl ${isOpen ? 'text-white' : 'text-purple-500'}`} />
         </motion.span>
       </motion.button>
       <AnimatePresence initial={false}>
@@ -63,7 +63,7 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="px-6 py-4 bg-opacity-50 text-amber-800 bg-amber-50">
+            <div className="px-6 py-4 text-gray-300 bg-purple-800">
               {content}
             </div>
           </motion.div>
@@ -127,14 +127,22 @@ const Accordion = () => {
   ];
 
   return (
-    <section className="relative py-12 sm:py-24">
+    <section className="one">
       <style>{styles}</style>
-      <div className="absolute inset-0 opacity-10 bg-[url('/textures/organic-pattern-light.png')]"></div>
+      <div className="absolute inset-0 opacity-5 bg-[url('/textures/organic-pattern-dark.png')]"></div>
       <div className="container relative z-10 max-w-6xl px-4 mx-auto">
+        <motion.h2 
+          className="mb-16 text-4xl font-light text-center text-white uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          {/* Frequently Asked <span className="font-normal text-gray-400">Questions</span> */}
+        </motion.h2>
         <div className="relative">
-          <div className="absolute top-0 left-0 w-40 h-40 rounded-full bg-amber-500 mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-          <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-amber-700 mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-          <div className="absolute w-40 h-40 rounded-full bg-amber-300 -bottom-8 left-20 mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+          <div className="absolute top-0 left-0 w-40 h-40 bg-gray-800 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
+          <div className="absolute top-0 right-0 w-40 h-40 bg-gray-700 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
+          <div className="absolute w-40 h-40 bg-gray-600 rounded-full -bottom-8 left-20 mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-4000"></div>
           
           <motion.div 
             initial={{ opacity: 0 }}
@@ -161,8 +169,8 @@ const Accordion = () => {
           </motion.div>
         </div>
       </div>
-      <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"></div>
-      <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-gray-700/30 to-transparent"></div>
+      <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-gray-700/30 to-transparent"></div>
     </section>
   );
 };
