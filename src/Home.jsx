@@ -118,13 +118,34 @@ const Home = () => {
   return (
     <div className="relative min-h-screen overflow-hidden text-white bg-gray-900">
       <Helmet>
-        <title>Organic by Pooja - Natural Beauty Solutions</title>
-        <meta name="description" content="Discover natural, organic beauty solutions at Organic by Pooja. Personalized skincare treatments and products for radiant, healthy skin." />
-        <meta charSet="utf-8" />
+  <title>Organic by Pooja - Natural Beauty Solutions</title>
+  <meta name="description" content="Discover natural, organic beauty solutions at Organic by Pooja. Personalized skincare treatments and products for radiant, healthy skin." />
+  <meta charSet="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://organicbypooja.in" />
-      </Helmet>
+
+  <script type="application/ld+json">
+    {`
+      {
+        "@context": "https://schema.org",
+        "@type": "BeautySalon",
+        "name": "Organic by Pooja",
+        "description": "Discover natural, organic beauty solutions at Organic by Pooja. Personalized skincare treatments and products for radiant, healthy skin.",
+        "url": "https://organicbypooja.in",
+        "telephone": "+918171924503",
+        "email": "organicbypooja@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Your City",
+          "addressRegion": "Your State",
+          "postalCode": "Your Postal Code",
+          "addressCountry": "IN"
+        }
+      }
+    `}
+  </script>
+</Helmet>
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       
       <motion.div 
