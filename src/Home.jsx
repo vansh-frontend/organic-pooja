@@ -166,22 +166,27 @@ const Home = () => {
     initial="hidden"
     animate="visible"
   >
-    <motion.h1 
-      className="mb-4 text-3xl font-extrabold leading-tight sm:text-4xl md:text-5xl lg:text-7xl sm:mb-6"
-      variants={itemVariants}
-    >
-      <span className="block">Organic</span>
-      <span className="block text-amber-500">
-        By Pooja
-      </span>
-    </motion.h1>
-    
-    <motion.p 
-      className="mb-6 text-base text-gray-300 sm:text-lg md:text-xl lg:text-2xl sm:mb-8"
-      variants={itemVariants}
-    >
-      Elevate Your Natural Beauty with Our Premium Organic Treatments
-    </motion.p>
+<motion.h1 
+  className="mb-4 font-sans text-center sm:mb-6"
+  variants={itemVariants}
+>
+  <span className="relative inline-block">
+    <span className="block text-6xl font-bold tracking-wide text-amber-800 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
+      ORGANIC
+    </span>
+  </span>
+  <span className="block mt-2 text-3xl font-light tracking-[0.3em] text-amber-600 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+    BY <span className="font-medium">POOJA</span>
+  </span>
+</motion.h1>
+<motion.p 
+  className="mb-6 text-base font-light tracking-wide sm:text-lg md:text-2xl lg:text-2xl sm:mb-8"
+  variants={itemVariants}
+>
+  <span className="text-amber-100">Elevate Your Natural Beauty with</span>
+  <br className="hidden sm:inline" />
+  <span className="font-medium text-amber-300">Our Premium Organic Treatments</span>
+</motion.p>
     
     <motion.div 
       className="grid grid-cols-1 gap-4 mb-8 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:mb-10 md:mb-12"
