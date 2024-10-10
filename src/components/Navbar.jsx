@@ -202,7 +202,7 @@ const Navbar = ({ position }) => {
             to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
             className="relative py-2 group"
           >
-            <span className="text-lg font-medium transition-all duration-300 text-amber-600 group-hover:text-amber-700">
+            <span className="font-serif text-lg font-medium transition-all duration-300 text-amber-600 group-hover:text-amber-700">
               {item}
             </span>
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-amber-600 transform origin-left transition-all duration-300 scale-x-0 group-hover:scale-x-100"></span>
@@ -221,14 +221,14 @@ const Navbar = ({ position }) => {
           className="relative flex items-center transition-all duration-300 text-amber-500 group hover:text-amber-700"
         >
           <IconShoppingCart size={24} className="transition-transform duration-300 group-hover:scale-110" />
-          <span className="ml-2 text-sm font-medium">Cart</span>
+          <span className="ml-2 font-serif text-sm font-medium">Cart</span>
           <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-amber-600 transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100"></span>
         </NavLink>
       </li>
       <li className="flex-shrink-0">
         <NavLink
           to="/book"
-          className="relative overflow-hidden px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold text-white bg-amber-700 rounded-md transition-all duration-300 ease-in-out hover:bg-amber-700 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 whitespace-nowrap"
+          className="relative overflow-hidden px-4 sm:px-6 py-2 sm:py-3 font-serif text-xs sm:text-sm font-bold text-white bg-amber-700 rounded-md transition-all duration-300 ease-in-out hover:bg-amber-700 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 whitespace-nowrap"
         >
           <span className="relative z-10">Book Appointment</span>
           <span className="absolute inset-0 transition-opacity duration-300 ease-in-out bg-white opacity-0 group-hover:opacity-20"></span>
@@ -251,7 +251,7 @@ const Navbar = ({ position }) => {
           transition={{ delay: 0.1, duration: 0.4 }}
           className="flex items-center justify-between p-6 bg-white shadow-md"
         >
-          <h1 className="text-2xl font-bold text-amber-900">Organic Pooja</h1>
+          <h1 className="font-serif text-2xl font-bold text-amber-900">Organic Pooja</h1>
           <button
             className="p-2 transition-colors duration-200 text-amber-600 hover:text-amber-800"
             onClick={toggleMenu}
@@ -293,7 +293,7 @@ const Navbar = ({ position }) => {
                 onClick={toggleMenu}
               >
                 <Icon size={24} className="mr-4" />
-                <span className="text-lg font-medium">{label}</span>
+                <span className="font-serif text-lg font-medium">{label}</span>
               </NavLink>
             </motion.div>
           ))}
@@ -306,7 +306,7 @@ const Navbar = ({ position }) => {
           >
             <NavLink
               to="/book"
-              className="flex items-center justify-center w-full p-4 text-lg font-semibold text-white transition-all duration-200 transform rounded-lg shadow-lg bg-amber-600 hover:bg-amber-700 hover:scale-105"
+              className="flex items-center justify-center w-full p-4 font-serif text-lg font-semibold text-white transition-all duration-200 transform rounded-lg shadow-lg bg-amber-600 hover:bg-amber-700 hover:scale-105"
               onClick={toggleMenu}
             >
               <IconBook size={24} className="mr-3" />
@@ -330,13 +330,13 @@ const Navbar = ({ position }) => {
         <div className="flex items-center space-x-4 lg:hidden">
           <NavLink
             to="/Cart"
-            className="flex items-center p-2 text-black"
+            className="flex items-center p-2 text-amber-500"
           >
             <IconShoppingCart size={28} />
           </NavLink>
   
           <button
-            className="p-2 text-black"
+            className="p-2 text-amber-500"
             onClick={toggleMenu}
           >
             {isOpen ? <IconX size={24} /> : <IconMenu4 size={24} />}

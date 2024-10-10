@@ -157,75 +157,75 @@ const Home = () => {
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       
       <motion.div 
-        className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4"
-        style={{ y }}
-      >
+  className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-12 sm:py-16 md:py-20"
+  style={{ y }}
+>
+  <motion.div 
+    className="max-w-4xl mx-auto text-center"
+    variants={containerVariants}
+    initial="hidden"
+    animate="visible"
+  >
+    <motion.h1 
+      className="mb-4 text-3xl font-extrabold leading-tight sm:text-4xl md:text-5xl lg:text-7xl sm:mb-6"
+      variants={itemVariants}
+    >
+      <span className="block">Organic</span>
+      <span className="block text-amber-500">
+        By Pooja
+      </span>
+    </motion.h1>
+    
+    <motion.p 
+      className="mb-6 text-base text-gray-300 sm:text-lg md:text-xl lg:text-2xl sm:mb-8"
+      variants={itemVariants}
+    >
+      Elevate Your Natural Beauty with Our Premium Organic Treatments
+    </motion.p>
+    
+    <motion.div 
+      className="grid grid-cols-1 gap-4 mb-8 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:mb-10 md:mb-12"
+      variants={containerVariants}
+    >
+      {[
+        { icon: FaLeaf, title: "Natural Ingredients" },
+        { icon: FaStar, title: "Premium Quality" },
+        { icon: FaHeart, title: "Made with Love" },
+      ].map((item, index) => (
         <motion.div 
-          className="max-w-4xl mx-auto text-center"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          key={index}
+          className="p-4 transition-all duration-300 bg-gray-800 bg-opacity-50 sm:p-5 md:p-6 rounded-xl backdrop-filter backdrop-blur-lg hover:bg-opacity-70"
+          variants={itemVariants}
         >
-          <motion.h1 
-            className="mb-6 text-5xl font-extrabold leading-tight md:text-7xl"
-            variants={itemVariants}
-          >
-            <span className="block">Organic</span>
-            <span className="block text-amber-500">
-              By Pooja
-            </span>
-          </motion.h1>
-          
-          <motion.p 
-            className="mb-8 text-xl text-gray-300 md:text-2xl"
-            variants={itemVariants}
-          >
-            Elevate Your Natural Beauty with Our Premium Organic Treatments
-          </motion.p>
-          
-          <motion.div 
-            className="grid grid-cols-1 gap-6 mb-12 sm:grid-cols-3"
-            variants={containerVariants}
-          >
-            {[
-              { icon: FaLeaf, title: "Natural Ingredients" },
-              { icon: FaStar, title: "Premium Quality" },
-              { icon: FaHeart, title: "Made with Love" },
-            ].map((item, index) => (
-              <motion.div 
-                key={index}
-                className="p-6 transition-all duration-300 bg-gray-800 bg-opacity-50 rounded-xl backdrop-filter backdrop-blur-lg hover:bg-opacity-70"
-                variants={itemVariants}
-              >
-                <item.icon className="mx-auto mb-4 text-4xl text-amber-400" />
-                <h3 className="text-xl font-semibold">{item.title}</h3>
-              </motion.div>
-            ))}
-          </motion.div>
-          
-          <motion.div 
-            className="flex flex-col justify-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4"
-            variants={containerVariants}
-          >
-            <motion.div variants={itemVariants}>
-              <Link 
-                to="/services"
-                className="block px-8 py-3 text-lg font-semibold transition-all duration-300 bg-white rounded-full text-amber-600 hover:bg-amber-600 hover:text-white"
-              >
-                Explore Services
-              </Link>
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <Link 
-                to="/products"
-                className="block px-8 py-3 text-lg font-semibold text-white transition-all duration-300 bg-transparent border-2 border-white rounded-full hover:bg-transparent hover:text-amber-600"
-              >
-                Our Products
-              </Link>
-            </motion.div>
-          </motion.div>
+          <item.icon className="mx-auto mb-3 text-3xl text-amber-400 sm:text-4xl sm:mb-4" />
+          <h3 className="text-sm font-semibold sm:text-base md:text-lg lg:text-xl">{item.title}</h3>
         </motion.div>
+      ))}
+    </motion.div>
+    
+    <motion.div 
+      className="flex flex-col justify-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4"
+      variants={containerVariants}
+    >
+      <motion.div variants={itemVariants} className="w-full sm:w-auto">
+        <Link 
+          to="/services"
+          className="block w-full px-6 py-2 text-base font-semibold transition-all duration-300 bg-white rounded-full sm:px-8 sm:py-3 md:text-lg text-amber-600 hover:bg-amber-600 hover:text-white"
+        >
+          Explore Services
+        </Link>
       </motion.div>
+      <motion.div variants={itemVariants} className="w-full sm:w-auto">
+        <Link 
+          to="/products"
+          className="block w-full px-6 py-2 text-base font-semibold text-white transition-all duration-300 bg-transparent border-2 border-white rounded-full sm:px-8 sm:py-3 md:text-lg hover:bg-white hover:text-amber-600"
+        >
+          Our Products
+        </Link>
+      </motion.div>
+    </motion.div>
+  </motion.div>
+</motion.div>
 
       {/* Services Section */}
       <section className="relative py-32 overflow-hidden bg-amber-50">
