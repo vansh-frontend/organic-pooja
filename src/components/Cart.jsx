@@ -183,7 +183,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen py-6 bg-gray-900 sm:py-12"
+      className="min-h-screen py-6 bg-[#050810] sm:py-12"
     >
       <div className="container px-4 mx-auto max-w-7xl">
         <h1 className="mb-6 text-2xl font-bold text-center text-purple-600 sm:mb-8 sm:text-4xl">Your Cosmic Cart</h1>
