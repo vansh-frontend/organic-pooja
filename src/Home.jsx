@@ -228,17 +228,17 @@ const Home = () => {
       </motion.div>
 
       {/* Services Section */}
-      <section className="relative py-32 overflow-hidden bg-black">
-  <div className="absolute inset-0 bg-[url('/textures/subtle-dark-pattern.png')] opacity-10"></div>
+      <section className="relative py-32 overflow-hidden bg-amber-50">
+  <div className="absolute inset-0 bg-[url('/textures/subtle-light-pattern.png')] opacity-10"></div>
   
   <div className="container relative z-10 max-w-6xl px-4 mx-auto">
     <motion.h2 
-      className="mb-24 text-4xl font-light text-center text-gray-200 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
+      className="mb-24 text-4xl font-light text-center text-amber-900 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      Elevate Your <span className="font-normal text-amber-100">Natural Beauty</span>
+      Elevate Your <span className="font-normal text-amber-600">Natural Beauty</span>
     </motion.h2>
 
     <div className="grid gap-8 mb-24 md:grid-cols-2 lg:grid-cols-3">
@@ -257,18 +257,18 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: index * 0.1 }}
         >
-          <div className="absolute inset-0 transition-all duration-300 bg-transparent border opacity-100 border-amber-900/30 group-hover:border-amber-700/50"></div>
+          <div className="absolute inset-0 transition-all duration-300 bg-transparent border opacity-100 border-amber-200 group-hover:border-amber-400"></div>
           <div className="relative z-10 p-8">
             <div className="flex items-center mb-6">
-              <div className="mr-4 text-2xl text-amber-200">
+              <div className="mr-4 text-2xl text-amber-600">
                 <i className={`fas ${service.icon}`}></i>
               </div>
-              <h3 className="text-xl font-light tracking-wider text-gray-100 uppercase">{service.title}</h3>
+              <h3 className="text-xl font-light tracking-wider uppercase text-amber-800">{service.title}</h3>
             </div>
-            <p className="mb-6 text-sm leading-relaxed text-gray-400">{service.desc}</p>
+            <p className="mb-6 text-sm leading-relaxed text-amber-700">{service.desc}</p>
             <a 
               href="#" 
-              className="inline-block text-xs font-semibold tracking-wider uppercase transition-colors duration-300 text-amber-200 hover:text-amber-100"
+              className="inline-block text-xs font-semibold tracking-wider uppercase transition-colors duration-300 text-amber-600 hover:text-amber-800"
             >
               Discover More
             </a>
@@ -286,68 +286,48 @@ const Home = () => {
     </motion.div>
   </div>
 
-  <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"></div>
-  <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"></div>
+  <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
+  <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
 </section>
       {/* About Us Section */}
-      <section className="relative py-32 overflow-hidden bg-black">
-  <div className="absolute inset-0 bg-[url('/textures/luxury-pattern.png')] opacity-5"></div>
+      <section className="relative py-8 overflow-hidden sm:py-12 md:py-24 bg-gradient-to-br from-amber-50 to-amber-100">
+  <div className="absolute inset-0 bg-[url('/textures/organic-pattern-light.png')] opacity-10"></div>
   
-  <div className="container relative z-10 max-w-6xl px-4 mx-auto">
+  <div className="container relative z-10 px-4 mx-auto max-w-7xl">
     <motion.h2 
-      className="mb-24 text-4xl font-light text-center text-gray-100 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
+      className="mb-6 sm:mb-8 md:mb-16 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-center text-amber-800 uppercase tracking-[0.2em]"
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      Discover <span className="font-normal text-amber-100">Organic by Pooja</span>
+      Organic by <span className="font-normal text-amber-600">Pooja</span>
     </motion.h2>
 
-    <div className="grid gap-16 mb-24 md:grid-cols-2">
+    <div className="grid gap-6 mb-8 sm:gap-8 md:gap-12 sm:mb-12 md:mb-24 md:grid-cols-2">
       <motion.div 
-        className="relative p-8 overflow-hidden border rounded-lg border-amber-900/30"
+        className="relative h-auto p-4 overflow-auto bg-white rounded-lg shadow-lg sm:p-6 sm:h-64 md:h-80"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <div className="relative z-10">
-          <div className="flex items-center mb-8">
-            <div className="flex items-center justify-center w-16 h-16 mr-6 text-2xl font-light text-black rounded-full bg-amber-200">
-              OP
-            </div>
-            <h3 className="text-3xl font-light tracking-wider uppercase text-amber-100">Our Story</h3>
-          </div>
-          
-          <div className="space-y-6">
-            <p className="relative text-lg leading-relaxed text-gray-300">
-              <span className="absolute top-0 text-5xl text-amber-700 opacity-20 -left-4">"</span>
-              Founded in <span className="font-normal text-amber-200">2019</span>, <span className="font-normal text-amber-200">Organic by Pooja</span> embarked on a mission to revolutionize skincare with natural, homemade solutions. Our journey from a small initiative to a trusted name in personalized care is a testament to our unwavering commitment to authenticity and quality.
-            </p>
-            <p className="text-lg leading-relaxed text-gray-300">
-              We believe in harnessing the power of nature to bring out your inner beauty, offering a range of organic products and services tailored to your unique needs.
-            </p>
-          </div>
-          
-          <div className="mt-10 text-right">
-            <span className="px-6 py-2 text-sm font-light tracking-wider uppercase text-amber-900 bg-amber-200">
-              Est. 2019
-            </span>
-          </div>
-        </div>
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-amber-300 to-amber-500"></div>
+        <h3 className="mb-2 text-xl font-light tracking-wider uppercase sm:mb-4 sm:text-2xl text-amber-700">Our Story</h3>
+        <p className="mb-2 text-sm sm:text-base text-amber-900">Founded in <span className="font-semibold text-amber-600">2019</span>, <span className="font-semibold text-amber-600">Organic by Pooja</span> revolutionizes skincare with natural, homemade solutions.</p>
+        <p className="text-sm sm:text-base text-amber-900">We harness nature's power for your inner beauty, offering tailored organic products and services.</p>
       </motion.div>
 
       <motion.div 
-        className="relative overflow-hidden rounded-lg"
+        className="relative h-64 overflow-hidden rounded-lg shadow-lg sm:h-80"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
       >
-        <img src="/img/1.jpg" alt="Organic by Pooja" className="object-cover w-full h-full" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-        <div className="absolute bottom-0 left-0 right-0 p-8">
-          <h3 className="mb-6 text-2xl font-light tracking-wider uppercase text-amber-100 sm:text-3xl">Our Promise</h3>
-          <ul className="space-y-3 text-gray-200">
-            {['100% Natural Ingredients', 'Personalized Skincare Solutions', 'Eco-friendly Practices', 'Cruelty-free Products'].map((item, index) => (
+        <img src="/img/1.jpg" alt="Organic Beauty" className="object-cover w-full h-full" />
+        <div className="absolute inset-0 bg-gradient-to-t from-amber-600/70 to-transparent"></div>
+        <div className="absolute inset-0 flex flex-col justify-center p-4 sm:p-6">
+          <h3 className="mb-2 text-xl font-light tracking-wider text-white uppercase sm:mb-4 sm:text-2xl">Our Promise</h3>
+          <ul className="space-y-1 text-sm text-white sm:space-y-2 sm:text-base">
+            {['100% Natural Ingredients', 'Personalized Skincare', 'Eco-friendly Practices', 'Cruelty-free Products'].map((item, index) => (
               <motion.li 
                 key={index}
                 className="flex items-center"
@@ -355,7 +335,7 @@ const Home = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
               >
-                <span className="mr-3 text-amber-300">&#8212;</span>
+                <span className="mr-2 text-amber-300">&#8226;</span>
                 {item}
               </motion.li>
             ))}
@@ -364,76 +344,55 @@ const Home = () => {
       </motion.div>
     </div>
 
-    <motion.div 
-  className="grid gap-8 mb-24 sm:grid-cols-3"
-  initial={{ opacity: 0, y: 50 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8, delay: 0.6 }}
->
-  {[
-    { title: 'Values', icon: 'FaHeart' },
-    { title: 'Services', icon: 'FaSparkles' },
-    { title: 'Testimonials', icon: 'FaStar' }
-  ].map((section) => (
-    <motion.button
-      key={section.title}
-      className="relative px-8 py-6 text-lg font-light tracking-wider uppercase transition-all duration-500 text-amber-100 bg-gradient-to-br from-gray-900 to-black group focus:outline-none"
-      onClick={() => setActiveSection(section.title)}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-    >
-      <span className="relative z-10 flex items-center justify-center">
-        <i className={`fas ${section.icon} mr-3 text-amber-300 group-hover:text-amber-100 transition-colors duration-300`}></i>
-        <span className="transition-colors duration-300 group-hover:text-white">{section.title}</span>
-      </span>
-      <div className="absolute inset-0 w-full h-full transition-all duration-300 opacity-0 group-hover:opacity-100">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-amber-600/20"></div>
-        <div className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-          <span className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-200 to-transparent"></span>
-          <span className="absolute bottom-0 right-0 w-full h-px bg-gradient-to-r from-transparent via-amber-200 to-transparent"></span>
-          <span className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-amber-200 to-transparent"></span>
-          <span className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-amber-200 to-transparent"></span>
-        </div>
+    <div className="mb-8 sm:mb-12 md:mb-24">
+      <h3 className="mb-4 text-xl font-light tracking-wider text-center uppercase sm:mb-6 md:mb-12 sm:text-2xl md:text-3xl text-amber-800">Discover Our World</h3>
+      <div className="grid gap-4 sm:gap-6 md:gap-8 sm:grid-cols-2 md:grid-cols-3">
+        {[
+          { title: 'Our Values', icon: 'FaHeart', desc: 'Embracing nature, ethics, and personalized care' },
+          { title: 'Our Services', icon: 'FaSparkles', desc: 'Luxurious, organic treatments for face and body' },
+          { title: 'Testimonials', icon: 'FaStar', desc: 'Hear from our satisfied, glowing clients' }
+        ].map((section, index) => (
+          <motion.button
+            key={section.title}
+            className="relative p-4 text-left transition-all duration-500 bg-white rounded-lg shadow-md sm:p-6 hover:shadow-xl focus:outline-none group"
+            onClick={() => setActiveSection(section.title)}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+          >
+            <div className="flex items-center mb-2 sm:mb-4">
+              <i className={`fas ${section.icon} text-lg sm:text-xl md:text-2xl text-amber-500 mr-3 sm:mr-4 group-hover:text-amber-600 transition-colors duration-300`}></i>
+              <h4 className="text-base font-light tracking-wider uppercase transition-colors duration-300 sm:text-lg md:text-xl text-amber-700 group-hover:text-amber-800">{section.title}</h4>
+            </div>
+            <p className="text-xs sm:text-sm md:text-base text-amber-900">{section.desc}</p>
+            <div className="absolute bottom-0 left-0 w-0 h-1 transition-all duration-300 bg-amber-500 group-hover:w-full"></div>
+          </motion.button>
+        ))}
       </div>
-      <div className="absolute inset-0 w-full h-full transition-all duration-300 opacity-0 group-hover:opacity-100">
-        <div className="absolute inset-0 bg-amber-400/10 blur-xl"></div>
-        <div className="absolute -inset-0.5 bg-gradient-to-br from-amber-400 to-amber-600 opacity-0 group-hover:opacity-20 blur-2xl group-hover:blur-3xl transition-all duration-300"></div>
-      </div>
-    </motion.button>
-  ))}
-</motion.div>
+    </div>
   </div>
-
-  <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-700/30 to-transparent"></div>
-  <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-700/30 to-transparent"></div>
 
   {/* Modal Overlay */}
   {activeSection && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-amber-900/80"
+      onClick={() => setActiveSection(null)}
     >
-      <motion.div 
-        className="relative w-full max-w-4xl p-12 overflow-y-auto bg-gray-900 border border-amber-900/30 rounded-lg shadow-2xl max-h-[90vh]"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 50, opacity: 0 }}
-        transition={{ duration: 0.3 }}
+      <div 
+        className="relative w-full max-w-4xl p-4 sm:p-6 md:p-12 bg-white rounded-lg shadow-2xl m-4 max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
       >
         <button
-          className="absolute text-amber-200 top-6 right-6 hover:text-amber-100"
+          className="absolute text-amber-600 top-2 right-2 sm:top-4 sm:right-4 md:top-6 md:right-6 hover:text-amber-800"
           onClick={() => setActiveSection(null)}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
-        <h3 className="mb-8 text-3xl font-light tracking-wider uppercase text-amber-100">{activeSection}</h3>
-        {activeSection === 'Values' && (
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <h3 className="mb-4 text-xl font-light tracking-wider uppercase sm:mb-6 md:mb-8 sm:text-2xl md:text-3xl text-amber-800">{activeSection}</h3>
+        {activeSection === 'Our Values' && (
+          <div className="grid gap-4 sm:gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { icon: 'FaLeaf', title: 'Natural', desc: 'We use only the purest organic ingredients' },
               { icon: 'FaHeart', title: 'Ethical', desc: 'Cruelty-free and environmentally conscious' },
@@ -442,22 +401,19 @@ const Home = () => {
               { icon: 'FaSeedling', title: 'Sustainable', desc: 'Eco-friendly practices in all we do' },
               { icon: 'FaHandsHelping', title: 'Community', desc: 'Supporting local suppliers and causes' }
             ].map((item, index) => (
-              <motion.div 
+              <div 
                 key={index} 
-                className="p-6 text-center transition-all duration-300 border rounded-lg border-amber-900/30 hover:bg-amber-900/10"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="p-4 text-center transition-all duration-300 rounded-lg sm:p-6 bg-amber-50 hover:bg-amber-100"
               >
-                <i className={`fas ${item.icon} text-3xl text-amber-400 mb-4`}></i>
-                <h4 className="mb-2 text-xl font-light tracking-wider uppercase text-amber-100">{item.title}</h4>
-                <p className="text-gray-400">{item.desc}</p>
-              </motion.div>
+                <i className={`fas ${item.icon} text-xl sm:text-2xl md:text-3xl text-amber-600 mb-2 sm:mb-4`}></i>
+                <h4 className="mb-1 text-base font-light tracking-wider uppercase sm:mb-2 sm:text-lg md:text-xl text-amber-800">{item.title}</h4>
+                <p className="text-xs sm:text-sm md:text-base text-amber-700">{item.desc}</p>
+              </div>
             ))}
           </div>
         )}
-        {activeSection === 'Services' && (
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {activeSection === 'Our Services' && (
+          <div className="grid gap-4 sm:gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { icon: 'FaPaintBrush', title: 'Organic Facials', desc: 'Revitalize your skin with our signature treatments' },
               { icon: 'FaSparkles', title: 'Natural Peels', desc: 'Gentle, effective exfoliation for radiant skin' },
@@ -466,72 +422,66 @@ const Home = () => {
               { icon: 'FaGem', title: 'Luxury Packages', desc: 'Indulge in our premium, all-inclusive experiences' },
               { icon: 'FaGraduationCap', title: 'Skincare Workshops', desc: 'Learn the art of natural beauty from our experts' }
             ].map((item, index) => (
-              <motion.div 
+              <div 
                 key={index} 
-                className="p-6 transition-all duration-300 border rounded-lg border-amber-900/30 hover:bg-amber-900/10"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="p-4 transition-all duration-300 rounded-lg sm:p-6 bg-amber-50 hover:bg-amber-100"
               >
-                <i className={`fas ${item.icon} text-3xl text-amber-400 mb-4`}></i>
-                <h4 className="mb-2 text-xl font-light tracking-wider uppercase text-amber-100">{item.title}</h4>
-                <p className="text-gray-400">{item.desc}</p>
-              </motion.div>
+                <i className={`fas ${item.icon} text-xl sm:text-2xl md:text-3xl text-amber-600 mb-2 sm:mb-4`}></i>
+                <h4 className="mb-1 text-base font-light tracking-wider uppercase sm:mb-2 sm:text-lg md:text-xl text-amber-800">{item.title}</h4>
+                <p className="text-xs sm:text-sm md:text-base text-amber-700">{item.desc}</p>
+              </div>
             ))}
           </div>
         )}
         {activeSection === 'Testimonials' && (
-          <div className="grid gap-8 sm:grid-cols-2">
+          <div className="grid gap-4 sm:gap-6 md:gap-8 sm:grid-cols-2">
             {[
               { name: 'Sarah L.', rating: 5, text: 'Organic by Pooja has transformed my skincare routine. The personalized approach and natural products have given me the best skin of my life!' },
               { name: 'Michael R.', rating: 5, text: 'I was skeptical at first, but the results speak for themselves. My skin has never looked better, and I love knowing everything is organic.' },
               { name: 'Emma T.', rating: 5, text: 'The facial I received was pure bliss. Not only did my skin glow, but I felt completely relaxed and pampered. A true luxury experience!' },
               { name: 'David K.', rating: 5, text: 'As someone with sensitive skin, finding Organic by Pooja was a game-changer. Their products are gentle yet effective. Highly recommended!' }
             ].map((item, index) => (
-              <motion.div 
+              <div 
                 key={index} 
-                className="p-6 transition-all duration-300 border rounded-lg border-amber-900/30 hover:bg-amber-900/10"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="p-4 transition-all duration-300 rounded-lg sm:p-6 bg-amber-50 hover:bg-amber-100"
               >
-                <div className="flex items-center mb-4">
-                  <div className="flex items-center justify-center w-12 h-12 mr-4 text-xl font-light rounded-full text-amber-900 bg-amber-200">
+                <div className="flex items-center mb-2 sm:mb-4">
+                  <div className="flex items-center justify-center w-8 h-8 mr-2 text-base font-light rounded-full sm:w-10 sm:h-10 md:w-12 md:h-12 sm:mr-3 md:mr-4 sm:text-lg md:text-xl text-amber-50 bg-amber-600">
                     {item.name[0]}
                   </div>
                   <div>
-                    <p className="font-light text-amber-100">{item.name}</p>
+                    <p className="font-light text-amber-800">{item.name}</p>
                     <div className="flex">
                       {[...Array(5)].map((_, i) => (
-                        <i key={i} className={`fas fa-star ${i < item.rating ? 'text-amber-400' : 'text-gray-600'} text-sm`}></i>
+                        <i key={i} className={`fas fa-star ${i < item.rating ? 'text-amber-400' : 'text-amber-200'} text-xs sm:text-sm`}></i>
                       ))}
                     </div>
                   </div>
                 </div>
-                <p className="italic text-gray-400">"{item.text}"</p>
-              </motion.div>
+                <p className="text-xs italic sm:text-sm md:text-base text-amber-700">"{item.text}"</p>
+              </div>
             ))}
           </div>
         )}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )}
 </section>
       {/* Testimonials Section */}
-      <section className="relative py-32 overflow-hidden bg-gradient-to-br from-black via-gray-900 to-amber-900/30">
-  <div className="absolute inset-0 opacity-10 bg-[url('/textures/luxury-pattern.png')]"></div>
+      <section className="relative py-24 overflow-hidden sm:py-32 bg-gradient-to-br from-amber-50 to-amber-100">
+  <div className="absolute inset-0 opacity-10 bg-[url('/textures/organic-pattern-light.png')]"></div>
   
   <div className="container relative z-10 max-w-6xl px-4 mx-auto">
     <motion.h2 
-      className="mb-24 text-4xl font-light text-center text-gray-100 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
+      className="mb-16 sm:mb-24 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-center text-amber-800 uppercase tracking-[0.2em]"
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      Client <span className="font-normal text-amber-100">Testimonials</span>
+      Client <span className="font-normal text-amber-600">Testimonials</span>
     </motion.h2>
     
-    <div className="relative">
+    <div className="relative mb-24">
       <div className="absolute top-0 left-0 w-40 h-40 rounded-full bg-amber-500 opacity-20 mix-blend-overlay filter blur-xl animate-pulse"></div>
       <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-amber-700 opacity-20 mix-blend-overlay filter blur-xl animate-pulse animation-delay-2000"></div>
       <div className="absolute w-40 h-40 rounded-full bg-amber-300 opacity-20 -bottom-8 left-20 mix-blend-overlay filter blur-xl animate-pulse animation-delay-4000"></div>
@@ -549,21 +499,21 @@ const Home = () => {
             <motion.div
               key={index}
               whileHover={{ scale: 1.05 }}
-              className="flex-shrink-0 p-6 transition-all duration-300 bg-gray-900 bg-opacity-50 border rounded-lg shadow-xl backdrop-filter backdrop-blur-lg w-80 hover:shadow-2xl border-amber-900/30 group"
+              className="flex-shrink-0 p-4 transition-all duration-300 bg-white bg-opacity-50 border rounded-lg shadow-xl sm:p-6 backdrop-filter backdrop-blur-lg w-72 sm:w-80 hover:shadow-2xl border-amber-200 group"
             >
               <div className="flex items-center mb-4">
-                <img src={testimonial.img} alt={testimonial.name} className="w-16 h-16 mr-4 border-2 rounded-full border-amber-500"/>
+                <img src={testimonial.img} alt={testimonial.name} className="w-12 h-12 mr-3 border-2 rounded-full sm:w-16 sm:h-16 sm:mr-4 border-amber-500"/>
                 <div>
-                  <p className="font-light text-amber-100">{testimonial.name}</p>
+                  <p className="text-sm font-light sm:text-base text-amber-800">{testimonial.name}</p>
                   <div className="flex items-center">
                     {[...Array(Math.floor(testimonial.rating))].map((_, i) => (
-                      <FaStar key={i} className="text-sm text-amber-400"/>
+                      <FaStar key={i} className="text-xs sm:text-sm text-amber-500"/>
                     ))}
-                    {testimonial.rating % 1 !== 0 && <FaStarHalfAlt className="text-sm text-amber-400"/>}
+                    {testimonial.rating % 1 !== 0 && <FaStarHalfAlt className="text-xs sm:text-sm text-amber-500"/>}
                   </div>
                 </div>
               </div>
-              <p className="mb-4 text-sm italic text-gray-300 transition-colors duration-300 group-hover:text-gray-100">{testimonial.review}</p>
+              <p className="mb-4 text-xs italic transition-colors duration-300 sm:text-sm text-amber-700 group-hover:text-amber-900">{testimonial.review}</p>
             </motion.div>
           ))}
         </div>
@@ -609,21 +559,22 @@ const Home = () => {
   <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"></div>
 </section>
       {/* FAQ Section */}
-      <section className="relative py-32 overflow-hidden bg-black" ref={(el) => (sectionRefs.current[7] = el)}>
-  <div className="absolute inset-0 opacity-10 bg-[url('/textures/luxury-pattern.png')]"></div>
+    
+      <section className="relative py-32 overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100" ref={(el) => (sectionRefs.current[7] = el)}>
+  <div className="absolute inset-0 opacity-10 bg-[url('/textures/organic-pattern-light.png')]"></div>
   <div className="container relative z-10 max-w-6xl px-4 mx-auto">
     <motion.h2 
-      className="mb-24 text-4xl font-light text-center text-gray-100 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
+      className="mb-24 text-4xl font-light text-center text-amber-800 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      Frequently Asked <span className="font-normal text-amber-100">Questions</span>
+      Frequently Asked <span className="font-normal text-amber-600">Questions</span>
     </motion.h2>
     
     <div className="relative">
-      <div className="absolute top-0 left-0 w-40 h-40 rounded-full bg-amber-500 opacity-20 mix-blend-overlay filter blur-xl animate-pulse"></div>
-      <div className="absolute bottom-0 right-0 w-40 h-40 rounded-full bg-amber-700 opacity-20 mix-blend-overlay filter blur-xl animate-pulse animation-delay-2000"></div>
+      <div className="absolute top-0 left-0 w-40 h-40 rounded-full bg-amber-500 opacity-20 mix-blend-multiply filter blur-xl animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-40 h-40 rounded-full bg-amber-700 opacity-20 mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
       
       <div className="relative">
         <Accordion />
@@ -633,7 +584,7 @@ const Home = () => {
 
   {/* Enhanced floating elements with 3D animations */}
   <motion.div
-    className="absolute w-32 h-32 rounded-full bg-amber-500 md:w-64 md:h-64 top-1/4 left-1/4 mix-blend-overlay filter blur-xl opacity-30"
+    className="absolute w-32 h-32 rounded-full bg-amber-500 md:w-64 md:h-64 top-1/4 left-1/4 mix-blend-multiply filter blur-xl opacity-30"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, 90, 180, 270, 360],
@@ -649,7 +600,7 @@ const Home = () => {
     style={{ transformStyle: 'preserve-3d' }}
   />
   <motion.div
-    className="absolute w-32 h-32 rounded-full bg-amber-700 md:w-64 md:h-64 bottom-1/4 right-1/4 mix-blend-overlay filter blur-xl opacity-30"
+    className="absolute w-32 h-32 rounded-full bg-amber-700 md:w-64 md:h-64 bottom-1/4 right-1/4 mix-blend-multiply filter blur-xl opacity-30"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, -90, -180, -270, -360],
@@ -668,23 +619,22 @@ const Home = () => {
   <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"></div>
   <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"></div>
 </section>
-
       {/* Contact Section */}
-      <section ref={el => sectionRefs.current[4] = el} className="relative py-32 overflow-hidden bg-black">
-  <div className="absolute inset-0 opacity-10 bg-[url('/textures/luxury-pattern.png')]"></div>
+      <section ref={el => sectionRefs.current[4] = el} className="relative py-32 overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100">
+  <div className="absolute inset-0 opacity-10 bg-[url('/textures/organic-pattern-light.png')]"></div>
   
   <div className="container relative z-10 max-w-6xl px-4 mx-auto">
     <motion.h2 
-      className="mb-24 text-4xl font-light text-center text-gray-100 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
+      className="mb-24 text-4xl font-light text-center text-amber-800 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      Get in <span className="font-normal text-amber-100">Touch</span>
+      Get in <span className="font-normal text-amber-600">Touch</span>
     </motion.h2>
 
     <motion.p 
-      className="max-w-2xl mx-auto mb-16 text-lg text-center text-gray-300"
+      className="max-w-2xl mx-auto mb-16 text-lg text-center text-amber-700"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.2 }}
@@ -706,13 +656,13 @@ const Home = () => {
         >
           <Link 
             to={item.href}
-            className="block p-8 transition-all duration-300 bg-gray-900 bg-opacity-50 border rounded-lg border-amber-900/30 hover:bg-amber-900/10 group"
+            className="block p-8 transition-all duration-300 bg-white bg-opacity-50 border rounded-lg border-amber-200 hover:bg-amber-100/50 group"
           >
-            <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 text-3xl transition-colors duration-300 rounded-full text-amber-400 bg-gradient-to-r from-amber-700 to-amber-900 group-hover:text-amber-200">
+            <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 text-3xl transition-colors duration-300 rounded-full text-amber-100 bg-gradient-to-r from-amber-500 to-amber-600 group-hover:text-white">
               <item.icon />
             </div>
-            <h3 className="mb-2 text-xl font-light tracking-wider text-center uppercase text-amber-100">{item.text}</h3>
-            <p className="text-center text-gray-400 transition-colors duration-300 group-hover:text-gray-200">
+            <h3 className="mb-2 text-xl font-light tracking-wider text-center uppercase text-amber-700">{item.text}</h3>
+            <p className="text-center transition-colors duration-300 text-amber-600 group-hover:text-amber-800">
               {item.description}
             </p>
           </Link>
@@ -721,11 +671,11 @@ const Home = () => {
     </div>
   </div>
 
-  <div className="absolute top-0 left-0 w-40 h-40 rounded-full bg-amber-500 opacity-20 mix-blend-overlay filter blur-xl animate-pulse"></div>
-  <div className="absolute bottom-0 right-0 w-40 h-40 rounded-full bg-amber-700 opacity-20 mix-blend-overlay filter blur-xl animate-pulse animation-delay-2000"></div>
+  <div className="absolute top-0 left-0 w-40 h-40 rounded-full bg-amber-500 opacity-20 mix-blend-multiply filter blur-xl animate-pulse"></div>
+  <div className="absolute bottom-0 right-0 w-40 h-40 rounded-full bg-amber-700 opacity-20 mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
 
   <motion.div
-    className="absolute w-32 h-32 rounded-full bg-amber-500 md:w-64 md:h-64 top-1/4 left-1/4 mix-blend-overlay filter blur-xl opacity-30"
+    className="absolute w-32 h-32 rounded-full bg-amber-500 md:w-64 md:h-64 top-1/4 left-1/4 mix-blend-multiply filter blur-xl opacity-30"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, 90, 180, 270, 360],
@@ -741,7 +691,7 @@ const Home = () => {
     style={{ transformStyle: 'preserve-3d' }}
   />
   <motion.div
-    className="absolute w-32 h-32 rounded-full bg-amber-700 md:w-64 md:h-64 bottom-1/4 right-1/4 mix-blend-overlay filter blur-xl opacity-30"
+    className="absolute w-32 h-32 rounded-full bg-amber-700 md:w-64 md:h-64 bottom-1/4 right-1/4 mix-blend-multiply filter blur-xl opacity-30"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, -90, -180, -270, -360],

@@ -32,14 +32,14 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.5 }}
-      className="mb-6 overflow-hidden transition-all duration-300 bg-gray-900 bg-opacity-50 border rounded-lg shadow-lg hover:shadow-2xl border-amber-900/30"
+      className="mb-6 overflow-hidden transition-all duration-300 bg-white bg-opacity-50 border rounded-lg shadow-lg hover:shadow-xl border-amber-200"
     >
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => onToggle(id)}
         className={`flex items-center justify-between w-full px-6 py-4 text-left focus:outline-none transition-all duration-300 ${
-          isOpen ? 'bg-gradient-to-r from-amber-700 to-amber-900 text-amber-100' : 'text-amber-100'
+          isOpen ? 'bg-gradient-to-r from-amber-100 to-amber-200 text-amber-800' : 'text-amber-700'
         }`}
       >
         <span className="pr-4 text-lg font-light tracking-wider uppercase">{title}</span>
@@ -47,7 +47,7 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <FaStar className={`text-xl ${isOpen ? 'text-amber-300' : 'text-amber-500'}`} />
+          <FaStar className={`text-xl ${isOpen ? 'text-amber-600' : 'text-amber-400'}`} />
         </motion.span>
       </motion.button>
       <AnimatePresence initial={false}>
@@ -63,7 +63,7 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="px-6 py-4 text-gray-300 bg-gray-800 bg-opacity-50">
+            <div className="px-6 py-4 bg-opacity-50 text-amber-800 bg-amber-50">
               {content}
             </div>
           </motion.div>
@@ -127,17 +127,10 @@ const Accordion = () => {
   ];
 
   return (
-    <section className="one">
+    <section className="relative py-12 sm:py-24">
       <style>{styles}</style>
-      <div className="absolute inset-0 opacity-10 bg-[url('/textures/luxury-pattern.png')]"></div>
+      <div className="absolute inset-0 opacity-10 bg-[url('/textures/organic-pattern-light.png')]"></div>
       <div className="container relative z-10 max-w-6xl px-4 mx-auto">
-        <motion.h2 
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="mb-24 text-4xl font-light text-center text-gray-100 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
-        >
-        </motion.h2>
         <div className="relative">
           <div className="absolute top-0 left-0 w-40 h-40 rounded-full bg-amber-500 mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
           <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-amber-700 mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>

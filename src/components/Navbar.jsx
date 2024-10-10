@@ -107,11 +107,11 @@ const Navbar = ({ position }) => {
     <div ref={userMenuRef} className={isMobile ? "" : "relative"}>
       <button
         onClick={toggleUserMenu}
-        className={`flex items-center px-4 py-2 text-sm font-semibold text-white transition-all duration-300 ease-in-out ${
-          isMobile ? "w-full justify-start" : "rounded-full hover:bg-purple-700"
+        className={`flex items-center px-4 py-2 text-sm font-semibold text-amber-500 transition-all duration-300 ease-in-out ${
+          isMobile ? "w-full justify-start" : "rounded-full bg-amber-100 hover:bg-amber-200"
         }`}
       >
-        <IconUserCircle size={24} className="mr-2 text-pink-400" />
+        <IconUserCircle size={24} className="mr-2 text-amber-600" />
         <span className="truncate max-w-[100px]">{isLoggedIn ? userName : 'Guest'}</span>
       </button>
       <AnimatePresence>
@@ -122,17 +122,17 @@ const Navbar = ({ position }) => {
             exit={{ opacity: 0, y: isMobile ? 0 : -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
             className={`${
-              isMobile ? "mt-2" : "absolute right-0 z-20 w-56 mt-2 bg-gray-800 rounded-lg shadow-xl border border-gray-700"
+              isMobile ? "mt-2" : "absolute right-0 z-20 w-56 mt-2 bg-white rounded-lg shadow-xl border border-gray-200"
             }`}
           >
-            <div className="p-4 border-b border-gray-700">
-              <p className="text-sm font-medium text-white">Hello, {isLoggedIn ? userName : 'Guest'}</p>
-              <p className="text-xs text-gray-400">{isLoggedIn ? 'Manage your account' : 'Sign in to your account'}</p>
+            <div className="p-4 border-b border-gray-200">
+              <p className="text-sm font-medium text-amber-800">Hello, {isLoggedIn ? userName : 'Guest'}</p>
+              <p className="text-xs text-gray-600">{isLoggedIn ? 'Manage your account' : 'Sign in to your account'}</p>
             </div>
             <div className="py-2">
               <NavLink 
                 to="/orders" 
-                className="flex items-center px-4 py-2 text-sm text-gray-300 transition-colors duration-150 hover:bg-purple-700 hover:text-white"
+                className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-amber-100 hover:text-amber-800"
                 onClick={() => {
                   setIsUserMenuOpen(false);
                   if (isMobile) setIsOpen(false);
@@ -142,7 +142,7 @@ const Navbar = ({ position }) => {
               </NavLink>
               <NavLink 
                 to="/wishlist" 
-                className="flex items-center px-4 py-2 text-sm text-gray-300 transition-colors duration-150 hover:bg-purple-700 hover:text-white"
+                className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-amber-100 hover:text-amber-800"
                 onClick={() => {
                   setIsUserMenuOpen(false);
                   if (isMobile) setIsOpen(false);
@@ -152,7 +152,7 @@ const Navbar = ({ position }) => {
               </NavLink>
               <NavLink 
                 to='/Help' 
-                className="flex items-center px-4 py-2 text-sm text-gray-300 transition-colors duration-150 hover:bg-purple-700 hover:text-white"
+                className="flex items-center px-4 py-2 text-sm text-gray-700 transition-colors duration-150 hover:bg-amber-100 hover:text-amber-800"
                 onClick={() => {
                   setIsUserMenuOpen(false);
                   if (isMobile) setIsOpen(false);
@@ -161,7 +161,7 @@ const Navbar = ({ position }) => {
                 Help Center
               </NavLink>
             </div>
-            <div className="pt-2 border-t border-gray-700">
+            <div className="pt-2 border-t border-gray-200">
               {isLoggedIn ? (
                 <button
                   onClick={() => {
@@ -169,7 +169,7 @@ const Navbar = ({ position }) => {
                     setIsUserMenuOpen(false);
                     if (isMobile) setIsOpen(false);
                   }}
-                  className="flex items-center w-full px-4 py-2 text-sm text-left text-red-400 transition-colors duration-150 hover:bg-red-900 hover:text-red-200"
+                  className="flex items-center w-full px-4 py-2 text-sm text-left text-red-600 transition-colors duration-150 hover:bg-red-100 hover:text-red-800"
                 >
                   <IconLogout size={18} className="mr-2" />
                   Logout
@@ -181,7 +181,7 @@ const Navbar = ({ position }) => {
                     setIsUserMenuOpen(false);
                     if (isMobile) setIsOpen(false);
                   }}
-                  className="flex items-center w-full px-4 py-2 text-sm text-left text-pink-400 transition-colors duration-150 hover:bg-purple-700 hover:text-pink-200"
+                  className="flex items-center w-full px-4 py-2 text-sm text-left transition-colors duration-150 text-amber-600 hover:bg-amber-100 hover:text-amber-800"
                 >
                   Login
                 </button>
@@ -190,7 +190,7 @@ const Navbar = ({ position }) => {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="absolute bottom-0 left-0 w-full h-0.5 bg-pink-400 transform origin-left transition-all duration-300 scale-x-0 group-hover:scale-x-100"></div>
+      <div className="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 transform origin-left transition-all duration-300 scale-x-0 group-hover:scale-x-100"></div>
     </div>
   );
   
@@ -202,10 +202,10 @@ const Navbar = ({ position }) => {
             to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
             className="relative py-2 group"
           >
-            <span className="text-lg font-medium text-white transition-all duration-300 group-hover:text-pink-400">
+            <span className="text-lg font-medium transition-all duration-300 text-amber-600 group-hover:text-amber-700">
               {item}
             </span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-pink-400 transform origin-left transition-all duration-300 scale-x-0 group-hover:scale-x-100"></span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-amber-600 transform origin-left transition-all duration-300 scale-x-0 group-hover:scale-x-100"></span>
           </NavLink>
         </li>
       ))}
@@ -218,22 +218,22 @@ const Navbar = ({ position }) => {
       <li>
         <NavLink
           to="/Cart"
-          className="relative flex items-center text-white transition-all duration-300 group hover:text-pink-400"
+          className="relative flex items-center transition-all duration-300 text-amber-500 group hover:text-amber-700"
         >
           <IconShoppingCart size={24} className="transition-transform duration-300 group-hover:scale-110" />
           <span className="ml-2 text-sm font-medium">Cart</span>
-          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-pink-400 transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100"></span>
+          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-amber-600 transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100"></span>
         </NavLink>
       </li>
       <li className="flex-shrink-0">
-  <NavLink
-    to="/book"
-    className="relative overflow-hidden px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold text-white bg-purple-800 border-2 border-purple-600 rounded-md transition-all duration-300 ease-in-out hover:bg-purple-600 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 whitespace-nowrap"
-  >
-    <span className="relative z-10">Book Appointment</span>
-    <span className="absolute inset-0 transition-opacity duration-300 ease-in-out bg-white opacity-0 group-hover:opacity-20"></span>
-  </NavLink>
-</li>
+        <NavLink
+          to="/book"
+          className="relative overflow-hidden px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold text-white bg-amber-700 rounded-md transition-all duration-300 ease-in-out hover:bg-amber-700 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 whitespace-nowrap"
+        >
+          <span className="relative z-10">Book Appointment</span>
+          <span className="absolute inset-0 transition-opacity duration-300 ease-in-out bg-white opacity-0 group-hover:opacity-20"></span>
+        </NavLink>
+      </li>
     </ul>
   );
   const mobileNavItems = (
@@ -242,18 +242,18 @@ const Navbar = ({ position }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-50 overflow-hidden bg-gray-50 dark:bg-gray-900"
+      className="fixed inset-0 z-50 overflow-hidden bg-amber-50"
     >
       <div className="relative h-full overflow-y-auto">
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1, duration: 0.4 }}
-          className="flex items-center justify-between p-6 bg-white shadow-md dark:bg-gray-800"
+          className="flex items-center justify-between p-6 bg-white shadow-md"
         >
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Organic Pooja</h1>
+          <h1 className="text-2xl font-bold text-amber-900">Organic Pooja</h1>
           <button
-            className="p-2 text-gray-600 transition-colors duration-200 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400"
+            className="p-2 transition-colors duration-200 text-amber-600 hover:text-amber-800"
             onClick={toggleMenu}
           >
             <IconX size={28} />
@@ -284,10 +284,10 @@ const Navbar = ({ position }) => {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `flex items-center px-6 py-4 my-2 rounded-lg text-gray-700 dark:text-gray-200 transition-all duration-200 ${
+                  `flex items-center px-6 py-4 my-2 rounded-lg text-amber-800 transition-all duration-200 ${
                     isActive
-                      ? "bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400 shadow-md"
-                      : "hover:bg-gray-100 dark:hover:bg-gray-800 hover:shadow-sm"
+                      ? "bg-amber-100 text-amber-900 shadow-md"
+                      : "hover:bg-amber-100 hover:shadow-sm"
                   }`
                 }
                 onClick={toggleMenu}
@@ -306,7 +306,7 @@ const Navbar = ({ position }) => {
           >
             <NavLink
               to="/book"
-              className="flex items-center justify-center w-full p-4 text-lg font-semibold text-white transition-all duration-200 transform bg-purple-600 rounded-lg shadow-lg hover:bg-purple-700 hover:scale-105"
+              className="flex items-center justify-center w-full p-4 text-lg font-semibold text-white transition-all duration-200 transform rounded-lg shadow-lg bg-amber-600 hover:bg-amber-700 hover:scale-105"
               onClick={toggleMenu}
             >
               <IconBook size={24} className="mr-3" />
@@ -315,7 +315,7 @@ const Navbar = ({ position }) => {
           </motion.div>
         </nav>
   
-        <div className="absolute bottom-0 left-0 w-full h-16 pointer-events-none bg-gradient-to-t from-gray-50 to-transparent dark:from-gray-900"></div>
+        <div className="absolute bottom-0 left-0 w-full h-16 pointer-events-none bg-gradient-to-t from-amber-50 to-transparent"></div>
       </div>
     </motion.div>
   );
@@ -330,13 +330,13 @@ const Navbar = ({ position }) => {
         <div className="flex items-center space-x-4 lg:hidden">
           <NavLink
             to="/Cart"
-            className="flex items-center p-2 text-white"
+            className="flex items-center p-2 text-black"
           >
             <IconShoppingCart size={28} />
           </NavLink>
   
           <button
-            className="p-2 text-white"
+            className="p-2 text-black"
             onClick={toggleMenu}
           >
             {isOpen ? <IconX size={24} /> : <IconMenu4 size={24} />}
@@ -379,7 +379,7 @@ const Navbar = ({ position }) => {
                 <IconX size={24} />
               </button>
               <div className="relative z-10">
-                <h2 className="mb-6 text-4xl font-bold text-white">Welcome Back</h2>
+                <h2 className="mb-6 text-4xl font-bold text-black">Welcome Back</h2>
                 <form onSubmit={handleLogin} className="space-y-6">
                   <div className="space-y-2">
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-300">
@@ -388,7 +388,7 @@ const Navbar = ({ position }) => {
                     <input
                       type="tel"
                       id="phone"
-                      className="w-full px-4 py-3 text-white placeholder-gray-500 transition-all duration-300 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 animate-slideInFromLeft"
+                      className="w-full px-4 py-3 text-black placeholder-gray-500 transition-all duration-300 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 animate-slideInFromLeft"
                       value={telephone}
                       onChange={(e) => {
                         if (e.target.value.length <= 10) setTelephone(e.target.value);
@@ -406,7 +406,7 @@ const Navbar = ({ position }) => {
     <input
       type="tel"
       id="otp"
-      className="w-full px-4 py-3 text-white placeholder-gray-500 transition-all duration-300 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 animate-slideInFromRight"
+      className="w-full px-4 py-3 text-black placeholder-gray-500 transition-all duration-300 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 animate-slideInFromRight"
       value={OTP}
       onChange={(e) => {
         if (e.target.value.length <= 6) setOTP(e.target.value);
@@ -420,7 +420,7 @@ const Navbar = ({ position }) => {
   {error && <p className="text-sm text-red-400 animate-pulse">{error}</p>}
   <button
     type="submit"
-    className="w-full px-6 py-3 font-semibold text-white transition-all duration-300 bg-purple-600 rounded-lg shadow-lg hover:bg-purple-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50"
+    className="w-full px-6 py-3 font-semibold text-black transition-all duration-300 bg-purple-600 rounded-lg shadow-lg hover:bg-purple-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50"
   >
     Verify & Login
   </button>
@@ -428,7 +428,7 @@ const Navbar = ({ position }) => {
   <div className="mt-6">
   <button
     onClick={handleGoogleLogin}
-    className="flex items-center justify-center w-full px-6 py-3 font-semibold text-white transition-all duration-300 bg-gray-700 rounded-lg shadow-md hover:bg-gray-600 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 animate-fadeIn"
+    className="flex items-center justify-center w-full px-6 py-3 font-semibold text-black transition-all duration-300 bg-gray-700 rounded-lg shadow-md hover:bg-gray-600 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 animate-fadeIn"
   >
     <IconBrandGoogle size={20} className="mr-2" />
     Login with Google
