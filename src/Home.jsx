@@ -120,6 +120,10 @@ const Home = () => {
       <Helmet>
         <title>Organic by Pooja - Natural Beauty Solutions</title>
         <meta name="description" content="Discover natural, organic beauty solutions at Organic by Pooja. Personalized skincare treatments and products for radiant, healthy skin." />
+        <meta charSet="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://organicbypooja.in" />
       </Helmet>
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       
