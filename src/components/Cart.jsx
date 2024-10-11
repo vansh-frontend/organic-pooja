@@ -48,30 +48,38 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
     (total, item) => total + parseFloat(item.price.slice(1)) * item.quantity,
     0
   );
-  const tax = subtotal * 0.1;
-
-  const discount = appliedCoupon ? subtotal * appliedCoupon.discountPercentage : 0;
-  const total = subtotal - discount;
 
   const applyCoupon = () => {
     switch (couponCode.toUpperCase()) {
-      case 'SAVE25':
-        setAppliedCoupon({ code: 'SAVE25', discountPercentage: 0.25 });
-        toast.success('25% Galactic coupon applied successfully!');
+      case 'SAVE250':
+        if (subtotal < 1000) {
+          setAppliedCoupon({ code: 'SAVE25', discountAmount: 250 });
+          toast.success('₹250 discount applied successfully!');
+        } else {
+          toast.error('This coupon is only valid for orders below ₹1000');
+        }
         break;
-      case 'SAVE35':
-        setAppliedCoupon({ code: 'SAVE35', discountPercentage: 0.35 });
-        toast.success('35% Galactic coupon applied successfully!');
+      case 'SAVE400':
+        if (subtotal >= 2000) {
+          setAppliedCoupon({ code: 'SAVE35', discountAmount: 400 });
+          toast.success('₹400 discount applied successfully!');
+        } else {
+          toast.error('This coupon is only valid for orders ₹2000 and above');
+        }
         break;
       default:
         toast.error('Invalid coupon code');
     }
   };
+
   const removeCoupon = () => {
     setAppliedCoupon(null);
     setCouponCode('');
     toast.info('Coupon removed');
   };
+
+  const discount = appliedCoupon ? appliedCoupon.discountAmount : 0;
+  const total = subtotal - discount;
 
   const handleCheckout = () => {
     if (cartItems.length === 0) {
@@ -111,10 +119,9 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   Order Details:
   ${cartItems.map(item => `- ${item.name} - Quantity: ${item.quantity} - Price: ${item.price}`).join('\n')}
   
-  Subtotal: $${subtotal.toFixed(2)}
-  Shipping: $${shippingCost.toFixed(2)}
-  ${appliedCoupon ? `Galactic Discount: -$${discount.toFixed(2)}\n` : ''}
-  Total: $${total.toFixed(2)}
+  Subtotal: ₹${subtotal.toFixed(2)}
+  ${appliedCoupon ? `Galactic Discount: -₹${discount.toFixed(2)}\n` : ''}
+  Total: ₹${total.toFixed(2)}
     `.trim();
   
     formData.append("access_key", "2a83fafa-3cb5-48ba-9e38-48544d68b19c");
