@@ -111,7 +111,7 @@ const Navbar = ({ position }) => {
           isMobile ? "w-full justify-start" : "rounded-full hover:bg-gray-900 hover:text-white"
         }`}
       >
-        <IconUserCircle size={24} className="mr-2 text-black " />
+        <IconUserCircle size={24} className="mr-2 text-black" />
         <span className="truncate max-w-[100px]">{isLoggedIn ? userName : 'Guest'}</span>
       </button>
       <AnimatePresence>
