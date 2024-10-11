@@ -47,15 +47,15 @@ const Products = ({ addToCart }) => {
   };
   
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gray-900">
+    <div className="relative min-h-screen overflow-hidden bg-black">
       {/* Space background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/img/space-bg.jpg')] bg-cover bg-center opacity-30"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/30 via-gray-800/30 to-black/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/30 to-black/70"></div>
       </div>
 
-      {/* Responsive Marquee */}
-      <div className="py-2 overflow-hidden bg-gray-800">
+      {/* Sticky Marquee */}
+      <div className="py-2 overflow-hidden bg-black/50 backdrop-blur-sm">
         <div 
           className="flex animate-marquee whitespace-nowrap"
           onMouseEnter={(e) => e.target.style.animationPlayState = 'paused'}
@@ -65,15 +65,15 @@ const Products = ({ addToCart }) => {
             <div key={index} className="flex items-center px-4 space-x-4">
               <span className="inline-flex items-center text-yellow-400">
                 <FaGift className="mr-2 text-lg" />
-                <span className="text-sm text-purple-300 sm:text-base">₹150 off on all order worth ₹999. Use code:"SAVE150"!</span>
+                <span className="text-sm text-white sm:text-base">₹150 off on all order worth ₹999. Use code:"SAVE150"!</span>
               </span>
               <span className="inline-flex items-center text-green-400">
                 <FaPercent className="mr-2 text-lg" />
-                <span className="text-sm text-purple-300 sm:text-base">₹400 off on all order above ₹1999. Use code:"save400"!</span>
+                <span className="text-sm text-white sm:text-base">₹400 off on all order above ₹1999. Use code:"save400"!</span>
               </span>
               <span className="inline-flex items-center text-blue-400">
                 <FaGift className="mr-2 text-lg" />
-                <span className="text-sm text-purple-300 sm:text-base">Free Shipping On Orders Above ₹999!</span>
+                <span className="text-sm text-white sm:text-base">Free Shipping On Orders Above ₹999!</span>
               </span>
             </div>
           ))}
@@ -85,9 +85,9 @@ const Products = ({ addToCart }) => {
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
           animate={controls}
-          className="mb-12 text-5xl font-bold text-center text-purple-300"
+          className="mb-12 text-5xl text-center text-white"
         >
-          Our Cosmic Collection
+          <span className="font-light">Our</span> <span className="font-normal">Cosmic</span> <span className="font-light">Collection</span>
         </motion.h1>
 
         {/* Category Filter */}
@@ -106,31 +106,21 @@ const Products = ({ addToCart }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="relative px-4 py-2 overflow-hidden text-sm font-medium transition-all duration-300 ease-in-out sm:px-6 sm:py-3"
+                className="relative px-4 py-2 overflow-hidden text-sm font-light tracking-wider transition-all duration-300 ease-in-out sm:px-6 sm:py-3"
                 onClick={() => setSelectedCategory(category)}
               >
                 <span className={`relative z-10 ${
-                  selectedCategory === category ? 'text-gray-900' : 'text-purple-300'
+                  selectedCategory === category ? 'text-black' : 'text-white'
                 }`}>
-                  {category}
+                  {category.toUpperCase()}
                 </span>
                 <motion.div
-                  className="absolute inset-0 bg-purple-400"
+                  className="absolute inset-0 bg-white"
                   initial={false}
                   animate={{
                     clipPath: selectedCategory === category
                       ? 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
                       : 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)'
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.div
-                  className="absolute inset-0 bg-gray-800"
-                  initial={false}
-                  animate={{
-                    clipPath: selectedCategory === category
-                      ? 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)'
-                      : 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
                   }}
                   transition={{ duration: 0.3 }}
                 />
@@ -157,7 +147,6 @@ const Products = ({ addToCart }) => {
                 product={product}
                 onAddToCart={addToCart}
                 onMoreDetails={handleProductDetails}
-                className="bg-gray-800 shadow-lg"
               />
             </motion.div>
           ))}
@@ -169,7 +158,7 @@ const Products = ({ addToCart }) => {
             product={selectedProduct}
             onClose={handleCloseModal}
             onAddToCart={addToCart}
-            className="bg-gray-800"
+            className="bg-black/90"
           />
         )}
       </div>

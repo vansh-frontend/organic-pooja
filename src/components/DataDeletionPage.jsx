@@ -106,126 +106,126 @@ const DataDeletionPage = () => {
 
   return (
     <motion.div 
-    initial="hidden"
-    animate="visible"
-    variants={containerVariants}
-    className="min-h-screen px-4 py-12 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 sm:px-6 lg:px-8"
-  >
-    <div className="mx-auto max-w-7xl">
-      <motion.div variants={itemVariants} className="mb-12 text-center">
-        <h1 className="text-4xl font-extrabold text-orange-400 sm:text-5xl md:text-6xl">
-          Data Deletion
-        </h1>
-        <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl">
-          At <strong className="font-semibold text-yellow-500">Organic Pooja</strong>, we respect your privacy and give you control over your data.
-        </p>
-      </motion.div>
-  
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <motion.div 
-          variants={itemVariants}
-          className="overflow-hidden bg-gray-800 rounded-lg shadow-lg"
-        >
-          <div className="px-4 py-5 sm:p-6">
-            <h2 className="flex items-center mb-4 text-xl font-semibold text-yellow-400">
-              <FiShield className="mr-2 text-yellow-500" /> Data Protection
-            </h2>
-            <p className="mb-4 text-base text-gray-300">
-              We take your privacy seriously. Here's what you need to know about deleting your data:
-            </p>
-            <ul className="mb-6 space-y-2 text-sm text-gray-400 list-disc list-inside">
-              <li>All your personal information will be permanently removed</li>
-              <li>Your order history and preferences will be deleted</li>
-              <li>You won't be able to recover this information later</li>
-            </ul>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setShowConfirmation(true)}
-              className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-            >
-              <FiTrash2 className="mr-2" />
-              Initiate Data Deletion
-            </motion.button>
-          </div>
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className="min-h-screen px-4 py-12 bg-black sm:px-6 lg:px-8"
+    >
+      <div className="mx-auto max-w-7xl">
+        <motion.div variants={itemVariants} className="mb-12 text-center">
+          <h1 className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
+            Data Deletion
+          </h1>
+          <p className="mt-3 text-base text-white/80 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl">
+            At <strong className="font-semibold text-white">Organic Pooja</strong>, we respect your privacy and give you control over your data.
+          </p>
         </motion.div>
-  
-        <motion.div 
-          variants={itemVariants}
-          className="overflow-hidden bg-gray-800 rounded-lg shadow-lg"
-        >
-          <div className="px-4 py-5 sm:p-6">
-            <h2 className="flex items-center mb-4 text-xl font-semibold text-yellow-400">
-              <FiMessageCircle className="mr-2 text-yellow-500" /> Need Assistance?
-            </h2>
-            <p className="mb-4 text-base text-gray-300">
-              If you have any questions or concerns about deleting your data, our support team is here to help.
-            </p>
-            <ul className="mb-6 space-y-2 text-sm text-gray-400 list-disc list-inside">
-              <li>Get clarification on the deletion process</li>
-              <li>Learn about data retention policies</li>
-              <li>Explore alternatives to account deletion</li>
-            </ul>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleContactSupport}
-              className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-orange-600 border border-transparent rounded-md shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
-            >
-              <FiMessageCircle className="mr-2" />
-              Contact Support
-            </motion.button>
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  
-    <AnimatePresence>
-      {showConfirmation && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 flex items-center justify-center w-full h-full overflow-y-auto bg-gray-900 bg-opacity-75"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            className="w-full max-w-md p-5 bg-gray-800 rounded-lg shadow-xl"
+    
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <motion.div 
+            variants={itemVariants}
+            className="overflow-hidden rounded-lg shadow-lg bg-white/10"
           >
-            <h3 className="flex items-center mb-4 text-lg font-medium text-yellow-400">
-              <FiAlertTriangle className="mr-2 text-yellow-500" /> Confirm Deletion
-            </h3>
-            <p className="mb-4 text-sm text-gray-300">
-              Are you sure you want to delete your account and all associated data? This action cannot be undone.
-            </p>
-            <div className="flex justify-end space-x-3">
+            <div className="px-4 py-5 sm:p-6">
+              <h2 className="flex items-center mb-4 text-xl font-semibold text-white">
+                <FiShield className="mr-2 text-white/80" /> Data Protection
+              </h2>
+              <p className="mb-4 text-base text-white/80">
+                We take your privacy seriously. Here's what you need to know about deleting your data:
+              </p>
+              <ul className="mb-6 space-y-2 text-sm list-disc list-inside text-white/60">
+                <li>All your personal information will be permanently removed</li>
+                <li>Your order history and preferences will be deleted</li>
+                <li>You won't be able to recover this information later</li>
+              </ul>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setShowConfirmation(false)}
-                className="px-4 py-2 text-gray-200 bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                onClick={() => setShowConfirmation(true)}
+                className="flex justify-center w-full px-4 py-2 text-sm font-medium text-black bg-white border border-transparent rounded-lg shadow-sm hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
               >
-                Cancel
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleDeleteData}
-                disabled={isDeleting}
-                className={`px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 ${isDeleting ? 'opacity-50 cursor-not-allowed' : ''}`}
-              >
-                {isDeleting ? 'Deleting...' : 'Confirm Delete'}
+                <FiTrash2 className="mr-2" />
+                Initiate Data Deletion
               </motion.button>
             </div>
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  
-    <ToastContainer position="bottom-center" autoClose={5000} />
-  </motion.div>
+    
+          <motion.div 
+            variants={itemVariants}
+            className="overflow-hidden rounded-lg shadow-lg bg-white/10"
+          >
+            <div className="px-4 py-5 sm:p-6">
+              <h2 className="flex items-center mb-4 text-xl font-semibold text-white">
+                <FiMessageCircle className="mr-2 text-white/80" /> Need Assistance?
+              </h2>
+              <p className="mb-4 text-base text-white/80">
+                If you have any questions or concerns about deleting your data, our support team is here to help.
+              </p>
+              <ul className="mb-6 space-y-2 text-sm list-disc list-inside text-white/60">
+                <li>Get clarification on the deletion process</li>
+                <li>Learn about data retention policies</li>
+                <li>Explore alternatives to account deletion</li>
+              </ul>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleContactSupport}
+                className="flex justify-center w-full px-4 py-2 text-sm font-medium text-black bg-white border border-transparent rounded-lg shadow-sm hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
+              >
+                <FiMessageCircle className="mr-2" />
+                Contact Support
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    
+      <AnimatePresence>
+        {showConfirmation && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 flex items-center justify-center w-full h-full overflow-y-auto bg-black bg-opacity-75"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="w-full max-w-md p-5 rounded-lg shadow-xl bg-white/10"
+            >
+              <h3 className="flex items-center mb-4 text-lg font-medium text-white">
+                <FiAlertTriangle className="mr-2 text-white/80" /> Confirm Deletion
+              </h3>
+              <p className="mb-4 text-sm text-white/80">
+                Are you sure you want to delete your account and all associated data? This action cannot be undone.
+              </p>
+              <div className="flex justify-end space-x-3">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setShowConfirmation(false)}
+                  className="px-4 py-2 text-white rounded-lg bg-white/10 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white"
+                >
+                  Cancel
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleDeleteData}
+                  disabled={isDeleting}
+                  className={`px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 ${isDeleting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                  {isDeleting ? 'Deleting...' : 'Confirm Delete'}
+                </motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    
+      <ToastContainer position="bottom-center" autoClose={5000} />
+    </motion.div>
   );
 };
 

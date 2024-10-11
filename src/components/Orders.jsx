@@ -73,47 +73,47 @@ const Orders = () => {
 
     // Header
     pdf.setFontSize(24);
-    pdf.setTextColor(44, 62, 80);
+    pdf.setTextColor(0);
     pdf.setFont("helvetica", "bold");
     pdf.text("Organic by Pooja", 20, 30);
     
     pdf.setFontSize(10);
     pdf.setFont("helvetica", "normal");
-    pdf.setTextColor(52, 73, 94);
+    pdf.setTextColor(0);
     pdf.text("123 Green Street, Eco City, Nature State 12345", 20, 40);
     pdf.text("Phone: (555) 123-4567 | Email: info@organicbypooja.com", 20, 45);
 
     // Invoice details
     pdf.setFontSize(16);
     pdf.setFont("helvetica", "bold");
-    pdf.setTextColor(41, 128, 185);
+    pdf.setTextColor(0);
     pdf.text("INVOICE", pageWidth - 20, 30, { align: "right" });
     
     pdf.setFontSize(10);
     pdf.setFont("helvetica", "normal");
-    pdf.setTextColor(52, 73, 94);
+    pdf.setTextColor(0);
     pdf.text(`Invoice #: ${order.id}`, pageWidth - 20, 40, { align: "right" });
     pdf.text(`Date: ${new Date(order.date).toLocaleDateString()}`, pageWidth - 20, 45, { align: "right" });
 
     // Billing details
     pdf.setFontSize(12);
     pdf.setFont("helvetica", "bold");
-    pdf.setTextColor(44, 62, 80);
+    pdf.setTextColor(0);
     pdf.text("Bill To:", 20, 60);
     
     pdf.setFont("helvetica", "normal");
-    pdf.setTextColor(52, 73, 94);
+    pdf.setTextColor(0);
     pdf.text("Customer Name", 20, 70);
     pdf.text("Customer Address", 20, 75);
     pdf.text("City, State, ZIP", 20, 80);
 
     // Order details
     pdf.setFont("helvetica", "bold");
-    pdf.setTextColor(44, 62, 80);
+    pdf.setTextColor(0);
     pdf.text("Order Details:", pageWidth - 90, 60);
     
     pdf.setFont("helvetica", "normal");
-    pdf.setTextColor(52, 73, 94);
+    pdf.setTextColor(0);
     pdf.text(`Order Date: ${new Date(order.date).toLocaleDateString()}`, pageWidth - 90, 70);
     pdf.text(`Status: ${order.status}`, pageWidth - 90, 75);
     pdf.text(`Shipping Method: ${order.shippingMethod}`, pageWidth - 90, 80);
@@ -139,34 +139,35 @@ const Orders = () => {
         ['', '', 'Total:', `₹${total.toFixed(2)}`]
       ],
       theme: 'striped',
-      headStyles: { fillColor: [41, 128, 185], textColor: 255, fontStyle: 'bold' },
-      footStyles: { fillColor: [236, 240, 241], textColor: 44, fontStyle: 'bold' },
-      bodyStyles: { textColor: 52 },
-      alternateRowStyles: { fillColor: [245, 247, 250] },
+      headStyles: { fillColor: [0, 0, 0], textColor: 255, fontStyle: 'bold' },
+      footStyles: { fillColor: [240, 240, 240], textColor: 0, fontStyle: 'bold' },
+      bodyStyles: { textColor: 0 },
+      alternateRowStyles: { fillColor: [245, 245, 245] },
     });
 
     // Thank you message
     pdf.setFontSize(10);
     pdf.setFont("helvetica", "italic");
-    pdf.setTextColor(52, 73, 94);
+    pdf.setTextColor(0);
     const thankYouMessage = "Thank you for your order! We appreciate your business and hope you enjoy your organic products.";
     pdf.text(thankYouMessage, 20, pdf.autoTable.previous.finalY + 20, { maxWidth: pageWidth - 40 });
 
     // Footer
     pdf.setFont("helvetica", "normal");
     pdf.setFontSize(8);
-    pdf.setTextColor(127, 140, 141);
+    pdf.setTextColor(100);
     pdf.text("Organic by Pooja | 123 Green Street, Eco City, Nature State 12345 | (555) 123-4567", pageWidth / 2, pageHeight - 15, { align: "center" });
 
     pdf.save(`organic-by-pooja-invoice-${order.id}.pdf`);
   };
+
   if (orders.length === 0) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-900">
-        <div className="w-full max-w-md p-6 mx-4 text-center bg-gray-800 rounded-lg shadow-md">
-          <FaBox className="mx-auto mb-4 text-5xl text-gray-400 sm:text-6xl" />
-          <h2 className="mb-2 text-xl font-semibold text-gray-200 sm:text-2xl">No Orders Yet</h2>
-          <p className="text-sm text-gray-400 sm:text-base">You haven't placed any orders. Start shopping to see your orders here!</p>
+      <div className="flex items-center justify-center min-h-screen bg-black">
+        <div className="w-full max-w-md p-6 mx-4 text-center rounded-lg shadow-md bg-black/50">
+          <FaBox className="mx-auto mb-4 text-5xl text-white/60 sm:text-6xl" />
+          <h2 className="mb-2 text-xl font-semibold text-white sm:text-2xl">No Orders Yet</h2>
+          <p className="text-sm text-white/60 sm:text-base">You haven't placed any orders. Start shopping to see your orders here!</p>
         </div>
       </div>
     );
@@ -177,10 +178,10 @@ const Orders = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen py-6 bg-gray-900 sm:py-8"
+      className="min-h-screen py-6 bg-black sm:py-8"
     >
       <div className="container px-4 mx-auto max-w-7xl">
-        <h1 className="mb-6 text-2xl font-bold text-center text-gray-200 sm:mb-8 sm:text-3xl">Your Orders</h1>
+        <h1 className="mb-6 text-2xl font-bold text-center text-white sm:mb-8 sm:text-3xl">Your Orders</h1>
         
         {/* Search and Filter Section */}
         <div className="mb-6 space-y-4 sm:space-y-0 sm:flex sm:flex-wrap sm:items-center sm:justify-between">
@@ -190,15 +191,15 @@ const Orders = () => {
               placeholder="Search orders..."
               value={searchTerm}
               onChange={handleSearch}
-              className="w-full px-4 py-2 pl-10 pr-4 text-sm text-gray-200 bg-gray-800 border border-gray-700 rounded-md sm:text-base focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-2 pl-10 pr-4 text-sm text-white border-2 rounded-lg placeholder-white/60 bg-white/10 border-white/20 sm:text-base focus:outline-none focus:border-white focus:ring focus:ring-white/50 focus:ring-opacity-50"
             />
-            <FaSearch className="absolute text-gray-400 transform -translate-y-1/2 left-3 top-1/2" />
+            <FaSearch className="absolute transform -translate-y-1/2 text-white/60 left-3 top-1/2" />
           </div>
           <div className="flex flex-wrap items-center space-y-2 sm:space-y-0 sm:space-x-4">
             <select
               value={statusFilter}
               onChange={(e) => handleStatusFilter(e.target.value)}
-              className="w-full px-4 py-2 text-sm text-gray-200 bg-gray-800 border border-gray-700 rounded-md sm:w-auto sm:text-base focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-2 text-sm text-white border-2 rounded-lg bg-white/10 border-white/20 sm:w-auto sm:text-base focus:outline-none focus:border-white focus:ring focus:ring-white/50 focus:ring-opacity-50"
             >
               <option value="all">All Statuses</option>
               <option value="Processing">Processing</option>
@@ -207,13 +208,13 @@ const Orders = () => {
             </select>
             <button
               onClick={() => handleSort('date')}
-              className="w-full px-4 py-2 text-sm text-gray-200 bg-gray-800 border border-gray-700 rounded-md sm:w-auto sm:text-base focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-2 text-sm text-white border-2 rounded-lg bg-white/10 border-white/20 sm:w-auto sm:text-base focus:outline-none focus:border-white focus:ring focus:ring-white/50 focus:ring-opacity-50 hover:bg-white/20"
             >
               Sort by Date {sortBy === 'date' && (sortOrder === 'asc' ? '↑' : '↓')}
             </button>
             <button
               onClick={() => handleSort('total')}
-              className="w-full px-4 py-2 text-sm text-gray-200 bg-gray-800 border border-gray-700 rounded-md sm:w-auto sm:text-base focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-2 text-sm text-white border-2 rounded-lg bg-white/10 border-white/20 sm:w-auto sm:text-base focus:outline-none focus:border-white focus:ring focus:ring-white/50 focus:ring-opacity-50 hover:bg-white/20"
             >
               Sort by Total {sortBy === 'total' && (sortOrder === 'asc' ? '↑' : '↓')}
             </button>
@@ -228,51 +229,51 @@ const Orders = () => {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="p-4 bg-gray-800 rounded-lg shadow-md sm:p-6"
+              className="p-4 rounded-lg shadow-md bg-white/10 sm:p-6"
             >
               <div className="flex flex-wrap items-center justify-between mb-4">
-                <h2 className="mb-2 text-lg font-semibold text-gray-200 sm:text-xl sm:mb-0">Order #{order.id}</h2>
-                <span className="px-3 py-1 text-xs font-medium text-green-200 bg-green-900 rounded-full sm:text-sm">
+                <h2 className="mb-2 text-lg font-semibold text-white sm:text-xl sm:mb-0">Order #{order.id}</h2>
+                <span className="px-3 py-1 text-xs font-medium text-black bg-white rounded-full sm:text-sm">
                   {order.status || 'Processing'}
                 </span>
               </div>
               <div className="grid grid-cols-1 gap-4 mb-4 sm:grid-cols-2 lg:grid-cols-4">
                 <div className="flex items-center">
-                  <FaCalendarAlt className="mr-2 text-indigo-400" />
-                  <span className="text-sm text-gray-300 sm:text-base">Order Date: {new Date(order.date).toLocaleDateString()}</span>
+                  <FaCalendarAlt className="mr-2 text-white/60" />
+                  <span className="text-sm text-white/80 sm:text-base">Order Date: {new Date(order.date).toLocaleDateString()}</span>
                 </div>
                 <div className="flex items-center">
-                  <FaTruck className="mr-2 text-indigo-400" />
-                  <span className="text-sm text-gray-300 sm:text-base">Shipping: {order.shippingMethod}</span>
+                  <FaTruck className="mr-2 text-white/60" />
+                  <span className="text-sm text-white/80 sm:text-base">Shipping: {order.shippingMethod}</span>
                 </div>
                 <div className="flex items-center">
-                  <FaMoneyBillWave className="mr-2 text-indigo-400" />
-                  <span className="text-sm text-gray-300 sm:text-base">Total: ₹{order.total.toFixed(2)}</span>
+                  <FaMoneyBillWave className="mr-2 text-white/60" />
+                  <span className="text-sm text-white/80 sm:text-base">Total: ₹{order.total.toFixed(2)}</span>
                 </div>
                 <div className="flex items-center">
                   <button
                     onClick={() => downloadOrderDetails(order)}
-                    className="flex items-center px-3 py-1 text-xs font-medium text-indigo-200 bg-indigo-900 rounded-full sm:text-sm hover:bg-indigo-800"
+                    className="flex items-center px-3 py-1 text-xs font-medium text-black bg-white rounded-full sm:text-sm hover:bg-white/80"
                   >
                     <FaDownload className="mr-2" />
                     Download Invoice
                   </button>
                 </div>
               </div>
-              <div className="mt-4 border-t border-gray-700">
-                <h3 className="mt-4 mb-2 text-base font-semibold text-gray-200 sm:text-lg">Items</h3>
-                <ul className="divide-y divide-gray-700">
+              <div className="mt-4 border-t border-white/20">
+                <h3 className="mt-4 mb-2 text-base font-semibold text-white sm:text-lg">Items</h3>
+                <ul className="divide-y divide-white/20">
                   {order.items.map((item) => (
                     <li key={item.id} className="py-3">
                       <div className="flex flex-wrap items-center justify-between">
                         <div className="flex items-center mb-2 sm:mb-0">
                           <img src={item.image} alt={item.name} className="w-12 h-12 mr-4 rounded-md sm:w-16 sm:h-16" />
                           <div>
-                            <h4 className="text-xs font-medium text-gray-200 sm:text-sm">{item.name}</h4>
-                            <p className="text-xs text-gray-400 sm:text-sm">Quantity: {item.quantity}</p>
+                            <h4 className="text-xs font-medium text-white sm:text-sm">{item.name}</h4>
+                            <p className="text-xs text-white/60 sm:text-sm">Quantity: {item.quantity}</p>
                           </div>
                         </div>
-                        <span className="text-xs font-medium text-gray-200 sm:text-sm">₹{parseFloat(item.price).toFixed(2)}</span>
+                        <span className="text-xs font-medium text-white sm:text-sm">₹{parseFloat(item.price).toFixed(2)}</span>
                       </div>
                     </li>
                   ))}
@@ -287,3 +288,4 @@ const Orders = () => {
 };
 
 export default Orders;
+                      

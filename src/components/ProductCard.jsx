@@ -7,15 +7,15 @@ const CustomAlert = ({ message, onClose }) => (
     initial={{ opacity: 0, y: -50 }}
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -50 }}
-    className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
   >
-    <div className="p-6 bg-gray-900 border rounded-lg shadow-lg border-purple-500/30">
-      <p className="mb-4 text-lg text-amber-100">{message}</p>
+    <div className="p-6 bg-black border rounded-lg shadow-lg bg-opacity-80 border-white/20">
+      <p className="mb-4 text-lg font-light text-white">{message}</p>
       <button
         onClick={onClose}
-        className="px-4 py-2 text-sm font-medium text-gray-900 transition-colors duration-200 bg-purple-400 rounded hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        className="px-4 py-2 text-sm font-light tracking-wider text-black transition-colors duration-200 bg-white rounded hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white"
       >
-        Close
+        CLOSE
       </button>
     </div>
   </motion.div>
@@ -32,43 +32,43 @@ const ProductCard = memo(({ product, onAddToCart, onMoreDetails }) => {
   return (
     <>
       <motion.div
-        className="overflow-hidden transition-all duration-300 bg-gray-900 border rounded-lg shadow-md border-purple-500/30 hover:shadow-lg"
+        className="flex flex-col h-full overflow-hidden transition-all duration-300 bg-black bg-opacity-50 rounded-lg shadow-md backdrop-filter backdrop-blur-sm hover:shadow-lg"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="relative">
+        <div className="relative flex-shrink-0">
           <motion.img
             src={product.image}
             alt={product.name}
-            className="object-cover w-full h-60"
+            className="object-cover w-full h-48 sm:h-56"
             loading="lazy"
             whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.3 }}
           />
-          <div className="absolute px-2 py-1 text-xs font-medium text-white bg-green-400 rounded-full top-2 right-2">
-            In Stock
+          <div className="absolute px-2 py-1 text-xs font-light tracking-wider text-black bg-white rounded-full top-2 right-2">
+            IN STOCK
           </div>
         </div>
-        <div className="p-4">
-          <h3 className="mb-2 text-lg font-semibold text-amber-100 line-clamp-2">{product.name}</h3>
-          <p className="mb-4 text-xl font-bold text-gray-100">{product.price}</p>
+        <div className="flex flex-col flex-grow p-4">
+          <h3 className="mb-2 text-base font-light tracking-wide text-white line-clamp-2 sm:text-lg">{product.name}</h3>
+          <p className="mt-auto mb-4 text-xl font-light text-white">{product.price}</p>
           <div className="flex space-x-2">
             <motion.button
               onClick={() => onMoreDetails(product)}
-              className="flex-1 px-4 py-2 text-sm font-medium text-gray-100 transition-colors duration-200 bg-gray-800 rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="flex-1 px-3 py-1.5 text-xs font-light tracking-wider text-white transition-colors duration-200 bg-transparent border border-white rounded hover:bg-white hover:text-black focus:outline-none focus:ring-2 focus:ring-white sm:text-sm"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              More Details
+              MORE DETAILS
             </motion.button>
             <motion.button
               onClick={handleAddToCart}
-              className="flex-1 px-4 py-2 text-sm font-medium text-gray-100 transition-all duration-200 bg-transparent border border-purple-400 border-opacity-50 rounded backdrop-blur-sm hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="flex-1 px-3 py-1.5 text-xs font-light tracking-wider text-black transition-all duration-200 bg-white rounded hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white sm:text-sm"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              Add to Cart
+              ADD TO CART
             </motion.button>
           </div>
         </div>
@@ -77,7 +77,7 @@ const ProductCard = memo(({ product, onAddToCart, onMoreDetails }) => {
       <AnimatePresence>
         {showAlert && (
           <CustomAlert
-            message={`Your ${product.name} has been added to the cart!`}
+            message={`${product.name} has been added to your cart.`}
             onClose={() => setShowAlert(false)}
           />
         )}
