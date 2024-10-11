@@ -333,7 +333,7 @@ const Home = () => {
       <motion.h2 
         className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
       >
-        Our Premium Services
+        Our Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Services</span>
       </motion.h2>
       <motion.p
         className="text-xl text-gray-300 md:text-2xl"
@@ -362,7 +362,7 @@ const Home = () => {
           transition={{ duration: 0.5, delay: index * 0.1 }}
         >
           <div>
-            <h3 className="mb-2 text-xl font-semibold text-pink-300">{service.title}</h3>
+            <h3 className="mb-2 text-xl font-semibold text-pink-400">{service.title}</h3>
             <p className="mb-4 text-sm text-gray-300">{service.desc}</p>
           </div>
           <a 
