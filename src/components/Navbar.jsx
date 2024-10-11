@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { IconHome, IconBook, IconApps, IconMenu4, IconX, IconShoppingCart, IconUserCircle, IconBrandGoogle, IconArrowRight, IconServicemark, IconLogout } from '@tabler/icons-react';
+import { IconHome, IconBook, IconApps, IconMenu4, IconX, IconShoppingCart, IconUserCircle, IconBrandGoogle, IconArrowRight, IconServicemark, IconLogout,IconBrandFacebook } from '@tabler/icons-react';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -391,62 +391,30 @@ const Navbar = ({ position }) => {
               className="relative w-full max-w-md p-8 bg-gray-800 shadow-2xl rounded-2xl backdrop-filter backdrop-blur-lg animate-fadeIn"
             >
               <button
-                className="absolute p-2 transition-transform transform cursor-pointer text-white-400 top-4 right-4 hover:scale-110"
+                className="absolute p-2 text-white transition-transform transform cursor-pointer text-white-400 top-4 right-4 hover:scale-110"
                 onClick={closeLoginModal}
               >
                 <IconX size={24} />
               </button>
               <div className="relative z-10">
-                <h2 className="mb-6 text-4xl font-bold text-black">Welcome Back</h2>
+                <h2 className="mb-6 text-3xl font-bold text-purple-300">Login </h2>
                 <form onSubmit={handleLogin} className="space-y-6">
-                  <div className="space-y-2">
-                    <label htmlFor="phone" className="block text-sm font-medium text-white-300">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      className="w-full px-4 py-3 text-black placeholder-gray-500 transition-all duration-300 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 animate-slideInFromLeft"
-                      value={telephone}
-                      onChange={(e) => {
-                        if (e.target.value.length <= 10) setTelephone(e.target.value);
-                      }}
-                      required
-                      maxLength="10"
-                         placeholder="Enter your 10-digit phone number"
-      pattern="\d{10}"
-    />
-  </div>
-  <div className="space-y-2">
-    <label htmlFor="otp" className="block text-sm font-medium text-white-300">
-      OTP
-    </label>
-    <input
-      type="tel"
-      id="otp"
-      className="w-full px-4 py-3 text-black placeholder-gray-500 transition-all duration-300 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 animate-slideInFromRight"
-      value={OTP}
-      onChange={(e) => {
-        if (e.target.value.length <= 6) setOTP(e.target.value);
-      }}
-      required
-      maxLength="6"
-      placeholder="Enter 6-digit OTP"
-      pattern="\d{6}"
-    />
-  </div>
-  {error && <p className="text-sm text-red-400 animate-pulse">{error}</p>}
+                  
+  {error && <p className="text-sm text-red-400 animate-pulse">{error}</p>} 
+  <div className="mt-6">
   <button
-    type="submit"
-    className="w-full px-6 py-3 font-semibold text-black transition-all duration-300 bg-purple-600 rounded-lg shadow-lg hover:bg-purple-700 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50"
+    onClick={handleGoogleLogin}
+    className="flex items-center justify-center w-full px-6 py-3 font-semibold text-black transition-all duration-300 bg-gray-700 rounded-lg shadow-md hover:bg-blue-600 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 animate-fadeIn"
   >
-    Verify & Login
+    <IconBrandFacebook size={20} className="mr-2" />
+    Login with Facebook
   </button>
+  </div>
   </form>
   <div className="mt-6">
   <button
     onClick={handleGoogleLogin}
-    className="flex items-center justify-center w-full px-6 py-3 font-semibold text-black transition-all duration-300 bg-gray-700 rounded-lg shadow-md hover:bg-gray-600 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 animate-fadeIn"
+    className="flex items-center justify-center w-full px-6 py-3 font-semibold text-black transition-all duration-300 bg-gray-700 rounded-lg shadow-md hover:bg-white hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 animate-fadeIn"
   >
     <IconBrandGoogle size={20} className="mr-2" />
     Login with Google
