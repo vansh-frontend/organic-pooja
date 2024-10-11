@@ -105,7 +105,7 @@ const Return = () => {
               <FaExchangeAlt className="mb-2 text-4xl text-blue-400" />
               <span className="text-sm text-gray-300">Easy Returns</span>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center">
+            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center"> 
               <FaMoneyBillWave className="mb-2 text-4xl text-green-400" />
               <span className="text-sm text-gray-300">Quick Refunds</span>
             </motion.div>
