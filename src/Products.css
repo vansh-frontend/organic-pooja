@@ -10,6 +10,7 @@
 .animate-marquee {
   animation: marquee 30s linear infinite;
   cursor: pointer;
+  white-space: nowrap; /* Ensure the text stays on a single line */
 }
 
 .animate-marquee:hover {
@@ -18,6 +19,6 @@
 
 @media (max-width: 640px) {
   .animate-marquee {
-    animation-duration: 20s;
+    animation-duration: 10s;
   }
 }

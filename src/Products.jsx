@@ -65,17 +65,17 @@ const Products = ({ addToCart }) => {
             <div key={index} className="flex items-center px-4 space-x-4">
               <span className="inline-flex items-center text-yellow-400">
                 <FaGift className="mr-2 text-lg" />
-                <span className="text-sm text-purple-300 sm:text-base">₹200 off on all order worth ₹999. Use code:"SAVE25"
+                <span className="text-sm text-purple-300 sm:text-base">₹150 off on all order worth ₹999. Use code:"SAVE150"
                 !</span>
               </span>
               <span className="inline-flex items-center text-green-400">
                 <FaPercent className="mr-2 text-lg" />
-                <span className="text-sm text-purple-300 sm:text-base">₹350 off on all order above ₹1999. Use code:"save35"!</span>
+                <span className="text-sm text-purple-300 sm:text-base">₹400 off on all order above ₹1999. Use code:"save400"!</span>
               </span>
-              {/* <span className="inline-flex items-center text-blue-400">
+              <span className="inline-flex items-center text-blue-400">
                 <FaGift className="mr-2 text-lg" />
-                <span className="text-sm text-purple-300 sm:text-base">!</span> */}
-              {/* </span> */}
+                <span className="text-sm text-purple-300 sm:text-base">Free Shipping On Orders Above ₹999!</span>
+              </span>
             </div>
           ))}
         </div>
