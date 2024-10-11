@@ -121,7 +121,7 @@ const Home = () => {
       ease: "easeOut"
     }}
     style={{
-      backgroundImage: 'url("/img/section.jpg")',
+      backgroundImage: 'url("/img/combo.jpg")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       transformStyle: 'preserve-3d',

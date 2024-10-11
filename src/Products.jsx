@@ -55,7 +55,7 @@ const Products = ({ addToCart }) => {
       </div>
 
       {/* Responsive Marquee */}
-      <div className="relative py-2 overflow-hidden bg-gray-800">
+      <div className="py-2 overflow-hidden bg-gray-800">
         <div 
           className="flex animate-marquee whitespace-nowrap"
           onMouseEnter={(e) => e.target.style.animationPlayState = 'paused'}
@@ -65,12 +65,11 @@ const Products = ({ addToCart }) => {
             <div key={index} className="flex items-center px-4 space-x-4">
               <span className="inline-flex items-center text-yellow-400">
                 <FaGift className="mr-2 text-lg" />
-                <span className="text-sm text-purple-300 sm:text-base">₹150 off on all order worth ₹999. Use code:"SAVE150"
-                !</span>
+                <span className="text-sm text-purple-300 sm:text-base">₹150 off on all order worth ₹999. Use code:"SAVE150"!</span>
               </span>
               <span className="inline-flex items-center text-green-400">
                 <FaPercent className="mr-2 text-lg" />
-                <span className="text-sm text-purple-300 sm:text-base">₹400 off on all order above ₹1999. Use code:"save400"!</span>
+                <span className="text-sm text-purple-300 sm:text-base">₹400 off on all order above ₹1999. Use code:"save400"!</span>
               </span>
               <span className="inline-flex items-center text-blue-400">
                 <FaGift className="mr-2 text-lg" />
