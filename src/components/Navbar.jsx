@@ -205,7 +205,7 @@ const Navbar = ({ position }) => {
         <span className="text-lg font-medium text-black transition-all duration-300 font-poppins group-hover:text-black">
           {item}
         </span>
-        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-pink-700 transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100"></span>
+        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100 border-spacing-2"></span>
       </NavLink>
     </li>
   ))}
@@ -222,7 +222,7 @@ const Navbar = ({ position }) => {
   >
     <IconShoppingCart size={24} className="transition-transform duration-300 group-hover:scale-110" />
     <span className="ml-2 text-sm font-medium font-poppins">Cart</span>
-    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-pink-700 transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100"></span>
+    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-black transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100"></span>
   </NavLink>
 </li>
       <li className="flex-shrink-0">

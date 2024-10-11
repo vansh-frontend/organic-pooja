@@ -30,10 +30,10 @@ const Header = () => {
                 alt="Logo"
                 className="w-16 h-16 transition-all duration-300 rounded-full shadow-md group-hover:scale-105"
               />
-              <IconLeaf className="absolute w-6 h-6 text-gray-800 -top-2 -right-2 animate-bounce" />
+              <IconLeaf className="absolute w-6 h-6 text-green-800 -top-2 -right-2 animate-bounce" />
             </div>
-            <h1 className="text-2xl font-light tracking-widest text-gray-800 uppercase">
-              ORGANIC <span className="font-light text-gray-800">POOJA</span>
+            <h1 className="text-2xl font-semibold tracking-widest text-gray-800 uppercase">
+              ORGANIC <span className="font-semibold text-green-800">POOJA</span>
             </h1>
           </NavLink>
         </div>  

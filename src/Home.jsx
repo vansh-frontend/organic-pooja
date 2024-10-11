@@ -115,7 +115,7 @@ const Home = () => {
     transition={{ duration: 1.5 }}
   >
     <img 
-      src="/img/combo1.jpg" 
+      src="/img/combo.jpg" 
       alt="Elegant Spa Background" 
       className="object-cover w-full h-full"
     />
