@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion, useAnimation } from 'framer-motion';
+import { FaGift, FaPercent } from 'react-icons/fa';
 import ProductCard from './components/ProductCard';
 import ProductModal from './components/ProductModal';
+import './Products.css';
 
 const allProducts = [
   { id: 1, name: 'Face Serum with With Jojoba Oil & Rosehip Oil', image: 'img/faceserum.jpg', price: '₹895.00', category: 'Skincare' },
   { id: 2, name: 'Water Spray', image: 'img/Rice Water Coco.jpg', price: '₹350.00', category: 'Haircare' },
   { id: 3, name: 'Body Lotion with Shea Butter', image: 'img/body lotion.jpg', price: '₹750.00', category: 'Skincare' },
-  { id: 4, name: 'Combo Pack of Aloe Butter, Skin Toner & Face Serum', image: 'img/combo 1.jpg', price: '₹1400.00', category: 'Combo' },
-  { id: 5, name: 'Combo Pack Rosemary Oil, Rice Water & Hair Oil', image: 'img/combo.jpg', price: '₹1200.00', category: 'Combo' },
-  { id: 6, name: 'Combo Pack of Sandalwood Water & Body Lotion', image: 'img/combo 3.jpg', price: '₹1000.00', category: 'Combo' },
+  { id: 4, name: 'Combo Pack of Aloe Butter, Skin Toner & Face Serum', image: 'img/combo 1.jpg', price: '₹1990.00', category: 'Combo' },
+  { id: 5, name: 'Combo Pack Rosemary Oil, Rice Water & Hair Oil', image: 'img/combo.jpg', price: '₹1250.00', category: 'Combo' },
+  { id: 6, name: 'Combo Pack of Sandalwood Water & Body Lotion', image: 'img/combo 3.jpg', price: '₹1300.00', category: 'Combo' },
   { id: 7, name: 'Hair Conditioner', image: 'img/conditioner.jpg', price: '₹525.00', category: 'Haircare' },
   { id: 8, name: 'Face Serum With Rosehip Oil', image: 'img/faceserum.jpg', price: '₹895.00', category: 'Skincare' },
   { id: 9, name: 'Hair Oil With Hibiscus Flower Extract', image: 'img/Hair Oil.jpg', price: '₹650.00', category: 'Haircare' },
@@ -50,6 +52,33 @@ const Products = ({ addToCart }) => {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/img/space-bg.jpg')] bg-cover bg-center opacity-30"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900/30 via-gray-800/30 to-black/70"></div>
+      </div>
+
+      {/* Responsive Marquee */}
+      <div className="relative py-2 overflow-hidden bg-gray-800">
+        <div 
+          className="flex animate-marquee whitespace-nowrap"
+          onMouseEnter={(e) => e.target.style.animationPlayState = 'paused'}
+          onMouseLeave={(e) => e.target.style.animationPlayState = 'running'}
+        >
+          {[...Array(2)].map((_, index) => (
+            <div key={index} className="flex items-center px-4 space-x-4">
+              <span className="inline-flex items-center text-yellow-400">
+                <FaGift className="mr-2 text-lg" />
+                <span className="text-sm text-purple-300 sm:text-base">₹200 off on all order worth ₹999. Use code:"SAVE25"
+                !</span>
+              </span>
+              <span className="inline-flex items-center text-green-400">
+                <FaPercent className="mr-2 text-lg" />
+                <span className="text-sm text-purple-300 sm:text-base">₹350 off on all order above ₹1999. Use code:"save35"!</span>
+              </span>
+              {/* <span className="inline-flex items-center text-blue-400">
+                <FaGift className="mr-2 text-lg" />
+                <span className="text-sm text-purple-300 sm:text-base">!</span> */}
+              {/* </span> */}
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Content */}

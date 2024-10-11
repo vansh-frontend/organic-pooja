@@ -31,14 +31,24 @@ const Book = () => {
 
               <div className="space-y-6">
                 {/* Address */}
-                <motion.div whileHover={{ scale: 1.05 }} className="flex items-start space-x-4">
-                  <FaMapMarkerAlt className="mt-1 text-2xl text-purple-500" />
-                  <div>
-                    <h3 className="mb-1 font-semibold text-purple-400">Location</h3>
-                    <p className="text-purple-300">#762 JanakPuri, Bareilly 243122</p>
-                  </div>
-                </motion.div>
-
+                <motion.div className="flex flex-col space-y-4">
+  <motion.div whileHover={{ scale: 1.05 }} className="flex items-start space-x-4">
+    <FaMapMarkerAlt className="mt-1 text-2xl text-purple-500" />
+    <div className='flex flex-col'>
+      <h3 className="mb-1 font-semibold text-purple-400">Location</h3>
+      <p className="text-purple-300">#762 JanakPuri, Bareilly 243122</p>
+    </div>
+  </motion.div>
+  
+  <motion.div whileHover={{ scale: 1.05 }} className="flex items-start space-x-4">
+    <FaMapMarkerAlt className="mt-1 text-2xl text-purple-500" />
+    <div className='flex flex-col'>
+      <h3 className="mb-1 font-semibold text-purple-400">Location 2</h3>
+      <p className="text-purple-300">#E42 A New Multan Nagar
+      Ground floor New Delhi</p>
+    </div>
+  </motion.div>
+</motion.div>
                 {/* Hours */}
                 <motion.div whileHover={{ scale: 1.05 }} className="flex items-start space-x-4">
                   <FaClock className="mt-1 text-2xl text-purple-500" />
