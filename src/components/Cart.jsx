@@ -51,17 +51,17 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
 
   const applyCoupon = () => {
     switch (couponCode.toUpperCase()) {
-      case 'SAVE250':
+      case 'SAVE150':
         if (subtotal < 1000) {
-          setAppliedCoupon({ code: 'SAVE25', discountAmount: 250 });
-          toast.success('₹250 discount applied successfully!');
+          setAppliedCoupon({ code: 'SAVE150', discountAmount: 150 });
+          toast.success('₹150 discount applied successfully!');
         } else {
           toast.error('This coupon is only valid for orders below ₹1000');
         }
         break;
       case 'SAVE400':
         if (subtotal >= 2000) {
-          setAppliedCoupon({ code: 'SAVE35', discountAmount: 400 });
+          setAppliedCoupon({ code: 'SAVE400', discountAmount: 400 });
           toast.success('₹400 discount applied successfully!');
         } else {
           toast.error('This coupon is only valid for orders ₹2000 and above');
@@ -409,7 +409,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
               </div>
 
               <div>
-                <label htmlFor="pincode" className="block text-sm font-medium text-purple-300">Galactic Sector Code</label>
+                <label htmlFor="pincode" className="block text-sm font-medium text-purple-300">PinCode</label>
                 <input
                   type="text"
                   id="pincode"
