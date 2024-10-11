@@ -1,234 +1,459 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accordion from './components/Accordion';
-import { FaLeaf, FaStar, FaHeart, FaGift, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope, FaStarHalfAlt, FaComments } from 'react-icons/fa';
-import { motion, useViewportScroll, useTransform } from 'framer-motion';
+import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope, FaStarHalfAlt, FaComments} from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 import './Home.css';
 
 const Home = () => {
   const sectionRefs = useRef([]);
+  const [scrollDirection, setScrollDirection] = useState(null);
   const [activeSection, setActiveSection] = useState(null);
-  const { scrollYProgress } = useViewportScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { 
-        duration: 1,
-        staggerChildren: 0.3
+  const values = [
+    { icon: FaLeaf, text: "Natural Ingredients", color: "green" },
+    { icon: FaStar, text: "Quality Assurance", color: "yellow" },
+    { icon: FaHeart, text: "Customer Love", color: "red" },
+    { icon: FaGift, text: "Special Offers", color: "blue" },
+    { icon: FaRegClock, text: "Timely Service", color: "purple" },
+    { icon: FaHandsHelping, text: "Community Support", color: "teal" },
+  ];
+
+  const services = [
+    { icon: FaHandSparkles, text: "Personalized Treatments", color: "teal" },
+    { icon: FaShieldAlt, text: "Safe & Effective", color: "blue" },
+    { icon: FaUsers, text: "Expert Team", color: "green" },
+  ];
+
+  const testimonials = [
+    {
+      text: "Organic by Pooja has completely transformed my skin!",
+      name: "Eshita Arora",
+      rating: 4,
+    },
+    {
+      text: "I love the special offers and quality of products.",
+      name: "Kanika",
+      rating: 3,
+    },
+    {
+      text: "The team at Organic by Pooja truly cares about their customers.",
+      name: "Nandini Pathak",
+      rating: 5,
+    },
+  ];
+
+  useEffect(() => {
+    let lastScrollTop = window.pageYOffset;
+
+    const handleScroll = () => {
+      let currentScrollTop = window.pageYOffset;
+      setScrollDirection(currentScrollTop < lastScrollTop ? 'up' : 'down');
+      lastScrollTop = currentScrollTop;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = sectionRefs.current;
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!entry.target.classList.contains('already-visible')) {
+            entry.target.classList.add(scrollDirection === 'up' ? 'content-visible' : 'content-visible-right');
+            entry.target.classList.add('already-visible');
+          }
+        } else {
+          entry.target.classList.remove('already-visible');
+        }
+      });
+    });
+  
+    sections.forEach((section) => {
+      if (section && !section.classList.contains('exclude-animation')) {
+        observer.observe(section);
       }
-    }
-  };
+    });
+  
+    return () => {
+      sections.forEach((section) => {
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
+  }, [scrollDirection]);
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: { duration: 0.5 }
+  // New effect to handle body scroll
+  useEffect(() => {
+    if (activeSection) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
     }
-  };
+
+    return () => {
+      document.body.style.overflow = 'visible';
+    };
+  }, [activeSection]);
+
 
 
   return (
-    <div className="relative min-h-screen overflow-hidden text-white bg-gray-900">
-      {/* organic by pooja section */}
-      <section className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden text-white bg-gray-900">
-  {/* Background image container with enhanced animation */}
+    <div className="relative w-full overflow-hidden bg-gray-50">
+      {/* Organic By Pooja Section */}
+      <section className="relative min-h-screen overflow-hidden text-white bg-black perspective-1000">
+  {/* Enhanced 3D background animation */}
   <motion.div 
-    className="absolute inset-0 overflow-hidden"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 2 }}
+    className="absolute inset-0 z-0"
+    initial={{ scale: 1.5, opacity: 0, y: "-100%" }}
+    animate={{ 
+      scale: 1,
+      opacity: 1,
+      y: "0%"
+    }}
+    transition={{ 
+      duration: 1.5,
+      ease: "easeOut"
+    }}
+    style={{
+      backgroundImage: 'url("/img/section.jpg")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      transformStyle: 'preserve-3d',
+    }}
   >
+    {/* Continuous subtle animation after initial setup */}
     <motion.div
-      className="w-full h-full"
-      initial={{ scale: 1.2 }}
-      animate={{ scale: 1 }}
-      transition={{ duration: 10, ease: "easeOut" }}
-    >
-      <img
-        src="img/combo.jpg"
-        alt="Cosmic background"
-        className="object-cover w-full h-full"
-      />
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-b from-purple-900/80 to-indigo-900/80"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2, delay: 1 }}
-      ></motion.div>
-    </motion.div>
+      className="absolute inset-0"
+      animate={{ 
+        scale: [1, 1.05, 1],
+        rotateX: [0, 1, 0],
+        rotateY: [0, -1, 0]
+      }}
+      transition={{
+        duration: 20,
+        repeat: Infinity,
+        repeatType: "reverse",
+        ease: "easeInOut"
+      }}
+    />
   </motion.div>
   
-  {/* Cosmic elements */}
-  <div className="absolute inset-0 overflow-hidden">
-    <motion.div
-      className="absolute w-64 h-64 bg-purple-500 rounded-full blur-3xl opacity-20"
-      initial={{ x: "-50%", y: "-50%" }}
-      animate={{ x: "150%", y: "150%" }}
-      transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-    />
-    <motion.div
-      className="absolute bg-indigo-500 rounded-full w-96 h-96 blur-3xl opacity-20"
-      initial={{ x: "150%", y: "150%" }}
-      animate={{ x: "-50%", y: "-50%" }}
-      transition={{ duration: 25, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-    />
-  </div>
-  
-  {/* Content with staggered animations */}
-  <motion.div 
-    className="relative z-10 flex flex-col items-center px-6 py-12 space-y-12 text-center lg:px-12"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1, delay: 0.5 }}
-  >
-   <motion.h1 
-  className="flex flex-col font-serif text-4xl font-black tracking-wide sm:text-5xl md:text-6xl lg:text-7xl"
-  initial={{ y: -50, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 1, delay: 0.7 }}
->
-  <span className="mb-2 text-white text-8xl drop-shadow-lg font-poppins">ORGANIC</span>
-  <span className="text-transparent text-8xl drop-shadow-lg font-poppins bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 bg-clip-text">BY POOJA</span>
-</motion.h1>
-    <motion.p 
-      className="max-w-3xl font-sans text-lg font-light leading-relaxed text-white sm:text-xl md:text-2xl lg:text-3xl drop-shadow-md"
-      initial={{ y: 50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, delay: 0.9 }}
-    >
-      Indulge in our luxurious, organic treatments designed to enhance your natural radiance and rejuvenate your spirit.
-    </motion.p>
-    
-    <motion.div 
-      className="flex flex-col w-full gap-4 mt-8 sm:flex-row sm:justify-center sm:gap-6"
-      initial={{ y: 50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, delay: 1.1 }}
-    >
-      <motion.button 
-        className="px-8 py-3 text-base font-bold text-purple-900 transition-all duration-300 transform bg-white rounded-full sm:px-10 sm:py-4 sm:text-lg hover:bg-purple-200 hover:text-purple-900 hover:shadow-lg hover:shadow-purple-300/50 hover:scale-105"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        Explore Services
-      </motion.button>
-      <motion.button 
-        className="px-8 py-3 text-base font-bold text-white transition-all duration-300 transform bg-transparent border-2 border-white rounded-full sm:px-10 sm:py-4 sm:text-lg hover:bg-white hover:text-purple-900 hover:shadow-lg hover:shadow-white/50 hover:scale-105"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        Our Products
-      </motion.button>
-    </motion.div>
-  </motion.div>
-</section>
-    {/* Services Section */}
-    <section className="relative py-32 overflow-hidden bg-[#050810]">
-  <div className="absolute inset-0 opacity-20"></div>
+  {/* Overlay */}
+  <div className="absolute inset-0 opacity-75 bg-gradient-to-br from-purple-900 to-black"></div>
 
-  <div className="container relative z-10 max-w-6xl px-4 mx-auto">
-    <motion.h2 
-      className="mb-24 text-4xl font-light text-center text-blue-100 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
-      initial={{ opacity: 0, y: -30 }}
+  <div className="container relative z-10 flex flex-col items-center justify-between min-h-screen px-4 py-16 mx-auto">
+    {/* Header with enhanced 3D parallax effect */}
+    <motion.header 
+      className="mb-8 text-center md:mb-16"
+      initial={{ opacity: 0, y: -50, rotateX: -20 }}
+      animate={{ opacity: 1, y: 0, rotateX: 0 }}
+      transition={{ duration: 1.2, ease: "easeOut" }}
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      <motion.h1 
+        className="relative mb-4 text-4xl font-bold md:text-7xl lg:text-9xl"
+        style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
+      >
+        <motion.span
+          className="block"
+          initial={{ opacity: 0, rotateX: -90, z: -100 }}
+          animate={{ opacity: 1, rotateX: 0, z: 0 }}
+          transition={{ duration: 1.2, delay: 0.5 }}
+        >
+          Organic
+        </motion.span>
+        <motion.span
+          className="block text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-600"
+          initial={{ opacity: 0, rotateX: 90, z: -100 }}
+          animate={{ opacity: 1, rotateX: 0, z: 0 }}
+          transition={{ duration: 1.2, delay: 1 }}
+        >
+          By Pooja
+        </motion.span>
+      </motion.h1>
+      <motion.p 
+        className="text-xl text-gray-300 md:text-3xl lg:text-4xl"
+        initial={{ opacity: 0, y: 20, rotateX: 20 }}
+        animate={{ opacity: 1, y: 0, rotateX: 0 }}
+        transition={{ duration: 1.2, delay: 1.5 }}
+      >
+        Elevate Your Natural Beauty
+      </motion.p>
+    </motion.header>
+
+    {/* Main content with enhanced 3D staggered animation */}
+    <motion.div 
+      className="w-full max-w-6xl mb-8 md:mb-16"
+      variants={{
+        hidden: { opacity: 0 },
+        show: {
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.3
+          }
+        }
+      }}
+      initial="hidden"
+      animate="show"
+      style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
+    >
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
+        {[
+          { title: "Luxurious Facials", description: "Revitalize your skin with our premium organic treatments" },
+          { title: "Holistic Massages", description: "Experience total relaxation and rejuvenation" },
+          { title: "Natural Hair Care", description: "Nourish and style with nature's finest ingredients" },
+        ].map((service, index) => (
+          <motion.div 
+            key={index}
+            className="p-4 text-center bg-white md:p-8 bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-2xl"
+            variants={{
+              hidden: { opacity: 0, y: 50, rotateY: -15, z: -100 },
+              show: { opacity: 1, y: 0, rotateY: 0, z: 0 }
+            }}
+            whileHover={{ 
+              scale: 1.05, 
+              rotateY: 5,
+              z: 50,
+              backgroundColor: "rgba(255,255,255,0.2)",
+              boxShadow: "0 0 20px rgba(255,255,255,0.3)"
+            }}
+            transition={{ duration: 0.4, type: 'spring' }}
+          >
+            <h3 className="mb-2 text-xl font-semibold md:mb-4 md:text-2xl">{service.title}</h3>
+            <p className="text-sm text-gray-300 md:text-base">{service.description}</p>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+
+    {/* CTA Section with enhanced 3D hover animation */}
+    <motion.div
+      className="text-center"
+      initial={{ opacity: 0, y: 50, rotateX: 20 }}
+      animate={{ opacity: 1, y: 0, rotateX: 0 }}
+      transition={{ duration: 1.2, delay: 2 }}
+      style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
+    >
+      <motion.p 
+        className="max-w-2xl mx-auto mb-4 text-base md:mb-8 md:text-xl"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, delay: 2.5 }}
+      >
+        Indulge in our luxurious, organic treatments designed to enhance your natural radiance and rejuvenate your spirit.
+      </motion.p>
+      <motion.div 
+  className="flex flex-col items-center justify-center w-full space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4"
+>
+  <motion.a 
+    href="/services" 
+    className="inline-block w-full px-6 py-3 text-base font-semibold text-center text-black transition-all duration-300 bg-white rounded-full sm:w-auto md:px-10 md:py-4 md:text-lg"
+    whileHover={{ 
+      scale: 1.05, 
+      rotateY: 5,
+      z: 50,
+      boxShadow: "0 0 25px rgba(255,255,255,0.5)",
+      textShadow: "0 0 8px rgba(0,0,0,0.5)"
+    }}
+    transition={{ duration: 0.4, type: 'spring' }}
+  >
+    Explore Services
+  </motion.a>
+  <motion.a 
+    href="/products" 
+    className="inline-block w-full px-6 py-3 text-base font-semibold text-center text-white transition-all duration-300 bg-transparent border-2 border-white rounded-full sm:w-auto md:px-10 md:py-4 md:text-lg"
+    whileHover={{ 
+      scale: 1.05, 
+      rotateY: -5,
+      z: 50,
+      boxShadow: "0 0 25px rgba(255,255,255,0.5)",
+      textShadow: "0 0 8px rgba(255,255,255,0.5)"
+    }}
+    transition={{ duration: 0.4, type: 'spring' }}
+  >
+    Our Products
+  </motion.a>
+</motion.div>
+    </motion.div>
+  </div>
+
+  {/* Enhanced floating elements with 3D animations */}
+  <motion.div
+    className="absolute w-32 h-32 bg-purple-500 rounded-full md:w-64 md:h-64 top-1/4 left-1/4 mix-blend-multiply filter blur-xl opacity-70"
+    animate={{
+      scale: [1, 1.2, 1],
+      rotate: [0, 90, 180, 270, 360],
+      x: [0, 50, 0, -50, 0],
+      y: [0, 50, 0, -50, 0],
+      z: [0, 100, 0, -100, 0],
+    }}
+    transition={{
+      duration: 20,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+    style={{ transformStyle: 'preserve-3d' }}
+  />
+  <motion.div
+    className="absolute w-32 h-32 bg-pink-500 rounded-full md:w-64 md:h-64 bottom-1/4 right-1/4 mix-blend-multiply filter blur-xl opacity-70"
+    animate={{
+      scale: [1, 1.2, 1],
+      rotate: [0, -90, -180, -270, -360],
+      x: [0, -50, 0, 50, 0],
+      y: [0, -50, 0, 50, 0],
+      z: [0, -100, 0, 100, 0],
+    }}
+    transition={{
+      duration: 25,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+    style={{ transformStyle: 'preserve-3d' }}
+  />
+</section>
+      {/* Services Section */}
+
+ {/* Services Section */}
+ <section className="relative min-h-screen py-24 text-gray-300 bg-gradient-to-b from-gray-900 to-black">
+  <div className="absolute inset-0 bg-black opacity-30"></div>
+  
+  <div className="container relative z-10 px-4 mx-auto">
+    <motion.div
+      className="mb-16 text-center"
+      initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      Elevate Your <span className="font-normal text-purple-600">Natural Beauty</span>
-    </motion.h2>
+      <motion.h2 
+        className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
+      >
+        Our Premium Services
+      </motion.h2>
+      <motion.p
+        className="text-xl text-gray-300 md:text-2xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
+        Indulge in luxury and transform your look
+      </motion.p>
+    </motion.div>
 
-    <div className="grid gap-8 mb-24 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {[
-        { title: 'Skin care', desc: 'Tailored treatments for radiant skin', icon: 'FaLeaf' },
-        { title: 'Hair care', desc: 'Balance for body, mind, and spirit', icon: 'FaSpa' },
-        { title: 'Makeup', desc: 'Premium, organic makeup artistry', icon: 'FaPaintBrush' },
-        { title: 'Nail Extensions', desc: 'Innovative, natural hair solutions', icon: 'FaCut' },
-        { title: 'Salon Master class', desc: 'Exclusive, transformative experiences', icon: 'FaGem' },
-        { title: 'Curated Products', desc: 'Handpicked organic beauty essentials', icon: 'FaShoppingBag' },
+        { title: 'Luxury Makeup', desc: 'Elevate your look with our high-end makeup services.' },
+        { title: 'Advanced Skin Care', desc: 'Rejuvenate your skin with cutting-edge treatments.' },
+        { title: 'Couture Hair Styling', desc: 'Achieve runway-ready hair with our expert stylists.' },
+        { title: 'Exclusive Product Line', desc: 'Experience our curated collection of luxury products.' },
+        { title: 'VIP Beauty Masterclass', desc: 'Learn from industry experts in exclusive workshops.' },
+        { title: 'Bespoke Nail Artistry', desc: 'Indulge in custom nail designs and premium care.' },
       ].map((service, index) => (
         <motion.div 
           key={index}
-          className="relative group"
-          initial={{ opacity: 0, y: 30 }}
+          className="flex flex-col justify-between h-48 p-6 bg-gray-800 border border-purple-500 rounded-lg bg-opacity-30 backdrop-filter backdrop-blur-sm"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: index * 0.1 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
         >
-          <div className="absolute inset-0 transition-all duration-300 bg-[#0A1020] bg-opacity-70 border border-[#1E2A4A] opacity-100 group-hover:border-[#FF69B4] backdrop-filter backdrop-blur-lg"></div>
-          <div className="relative z-10 p-8">
-            <div className="flex items-center mb-6">
-              <div className="mr-4 text-2xl text-[#FF69B4]">
-                <i className={`fas ${service.icon}`}></i>
-              </div>
-              <h3 className="text-xl font-light tracking-wider text-blue-100 uppercase">{service.title}</h3>
-            </div>
-            <p className="mb-6 text-sm leading-relaxed text-gray-300">{service.desc}</p>
-            <a 
-              href="#" 
-              className="inline-block text-xs font-semibold tracking-wider text-purple-600 uppercase transition-colors duration-300 hover:text-blue-200"
-            >
-              Discover More
-            </a>
+          <div>
+            <h3 className="mb-2 text-xl font-semibold text-pink-300">{service.title}</h3>
+            <p className="mb-4 text-sm text-gray-300">{service.desc}</p>
           </div>
+          <a 
+            href="#" 
+            className="text-sm text-purple-300 transition-colors duration-300 hover:text-pink-300"
+          >
+            Learn more
+          </a>
         </motion.div>
       ))}
     </div>
-
-    <motion.div 
-      className="text-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1, delay: 0.5 }}
-    >
-    </motion.div>
   </div>
 
-  <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-[#1E2A4A] to-transparent"></div>
-  <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-[#1E2A4A] to-transparent"></div>
+  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
 </section>
       {/* About Us Section */}
-      <section className="relative py-16 overflow-hidden sm:py-24 md:py-32 bg-[#050810]">
-  <div className="absolute inset-0 bg-[url('/textures/deep-space.png')] opacity-20"></div>
+      <section className="relative py-24 overflow-hidden text-gray-300 bg-black">
+  {/* Enhanced background pattern */}
+  <div className="absolute inset-0 opacity-5">
+    <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+      <path fill="#ffffff" fillOpacity="0.4" d="M14 16H9v-2h5V9h2v5h5v2h-5v5h-2v-5zM64 62v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm-32 0v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm0-48v2h-5v5h-2v-5h-5v-2h5V9h2v5h5z"></path>
+    </svg>
+  </div>
   
   <div className="container relative z-10 px-4 mx-auto max-w-7xl">
-    <motion.h2 
-      className="mb-12 sm:mb-16 md:mb-24 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-center text-purple-200 uppercase tracking-[0.2em]"
-      initial={{ opacity: 0, y: -30 }}
+    <motion.div
+      className="mb-16 text-center"
+      initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      Organic by <span className="font-normal text-purple-400">Pooja</span>
-    </motion.h2>
+      <motion.h2 
+        className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
+      >
+        Discover <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Organic by Pooja</span>
+      </motion.h2>
+      <motion.p
+        className="text-xl text-gray-300 md:text-2xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
+        Our journey of natural beauty and wellness
+      </motion.p>
+    </motion.div>
 
-    <div className="grid gap-8 mb-16 sm:mb-24 md:mb-32 md:grid-cols-2">
+    <div className="grid gap-12 mb-16 md:grid-cols-2">
       <motion.div 
-        className="relative p-6 overflow-hidden bg-[#0A1020] bg-opacity-70 rounded-lg shadow-lg backdrop-filter backdrop-blur-lg"
-        initial={{ opacity: 0, x: -50 }}
+        className="flex flex-col justify-between p-8 bg-gray-800 border border-purple-500 rounded-lg bg-opacity-30 backdrop-filter backdrop-blur-sm"
+        initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-purple-600 to-purple-400"></div>
-        <h3 className="mb-4 text-2xl font-light tracking-wider text-purple-300 uppercase">Our Story</h3>
-        <p className="mb-4 text-base text-purple-200">Founded in <span className="font-semibold text-purple-400">2019</span>, <span className="font-semibold text-purple-400">Organic by Pooja</span> revolutionizes skincare with natural, homemade solutions.</p>
-        <p className="text-base text-purple-200">We harness nature's power for your inner beauty, offering tailored organic products and services.</p>
+        <div>
+          <div className="flex items-center mb-6">
+            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-pink-400 to-purple-400">
+              <span className="text-2xl font-bold text-white">OP</span>
+            </div>
+            <h3 className="ml-4 text-3xl font-extrabold text-white">Our Story</h3>
+          </div>
+          
+          <div className="space-y-6">
+            <p className="relative text-lg leading-relaxed text-gray-300">
+              <span className="absolute top-0 text-5xl text-pink-400 opacity-30 -left-4">"</span>
+              Founded in <span className="font-semibold text-pink-400">2019</span>, <span className="font-semibold text-pink-400">Organic by Pooja</span> embarked on a mission to revolutionize skincare with natural, homemade solutions. Our journey from a small initiative to a trusted name in personalized care is a testament to our unwavering commitment to authenticity and quality.
+            </p>
+            <p className="text-lg leading-relaxed text-gray-300">
+              We believe in harnessing the power of nature to bring out your inner beauty, offering a range of organic products and services tailored to your unique needs.
+            </p>
+          </div>
+        </div>
+        
+        <div className="flex justify-end mt-8">
+          <div className="px-6 py-2 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-pink-500 to-purple-500">
+            Est. 2019
+          </div>
+        </div>
       </motion.div>
 
       <motion.div 
-        className="relative overflow-hidden rounded-lg shadow-lg"
-        initial={{ opacity: 0, x: 50 }}
+        className="relative overflow-hidden bg-gray-800 border border-purple-500 rounded-lg bg-opacity-30 backdrop-filter backdrop-blur-sm"
+        initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
       >
-        <img src="/img/1.jpg" alt="Organic Beauty" className="object-cover w-full h-full" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1020]/70 to-transparent"></div>
-        <div className="absolute inset-0 flex flex-col justify-center p-6">
-          <h3 className="mb-4 text-2xl font-light tracking-wider text-purple-200 uppercase">Our Promise</h3>
-          <ul className="space-y-2 text-base text-purple-100">
-            {['100% Natural Ingredients', 'Personalized Skincare', 'Eco-friendly Practices', 'Cruelty-free Products'].map((item, index) => (
+        <img src="img/1.jpg" alt="Organic by Pooja" className="object-cover w-full h-full" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 p-8">
+          <h3 className="mb-4 text-2xl font-bold text-white sm:text-3xl">Our Promise</h3>
+          <ul className="space-y-2 text-gray-200">
+            {['100% Natural Ingredients', 'Personalized Skincare Solutions', 'Eco-friendly Practices', 'Cruelty-free Products'].map((item, index) => (
               <motion.li 
                 key={index}
                 className="flex items-center"
@@ -236,7 +461,7 @@ const Home = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
               >
-                <span className="mr-2 text-purple-400">&#8226;</span>
+                <svg className="w-6 h-6 mr-2 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                 {item}
               </motion.li>
             ))}
@@ -245,154 +470,190 @@ const Home = () => {
       </motion.div>
     </div>
 
-    <div className="mb-16 sm:mb-24 md:mb-32">
-      <h3 className="mb-8 text-2xl font-light tracking-wider text-center text-purple-200 uppercase sm:text-3xl md:text-4xl">Discover Our World</h3>
-      <div className="grid gap-6 sm:gap-8 md:gap-10 sm:grid-cols-2 md:grid-cols-3">
-        {[
-          { title: 'Our Values', icon: 'FaHeart', desc: 'Embracing nature, ethics, and personalized care' },
-          { title: 'Our Services', icon: 'FaSparkles', desc: 'Luxurious, organic treatments for face and body' },
-          { title: 'Testimonials', icon: 'FaStar', desc: 'Hear from our satisfied, glowing clients' }
-        ].map((section, index) => (
-          <motion.button
-            key={section.title}
-            className="relative p-6 text-left transition-all duration-500 bg-[#0A1020] bg-opacity-70 rounded-lg shadow-md backdrop-filter backdrop-blur-lg hover:shadow-xl focus:outline-none group"
-            onClick={() => setActiveSection(section.title)}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-          >
-            <div className="flex items-center mb-4">
-              <i className={`fas ${section.icon} text-2xl md:text-3xl text-purple-400 mr-4 group-hover:text-purple-300 transition-colors duration-300`}></i>
-              <h4 className="text-lg font-light tracking-wider text-purple-200 uppercase transition-colors duration-300 sm:text-xl md:text-2xl group-hover:text-purple-100">{section.title}</h4>
-            </div>
-            <p className="text-sm text-purple-300 sm:text-base">{section.desc}</p>
-            <div className="absolute bottom-0 left-0 w-0 h-1 transition-all duration-300 bg-purple-500 group-hover:w-full"></div>
-          </motion.button>
-        ))}
-      </div>
-    </div>
+    <motion.div 
+      className="grid gap-6 mb-16 sm:grid-cols-2 lg:grid-cols-3"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.6 }}
+    >
+      {['Values', 'Services', 'Testimonials'].map((section) => (
+        <motion.button
+          key={section}
+          className="relative px-8 py-6 overflow-hidden text-xl font-semibold text-white transition-all duration-300 bg-gray-800 border border-purple-500 rounded-lg hover:bg-gray-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-50"
+          onClick={() => setActiveSection(section)}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <span className="relative z-10">{section}</span>
+          <motion.div 
+            className="absolute inset-0 bg-pink-400"
+            initial={{ scale: 0, opacity: 0 }}
+            whileHover={{ scale: 1, opacity: 0.2 }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.button>
+      ))}
+    </motion.div>
+  </div>
 
-    {activeSection && (
-      <div className="mb-16 sm:mb-24 md:mb-32">
-        <h3 className="mb-8 text-2xl font-light tracking-wider text-center text-purple-200 uppercase sm:text-3xl md:text-4xl">{activeSection}</h3>
-        {activeSection === 'Our Values' && (
-          <div className="grid gap-6 sm:gap-8 md:gap-10 sm:grid-cols-2 md:grid-cols-3">
-            {[
-              { icon: FaLeaf, title: "Natural Ingredients", desc: "We use only the purest, organic ingredients" },
-              { icon: FaHeart, title: "Customer Love", desc: "Your satisfaction is our top priority" },
-              { icon: FaShieldAlt, title: "Ethical Practices", desc: "Committed to sustainable and cruelty-free methods" },
-            ].map((item, index) => (
-              <div 
+  {/* Modal Overlay */}
+  {activeSection && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+    >
+      <motion.div 
+        className="relative w-full max-w-4xl p-8 overflow-y-auto bg-gray-900 rounded-2xl shadow-2xl max-h-[90vh]"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 50, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <button
+          className="absolute text-gray-400 top-4 right-4 hover:text-gray-200"
+          onClick={() => setActiveSection(null)}
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        <h3 className="mb-6 text-3xl font-bold text-white">{activeSection}</h3>
+        {activeSection === 'Values' && (
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {values.map((item, index) => (
+              <motion.div 
                 key={index} 
-                className="p-6 transition-all duration-300 bg-[#0A1020] bg-opacity-70 rounded-lg backdrop-filter backdrop-blur-lg hover:bg-opacity-80"
+                className="flex flex-col items-center p-6 text-center transition-all duration-300 bg-gray-800 rounded-xl hover:bg-gray-700 hover:shadow-md"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <item.icon className="mb-4 text-4xl text-purple-400 sm:text-5xl md:text-6xl" />
-                <h4 className="mb-2 text-lg font-light tracking-wider text-purple-200 uppercase sm:text-xl md:text-2xl">{item.title}</h4>
-                <p className="text-sm text-purple-300 sm:text-base">{item.desc}</p>
-              </div>
+                <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gradient-to-br from-pink-400 to-purple-400">
+                  <item.icon className="text-2xl text-white" />
+                </div>
+                <h4 className="mb-2 text-xl font-bold text-white">{item.text}</h4>
+                <p className="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </motion.div>
             ))}
           </div>
         )}
-        {activeSection === 'Our Services' && (
-          <div className="grid gap-6 sm:gap-8 md:gap-10 sm:grid-cols-2 md:grid-cols-3">
-            {[
-              { icon: FaHandSparkles, title: "Facial Treatments", desc: "Revitalize your skin with our organic facials" },
-              { icon: FaUsers, title: "Group Sessions", desc: "Enjoy our services with friends and family" },
-              { icon: FaGift, title: "Gift Packages", desc: "Perfect presents for your loved ones" },
-            ].map((item, index) => (
-              <div 
+        {activeSection === 'Services' && (
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((item, index) => (
+              <motion.div 
                 key={index} 
-                className="p-6 transition-all duration-300 bg-[#0A1020] bg-opacity-70 rounded-lg backdrop-filter backdrop-blur-lg hover:bg-opacity-80"
+                className="p-6 transition-all duration-300 bg-gray-800 rounded-xl hover:bg-gray-700 hover:shadow-md"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <item.icon className="mb-4 text-4xl text-purple-400 sm:text-5xl md:text-6xl" />
-                <h4 className="mb-2 text-lg font-light tracking-wider text-purple-200 uppercase sm:text-xl md:text-2xl">{item.title}</h4>
-                <p className="text-sm text-purple-300 sm:text-base">{item.desc}</p>
-              </div>
+                <item.icon className="mb-4 text-4xl text-purple-400" />
+                <h4 className="mb-2 text-xl font-bold text-white">{item.text}</h4>
+                <p className="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </motion.div>
             ))}
           </div>
         )}
         {activeSection === 'Testimonials' && (
-          <div className="grid gap-6 sm:gap-8 md:gap-10 sm:grid-cols-2">
-            {[
-              { name: 'Sarah L.', rating: 5, text: 'Organic by Pooja has transformed my skincare routine. The personalized approach and natural products have given me the best skin of my life!' },
-              { name: 'Michael R.', rating: 5, text: 'I was skeptical at first, but the results speak for themselves. My skin has never looked better, and I love knowing everything is organic.' },
-              { name: 'Emma T.', rating: 5, text: 'The facial I received was pure bliss. Not only did my skin glow, but I felt completely relaxed and pampered. A true luxury experience!' },
-              { name: 'David K.', rating: 5, text: 'As someone with sensitive skin, finding Organic by Pooja was a game-changer. Their products are gentle yet effective. Highly recommended!' }
-            ].map((item, index) => (
-              <div 
+          <div className="grid gap-8 sm:grid-cols-2">
+            {testimonials.map((item, index) => (
+              <motion.div 
                 key={index} 
-                className="p-6 transition-all duration-300 bg-[#0A1020] bg-opacity-70 rounded-lg backdrop-filter backdrop-blur-lg hover:bg-opacity-80"
+                className="p-6 transition-all duration-300 bg-gray-800 rounded-xl hover:bg-gray-700 hover:shadow-md"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <div className="flex items-center mb-4">
-                  <div className="flex items-center justify-center w-10 h-10 mr-3 text-lg font-light text-purple-900 bg-purple-400 rounded-full sm:w-12 sm:h-12 md:w-14 md:h-14 sm:mr-4 md:mr-5 sm:text-xl md:text-2xl">
-                    {item.name[0]}
+                  <div className="flex items-center justify-center w-12 h-12 mr-4 rounded-full bg-gradient-to-br from-pink-400 to-purple-400">
+                    <span className="text-xl font-bold text-white">{item.name[0]}</span>
                   </div>
                   <div>
-                    <p className="font-light text-purple-200">{item.name}</p>
+                    <p className="font-semibold text-white">{item.name}</p>
                     <div className="flex">
                       {[...Array(5)].map((_, i) => (
-                        <i key={i} className={`fas fa-star ${i < item.rating ? 'text-purple-400' : 'text-purple-900'} text-sm sm:text-base`}></i>
+                        <FaStar key={i} className={`${i < item.rating ? 'text-yellow-400' : 'text-gray-600'} text-sm`} />
                       ))}
                     </div>
                   </div>
                 </div>
-                <p className="text-sm italic text-purple-300 sm:text-base">&ldquo;{item.text}&rdquo;</p>
-              </div>
+                <p className="italic text-gray-300">"{item.text}"</p>
+              </motion.div>
             ))}
           </div>
         )}
-      </div>
-    )}
-  </div>
+      </motion.div>
+    </motion.div>
+  )}
 
-  <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
-  <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+  {/* Subtle floating elements */}
+  <motion.div
+    className="absolute w-64 h-64 bg-purple-500 rounded-full top-1/4 left-1/4 mix-blend-multiply filter blur-3xl opacity-10"
+    animate={{
+      scale: [1, 1.2, 1],
+      rotate: [0, 90, 180, 270, 360],
+      x: ['-25%', '0%', '-25%'],
+      y: ['-25%', '0%', '-25%'],
+    }}
+    transition={{
+      duration: 20,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+  />
+  <motion.div
+    className="absolute w-64 h-64 bg-pink-500 rounded-full bottom-1/4 right-1/4 mix-blend-multiply filter blur-3xl opacity-10"
+    animate={{
+      scale: [1, 1.2, 1],
+      rotate: [0, -90, -180, -270, -360],
+      x: ['25%', '0%', '25%'],
+      y: ['25%', '0%', '25%'],
+    }}
+    transition={{
+      duration: 25,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+  />
+
+  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
 </section>
       {/* Testimonials Section */}
-      <section className="relative py-24 overflow-hidden sm:py-32 bg-[#050810]">
-  <div className="absolute inset-0 opacity-10 bg-[url('/textures/deep-space.png')]"></div>
-  
-  <div className="container relative z-10 max-w-6xl px-4 mx-auto">
-    <motion.h2 
-      className="mb-16 sm:mb-24 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-center text-purple-200 uppercase tracking-[0.2em]"
-      initial={{ opacity: 0, y: -30 }}
+      <section className="relative py-24 overflow-hidden text-gray-300 bg-black">
+  <div className="container relative z-10 px-4 mx-auto max-w-7xl">
+    <motion.div
+      className="mb-16 text-center"
+      initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      Client <span className="font-normal text-purple-400">Testimonials</span>
-    </motion.h2>
+      <motion.h2 
+        className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
+      >
+        What Our Clients <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Love About Us</span>
+      </motion.h2>
+      <motion.p
+        className="text-xl text-gray-300 md:text-2xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
+        Hear from our satisfied customers about their experiences
+      </motion.p>
+    </motion.div>
     
-    <div className="relative mb-24">
-      {/* Moving glass blur divs */}
-      <motion.div
-        className="absolute w-64 h-64 bg-purple-500 rounded-full opacity-10 filter blur-3xl"
-        animate={{
-          x: [0, 100, 0],
-          y: [0, 50, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
-      <motion.div
-        className="absolute w-64 h-64 bg-purple-700 rounded-full opacity-10 filter blur-3xl"
-        animate={{
-          x: [0, -100, 0],
-          y: [0, -50, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
-      
-      <div className="relative overflow-hidden">
-        <div className="flex gap-6 pb-8 overflow-x-auto scrolling-wrapper">
+    <div className="relative">
+      <div className="relative">
+        <motion.div 
+          className="flex gap-6 pb-8 overflow-x-auto scrolling-touch scrolling-wrapper"
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           {[
             { name: 'Eshita Arora', review: 'The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!', img: 'img/sec2.jpg', rating: 5 },
             { name: 'Kanika', review: 'Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.', img: 'img/sec2.jpg', rating: 4.5 },
@@ -403,222 +664,226 @@ const Home = () => {
           ].map((testimonial, index) => (
             <motion.div
               key={index}
-              whileHover={{ scale: 1.05 }}
-              className="flex-shrink-0 p-4 transition-all duration-300 bg-[#0A1020] bg-opacity-50 border rounded-lg shadow-xl sm:p-6 backdrop-filter backdrop-blur-lg w-72 sm:w-80 hover:shadow-2xl border-purple-500/30 group"
+              whileHover={{ scale: 1.05, rotateY: 5, z: 50 }}
+              className="flex-shrink-0 p-6 transition-all duration-300 bg-gray-800 border border-purple-500 shadow-xl w-80 rounded-3xl hover:shadow-2xl hover:border-pink-500"
+              style={{ perspective: 1000, transformStyle: 'preserve-3d' }}
             >
               <div className="flex items-center mb-4">
-                <img src={testimonial.img} alt={testimonial.name} className="w-12 h-12 mr-3 border-2 border-purple-500 rounded-full sm:w-16 sm:h-16 sm:mr-4"/>
+                <img src={testimonial.img} alt={testimonial.name} className="w-16 h-16 mr-4 border-2 border-pink-500 rounded-full shadow-lg"/>
                 <div>
-                  <p className="text-sm font-light text-purple-200 sm:text-base">{testimonial.name}</p>
+                  <p className="font-semibold text-white">{testimonial.name}</p>
                   <div className="flex items-center">
                     {[...Array(Math.floor(testimonial.rating))].map((_, i) => (
-                      <FaStar key={i} className="text-xs text-purple-400 sm:text-sm"/>
+                      <FaStar key={i} className="text-sm text-yellow-400"/>
                     ))}
-                    {testimonial.rating % 1 !== 0 && <FaStarHalfAlt className="text-xs text-purple-400 sm:text-sm"/>}
+                    {testimonial.rating % 1 !== 0 && <FaStarHalfAlt className="text-sm text-yellow-400"/>}
                   </div>
                 </div>
               </div>
-              <p className="mb-4 text-xs italic text-purple-300 transition-colors duration-300 sm:text-sm group-hover:text-purple-200">{testimonial.review}</p>
+              <p className="mb-4 text-sm italic text-gray-300">{testimonial.review}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   </div>
 
-  {/* Enhanced floating elements with 3D animations */}
+  {/* Adjusted floating elements */}
   <motion.div
-    className="absolute w-32 h-32 bg-purple-500 rounded-full md:w-64 md:h-64 top-1/4 left-1/4 mix-blend-overlay filter blur-xl opacity-30"
+    className="absolute w-1/3 bg-purple-500 rounded-full h-1/3 top-1/4 left-1/4 mix-blend-multiply filter blur-3xl opacity-10"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, 90, 180, 270, 360],
-      x: [0, 50, 0, -50, 0],
-      y: [0, 50, 0, -50, 0],
-      z: [0, 100, 0, -100, 0],
+      x: ['-25%', '0%', '-25%'],
+      y: ['-25%', '0%', '-25%'],
     }}
     transition={{
       duration: 20,
       repeat: Infinity,
       repeatType: "reverse",
     }}
-    style={{ transformStyle: 'preserve-3d' }}
   />
   <motion.div
-    className="absolute w-32 h-32 bg-purple-700 rounded-full md:w-64 md:h-64 bottom-1/4 right-1/4 mix-blend-overlay filter blur-xl opacity-30"
+    className="absolute w-1/3 bg-pink-500 rounded-full h-1/3 bottom-1/4 right-1/4 mix-blend-multiply filter blur-3xl opacity-10"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, -90, -180, -270, -360],
-      x: [0, -50, 0, 50, 0],
-      y: [0, -50, 0, 50, 0],
-      z: [0, -100, 0, 100, 0],
+      x: ['25%', '0%', '25%'],
+      y: ['25%', '0%', '25%'],
     }}
     transition={{
       duration: 25,
       repeat: Infinity,
       repeatType: "reverse",
     }}
-    style={{ transformStyle: 'preserve-3d' }}
   />
 
-  <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
-  <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
+  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
 </section>
-{/* faq */}
-
-<section className="relative py-32 overflow-hidden bg-black" ref={(el) => (sectionRefs.current[7] = el)}>
-  <div className="absolute inset-0 opacity-5 bg-[url('/textures/organic-pattern-dark.png')]"></div>
-  <div className="container relative z-10 max-w-6xl px-4 mx-auto">
-    <motion.h2 
-      className="mb-24 text-4xl font-light text-center text-gray-200 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
-      initial={{ opacity: 0, y: -30 }}
+      {/* FAQ Section */}
+      <section className="relative min-h-screen py-24 text-gray-300 bg-gradient-to-b from-gray-900 to-black" ref={(el) => (sectionRefs.current[7] = el)}>
+  <div className="absolute inset-0 bg-black opacity-30"></div>
+  
+  <div className="container relative z-10 px-4 mx-auto max-w-7xl">
+    <motion.div
+      className="mb-16 text-center"
+      initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      Frequently Asked <span className="font-normal text-purple-400">Questions</span>
-    </motion.h2>
+      <motion.h2 
+        className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
+      >
+        Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Questions</span>
+      </motion.h2>
+      <motion.p
+        className="text-xl text-gray-300 md:text-2xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
+        Find answers to your queries about our services and products
+      </motion.p>
+    </motion.div>
     
     <div className="relative">
-      <div className="absolute top-0 left-0 w-40 h-40 bg-purple-900 rounded-full opacity-10 mix-blend-screen filter blur-xl animate-pulse"></div>
-      <div className="absolute bottom-0 right-0 w-40 h-40 bg-purple-700 rounded-full opacity-10 mix-blend-screen filter blur-xl animate-pulse animation-delay-2000"></div>
-      
-      <div className="relative">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <Accordion />
-      </div>
+      </motion.div>
     </div>
   </div>
 
-  {/* Enhanced floating elements with 3D animations */}
+  {/* Subtle floating elements */}
   <motion.div
-    className="absolute w-32 h-32 bg-purple-900 rounded-full md:w-64 md:h-64 top-1/4 left-1/4 mix-blend-screen filter blur-xl opacity-10"
+    className="absolute w-64 h-64 bg-purple-500 rounded-full top-1/4 left-1/4 mix-blend-multiply filter blur-3xl opacity-10"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, 90, 180, 270, 360],
-      x: [0, 50, 0, -50, 0],
-      y: [0, 50, 0, -50, 0],
-      z: [0, 100, 0, -100, 0],
+      x: ['-25%', '0%', '-25%'],
+      y: ['-25%', '0%', '-25%'],
     }}
     transition={{
       duration: 20,
       repeat: Infinity,
       repeatType: "reverse",
     }}
-    style={{ transformStyle: 'preserve-3d' }}
   />
   <motion.div
-    className="absolute w-32 h-32 bg-purple-700 rounded-full md:w-64 md:h-64 bottom-1/4 right-1/4 mix-blend-screen filter blur-xl opacity-10"
+    className="absolute w-64 h-64 bg-pink-500 rounded-full bottom-1/4 right-1/4 mix-blend-multiply filter blur-3xl opacity-10"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, -90, -180, -270, -360],
-      x: [0, -50, 0, 50, 0],
-      y: [0, -50, 0, 50, 0],
-      z: [0, -100, 0, 100, 0],
+      x: ['25%', '0%', '25%'],
+      y: ['25%', '0%', '25%'],
     }}
     transition={{
       duration: 25,
       repeat: Infinity,
       repeatType: "reverse",
     }}
-    style={{ transformStyle: 'preserve-3d' }}
   />
-  
-  <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-purple-900/10 to-transparent"></div>
-  <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-purple-900/10 to-transparent"></div>
+
+  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
 </section>
-{/* Contact Section */}
-
-
-<section ref={el => sectionRefs.current[4] = el} className="relative py-32 overflow-hidden bg-black">
-<div className="absolute inset-0 opacity-5 bg-[url('/textures/organic-pattern-dark.png')]"></div>
-
-<div className="container relative z-10 max-w-6xl px-4 mx-auto">
-  <motion.h2 
-    className="mb-24 text-4xl font-light text-center text-gray-200 uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
-    initial={{ opacity: 0, y: -30 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1 }}
-  >
-    Get in <span className="font-normal text-purple-400">Touch</span>
-  </motion.h2>
-
-  <motion.p 
-    className="max-w-2xl mx-auto mb-16 text-lg text-center text-gray-400"
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8, delay: 0.2 }}
-  >
-    We&apos;d love to hear from you! Reach out for inquiries or to book an appointment.
-  </motion.p>
-
-  <div className="grid gap-8 md:grid-cols-3">
-    {[
-      { icon: FaPhone, text: "Call Us", href: "tel:+918171924503", description: "+91 817-192-4503" },
-      { icon: FaEnvelope, text: "Email Us", href: "mailto:organicbypooja@gmail.com", description: "organicbypooja@gmail.com" },
-      { icon: FaComments, text: "Contact Us", href: "/contact", description: "Send us a message" }
-    ].map((item, index) => (
-      <motion.div
-        key={index}
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-      >
-        <Link 
-          to={item.href}
-          className="block p-8 transition-all duration-300 bg-gray-900 border border-gray-800 rounded-lg hover:bg-gray-800 group"
-        >
-          <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 text-3xl text-purple-200 transition-colors duration-300 rounded-full bg-gradient-to-r from-purple-900 to-purple-800 group-hover:text-white">
-            <item.icon />
-          </div>
-          <h3 className="mb-2 text-xl font-light tracking-wider text-center text-gray-300 uppercase">{item.text}</h3>
-          <p className="text-center text-gray-400 transition-colors duration-300 group-hover:text-gray-200">
-            {item.description}
-          </p>
-        </Link>
-      </motion.div>
-    ))}
+ {/* Contact Section */}
+<section ref={el => sectionRefs.current[4] = el} className="relative py-24 overflow-hidden text-gray-300 bg-black">
+  {/* Enhanced background pattern */}
+  <div className="absolute inset-0 opacity-5">
+    <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+      <path fill="#ffffff" fillOpacity="0.4" d="M14 16H9v-2h5V9h2v5h5v2h-5v5h-2v-5zM64 62v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm-32 0v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm0-48v2h-5v5h-2v-5h-5v-2h5V9h2v5h5z"></path>
+    </svg>
   </div>
-</div>
+  
+  <div className="container relative z-10 px-4 mx-auto max-w-7xl">
+    <motion.div
+      className="mb-16 text-center"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+    >
+      <motion.h2 
+        className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
+      >
+        Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Touch</span>
+      </motion.h2>
+      <motion.p
+        className="max-w-2xl mx-auto text-xl text-gray-300 md:text-2xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
+        We'd love to hear from you! Reach out for inquiries or to book an appointment.
+      </motion.p>
+    </motion.div>
 
-<div className="absolute top-0 left-0 w-40 h-40 bg-purple-900 rounded-full opacity-10 mix-blend-screen filter blur-xl animate-pulse"></div>
-<div className="absolute bottom-0 right-0 w-40 h-40 bg-purple-700 rounded-full opacity-10 mix-blend-screen filter blur-xl animate-pulse animation-delay-2000"></div>
+    <div className="grid gap-8 md:grid-cols-3">
+      {[
+        { icon: FaPhone, text: "Call Us", href: "tel:+918171924503" },
+        { icon: FaEnvelope, text: "Email Us", href: "mailto:organicbypooja@gmail.com" },
+        { icon: FaComments, text: "Contact Us", href: "/contact" }
+      ].map((item, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+        >
+          <Link 
+            to={item.href}
+            className="flex flex-col items-center p-8 transition-all duration-300 bg-gray-800 border border-purple-500 rounded-lg bg-opacity-30 backdrop-filter backdrop-blur-sm hover:bg-gray-700 hover:shadow-lg group"
+          >
+            <div className="flex items-center justify-center w-16 h-16 mb-4 text-3xl text-white rounded-full bg-gradient-to-r from-pink-500 to-purple-500 group-hover:animate-bounce">
+              <item.icon />
+            </div>
+            <h3 className="mb-2 text-xl font-semibold text-white">{item.text}</h3>
+            <p className="text-center text-gray-300 transition-colors duration-300 group-hover:text-white">
+              Click to {item.text.toLowerCase()}
+            </p>
+          </Link>
+        </motion.div>
+      ))}
+    </div>
+  </div>
 
-<motion.div
-  className="absolute w-32 h-32 bg-purple-900 rounded-full md:w-64 md:h-64 top-1/4 left-1/4 mix-blend-screen filter blur-xl opacity-10"
-  animate={{
-    scale: [1, 1.2, 1],
-    rotate: [0, 90, 180, 270, 360],
-    x: [0, 50, 0, -50, 0],
-    y: [0, 50, 0, -50, 0],
-    z: [0, 100, 0, -100, 0],
-  }}
-  transition={{
-    duration: 20,
-    repeat: Infinity,
-    repeatType: "reverse",
-  }}
-  style={{ transformStyle: 'preserve-3d' }}
-/>
-<motion.div
-  className="absolute w-32 h-32 bg-purple-700 rounded-full md:w-64 md:h-64 bottom-1/4 right-1/4 mix-blend-screen filter blur-xl opacity-10"
-  animate={{
-    scale: [1, 1.2, 1],
-    rotate: [0, -90, -180, -270, -360],
-    x: [0, -50, 0, 50, 0],
-    y: [0, -50, 0, 50, 0],
-    z: [0, -100, 0, 100, 0],
-  }}
-  transition={{
-    duration: 25,
-    repeat: Infinity,
-    repeatType: "reverse",
-  }}
-  style={{ transformStyle: 'preserve-3d' }}
-/>
+  {/* Subtle floating elements */}
+  <motion.div
+    className="absolute w-64 h-64 bg-purple-500 rounded-full top-1/4 left-1/4 mix-blend-multiply filter blur-3xl opacity-10"
+    animate={{
+      scale: [1, 1.2, 1],
+      rotate: [0, 90, 180, 270, 360],
+      x: ['-25%', '0%', '-25%'],
+      y: ['-25%', '0%', '-25%'],
+    }}
+    transition={{
+      duration: 20,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+  />
+  <motion.div
+    className="absolute w-64 h-64 bg-pink-500 rounded-full bottom-1/4 right-1/4 mix-blend-multiply filter blur-3xl opacity-10"
+    animate={{
+      scale: [1, 1.2, 1],
+      rotate: [0, -90, -180, -270, -360],
+      x: ['25%', '0%', '25%'],
+      y: ['25%', '0%', '25%'],
+    }}
+    transition={{
+      duration: 25,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+  />
 
-<div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-purple-900/10 to-transparent"></div>
-<div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-purple-900/10 to-transparent"></div>
+  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
 </section>
-</div>
-);
+    </div>
+  );
 };
 
 export default Home;
+                
