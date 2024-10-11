@@ -198,7 +198,7 @@ const Book = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   type="submit"
-                  className="w-full p-4 font-semibold text-purple-400 transition duration-300 ease-in-out bg-transparent border-2 border-purple-400 rounded-lg shadow-md hover:bg-pink-500 hover:text-gray-100 focus:outline-none focus:ring-4 focus:ring-pink-300 focus:ring-opacity-50"
+                  className="w-full p-4 font-semibold text-purple-400 transition duration-300 ease-in-out bg-transparent border-2 border-purple-400 rounded-lg shadow-md hover:bg-purple-500 hover:text-gray-100 focus:outline-none focus:ring-4 focus:ring-pink-300 focus:ring-opacity-50"
                 >
                   Book Your Cosmic Experience
                 </motion.button>

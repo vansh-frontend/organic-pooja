@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaPhone, FaChevronUp } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
 import { IconLeaf } from '@tabler/icons-react';
 
 const Footer = () => {
@@ -91,14 +91,14 @@ const Footer = () => {
                 <h3 className="text-lg font-semibold text-pink-300">Company</h3>
                 <ul className="space-y-2">
                   <li>
-                    <NavLink 
+                    <Link 
                       to="/About" 
                       className={({ isActive }) => 
                         `text-sm transition-colors duration-300 ${isActive ? 'text-pink-200 font-semibold' : 'hover:text-pink-200 hover:underline'}`
                       }
                     >
                       About Us
-                    </NavLink>
+                    </Link>
                   </li>
                   {['Contact Us', 'Terms & Conditions', 'Privacy Policy'].map((item, index) => (
                     <li key={index}>
@@ -107,6 +107,16 @@ const Footer = () => {
                       </a>
                     </li>
                   ))}
+                  <li>
+                    <Link 
+                      to="/Return" 
+                      className={({ isActive }) => 
+                        `text-sm transition-colors duration-300 ${isActive ? 'text-pink-200 font-semibold' : 'hover:text-pink-200 hover:underline'}`
+                      }
+                    >
+                      Refund & Cancellation Policy
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
