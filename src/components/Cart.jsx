@@ -49,9 +49,9 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
     0
   );
   const tax = subtotal * 0.1;
-  const shippingCost = shippingMethod === 'express' ? 20 : 10;
+
   const discount = appliedCoupon ? subtotal * appliedCoupon.discountPercentage : 0;
-  const total = subtotal + tax + shippingCost - discount;
+  const total = subtotal - discount;
 
   const applyCoupon = () => {
     if (couponCode === 'SAVE10') {
@@ -101,13 +101,12 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   Phone: ${customerInfo.phoneNo}
   Address: ${customerInfo.address}
   Pincode: ${customerInfo.pincode}
-  Shipping Method: ${shippingMethod === 'express' ? 'Warp Speed Delivery' : 'Standard Interstellar Shipping'}
+
   
   Order Details:
   ${cartItems.map(item => `- ${item.name} - Quantity: ${item.quantity} - Price: ${item.price}`).join('\n')}
   
   Subtotal: $${subtotal.toFixed(2)}
-  Space Tax: $${tax.toFixed(2)}
   Shipping: $${shippingCost.toFixed(2)}
   ${appliedCoupon ? `Galactic Discount: -$${discount.toFixed(2)}\n` : ''}
   Total: $${total.toFixed(2)}
@@ -311,14 +310,6 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                     <span>Subtotal</span>
                     <span>₹{subtotal.toFixed(2)}</span>
                   </div>
-                  <div className="flex items-center justify-between text-lg font-medium text-purple-300">
-                    <span>Space Tax (10%)</span>
-                    <span>₹{tax.toFixed(2)}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-lg font-medium text-purple-300">
-                    <span>Interstellar Shipping</span>
-                    <span>₹{shippingCost.toFixed(2)}</span>
-                  </div>
                   {appliedCoupon && (
                     <div className="flex items-center justify-between text-lg font-medium text-purple-300">
                       <span>Galactic Discount</span>
@@ -418,19 +409,6 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                 />
               </div>
 
-              <div>
-                <label htmlFor="shippingMethod" className="block text-sm font-medium text-purple-300">Interstellar Shipping Method</label>
-                <select
-                  id="shippingMethod"
-                  name="shippingMethod"
-                  value={shippingMethod}
-                  onChange={(e) => setShippingMethod(e.target.value)}
-                  className="block w-full px-4 py-3 mt-1 text-purple-300 bg-gray-800 border border-purple-500 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-500"
-                >
-                  <option value="standard">Standard Interstellar Shipping (₹10)</option>
-                  <option value="express">Warp Speed Delivery (₹20)</option>
-                </select>
-              </div>
 
               <div className="flex justify-between">
                 <button
