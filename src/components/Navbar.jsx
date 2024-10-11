@@ -107,11 +107,11 @@ const Navbar = ({ position }) => {
     <div ref={userMenuRef} className={isMobile ? "" : "relative"}>
       <button
         onClick={toggleUserMenu}
-        className={`flex items-center px-4 py-2 text-sm font-semibold text-white transition-all duration-300 ease-in-out ${
-          isMobile ? "w-full justify-start" : "rounded-full hover:bg-pink-200 hover:text-pink-800"
+        className={`flex items-center px-4 py-2 text-sm font-semibold text-black transition-all duration-300 ease-in-out ${
+          isMobile ? "w-full justify-start" : "rounded-full hover:bg-gray-900 hover:text-white"
         }`}
       >
-        <IconUserCircle size={24} className="mr-2 text-pink-600" />
+        <IconUserCircle size={24} className="mr-2 text-black " />
         <span className="truncate max-w-[100px]">{isLoggedIn ? userName : 'Guest'}</span>
       </button>
       <AnimatePresence>
@@ -126,13 +126,13 @@ const Navbar = ({ position }) => {
             }`}
           >
             <div className="p-4 border-b border-gray-200">
-              <p className="text-sm font-medium text-pink-800">Hello, {isLoggedIn ? userName : 'Guest'}</p>
+              <p className="text-sm font-medium text-black">Hello, {isLoggedIn ? userName : 'Guest'}</p>
               <p className="text-xs text-white-600">{isLoggedIn ? 'Manage your account' : 'Sign in to your account'}</p>
             </div>
             <div className="py-2">
               <NavLink 
                 to="/orders" 
-                className="flex items-center px-4 py-2 text-sm transition-colors duration-150 text-white-700 hover:-100 hover:text-pink-800"
+                className="flex items-center px-4 py-2 text-sm transition-colors duration-150 text-white-700 hover:-100 hover:text-black"
                 onClick={() => {
                   setIsUserMenuOpen(false);
                   if (isMobile) setIsOpen(false);
@@ -142,7 +142,7 @@ const Navbar = ({ position }) => {
               </NavLink>
               <NavLink 
                 to="/wishlist" 
-                className="flex items-center px-4 py-2 text-sm transition-colors duration-150 text-white-700 hover:-100 hover:text-pink-800"
+                className="flex items-center px-4 py-2 text-sm transition-colors duration-150 text-white-700 hover:-100 hover:text-black"
                 onClick={() => {
                   setIsUserMenuOpen(false);
                   if (isMobile) setIsOpen(false);
@@ -152,7 +152,7 @@ const Navbar = ({ position }) => {
               </NavLink>
               <NavLink 
                 to='/Help' 
-                className="flex items-center px-4 py-2 text-sm transition-colors duration-150 text-white-700 hover:-100 hover:text-pink-800"
+                className="flex items-center px-4 py-2 text-sm transition-colors duration-150 text-white-700 hover:-100 hover:text-black"
                 onClick={() => {
                   setIsUserMenuOpen(false);
                   if (isMobile) setIsOpen(false);
@@ -181,7 +181,7 @@ const Navbar = ({ position }) => {
                     setIsUserMenuOpen(false);
                     if (isMobile) setIsOpen(false);
                   }}
-                  className="flex items-center w-full px-4 py-2 text-sm text-left text-pink-600 transition-colors duration-150 hover:-100 hover:text-pink-800"
+                  className="flex items-center w-full px-4 py-2 text-sm text-left text-black transition-colors duration-150 hover:-100 hover:text-black"
                 >
                   Login
                 </button>
@@ -202,7 +202,7 @@ const Navbar = ({ position }) => {
         to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
         className="relative py-2 group"
       >
-        <span className="text-lg font-medium text-white transition-all duration-300 font-poppins group-hover:text-pink-700">
+        <span className="text-lg font-medium text-black transition-all duration-300 font-poppins group-hover:text-black">
           {item}
         </span>
         <span className="absolute bottom-0 left-0 w-full h-0.5 bg-pink-700 transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100"></span>
@@ -218,7 +218,7 @@ const Navbar = ({ position }) => {
       <li>
   <NavLink
     to="/Cart"
-    className="relative flex items-center text-white transition-all duration-300 group hover:text-pink-700"
+    className="relative flex items-center text-black transition-all duration-300 group hover:text-black-700"
   >
     <IconShoppingCart size={24} className="transition-transform duration-300 group-hover:scale-110" />
     <span className="ml-2 text-sm font-medium font-poppins">Cart</span>
@@ -228,7 +228,7 @@ const Navbar = ({ position }) => {
       <li className="flex-shrink-0">
         <NavLink
           to="/book"
-          className="relative overflow-hidden px-4 sm:px-6 py-2 sm:py-3 font-serif text-xs sm:text-sm font-bold text-white bg-purple-800 rounded-md transition-all duration-300 ease-in-out hover:bg-purple-600 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 whitespace-nowrap"
+          className="relative overflow-hidden px-4 sm:px-6 py-2 sm:py-3 font-serif text-xs sm:text-sm font-bold text-white bg-black rounded-md transition-all duration-300 ease-in-out hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 whitespace-nowrap"
         >
           <span className="relative z-10">Book Appointment</span>
           <span className="absolute inset-0 transition-opacity duration-300 ease-in-out bg-white opacity-0 group-hover:opacity-20"></span>
@@ -251,9 +251,9 @@ const Navbar = ({ position }) => {
           transition={{ delay: 0.1, duration: 0.4 }}
           className="flex items-center justify-between p-6 bg-gray-300 shadow-md"
         >
-          <h1 className="font-serif text-2xl font-bold text-pink-900">Organic Pooja</h1>
+          <h1 className="font-serif text-2xl font-bold text-blackk">Organic Pooja</h1>
           <button
-            className="p-2 text-pink-600 transition-colors duration-200 hover:text-pink-800"
+            className="p-2 text-black transition-colors duration-200 hover:text-black"
             onClick={toggleMenu}
           >
             <IconX size={28} />
@@ -302,7 +302,7 @@ const Navbar = ({ position }) => {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `flex items-center px-6 py-4 my-2 rounded-lg text-white hover:text-pink-700 transition-all duration-200 ${
+                  `flex items-center px-6 py-4 my-2 rounded-lg text-white hover:text-black transition-all duration-200 ${
                     isActive
                       ? "bg-none"
                       : "hover:bg-none"
@@ -324,7 +324,7 @@ const Navbar = ({ position }) => {
           >
             <NavLink
               to="/book"
-              className="flex items-center justify-center w-full p-4 font-serif text-lg font-semibold text-white transition-all duration-200 transform bg-purple-600 rounded-lg shadow-lg hover:bg-purple-700 hover:scale-105"
+              className="flex items-center justify-center w-full p-4 font-serif text-lg font-semibold text-white transition-all duration-200 transform bg-black rounded-lg shadow-lg hover:bg-gray-800 hover:scale-105"
               onClick={toggleMenu}
             >
               <IconBook size={24} className="mr-3" />
@@ -348,13 +348,13 @@ const Navbar = ({ position }) => {
         <div className="flex items-center space-x-4 lg:hidden">
           <NavLink
             to="/Cart"
-            className="flex items-center p-2 text-white"
+            className="flex items-center p-2 text-black"
           >
             <IconShoppingCart size={28} />
           </NavLink>
   
           <button
-            className="p-2 text-white"
+            className="p-2 text-black"
             onClick={toggleMenu}
           >
             {isOpen ? <IconX size={24} /> : <IconMenu4 size={24} />}

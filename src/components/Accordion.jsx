@@ -3,51 +3,30 @@ import { FaStar } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
 
-const styles = `
-  @keyframes blob {
-    0% { transform: translate(0px, 0px) scale(1); }
-    33% { transform: translate(30px, -50px) scale(1.1); }
-    66% { transform: translate(-20px, 20px) scale(0.9); }
-    100% { transform: translate(0px, 0px) scale(1); }
-  }
-
-  .animate-blob {
-    animation: blob 7s infinite;
-  }
-
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-
-  .animation-delay-4000 {
-    animation-delay: 4s;
-  }
-`;
-
 const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="mb-6 overflow-hidden transition-all duration-300 bg-gray-900 border border-gray-700 rounded-lg shadow-lg hover:shadow-xl"
+      className="mb-6 overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-lg bg-opacity-10 backdrop-filter backdrop-blur-sm hover:shadow-xl"
     >
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => onToggle(id)}
         className={`flex items-center justify-between w-full px-6 py-4 text-left focus:outline-none transition-all duration-300 ${
-          isOpen ? 'bg-gray-800 text-white' : 'text-gray-300'
+          isOpen ? 'text-white' : 'text-gray-300'
         }`}
       >
-        <span className="pr-4 text-lg font-light tracking-wider uppercase">{title}</span>
+        <span className="pr-4 text-lg font-light tracking-wider">{title}</span>
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <FaStar className={`text-xl ${isOpen ? 'text-white' : 'text-purple-500'}`} />
+          <FaStar className={`text-xl ${isOpen ? 'text-white' : 'text-gray-500'}`} />
         </motion.span>
       </motion.button>
       <AnimatePresence initial={false}>
@@ -63,7 +42,7 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="px-6 py-4 text-gray-300 bg-purple-800">
+            <div className="px-6 py-4 text-gray-300 bg-white bg-opacity-5">
               {content}
             </div>
           </motion.div>
@@ -127,51 +106,33 @@ const Accordion = () => {
   ];
 
   return (
-    <section className="one">
-      <style>{styles}</style>
-      <div className="absolute inset-0 opacity-5 bg-[url('/textures/organic-pattern-dark.png')]"></div>
-      <div className="container relative z-10 max-w-6xl px-4 mx-auto">
-        <motion.h2 
-          className="mb-16 text-4xl font-light text-center text-white uppercase tracking-[0.2em] md:text-5xl lg:text-6xl"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+    <div className="relative z-10 max-w-6xl px-4 mx-auto">
+      <div className="relative">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="relative grid gap-6 md:grid-cols-2"
         >
-          {/* Frequently Asked <span className="font-normal text-gray-400">Questions</span> */}
-        </motion.h2>
-        <div className="relative">
-          <div className="absolute top-0 left-0 w-40 h-40 bg-gray-800 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
-          <div className="absolute top-0 right-0 w-40 h-40 bg-gray-700 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
-          <div className="absolute w-40 h-40 bg-gray-600 rounded-full -bottom-8 left-20 mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-4000"></div>
-          
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative grid gap-6 md:grid-cols-2"
-          >
-            {faqItems.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <AccordionItem
-                  id={item.id}
-                  title={item.title}
-                  content={item.content}
-                  isOpen={openIndex === item.id}
-                  onToggle={handleToggle}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+          {faqItems.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <AccordionItem
+                id={item.id}
+                title={item.title}
+                content={item.content}
+                isOpen={openIndex === item.id}
+                onToggle={handleToggle}
+              />
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
-      <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-gray-700/30 to-transparent"></div>
-      <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-r from-transparent via-gray-700/30 to-transparent"></div>
-    </section>
+    </div>
   );
 };
 
