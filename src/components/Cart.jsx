@@ -54,14 +54,19 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   const total = subtotal - discount;
 
   const applyCoupon = () => {
-    if (couponCode === 'SAVE10') {
-      setAppliedCoupon({ code: 'SAVE10', discountPercentage: 0.1 });
-      toast.success('Galactic coupon applied successfully!');
-    } else {
-      toast.error('Invalid coupon code');
+    switch (couponCode.toUpperCase()) {
+      case 'SAVE25':
+        setAppliedCoupon({ code: 'SAVE25', discountPercentage: 0.25 });
+        toast.success('25% Galactic coupon applied successfully!');
+        break;
+      case 'SAVE35':
+        setAppliedCoupon({ code: 'SAVE35', discountPercentage: 0.35 });
+        toast.success('35% Galactic coupon applied successfully!');
+        break;
+      default:
+        toast.error('Invalid coupon code');
     }
   };
-
   const removeCoupon = () => {
     setAppliedCoupon(null);
     setCouponCode('');
