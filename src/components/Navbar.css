@@ -1,0 +1,47 @@
+@keyframes random-background {
+    0% {
+      transform: translate(0);
+    }
+    25% {
+      transform: translate(-10px, -10px);
+    }
+    50% {
+      transform: translate(10px, 10px);
+    }
+    75% {
+      transform: translate(-10px, 10px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+  
+  .animate-live-wallpaper {
+    animation: random-background 5s ease-in-out infinite;
+    background: linear-gradient(135deg, #f8b8d1, #d4c1e2);
+    background-size: 200% 200%;
+    animation: moveBackground 10s linear infinite;
+  }
+  
+  @keyframes moveBackground {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  /* Additional styles */
+  .bg-pink-300 {
+    background-color: #f8b8d1; /* Light Pink */
+  }
+  
+  .bg-purple-400 {
+    background-color: #d4c1e2; /* Light Purple */
+  }
+  
+  .bg-purple-500 {
+    background-color: #a08bcb; /* Medium Purple */
+  }
+  
