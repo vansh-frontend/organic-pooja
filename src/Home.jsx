@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accordion from './components/Accordion';
-import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope,FaComments} from 'react-icons/fa';
+import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope,FaComments,FaArrowRight} from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 import './Home.css';
@@ -120,31 +120,31 @@ const Home = () => {
       alt="Elegant Spa Background" 
       className="object-cover w-full h-full"
     />
+    <div className="absolute inset-0 bg-black opacity-60"></div>
     <div className="absolute inset-0 opacity-75 bg-gradient-to-r from-black via-transparent to-black"></div>
   </motion.div>
 
   <div className="container relative z-10 flex flex-col justify-center min-h-screen px-4 py-16 mx-auto">
     <div className="max-w-3xl">
-    <motion.h1 
-  className="mb-6 text-4xl font-light md:text-5xl lg:text-6xl"
-  initial={{ opacity: 0, y: 50 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8, delay: 0.5 }}
->
-  Discover the essence of <br />
-  <span className="relative inline-block mt-2">
-    <span className="font-bold tracking-wide text-white font-playfair">
-      Organic
-    </span>
-    <span className="mx-2 font-bold tracking-wider text-white bold font-playfair">
-      By
-    </span>
-    <span className="font-bold tracking-wide text-white font-playfair">
-      Pooja
-    </span>
-  </span>
-</motion.h1>
-
+      <motion.h1 
+        className="mb-6 text-4xl font-light md:text-5xl lg:text-6xl"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+      >
+        Discover the essence of <br />
+        <span className="relative inline-block mt-2">
+          <span className="font-bold tracking-wide text-white font-playfair">
+            Organic
+          </span>
+          <span className="mx-2 font-bold tracking-wider text-white bold font-playfair">
+            By
+          </span>
+          <span className="font-bold tracking-wide text-white font-playfair">
+            Pooja
+          </span>
+        </span>
+      </motion.h1>
       
       <motion.p 
         className="mb-12 text-xl text-gray-100 md:text-2xl font-poppins"
@@ -176,34 +176,34 @@ const Home = () => {
       </motion.div>
     </div>
 
-    {/* Added feature highlights */}
+    {/* Added feature highlights - hidden on phones and vertical devices */}
     <motion.div 
-  className="grid grid-cols-1 gap-12 mt-16 md:grid-cols-3"
-  initial={{ opacity: 0, y: 50 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8, delay: 1.1 }}
->
-  {['Natural Ingredients', 'Personalized Care', 'Sustainable Beauty'].map((feature, index) => (
-    <motion.div 
-      key={index} 
-      className="text-center"
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.3 }}
+      className="hidden grid-cols-1 gap-12 mt-16 md:grid md:grid-cols-3"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 1.1 }}
     >
-      <motion.div 
-        className="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-white to-transparent bg-opacity-20"
-        whileHover={{ rotate: 360 }}
-        transition={{ duration: 0.8 }}
-      >
-        <span className="text-3xl">✦</span>
-      </motion.div>
-      <h3 className="mb-3 text-xl font-light tracking-wide">{feature}</h3>
-      <p className="text-sm leading-relaxed text-gray-100">
-        Experience the difference with our commitment to {feature.toLowerCase()}.
-      </p>
+      {['Natural Ingredients', 'Personalized Care', 'Sustainable Beauty'].map((feature, index) => (
+        <motion.div 
+          key={index} 
+          className="text-center"
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.div 
+            className="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-white to-transparent bg-opacity-20"
+            whileHover={{ rotate: 360 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="text-3xl">✦</span>
+          </motion.div>
+          <h3 className="mb-3 text-xl font-light tracking-wide">{feature}</h3>
+          <p className="text-sm leading-relaxed text-gray-100">
+            Experience the difference with our commitment to {feature.toLowerCase()}.
+          </p>
+        </motion.div>
+      ))}
     </motion.div>
-  ))}
-</motion.div>
   </div>
 
   {/* Subtle animated element */}
@@ -356,6 +356,118 @@ const Home = () => {
     }}
   />
 </section>
+
+{/* Product Section */}
+<section className="relative min-h-screen overflow-hidden text-white bg-black">
+  <div className="absolute inset-0 opacity-5">
+    <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+      <path fill="#ffffff" fillOpacity="0.4" d="M14 16H9v-2h5V9h2v5h5v2h-5v5h-2v-5zM64 62v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm-32 0v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm0-48v2h-5v5h-2v-5h-5v-2h5V9h2v5h5z"></path>
+    </svg>
+  </div>
+  
+  <div className="container relative z-10 flex flex-col justify-center min-h-screen px-4 py-16 mx-auto max-w-7xl">
+    <motion.div
+      className="mb-16 text-center"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      <motion.h2 
+        className="mb-4 text-4xl font-light md:text-5xl lg:text-6xl"
+      >
+        Our Featured <span className="font-semibold">Products</span>
+      </motion.h2>
+      <motion.p
+        className="text-xl text-gray-300 md:text-2xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        Discover our handpicked selection of organic beauty essentials
+      </motion.p>
+    </motion.div>
+
+    <motion.div 
+      className="grid grid-cols-1 gap-8 mb-16 sm:grid-cols-2 lg:grid-cols-3"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+    >
+      {[
+        { name: "Organic Face Serum", price: "₹999", image: "/img/Hair Oil.jpg" },
+        { name: "Natural Hair Oil", price: "₹799", image: "/img/faceserum.jpg" },
+        { name: "Herbal Body Lotion", price: "₹699", image: "/img/body lotion.jpg" },
+        { name: "Organin skin toner", price: "₹999", image: "/img/skin toner.jpg" },
+        { name: "Natural Hair conditioner", price: "₹799", image: "/img/hair conditioner.jpg" },
+        { name: "combo pack", price: "₹699", image: "/img/combo 1.jpg" },
+      ].map((product, index) => (
+        <motion.div 
+          key={index}
+          className="overflow-hidden transition-all duration-300 border border-white rounded-lg bg-opacity-10 backdrop-filter backdrop-blur-sm hover:bg-white hover:bg-opacity-5"
+          whileHover={{ scale: 1.05 }}
+        >
+          <img src={product.image} alt={product.name} className="object-cover w-full h-64" />
+          <div className="p-6">
+            <h3 className="mb-2 text-xl font-light">{product.name}</h3>
+            <p className="mb-4 text-lg font-semibold text-gray-100">{product.price}</p>
+            <button className="px-4 py-2 text-sm font-light tracking-wider text-black transition-all duration-300 bg-white rounded-full hover:bg-opacity-80">
+              View Details
+            </button>
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
+
+    <div className="text-center">
+      <Link 
+        to="/products" 
+        className="inline-flex items-center px-8 py-3 text-lg font-light tracking-wider text-black transition-all duration-300 bg-white rounded-full hover:bg-opacity-80"
+      >
+        View All Products
+        <FaArrowRight className="ml-2" />
+      </Link>
+    </div>
+  </div>
+
+  {/* Subtle floating elements */}
+  <motion.div
+    className="absolute w-64 h-64 bg-white rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+    animate={{
+      scale: [1, 1.2, 1],
+      rotate: [0, 90, 180, 270, 360],
+      x: ['-25%', '0%', '-25%'],
+      y: ['-25%', '0%', '-25%'],
+    }}
+    transition={{
+      duration: 20,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+  />
+  <motion.div
+    className="absolute w-64 h-64 bg-white rounded-full bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+    animate={{
+      scale: [1, 1.2, 1],
+      rotate: [0, -90, -180, -270, -360],
+      x: ['25%', '0%', '25%'],
+      y: ['25%', '0%', '25%'],
+    }}
+    transition={{
+      duration: 25,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+  />
+
+  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
+</section>
+
+
+
+{/* product section */}
+
+
+
       {/* About Us Section */}
       <section className="relative min-h-screen overflow-hidden text-white bg-black">
   <div className="absolute inset-0 opacity-5">

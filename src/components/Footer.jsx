@@ -97,14 +97,14 @@ const Footer = () => {
                         `text-sm transition-colors duration-300 ${isActive ? 'text-green-600 font-semibold' : 'hover:text-green-600 hover:underline'}`
                       }
                     >
-                      About Us
+                      <li className='text-sm list-none hover:text-green-600 hover:underline'>About Us</li>
                     </Link>
                   </li>
                  
 
 		  {['Contact Us', 'Terms & Conditions', 'Privacy Policy'].map((item, index) => (
                     <li key={index}>
-                      <a href={`/company/${item.toLowerCase().replace(' & ', '-').replace(' ', '-')}`} className="text-sm transition-colors duration-300 hover:text-green-200 hover:underline">
+                      <a href={`/company/${item.toLowerCase().replace(' & ', '-').replace(' ', '-')}`} className="text-sm transition-colors duration-300 hover:text-green-600 hover:underline">
                         {item}
                       </a>
                     </li>
@@ -113,10 +113,10 @@ const Footer = () => {
                     <Link 
                       to="/Return" 
                       className={({ isActive }) => 
-                        `text-sm transition-colors duration-300 ${isActive ? 'text-green-200 font-semibold' : 'hover:text-green-200 hover:underline'}`
+                        `text-sm transition-colors duration-300 ${isActive ? 'text-green-800 font-semibold' : 'hover:text-green-800 hover:underline'}`
                       }
                     >
-                      Refund & Cancellation Policy
+                     <li className='list-none hover:text-green-600 hover:underline'>Refund & Cancellation Policy</li> 
                     </Link>
                   </li>
                 </ul>
