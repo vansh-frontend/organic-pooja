@@ -358,27 +358,27 @@ const Home = () => {
 </section>
 
 {/* Product Section */}
-<section className="relative min-h-screen overflow-hidden text-white bg-black">
+<section className="relative py-24 overflow-hidden text-white bg-black">
   <div className="absolute inset-0 opacity-5">
     <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
       <path fill="#ffffff" fillOpacity="0.4" d="M14 16H9v-2h5V9h2v5h5v2h-5v5h-2v-5zM64 62v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm-32 0v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm0-48v2h-5v5h-2v-5h-5v-2h5V9h2v5h5z"></path>
     </svg>
   </div>
   
-  <div className="container relative z-10 flex flex-col justify-center min-h-screen px-4 py-16 mx-auto max-w-7xl">
+  <div className="container relative z-10 px-4 mx-auto max-w-7xl">
     <motion.div
-      className="mb-16 text-center"
+      className="mb-12 text-center"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
       <motion.h2 
-        className="mb-4 text-4xl font-light md:text-5xl lg:text-6xl"
+        className="mb-4 text-3xl font-light md:text-4xl lg:text-5xl"
       >
         Our Featured <span className="font-semibold">Products</span>
       </motion.h2>
       <motion.p
-        className="text-xl text-gray-300 md:text-2xl"
+        className="text-lg text-gray-300 md:text-xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -388,7 +388,7 @@ const Home = () => {
     </motion.div>
 
     <motion.div 
-      className="grid grid-cols-1 gap-8 mb-16 sm:grid-cols-2 lg:grid-cols-3"
+      className="grid grid-cols-1 gap-6 mb-12 sm:grid-cols-2 lg:grid-cols-3"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.4 }}
@@ -397,20 +397,22 @@ const Home = () => {
         { name: "Organic Face Serum", price: "₹999", image: "/img/Hair Oil.jpg" },
         { name: "Natural Hair Oil", price: "₹799", image: "/img/faceserum.jpg" },
         { name: "Herbal Body Lotion", price: "₹699", image: "/img/body lotion.jpg" },
-        { name: "Organin skin toner", price: "₹999", image: "/img/skin toner.jpg" },
-        { name: "Natural Hair conditioner", price: "₹799", image: "/img/hair conditioner.jpg" },
-        { name: "combo pack", price: "₹699", image: "/img/combo 1.jpg" },
+        { name: "Organic Skin Toner", price: "₹999", image: "/img/skin toner.jpg" },
+        { name: "Natural Hair Conditioner", price: "₹799", image: "/img/hair conditioner.jpg" },
+        { name: "Combo Pack", price: "₹699", image: "/img/combo 1.jpg" },
       ].map((product, index) => (
         <motion.div 
           key={index}
-          className="overflow-hidden transition-all duration-300 border border-white rounded-lg bg-opacity-10 backdrop-filter backdrop-blur-sm hover:bg-white hover:bg-opacity-5"
-          whileHover={{ scale: 1.05 }}
+          className="flex flex-col overflow-hidden transition-all duration-300 border border-white rounded-lg bg-opacity-10 backdrop-filter backdrop-blur-sm hover:bg-white hover:bg-opacity-5"
+          whileHover={{ scale: 1.03 }}
         >
-          <img src={product.image} alt={product.name} className="object-cover w-full h-64" />
-          <div className="p-6">
-            <h3 className="mb-2 text-xl font-light">{product.name}</h3>
-            <p className="mb-4 text-lg font-semibold text-gray-100">{product.price}</p>
-            <button className="px-4 py-2 text-sm font-light tracking-wider text-black transition-all duration-300 bg-white rounded-full hover:bg-opacity-80">
+          <div className="relative flex-shrink-0 h-48 sm:h-56 md:h-64">
+            <img src={product.image} alt={product.name} className="absolute object-cover w-full h-full" />
+          </div>
+          <div className="flex flex-col flex-grow p-4">
+            <h3 className="mb-2 text-lg font-light sm:text-xl">{product.name}</h3>
+            <p className="mb-4 text-base font-semibold text-gray-100 sm:text-lg">{product.price}</p>
+            <button className="px-4 py-2 mt-auto text-sm font-light tracking-wider text-black transition-all duration-300 bg-white rounded-full hover:bg-opacity-80">
               View Details
             </button>
           </div>
@@ -421,7 +423,7 @@ const Home = () => {
     <div className="text-center">
       <Link 
         to="/products" 
-        className="inline-flex items-center px-8 py-3 text-lg font-light tracking-wider text-black transition-all duration-300 bg-white rounded-full hover:bg-opacity-80"
+        className="inline-flex items-center px-6 py-3 text-base font-light tracking-wider text-black transition-all duration-300 bg-white rounded-full sm:px-8 sm:text-lg hover:bg-opacity-80"
       >
         View All Products
         <FaArrowRight className="ml-2" />
@@ -431,7 +433,7 @@ const Home = () => {
 
   {/* Subtle floating elements */}
   <motion.div
-    className="absolute w-64 h-64 bg-white rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+    className="absolute w-48 h-48 bg-white rounded-full sm:w-64 sm:h-64 top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-10"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, 90, 180, 270, 360],
@@ -445,7 +447,7 @@ const Home = () => {
     }}
   />
   <motion.div
-    className="absolute w-64 h-64 bg-white rounded-full bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+    className="absolute w-48 h-48 bg-white rounded-full sm:w-64 sm:h-64 bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-10"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, -90, -180, -270, -360],
@@ -461,7 +463,6 @@ const Home = () => {
 
   <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
 </section>
-
 
 
 {/* product section */}
