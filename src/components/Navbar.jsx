@@ -196,42 +196,44 @@ const Navbar = ({ position }) => {
   
   const desktopNavItems = position === 'left' ? (
     <ul className="items-center hidden space-x-10 lg:flex">
-  {['Home', 'Products', 'Services'].map((item) => (
-    <li key={item}>
-      <NavLink
-        to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-        className="relative py-2 group"
-      >
-        <span className="text-lg font-medium text-black transition-all duration-300 font-poppins group-hover:text-black">
-          {item}
-        </span>
-        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100 border-spacing-2"></span>
-      </NavLink>
-    </li>
-  ))}
-</ul>
+      {['Home', 'Products', 'Services'].map((item) => (
+        <li key={item}>
+          <NavLink
+            to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+            className="relative py-2 group"
+          >
+            <span className="relative z-10 text-lg font-semibold text-black transition-all duration-300 font-sans uppercase tracking-wider">
+              {item}
+            </span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100"></span>
+          </NavLink>
+        </li>
+      ))}
+    </ul>
   ) : (
     <ul className="items-center hidden space-x-8 lg:flex">
       <li>
         <UserMenu isMobile={false} />
       </li>
       <li>
-  <NavLink
-    to="/Cart"
-    className="relative flex items-center text-black transition-all duration-300 group hover:text-black-700"
-  >
-    <IconShoppingCart size={24} className="transition-transform duration-300 group-hover:scale-110" />
-    <span className="ml-2 text-sm font-medium font-poppins">Cart</span>
-    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-black transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100"></span>
-  </NavLink>
-</li>
+        <NavLink
+          to="/Cart"
+          className="relative py-2 group flex items-center"
+        >
+          <IconShoppingCart size={24} className="relative z-10 text-black transition-all duration-300" />
+          <span className="relative z-10 ml-2 text-lg font-semibold text-black transition-all duration-300 font-sans uppercase tracking-wider">
+            Cart
+          </span>
+          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100"></span>
+        </NavLink>
+      </li>
       <li className="flex-shrink-0">
         <NavLink
           to="/book"
-          className="relative overflow-hidden px-4 sm:px-6 py-2 sm:py-3 font-serif text-xs sm:text-sm font-bold text-white bg-black rounded-md transition-all duration-300 ease-in-out hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 whitespace-nowrap"
+          className="group relative inline-block px-4 sm:px-6 py-2 sm:py-3 font-sans text-xs sm:text-sm font-semibold text-white transition-all duration-300 ease-in-out border border-black bg-black hover:text-black uppercase tracking-widest"
         >
-          <span className="relative z-10">Book Appointment</span>
-          <span className="absolute inset-0 transition-opacity duration-300 ease-in-out bg-white opacity-0 group-hover:opacity-20"></span>
+          <span className="relative z-10">BOOK CONSULTATION</span>
+          <span className="absolute inset-0 bg-white transform origin-left transition-transform duration-300 ease-in-out scale-x-0 group-hover:scale-x-100"></span>
         </NavLink>
       </li>
     </ul>
@@ -242,51 +244,38 @@ const Navbar = ({ position }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-50 overflow-hidden bg-gray-800"
+      className="fixed inset-0 z-50 overflow-hidden bg-[#f8f7f2]" // Bone white background
     >
       <div className="relative h-full overflow-y-auto">
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1, duration: 0.4 }}
-          className="flex items-center justify-between p-6 bg-gray-300 shadow-md"
+          className="flex items-center justify-between p-6 bg-[#f0efe9] shadow-md" // Slightly darker bone white for header
         >
-          <h1 className="font-serif text-2xl font-bold text-blackk">Organic Pooja</h1>
+          <h1 className="font-serif text-3xl font-bold text-gray-800">Organic Pooja</h1>
           <button
-            className="p-2 text-black transition-colors duration-200 hover:text-black"
+            className="p-2 text-gray-800 transition-colors duration-200 hover:text-gray-600"
             onClick={toggleMenu}
           >
             <IconX size={28} />
           </button>
         </motion.div>
   
-        <nav className="px-4 mt-6">
-          <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.4 }}
-            className="mb-6"
-          >
-           <motion.div
-  initial={{ height: 0, opacity: 0 }}
-  animate={{ height: "auto", opacity: 1 }}
-  transition={{ duration: 0.3 }}
-  className="w-full max-w-sm mx-auto overflow-hidden bg-gray-500 rounded-lg shadow-md"
+        <nav className="px-6 mt-8">
+        <motion.div
+  initial={{ x: -50, opacity: 0 }}
+  animate={{ x: 0, opacity: 1 }}
+  transition={{ delay: 0.2, duration: 0.4 }}
+  className="mb-8"
 >
-  <motion.div
-    initial={{ y: 20, opacity: 0 }}
-    animate={{ y: 0, opacity: 1 }}
-    transition={{ delay: 0.1, duration: 0.3 }}
-    className="p-4"
-  >
+  <div className="w-full bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 p-2">
     <UserMenu 
       isMobile={true} 
-      className="flex flex-col space-y-2"
+      className="text-black"
     />
-  </motion.div>
+  </div>
 </motion.div>
-           
-          </motion.div>
   
           {[
             { to: "/", label: "Home", icon: IconHome },
@@ -302,16 +291,16 @@ const Navbar = ({ position }) => {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `flex items-center px-6 py-4 my-2 rounded-lg text-white hover:text-black transition-all duration-200 ${
+                  `flex items-center px-6 py-4 my-2 rounded-lg transition-all duration-200 ${
                     isActive
-                      ? "bg-none"
-                      : "hover:bg-none"
+                      ? "bg-[#e6e4dc] text-black"
+                      : "text-black hover:bg-[#eae8e0] hover:text-gray-900"
                   }`
                 }
                 onClick={toggleMenu}
               >
-                <Icon size={24} className="mr-4" />
-                <span className="font-serif text-lg font-medium">{label}</span>
+                <Icon size={20} className="mr-4" />
+                <span className="font-poppins text-lg font-medium">{label}</span>
               </NavLink>
             </motion.div>
           ))}
@@ -320,20 +309,19 @@ const Navbar = ({ position }) => {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.4 }}
-            className="px-2 mt-8"
+            className="mt-10"
           >
             <NavLink
               to="/book"
-              className="flex items-center justify-center w-full p-4 font-serif text-lg font-semibold text-white transition-all duration-200 transform bg-black rounded-lg shadow-lg hover:bg-gray-800 hover:scale-105"
+              className="group relative inline-block w-full text-center py-3 px-6 font-poppins text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 ease-in-out bg-black hover:bg-gray-900"
               onClick={toggleMenu}
             >
-              <IconBook size={24} className="mr-3" />
-              <span>Book Appointment</span>
+              <span className="relative z-10">Book Consultation</span>
             </NavLink>
           </motion.div>
         </nav>
   
-        <div className="absolute bottom-0 left-0 w-full h-16 pointer-events-none bg-gradient-to-t from-amber-50 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-24 pointer-events-none bg-gradient-to-t from-[#f8f7f2] to-transparent"></div>
       </div>
     </motion.div>
   );
