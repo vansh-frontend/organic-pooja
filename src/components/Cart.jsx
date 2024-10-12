@@ -48,23 +48,22 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
     (total, item) => total + parseFloat(item.price.slice(1)) * item.quantity,
     0
   );
-
   const applyCoupon = () => {
-    switch (couponCode.toUpperCase()) {
+    switch (couponCode) {
       case 'SAVE150':
-        if (subtotal < 1000) {
+        if (subtotal >= 500 && subtotal <= 999) {
           setAppliedCoupon({ code: 'SAVE150', discountAmount: 150 });
           toast.success('₹150 discount applied successfully!');
         } else {
-          toast.error('This coupon is only valid for orders below ₹1000');
+          toast.error('This coupon is only valid for orders between ₹500 and ₹999');
         }
         break;
       case 'SAVE400':
-        if (subtotal >= 2000) {
+        if (subtotal >= 1999) {
           setAppliedCoupon({ code: 'SAVE400', discountAmount: 400 });
           toast.success('₹400 discount applied successfully!');
         } else {
-          toast.error('This coupon is only valid for orders ₹2000 and above');
+          toast.error('This coupon is only valid for orders ₹1999 and above');
         }
         break;
       default:
@@ -231,7 +230,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                       <div className="flex-1 p-4 sm:p-6">
                         <h3 className="mb-2 text-lg font-light text-white sm:text-xl">{item.name}</h3>
                         <p className="mb-4 text-xl font-light text-gray-300 sm:text-2xl">
-                          ₹{item.price}
+                          {item.price}
                         </p>
                         <div className="flex flex-col items-center justify-between sm:flex-row">
                           <div className="flex items-center mb-4 overflow-hidden border border-white rounded-lg sm:mb-0">
