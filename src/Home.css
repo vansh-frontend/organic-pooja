@@ -3,7 +3,7 @@
   scroll-behavior: smooth;
   padding: 0;
   margin: 0;
-<<<<<<< HEAD
+
   box-sizing: border-box;
 }
 
@@ -12,8 +12,8 @@
 /* Keyframes for slide animations */
 
 
-=======
-}
+
+
 @keyframes blob {
   0% {
     transform: translate(0px, 0px) scale(1);
@@ -205,4 +205,3 @@
 .animation-delay-4000 {
   animation-delay: 4s;
 }
->>>>>>> 3f50b610de7f6c9ecf52148b9a705dd27a5dc367
