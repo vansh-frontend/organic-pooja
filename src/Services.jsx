@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaSpa, FaLeaf, FaCut, FaPaintBrush, FaHeart, FaSun, FaSmile, FaLightbulb, FaGem, FaSnowflake, FaStar, FaBars, FaTimes, FaChevronDown, FaChevronUp, FaMask, FaSprayCan, FaSearch } from 'react-icons/fa';
+import { FaSpa, FaLeaf, FaCut, FaPaintBrush, FaHeart, FaSun, FaSmile, FaLightbulb, FaGem, FaSnowflake, FaStar, FaSearch } from 'react-icons/fa';
 
 const serviceCategories = [
   {
@@ -135,27 +135,32 @@ const serviceCategories = [
     ]
   }
 ];
-
-const ServiceItem = ({ item }) => (
-  <div className="p-3 transition-all duration-300 bg-gray-800 shadow-lg rounded-xl hover:shadow-pink-500/20 hover:scale-105 sm:p-4 md:p-6">
-  <div className="flex items-center mb-2 sm:mb-3 md:mb-4">
-    <div className="p-2 mr-2 text-purple-400 bg-purple-900 bg-opacity-50 rounded-full sm:p-2.5 md:p-3 sm:mr-3 md:mr-4">
-      {item.icon}
+const ServiceItem = ({ item, index }) => (
+  <motion.div 
+    className="p-4 transition-all duration-300 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm sm:p-6 border-opacity-20 hover:bg-opacity-70 hover:border-opacity-50 hover:shadow-lg hover:scale-105"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+  >
+    <div className="flex items-center mb-3">
+      <div className="p-2 mr-3 text-white transition-colors duration-300 bg-gray-800 rounded-full group-hover:bg-gray-700">
+        {item.icon}
+      </div>
+      <h3 className="text-base font-light tracking-wider text-white transition-colors duration-300 sm:text-lg font-cormorant group-hover:text-pink-200">{item.title}</h3>
     </div>
-    <h3 className="text-base font-bold text-white sm:text-lg md:text-xl">{item.title}</h3>
-  </div>
-  <p className="mb-2 text-xs text-gray-300 sm:text-sm md:text-base sm:mb-3 md:mb-4">{item.description}</p>
-  <div>
-    <h4 className="mb-1 text-xs font-semibold text-purple-400 uppercase sm:text-sm md:mb-2">Benefits:</h4>
-    <ul className="pl-4 text-gray-300 list-disc sm:pl-5">
-      {item.benefits.map((benefit, index) => (
-        <li key={index} className="mb-0.5 text-xs sm:text-sm md:mb-1">{benefit}</li>
-      ))}
-    </ul>
-  </div>
-</div>
+    <p className="mb-3 text-xs font-light text-gray-300 transition-colors duration-300 sm:text-sm font-montserrat group-hover:text-white">{item.description}</p>
+    <div className="text-left">
+      <h4 className="mb-2 text-xs font-light tracking-wider text-white uppercase transition-colors duration-300 sm:text-sm font-cormorant group-hover:text-pink-200">BENEFITS:</h4>
+      <ul className="pl-5 text-xs font-light text-gray-300 list-disc sm:text-sm font-montserrat">
+        {item.benefits.map((benefit, index) => (
+          <li key={index} className="mb-1 transition-colors duration-300 group-hover:text-white">
+            {benefit}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </motion.div>
 );
-
 ServiceItem.propTypes = {
   item: PropTypes.shape({
     icon: PropTypes.element.isRequired,
@@ -163,17 +168,40 @@ ServiceItem.propTypes = {
     description: PropTypes.string.isRequired,
     benefits: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 const ServiceCategory = ({ category }) => (
-  <div className="mb-6 sm:mb-8 md:mb-12">
-  <h2 className="mb-3 text-xl font-bold text-purple-400 sm:text-2xl md:text-3xl sm:mb-4 md:mb-6">{category.title}</h2>
-  <div className="grid gap-3 sm:gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {category.services.map((service, index) => (
-      <ServiceItem key={index} item={service} />
-    ))}
-  </div>
-</div>
+  <motion.div
+    className="mb-16 text-center"
+    initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+  >
+    <motion.h2 
+      className="mb-4 text-3xl font-light text-white sm:text-4xl md:text-5xl lg:text-6xl font-cormorant"
+    >
+      {category.title}
+    </motion.h2>
+    <motion.p
+      className="mb-8 text-lg text-gray-300 sm:text-xl md:text-2xl font-montserrat"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+    >
+      Indulge in our premium {category.title.toLowerCase()} services
+    </motion.p>
+    <motion.div 
+      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+    >
+      {category.services.map((service, index) => (
+        <ServiceItem key={index} item={service} index={index} />
+      ))}
+    </motion.div>
+  </motion.div>
 );
 
 ServiceCategory.propTypes = {
@@ -185,63 +213,11 @@ ServiceCategory.propTypes = {
   }).isRequired,
 };
 
-const DropdownButton = ({ title, items, isOpen, toggleDropdown }) => (
-  <div className="mb-1 sm:mb-2">
-  <button
-    onClick={toggleDropdown}
-    className="flex items-center justify-between w-full px-3 py-2 text-left text-gray-300 transition-colors duration-200 sm:px-4 md:px-6 sm:py-2.5 md:py-3 hover:bg-gray-700 focus:outline-none"
-  >
-    <span className="text-sm sm:text-base">{title}</span>
-    {isOpen ? <FaChevronUp className="text-purple-400" /> : <FaChevronDown className="text-purple-400" />}
-  </button>
-  {isOpen && (
-    <ul className="pl-4 mt-1 sm:pl-6 md:pl-8 sm:mt-1.5 md:mt-2">
-      {items.map((item, index) => (
-        <li key={index} className="py-1 sm:py-1.5 md:py-2">
-          <a href="#" className="flex items-center text-xs text-gray-400 transition-colors duration-200 sm:text-sm md:text-base hover:text-purple-400">
-            <span className="mr-2 text-purple-400">{item.icon}</span>
-            {item.name}
-          </a>
-        </li>
-      ))}
-    </ul>
-  )}
-</div>
-);
-
-DropdownButton.propTypes = {
-  title: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(PropTypes.shape({
-    icon: PropTypes.element.isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  toggleDropdown: PropTypes.func.isRequired,
-};
-
 const Services = () => {
   const [activeCategory, setActiveCategory] = useState(serviceCategories[0].id);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [dropdowns, setDropdowns] = useState({
-    skin: false,
-    makeup: false,
-    hair: false,
-  });
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const searchInputRef = useRef(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      setIsSidebarOpen(!mobile);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -259,17 +235,6 @@ const Services = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-    if (isMobile) {
-      setIsSidebarOpen(false);
-    }
-  };
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const toggleDropdown = (category) => {
-    setDropdowns((prev) => ({ ...prev, [category]: !prev[category] }));
   };
 
   const filteredCategories = serviceCategories.map(category => ({
@@ -281,137 +246,68 @@ const Services = () => {
   })).filter(category => category.services.length > 0);
 
   return (
-    <div className="flex flex-col min-h-screen text-gray-300 bg-gray-900 md:flex-row">
-  {/* Sidebar */}
-      <AnimatePresence>
-  {(isSidebarOpen || !isMobile) && (
-    <motion.div
-      initial={{ x: -300 }}
-      animate={{ x: 0 }}
-      exit={{ x: -300 }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className={`fixed inset-y-0 left-0 z-30 w-72 bg-gray-900 shadow-lg md:sticky md:top-0 md:h-screen ${
-        isMobile ? 'top-16' : ''
-      }`}
-    >
-    <div className="flex flex-col h-full">
-  <div className="flex items-center justify-between px-6 py-4 bg-purple-900">
-    <h1 className="text-2xl font-bold text-white">Organic Pooja</h1>
-    {isMobile && (
-      <button
-        onClick={toggleSidebar}
-        className="text-white focus:outline-none"
-      >
-        <FaTimes size={24} />
-      </button>
-    )}
-  </div>
-  <nav className="flex-grow px-4 py-6 overflow-y-auto">
-    {serviceCategories.map((category) => (
-      <motion.div
-        key={category.id}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <button
-          onClick={() => scrollToCategory(category.id)}
-          className={`flex items-center w-full px-4 py-3 mb-2 text-left transition-all duration-200 rounded-lg ${
-            activeCategory === category.id
-              ? 'bg-purple-600 text-white shadow-md'
-              : 'text-gray-300 hover:bg-gray-700'
-          }`}
-        >
-          <span className="mr-3 text-xl">{category.icon}</span>
-          <span className="text-sm font-medium">{category.title}</span>
-        </button>
-        {category.id === 'makeup' && (
-          <div className="mt-2 mb-4 ml-4 space-y-2">
-            <DropdownButton
-              title="Skin"
-              items={[
-                { icon: <FaMask className="w-4 h-4" />, name: 'Facials' },
-                { icon: <FaSprayCan className="w-4 h-4" />, name: 'Peels' },
-                { icon: <FaGem className="w-4 h-4" />, name: 'Microdermabrasion' },
-              ]}
-              isOpen={dropdowns.skin}
-              toggleDropdown={() => toggleDropdown('skin')}
+    <div className="min-h-screen text-gray-300 bg-black">
+      {/* Header */}
+      <header className="sticky top-0 z-20 px-4 py-3 bg-black shadow-md sm:px-6 sm:py-4">
+        <div className="container flex flex-col items-center justify-between mx-auto sm:flex-row">
+          <h1 className="mb-3 text-2xl font-semibold text-white sm:mb-0 sm:text-3xl font-cormorant">Our Services</h1>
+          <div className="relative w-full sm:w-auto" ref={searchInputRef}>
+            <input
+              type="text"
+              placeholder="Search services..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+              className={`w-full px-4 py-2 pl-10 text-sm bg-gray-900 border border-gray-700 text-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-300 font-montserrat sm:w-48 md:w-64 ${
+                isSearchFocused ? 'sm:w-56 md:w-80' : ''
+              }`}
             />
-            <DropdownButton
-              title="Makeup"
-              items={[
-                { icon: <FaHeart className="w-4 h-4" />, name: 'Bridal' },
-                { icon: <FaStar className="w-4 h-4" />, name: 'Special Occasion' },
-                { icon: <FaLightbulb className="w-4 h-4" />, name: 'Lessons' },
-              ]}
-              isOpen={dropdowns.makeup}
-              toggleDropdown={() => toggleDropdown('makeup')}
-            />
-            <DropdownButton
-              title="Hair"
-              items={[
-                { icon: <FaCut className="w-4 h-4" />, name: 'Styling' },
-                { icon: <FaSprayCan className="w-4 h-4" />, name: 'Treatments' },
-                { icon: <FaLeaf className="w-4 h-4" />, name: 'Extensions' },
-              ]}
-              isOpen={dropdowns.hair}
-              toggleDropdown={() => toggleDropdown('hair')}
-            />
+            <FaSearch className="absolute text-gray-400 transform -translate-y-1/2 left-3 top-1/2" />
           </div>
-        )}
-      </motion.div>
-    ))}
-  </nav>
-</div>
-    </motion.div>
-  )}
-</AnimatePresence>
-
-      {/* Main content */}
-      <div className="flex flex-col flex-1">
-  {/* Header */}
-  <header className="sticky top-0 z-20 flex items-center justify-between px-3 py-2 bg-gray-800 shadow-md sm:px-4 md:px-6 sm:py-3 md:py-4">
-    {isMobile && (
-      <button
-        onClick={toggleSidebar}
-        className="text-gray-300 focus:outline-none"
-      >
-        {isSidebarOpen ? <FaTimes size={20} className="sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <FaBars size={20} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />}
-      </button>
-    )}
-    <h1 className="text-lg font-semibold text-purple-400 sm:text-xl md:text-2xl">Our Services</h1>
-    <div className="relative" ref={searchInputRef}>
-      <input
-        type="text"
-        placeholder="Search services..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        onFocus={() => setIsSearchFocused(true)}
-        className={`px-2 py-1 pl-7 text-xs bg-gray-700 border border-gray-600 text-gray-200 rounded-full sm:text-sm md:text-base sm:px-3 sm:py-1.5 sm:pl-8 md:px-4 md:py-2 md:pl-10 focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all duration-300 ${
-          isSearchFocused ? 'w-48 sm:w-64 md:w-80' : 'w-32 sm:w-40 md:w-48'
-        }`}
-      />
-      <FaSearch className="absolute text-gray-400 transform -translate-y-1/2 left-2 top-1/2 sm:left-3" />
-    </div>
-  </header>
-
-  {/* Content */}
-  <main className="flex-1 p-3 overflow-y-auto bg-gray-800 sm:p-4 md:p-6 lg:p-8">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      {filteredCategories.map((category) => (
-        <div key={category.id} id={category.id}>
-          <ServiceCategory category={category} />
         </div>
-      ))}
-    </motion.div>
-  </main>
+      </header>
+
+      {/* Navigation */}
+      <nav className="sticky z-10 px-4 py-3 bg-black shadow-md top-16 sm:px-6 sm:py-4">
+  <div className="container mx-auto">
+    <div className="flex justify-center">
+      <ul className="flex flex-wrap justify-center space-x-2 sm:space-x-4">
+        {serviceCategories.map((category) => (
+          <li key={category.id} className="mb-2 sm:mb-0">
+            <button
+              onClick={() => scrollToCategory(category.id)}
+              className={`flex items-center px-3 py-2 text-xs font-light transition-all duration-200 rounded-lg sm:text-sm md:text-base font-cormorant ${
+                activeCategory === category.id
+                  ? 'bg-white text-black'
+                  : 'text-gray-300 hover:bg-white hover:text-black border border-white border-opacity-20'
+              }`}
+            >
+              <span className="mr-2 text-base sm:text-lg">{category.icon}</span>
+              <span>{category.title}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
-</div>
-);
+</nav>  
+
+      {/* Content */}
+      <main className="container px-4 py-6 mx-auto sm:px-6 sm:py-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {filteredCategories.map((category) => (
+            <div key={category.id} id={category.id}>
+              <ServiceCategory category={category} />
+            </div>
+          ))}
+        </motion.div>
+      </main>
+    </div>
+  );
 };
 
 export default Services;
