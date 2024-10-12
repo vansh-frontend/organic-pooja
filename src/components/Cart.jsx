@@ -52,7 +52,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   const isCouponValid = (coupon, currentSubtotal) => {
     switch (coupon.code) {
       case 'SAVE150':
-        return currentSubtotal >= 500 && currentSubtotal <= 999;
+        return currentSubtotal >= 500 && currentSubtotal <= 1999;
       case 'SAVE400':
         return currentSubtotal >= 1999;
       default:
