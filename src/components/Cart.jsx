@@ -48,26 +48,44 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
     (total, item) => total + parseFloat(item.price.slice(1)) * item.quantity,
     0
   );
+
+  const isCouponValid = (coupon, currentSubtotal) => {
+    switch (coupon.code) {
+      case 'SAVE150':
+        return currentSubtotal >= 500 && currentSubtotal <= 999;
+      case 'SAVE400':
+        return currentSubtotal >= 1999;
+      default:
+        return false;
+    }
+  };
+
+  useEffect(() => {
+    if (appliedCoupon && !isCouponValid(appliedCoupon, subtotal)) {
+      setAppliedCoupon(null);
+      toast.info(`Coupon ${appliedCoupon.code} has been removed as it's no longer valid for your current order total.`);
+    }
+  }, [cartItems, subtotal, appliedCoupon]);
+
   const applyCoupon = () => {
+    const coupon = { code: couponCode, discountAmount: 0 };
     switch (couponCode) {
       case 'SAVE150':
-        if (subtotal >= 500 && subtotal <= 999) {
-          setAppliedCoupon({ code: 'SAVE150', discountAmount: 150 });
-          toast.success('₹150 discount applied successfully!');
-        } else {
-          toast.error('This coupon is only valid for orders between ₹500 and ₹999');
-        }
+        coupon.discountAmount = 150;
         break;
       case 'SAVE400':
-        if (subtotal >= 1999) {
-          setAppliedCoupon({ code: 'SAVE400', discountAmount: 400 });
-          toast.success('₹400 discount applied successfully!');
-        } else {
-          toast.error('This coupon is only valid for orders ₹1999 and above');
-        }
+        coupon.discountAmount = 400;
         break;
       default:
         toast.error('Invalid coupon code');
+        return;
+    }
+
+    if (isCouponValid(coupon, subtotal)) {
+      setAppliedCoupon(coupon);
+      toast.success(`₹${coupon.discountAmount} discount applied successfully!`);
+    } else {
+      toast.error(`This coupon is not valid for your current order total.`);
     }
   };
 
@@ -94,6 +112,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
     setOrderId(null);
     toast.info('Mission aborted');
   };
+
 
   const onSubmit = async (event) => {
     event.preventDefault();

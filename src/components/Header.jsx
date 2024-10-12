@@ -32,8 +32,8 @@ const Header = () => {
               />
               <IconLeaf className="absolute w-6 h-6 text-green-800 -top-2 -right-2 animate-bounce" />
             </div>
-            <h1 className="text-2xl font-semibold tracking-widest text-gray-800 uppercase">
-              ORGANIC <span className="font-semibold text-green-800">POOJA</span>
+            <h1 className="text-2xl font-semibold tracking-widest text-gray-800 uppercase font-cormorant">
+              ORGANIC <span className="font-bold text-green-800 font-cormorant">POOJA</span>
             </h1>
           </NavLink>
         </div>  
