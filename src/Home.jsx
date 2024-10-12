@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accordion from './components/Accordion';
-import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope, FaStarHalfAlt, FaComments} from 'react-icons/fa';
+import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope,FaComments} from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 import './Home.css';
@@ -43,6 +43,7 @@ const Home = () => {
       rating: 5,
     },
   ];
+
 
   useEffect(() => {
     let lastScrollTop = window.pageYOffset;
@@ -124,15 +125,26 @@ const Home = () => {
 
   <div className="container relative z-10 flex flex-col justify-center min-h-screen px-4 py-16 mx-auto">
     <div className="max-w-3xl">
-      <motion.h1 
-        className="mb-6 text-4xl font-light md:text-6xl"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-      >
-        Discover the essence of <br />
-        <span className="font-semibold">Organic by Pooja</span>
-      </motion.h1>
+    <motion.h1 
+  className="mb-6 text-4xl font-light md:text-5xl lg:text-6xl"
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.5 }}
+>
+  Discover the essence of <br />
+  <span className="relative inline-block mt-2">
+    <span className="font-bold tracking-wide text-white font-playfair">
+      Organic
+    </span>
+    <span className="mx-2 font-bold tracking-wider text-white bold font-playfair">
+      By
+    </span>
+    <span className="font-bold tracking-wide text-white font-playfair">
+      Pooja
+    </span>
+  </span>
+</motion.h1>
+
       
       <motion.p 
         className="mb-12 text-xl text-gray-300 md:text-2xl"
@@ -166,21 +178,32 @@ const Home = () => {
 
     {/* Added feature highlights */}
     <motion.div 
-      className="grid grid-cols-1 gap-8 mt-16 md:grid-cols-3"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 1.1 }}
+  className="grid grid-cols-1 gap-12 mt-16 md:grid-cols-3"
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 1.1 }}
+>
+  {['Natural Ingredients', 'Personalized Care', 'Sustainable Beauty'].map((feature, index) => (
+    <motion.div 
+      key={index} 
+      className="text-center"
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.3 }}
     >
-      {['Natural Ingredients', 'Personalized Care', 'Sustainable Beauty'].map((feature, index) => (
-        <div key={index} className="text-center">
-          <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-white rounded-full bg-opacity-20">
-            <span className="text-2xl">✦</span>
-          </div>
-          <h3 className="mb-2 text-lg font-semibold">{feature}</h3>
-          <p className="text-sm text-gray-400">Experience the difference with our commitment to {feature.toLowerCase()}.</p>
-        </div>
-      ))}
+      <motion.div 
+        className="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-white to-transparent bg-opacity-20"
+        whileHover={{ rotate: 360 }}
+        transition={{ duration: 0.8 }}
+      >
+        <span className="text-3xl">✦</span>
+      </motion.div>
+      <h3 className="mb-3 text-xl font-light tracking-wide">{feature}</h3>
+      <p className="text-sm leading-relaxed text-gray-100">
+        Experience the difference with our commitment to {feature.toLowerCase()}.
+      </p>
     </motion.div>
+  ))}
+</motion.div>
   </div>
 
   {/* Subtle animated element */}
@@ -234,11 +257,6 @@ const Home = () => {
     animate={{ scale: 1, opacity: 1 }}
     transition={{ duration: 1.5 }}
   >
-    <img 
-      src="/img/services-background.jpg" 
-      alt="Luxury Services Background" 
-      className="object-cover w-full h-full"
-    />
     <div className="absolute inset-0 opacity-75 bg-gradient-to-r from-black via-transparent to-black"></div>
   </motion.div>
 
@@ -340,7 +358,6 @@ const Home = () => {
 </section>
       {/* About Us Section */}
       <section className="relative min-h-screen overflow-hidden text-white bg-black">
-  {/* Enhanced background pattern */}
   <div className="absolute inset-0 opacity-5">
     <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
       <path fill="#ffffff" fillOpacity="0.4" d="M14 16H9v-2h5V9h2v5h5v2h-5v5h-2v-5zM64 62v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm-32 0v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm0-48v2h-5v5h-2v-5h-5v-2h5V9h2v5h5z"></path>
@@ -385,14 +402,14 @@ const Home = () => {
           </div>
           
           <div className="space-y-6">
-  <p className="relative text-lg leading-relaxed text-gray-300">
-    <span className="absolute top-0 text-5xl text-white opacity-30 -left-4"></span>
-    Founded in <span className="font-light text-white">2019</span>, <span className="font-light text-white">ORGANIC BY POOJA</span> embarked on a mission to revolutionize skincare with natural, homemade solutions. Our journey from a small initiative to a trusted name in personalized care is a testament to our unwavering commitment to authenticity and quality.
-  </p>
-  <p className="text-lg leading-relaxed text-gray-300">
-    We believe in harnessing the power of nature to bring out your inner beauty, offering a range of organic products and services tailored to your unique needs.
-  </p>
-</div>
+            <p className="relative text-lg leading-relaxed text-gray-300">
+              <span className="absolute top-0 text-5xl text-white opacity-30 -left-4"></span>
+              Founded in <span className="font-light text-white">2019</span>, <span className="font-light text-white">ORGANIC BY POOJA</span> embarked on a mission to revolutionize skincare with natural, homemade solutions. Our journey from a small initiative to a trusted name in personalized care is a testament to our unwavering commitment to authenticity and quality.
+            </p>
+            <p className="text-lg leading-relaxed text-gray-300">
+              We believe in harnessing the power of nature to bring out your inner beauty, offering a range of organic products and services tailored to your unique needs.
+            </p>
+          </div>
         </div>
         
         <div className="flex justify-end mt-8">
@@ -450,119 +467,6 @@ const Home = () => {
     </motion.div>
   </div>
 
-  {/* Modal Overlay */}
-  {activeSection && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
-    >
-      <motion.div 
-        className="relative w-full max-w-4xl p-8 overflow-y-auto border border-white bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-lg shadow-2xl max-h-[90vh]"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 50, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <button
-          className="absolute text-gray-400 top-4 right-4 hover:text-gray-200"
-          onClick={() => setActiveSection(null)}
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-        <h3 className="mb-6 text-3xl font-light text-white">{activeSection}</h3>
-        
-        {/* Content for each section */}
-        {activeSection === 'VALUES' && (
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: FaLeaf, text: "NATURAL BEAUTY" },
-              { icon: FaHeart, text: "CUSTOMER CARE" },
-              { icon: FaRecycle, text: "SUSTAINABILITY" },
-              { icon: FaShieldAlt, text: "QUALITY ASSURANCE" },
-              { icon: FaHandHoldingHeart, text: "ETHICAL PRACTICES" },
-              { icon: FaUserFriends, text: "COMMUNITY SUPPORT" }
-            ].map((item, index) => (
-              <motion.div 
-                key={index} 
-                className="p-6 transition-all duration-300 border border-white rounded-lg hover:bg-white hover:bg-opacity-5"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <item.icon className="mb-4 text-4xl text-white" />
-                <h4 className="mb-2 text-lg font-light tracking-widest text-white">{item.text}</h4>
-                <p className="text-sm text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </motion.div>
-            ))}
-          </div>
-        )}
-        {activeSection === 'SERVICES' && (
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: FaPalette, text: "LUXURY MAKEUP" },
-              { icon: FaSpa, text: "ADVANCED SKIN CARE" },
-              { icon: FaCut, text: "COUTURE HAIR STYLING" },
-              { icon: FaGem, text: "EXCLUSIVE PRODUCT LINE" },
-              { icon: FaGraduationCap, text: "VIP BEAUTY MASTERCLASS" },
-              { icon: FaNail, text: "BESPOKE NAIL ARTISTRY" }
-            ].map((item, index) => (
-              <motion.div 
-                key={index} 
-                className="p-6 transition-all duration-300 border border-white rounded-lg hover:bg-white hover:bg-opacity-5"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <item.icon className="mb-4 text-4xl text-white" />
-                <h4 className="mb-2 text-lg font-light tracking-widest text-white">{item.text}</h4>
-                <p className="text-sm text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </motion.div>
-            ))}
-          </div>
-        )}
-        {activeSection === 'TESTIMONIALS' && (
-          <div className="grid gap-8 sm:grid-cols-2">
-            {[
-              { name: "ESHITA ARORA", text: "The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!", rating: 5 },
-              { name: "KANIKA", text: "Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.", rating: 4.5 },
-              { name: "NANDINI PATHAK", text: "Professional staff and fantastic results. The best salon experience I have ever had!", rating: 4 },
-              { name: "KAVITA BHALLA", text: "The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!", rating: 5 }
-            ].map((item, index) => (
-              <motion.div 
-                key={index} 
-                className="p-6 transition-all duration-300 border border-white rounded-lg hover:bg-white hover:bg-opacity-5"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="flex items-center justify-center w-12 h-12 mr-4 text-black bg-white rounded-full">
-                    <span className="text-xl font-bold">{item.name[0]}</span>
-                  </div>
-                  <div>
-                    <p className="font-light tracking-widest text-white">{item.name}</p>
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar key={i} className={`${i < item.rating ? 'text-yellow-400' : 'text-gray-600'} text-sm`} />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <p className="text-sm italic text-gray-300">"{item.text}"</p>
-              </motion.div>
-            ))}
-          </div>
-        )}
-      </motion.div>
-    </motion.div>
-  )}
-
   {/* Subtle floating elements */}
   <motion.div
     className="absolute w-64 h-64 bg-white rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-10"
@@ -592,6 +496,99 @@ const Home = () => {
       repeatType: "reverse",
     }}
   />
+
+  {/* Modal Overlay */}
+  {activeSection && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+    >
+      <motion.div 
+        className="relative w-full max-w-4xl p-8 overflow-y-auto border border-white bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-lg shadow-2xl max-h-[90vh]"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 50, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <button
+          className="absolute text-gray-400 top-4 right-4 hover:text-gray-200"
+          onClick={() => setActiveSection(null)}
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        <h3 className="mb-6 text-3xl font-light text-white">{activeSection}</h3>
+        
+        {activeSection === 'VALUES' && (
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {values.map((item, index) => (
+              <motion.div 
+                key={index} 
+                className="p-6 transition-all duration-300 border border-white rounded-lg hover:bg-white hover:bg-opacity-5"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <item.icon className="mb-4 text-4xl text-white" />
+                <h4 className="mb-2 text-lg font-light tracking-widest text-white">{item.text}</h4>
+                <p className="text-sm text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </motion.div>
+            ))}
+          </div>
+        )}
+        {activeSection === 'SERVICES' && (
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((item, index) => (
+              <motion.div 
+                key={index} 
+                className="p-6 transition-all duration-300 border border-white rounded-lg hover:bg-white hover:bg-opacity-5"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <item.icon className="mb-4 text-4xl text-white" />
+                <h4 className="mb-2 text-lg font-light tracking-widest text-white">{item.text}</h4>
+                <p className="text-sm text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </motion.div>
+            ))}
+          </div>
+        )}
+        {activeSection === 'TESTIMONIALS' && (
+          <div className="grid gap-8 sm:grid-cols-2">
+            {testimonials.map((item, index) => (
+              <motion.div 
+                key={index} 
+                className="p-6 transition-all duration-300 border border-white rounded-lg hover:bg-white hover:bg-opacity-5"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="flex items-center justify-center w-12 h-12 mr-4 text-black bg-white rounded-full">
+                    <span className="text-xl font-bold">{item.name[0]}</span>
+                  </div>
+                  <div>
+                    <p className="font-light tracking-widest text-white">{item.name}</p>
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <FaStar key={i} className={`${i < item.rating ? 'text-yellow-400' : 'text-gray-600'} text-sm`} />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <p className="text-sm italic text-gray-300">&ldquo;{item.text}&rdquo;</p>
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </motion.div>
+    </motion.div>
+  )}
 
   <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
 </section>
