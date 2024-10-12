@@ -147,7 +147,7 @@ const Home = () => {
 
       
       <motion.p 
-        className="mb-12 text-xl text-gray-300 md:text-2xl"
+        className="mb-12 text-xl text-gray-100 md:text-2xl font-poppins"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.7 }}

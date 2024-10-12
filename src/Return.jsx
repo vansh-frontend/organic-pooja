@@ -1,31 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaBook, FaExchangeAlt, FaTruck, FaFileDownload, FaMoneyBillWave, FaShippingFast } from 'react-icons/fa';
-import './Return.css';
 
 const PolicySection = ({ title, items, icon }) => {
   return (
-    <section className="py-12 border-b border-gray-700">
+    <motion.section 
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="py-12 border-b border-white border-opacity-20"
+    >
       <div className="container px-6 mx-auto">
         <div className="flex items-center mb-6">
-          <div className="p-3 bg-blue-500 rounded-full">{icon}</div>
-          <h2 className="ml-5 text-3xl font-semibold text-white">{title}</h2>
+          <div className="p-3 bg-white rounded-full bg-opacity-10">{icon}</div>
+          <h2 className="ml-5 text-2xl font-light text-white">{title}</h2>
         </div>
         <ul className="pl-4 space-y-3 text-gray-300">
           {items.map((item, index) => (
-            <li key={index} className="flex items-start">
-              <span className="mr-3 text-blue-400">•</span>
-              <span className="text-base">{item}</span>
-            </li>
+            <motion.li 
+              key={index} 
+              className="flex items-start"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <span className="mr-3 text-white">•</span>
+              <span className="text-base font-light">{item}</span>
+            </motion.li>
           ))}
         </ul>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
 const Return = () => {
-  const [isDownloading, setIsDownloading] = React.useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const downloadPDF = () => {
     setIsDownloading(true);
@@ -75,43 +85,42 @@ const Return = () => {
   ];
 
   return (
-    <div className="min-h-screen text-white bg-gradient-to-b from-gray-900 to-gray-800">
-      <header className="py-20 bg-gray-900">
+    <div className="min-h-screen text-white bg-black">
+      <header className="py-20 bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg">
         <div className="container px-6 mx-auto">
           <motion.h1 
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-4 text-4xl font-extrabold leading-tight text-center text-white"
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="mb-4 text-4xl font-light text-center text-white md:text-5xl lg:text-6xl"
           >
             Our Refund & Cancellation Policy
           </motion.h1>
-          <div className="w-32 h-1 mx-auto bg-blue-500 rounded-full"></div>
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-2xl mx-auto mt-4 text-lg text-center text-gray-300"
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="max-w-2xl mx-auto mt-4 text-xl text-center text-gray-300 md:text-2xl"
           >
             We strive to ensure your satisfaction with our products and services
           </motion.p>
           <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex justify-center mt-8 space-x-8"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="flex flex-wrap justify-center mt-12 space-x-8"
           >
-            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center">
-              <FaExchangeAlt className="mb-2 text-4xl text-blue-400" />
-              <span className="text-sm text-gray-300">Easy Returns</span>
+            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center mb-4">
+              <FaExchangeAlt className="mb-2 text-4xl text-white" />
+              <span className="text-sm font-light text-gray-300">Easy Returns</span>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center"> 
-              <FaMoneyBillWave className="mb-2 text-4xl text-green-400" />
-              <span className="text-sm text-gray-300">Quick Refunds</span>
+            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center mb-4"> 
+              <FaMoneyBillWave className="mb-2 text-4xl text-white" />
+              <span className="text-sm font-light text-gray-300">Quick Refunds</span>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center">
-              <FaShippingFast className="mb-2 text-4xl text-yellow-400" />
-              <span className="text-sm text-gray-300">Fast Shipping</span>
+            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center mb-4">
+              <FaShippingFast className="mb-2 text-4xl text-white" />
+              <span className="text-sm font-light text-gray-300">Fast Shipping</span>
             </motion.div>
           </motion.div>
         </div>
@@ -121,16 +130,18 @@ const Return = () => {
         <PolicySection key={index} {...policy} />
       ))}
 
-      <footer className="py-16">
+      <footer className="py-16 bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg">
         <div className="container px-6 mx-auto text-center">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={downloadPDF}
             disabled={isDownloading}
-            className="inline-flex items-center px-6 py-3 text-base font-medium text-white transition duration-300 ease-in-out bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center px-8 py-3 text-base font-light text-black transition duration-300 ease-in-out bg-white rounded-full hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <FaFileDownload className="mr-2" />
             <span>{isDownloading ? 'Opening PDF...' : 'View Full Policy PDF'}</span>
-          </button>
+          </motion.button>
         </div>
       </footer>
     </div>

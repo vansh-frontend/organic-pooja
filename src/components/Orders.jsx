@@ -164,16 +164,16 @@ const Orders = () => {
   if (orders.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-black">
-        <div className="w-full max-w-md p-6 mx-4 text-center rounded-lg shadow-md bg-black/50">
-          <FaBox className="mx-auto mb-4 text-5xl text-white/60 sm:text-6xl" />
-          <h2 className="mb-2 text-xl font-semibold text-white sm:text-2xl">No Orders Yet</h2>
-          <p className="text-sm text-white/60 sm:text-base">You haven't placed any orders. Start shopping to see your orders here!</p>
-        </div>
+      <div className="w-full max-w-md p-6 mx-4 text-center bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm">
+        <FaBox className="mx-auto mb-4 text-5xl text-white sm:text-6xl" />
+        <h2 className="mb-2 text-xl font-light text-white sm:text-2xl">No Orders Yet</h2>
+        <p className="text-sm text-gray-300 sm:text-base">You haven't placed any orders. Start shopping to see your orders here!</p>
       </div>
+    </div>
     );
-  }
-
-  return (
+    }
+    
+    return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -181,7 +181,7 @@ const Orders = () => {
       className="min-h-screen py-6 bg-black sm:py-8"
     >
       <div className="container px-4 mx-auto max-w-7xl">
-        <h1 className="mb-6 text-2xl font-bold text-center text-white sm:mb-8 sm:text-3xl">Your Orders</h1>
+        <h1 className="mb-6 text-2xl font-light text-center text-white sm:mb-8 sm:text-3xl">Your Orders</h1>
         
         {/* Search and Filter Section */}
         <div className="mb-6 space-y-4 sm:space-y-0 sm:flex sm:flex-wrap sm:items-center sm:justify-between">
@@ -191,15 +191,15 @@ const Orders = () => {
               placeholder="Search orders..."
               value={searchTerm}
               onChange={handleSearch}
-              className="w-full px-4 py-2 pl-10 pr-4 text-sm text-white border-2 rounded-lg placeholder-white/60 bg-white/10 border-white/20 sm:text-base focus:outline-none focus:border-white focus:ring focus:ring-white/50 focus:ring-opacity-50"
+              className="w-full px-4 py-2 pl-10 pr-4 text-sm text-white placeholder-gray-300 bg-black border border-white rounded-lg sm:text-base focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
             />
-            <FaSearch className="absolute transform -translate-y-1/2 text-white/60 left-3 top-1/2" />
+            <FaSearch className="absolute text-white transform -translate-y-1/2 left-3 top-1/2" />
           </div>
           <div className="flex flex-wrap items-center space-y-2 sm:space-y-0 sm:space-x-4">
             <select
               value={statusFilter}
               onChange={(e) => handleStatusFilter(e.target.value)}
-              className="w-full px-4 py-2 text-sm text-white border-2 rounded-lg bg-white/10 border-white/20 sm:w-auto sm:text-base focus:outline-none focus:border-white focus:ring focus:ring-white/50 focus:ring-opacity-50"
+              className="w-full px-4 py-2 text-sm text-white bg-black border border-white rounded-lg sm:w-auto sm:text-base focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
             >
               <option value="all">All Statuses</option>
               <option value="Processing">Processing</option>
@@ -208,19 +208,19 @@ const Orders = () => {
             </select>
             <button
               onClick={() => handleSort('date')}
-              className="w-full px-4 py-2 text-sm text-white border-2 rounded-lg bg-white/10 border-white/20 sm:w-auto sm:text-base focus:outline-none focus:border-white focus:ring focus:ring-white/50 focus:ring-opacity-50 hover:bg-white/20"
+              className="w-full px-4 py-2 text-sm text-white bg-black border border-white rounded-lg sm:w-auto sm:text-base focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent hover:bg-white hover:text-black"
             >
               Sort by Date {sortBy === 'date' && (sortOrder === 'asc' ? '↑' : '↓')}
             </button>
             <button
               onClick={() => handleSort('total')}
-              className="w-full px-4 py-2 text-sm text-white border-2 rounded-lg bg-white/10 border-white/20 sm:w-auto sm:text-base focus:outline-none focus:border-white focus:ring focus:ring-white/50 focus:ring-opacity-50 hover:bg-white/20"
+              className="w-full px-4 py-2 text-sm text-white bg-black border border-white rounded-lg sm:w-auto sm:text-base focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent hover:bg-white hover:text-black"
             >
               Sort by Total {sortBy === 'total' && (sortOrder === 'asc' ? '↑' : '↓')}
             </button>
           </div>
         </div>
-
+    
         {/* Orders List */}
         <div className="space-y-6">
           {filteredOrders.map((order) => (
@@ -229,51 +229,51 @@ const Orders = () => {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="p-4 rounded-lg shadow-md bg-white/10 sm:p-6"
+              className="p-4 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm sm:p-6"
             >
               <div className="flex flex-wrap items-center justify-between mb-4">
-                <h2 className="mb-2 text-lg font-semibold text-white sm:text-xl sm:mb-0">Order #{order.id}</h2>
-                <span className="px-3 py-1 text-xs font-medium text-black bg-white rounded-full sm:text-sm">
+                <h2 className="mb-2 text-lg font-light text-white sm:text-xl sm:mb-0">Order #{order.id}</h2>
+                <span className="px-3 py-1 text-xs font-light text-black bg-white rounded-full sm:text-sm">
                   {order.status || 'Processing'}
                 </span>
               </div>
               <div className="grid grid-cols-1 gap-4 mb-4 sm:grid-cols-2 lg:grid-cols-4">
                 <div className="flex items-center">
-                  <FaCalendarAlt className="mr-2 text-white/60" />
-                  <span className="text-sm text-white/80 sm:text-base">Order Date: {new Date(order.date).toLocaleDateString()}</span>
+                  <FaCalendarAlt className="mr-2 text-white" />
+                  <span className="text-sm text-gray-300 sm:text-base">Order Date: {new Date(order.date).toLocaleDateString()}</span>
                 </div>
                 <div className="flex items-center">
-                  <FaTruck className="mr-2 text-white/60" />
-                  <span className="text-sm text-white/80 sm:text-base">Shipping: {order.shippingMethod}</span>
+                  <FaTruck className="mr-2 text-white" />
+                  <span className="text-sm text-gray-300 sm:text-base">Shipping: {order.shippingMethod}</span>
                 </div>
                 <div className="flex items-center">
-                  <FaMoneyBillWave className="mr-2 text-white/60" />
-                  <span className="text-sm text-white/80 sm:text-base">Total: ₹{order.total.toFixed(2)}</span>
+                  <FaMoneyBillWave className="mr-2 text-white" />
+                  <span className="text-sm text-gray-300 sm:text-base">Total: ₹{order.total.toFixed(2)}</span>
                 </div>
                 <div className="flex items-center">
                   <button
                     onClick={() => downloadOrderDetails(order)}
-                    className="flex items-center px-3 py-1 text-xs font-medium text-black bg-white rounded-full sm:text-sm hover:bg-white/80"
+                    className="flex items-center px-3 py-1 text-xs font-light text-black bg-white rounded-full sm:text-sm hover:bg-opacity-90"
                   >
                     <FaDownload className="mr-2" />
                     Download Invoice
                   </button>
                 </div>
               </div>
-              <div className="mt-4 border-t border-white/20">
-                <h3 className="mt-4 mb-2 text-base font-semibold text-white sm:text-lg">Items</h3>
-                <ul className="divide-y divide-white/20">
+              <div className="mt-4 border-t border-white">
+                <h3 className="mt-4 mb-2 text-base font-light text-white sm:text-lg">Items</h3>
+                <ul className="divide-y divide-white">
                   {order.items.map((item) => (
                     <li key={item.id} className="py-3">
                       <div className="flex flex-wrap items-center justify-between">
                         <div className="flex items-center mb-2 sm:mb-0">
                           <img src={item.image} alt={item.name} className="w-12 h-12 mr-4 rounded-md sm:w-16 sm:h-16" />
                           <div>
-                            <h4 className="text-xs font-medium text-white sm:text-sm">{item.name}</h4>
-                            <p className="text-xs text-white/60 sm:text-sm">Quantity: {item.quantity}</p>
+                            <h4 className="text-xs font-light text-white sm:text-sm">{item.name}</h4>
+                            <p className="text-xs text-gray-300 sm:text-sm">Quantity: {item.quantity}</p>
                           </div>
                         </div>
-                        <span className="text-xs font-medium text-white sm:text-sm">₹{parseFloat(item.price).toFixed(2)}</span>
+                        <span className="text-xs font-light text-white sm:text-sm">₹{parseFloat(item.price).toFixed(2)}</span>
                       </div>
                     </li>
                   ))}

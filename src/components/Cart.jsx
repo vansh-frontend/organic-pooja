@@ -161,39 +161,39 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   if (orderPlaced) {
     return (
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="min-h-screen py-12 bg-[#050810]"
-      >
-        <div className="container max-w-3xl px-4 mx-auto">
-          <div className="p-8 bg-gray-900 border border-purple-600 shadow-lg rounded-2xl">
-            <FaCheckCircle className="mx-auto mb-6 text-6xl text-green-500" />
-            <h2 className="mb-4 text-3xl font-bold text-center text-purple-400">Cosmic Order Confirmed!</h2>
-            <p className="mb-6 text-xl text-center text-purple-300">Thank you for your intergalactic purchase. Your order ID is: {orderId}</p>
-            <div className="flex justify-center">
-              <button
-                onClick={() => navigate('/products')}
-                className="px-6 py-3 text-base font-semibold text-white transition-colors bg-purple-600 rounded-full hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-gray-900"
-              >
-                Continue Shopping
-              </button>
-            </div>
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen py-12 bg-black"
+    >
+      <div className="container max-w-3xl px-4 mx-auto">
+        <div className="p-8 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm">
+          <FaCheckCircle className="mx-auto mb-6 text-6xl text-green-500" />
+          <h2 className="mb-4 text-3xl font-light text-center text-white">Order Confirmed!</h2>
+          <p className="mb-6 text-xl text-center text-gray-300">Thank you for your purchase. Your order ID is: {orderId}</p>
+          <div className="flex justify-center">
+            <button
+              onClick={() => navigate('/products')}
+              className="px-6 py-3 text-base font-light text-black transition-colors bg-white rounded-full hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+            >
+              Continue Shopping
+            </button>
           </div>
         </div>
-      </motion.div>
+      </div>
+    </motion.div>
     );
-  }
-
-  return (
+    }
+    
+    return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen py-6 bg-[#050810] sm:py-12"
+      className="min-h-screen py-6 bg-black sm:py-12"
     >
       <div className="container px-4 mx-auto max-w-7xl">
-        <h1 className="mb-6 text-2xl font-bold text-center text-purple-400 sm:mb-8 sm:text-4xl">Your Cosmic Cart</h1>
+        <h1 className="mb-6 text-2xl font-light text-center text-white sm:mb-8 sm:text-4xl">Your Cart</h1>
         
         <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
     
@@ -202,11 +202,11 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="p-6 text-center bg-gray-900 border border-purple-600 shadow-lg sm:p-12 rounded-2xl"
+            className="p-6 text-center bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm sm:p-12"
           >
-            <FaShoppingCart className="mx-auto mb-4 text-6xl text-purple-400 sm:mb-6 sm:text-8xl animate-bounce" />
-            <p className="mb-6 text-xl text-gray-300 sm:mb-8 sm:text-2xl">Your cosmic cart is empty. Start exploring the galaxy of products!</p>
-            <button className="w-full px-6 py-3 text-base font-semibold text-white transition-colors bg-purple-600 rounded-full sm:w-auto sm:px-8 sm:py-4 sm:text-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-gray-900">
+            <FaShoppingCart className="mx-auto mb-4 text-6xl text-white sm:mb-6 sm:text-8xl animate-bounce" />
+            <p className="mb-6 text-xl text-gray-300 sm:mb-8 sm:text-2xl">Your cart is empty. Start exploring our products!</p>
+            <button className="w-full px-6 py-3 text-base font-light text-black transition-colors bg-white rounded-full sm:w-auto sm:px-8 sm:py-4 sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black">
               <FaArrowRight className="inline-block mr-2" />
               <Link to="/products">Continue Shopping</Link>
             </button>
@@ -222,42 +222,41 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="overflow-hidden transition-shadow duration-300 bg-gray-900 border border-purple-600 shadow-md rounded-2xl hover:shadow-lg hover:shadow-purple-500/20"
+                    className="overflow-hidden transition-shadow duration-300 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm"
                   >
                     <div className="flex flex-col sm:flex-row">
                       <div className="w-full sm:w-1/3">
                         <img src={item.image} alt={item.name} className="object-cover w-full h-48 sm:h-full" />
                       </div>
                       <div className="flex-1 p-4 sm:p-6">
-                        <h3 className="mb-2 text-lg font-semibold text-purple-400 sm:text-xl">{item.name}</h3>
-                        <p className="mb-4 text-xl font-bold text-purple-300 sm:text-2xl">
-                          <FaMoneyBillWave className="inline-block mr-2" />
-                          {item.price}
+                        <h3 className="mb-2 text-lg font-light text-white sm:text-xl">{item.name}</h3>
+                        <p className="mb-4 text-xl font-light text-gray-300 sm:text-2xl">
+                          ₹{item.price}
                         </p>
                         <div className="flex flex-col items-center justify-between sm:flex-row">
-                          <div className="flex items-center mb-4 overflow-hidden border border-purple-500 rounded-lg sm:mb-0">
+                          <div className="flex items-center mb-4 overflow-hidden border border-white rounded-lg sm:mb-0">
                             <button
                               onClick={() => handleQuantityChange(item, item.quantity - 1)}
-                              className="px-3 py-1 transition-colors bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-inset"
+                              className="px-3 py-1 text-black transition-colors bg-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
                             >
-                              <FaMinus className="text-white" />
+                              <FaMinus className="text-black" />
                             </button>
                             <input
                               type="number"
                               value={item.quantity}
                               onChange={(e) => handleQuantityChange(item, parseInt(e.target.value, 10))}
-                              className="w-16 text-center text-purple-300 bg-gray-800 border-l border-r border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-inset"
+                              className="w-16 text-center text-white bg-black border-l border-r border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
                             />
                             <button
                               onClick={() => handleQuantityChange(item, item.quantity + 1)}
-                              className="px-3 py-1 transition-colors bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-inset"
+                              className="px-3 py-1 text-black transition-colors bg-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
                             >
-                              <FaPlus className="text-white" />
+                              <FaPlus className="text-black" />
                             </button>
                           </div>
                           <button
                             onClick={() => removeFromCart(item)}
-                            className="p-2 text-red-400 transition-colors bg-red-900 rounded-full hover:bg-red-800 hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+                            className="p-2 text-white transition-colors bg-red-600 rounded-full hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black"
                           >
                             <FaTrash />
                           </button>
@@ -273,17 +272,17 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
-                className="p-4 bg-gray-900 border border-purple-600 shadow-md sm:p-6 rounded-2xl"
+                className="p-4 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm sm:p-6"
               >
-                <h3 className="flex items-center mb-4 text-lg font-semibold text-purple-400 sm:text-xl">
-                  <FaPercent className="mr-2 text-purple-400" /> Apply Galactic Coupon
+                <h3 className="flex items-center mb-4 text-lg font-light text-white sm:text-xl">
+                  <FaPercent className="mr-2 text-white" /> Apply Coupon
                 </h3>
                 {appliedCoupon ? (
-                  <div className="flex items-center justify-between p-3 bg-purple-900 rounded-lg">
-                    <span className="text-purple-300">Coupon {appliedCoupon.code} applied</span>
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg bg-opacity-10">
+                    <span className="text-gray-300">Coupon {appliedCoupon.code} applied</span>
                     <button
                       onClick={removeCoupon}
-                      className="px-3 py-1 text-red-400 transition-colors bg-red-900 rounded-lg hover:bg-red-800 hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+                      className="px-3 py-1 text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black"
                     >
                       Remove
                     </button>
@@ -294,148 +293,147 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                       type="text"
                       value={couponCode}
                       onChange={(e) => setCouponCode(e.target.value)}
-                        className="w-full px-3 py-2 mb-4 text-center text-purple-300 bg-gray-800 border border-purple-500 rounded-lg sm:w-auto sm:mb-0 sm:text-left focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-inset"
-                      placeholder="Enter galactic coupon code"
+                      className="w-full px-3 py-2 mb-4 text-center text-white bg-black border border-white rounded-lg sm:w-auto sm:mb-0 sm:text-left focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
+                      placeholder="Enter coupon code"
                     />
-                   <button
-  onClick={applyCoupon}
-  className="px-6 py-3 font-semibold text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-gray-900"
->
-  Apply
-</button>
+                    <button
+                      onClick={applyCoupon}
+                      className="px-6 py-3 font-light text-black transition-colors bg-white rounded-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                    >
+                      Apply
+                    </button>
                   </div>
                 )}
               </motion.div>
             </div>
-
+    
             {/* Summary Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.4 }}
-              className="p-6 bg-gray-900 shadow-md sm:p-8 rounded-2xl flex flex-col h-[calc(100vh-200px)] sticky top-24 border border-purple-600"
+              className="p-6 border border-white rounded-lg bg-black bg-opacity-50 backdrop-filter backdrop-blur-sm sm:p-8 flex flex-col h-[calc(100vh-200px)] sticky top-24"
             >
-              <h2 className="mb-4 text-xl font-semibold text-purple-400 sm:text-2xl">Cosmic Order Summary</h2>
+              <h2 className="mb-4 text-xl font-light text-white sm:text-2xl">Order Summary</h2>
               <div className="flex-grow mb-4 overflow-y-auto">
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between text-lg font-medium text-purple-300">
+                  <div className="flex items-center justify-between text-lg font-light text-gray-300">
                     <span>Subtotal</span>
                     <span>₹{subtotal.toFixed(2)}</span>
                   </div>
                   {appliedCoupon && (
-                    <div className="flex items-center justify-between text-lg font-medium text-purple-300">
-                      <span>Galactic Discount</span>
+                    <div className="flex items-center justify-between text-lg font-light text-gray-300">
+                      <span>Discount</span>
                       <span>-₹{discount.toFixed(2)}</span>
                     </div>
                   )}
                 </div>
               </div>
-              <div className="pt-4 border-t border-purple-600">
-                <div className="flex items-center justify-between mb-6 text-lg font-bold text-purple-400">
+              <div className="pt-4 border-t border-white">
+                <div className="flex items-center justify-between mb-6 text-lg font-light text-white">
                   <span>Total</span>
                   <span>₹{total.toFixed(2)}</span>
                 </div>
                 <button
                   onClick={handleCheckout}
-                  className="w-full px-6 py-3 text-base font-semibold text-white transition-colors bg-purple-600 rounded-full sm:text-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+                  className="w-full px-6 py-3 text-base font-light text-black transition-colors bg-white rounded-full sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                 >
-                  Proceed to Intergalactic Checkout
+                  Proceed to Checkout
                 </button>
               </div>
             </motion.div>
           </div>
         )}
-
+    
         {/* Checkout Form */}
         {isCheckingOut && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="p-6 mt-8 bg-gray-900 border border-purple-600 shadow-md sm:p-8 rounded-2xl"
+            className="p-6 mt-8 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm sm:p-8"
           >
-            <h2 className="mb-6 text-2xl font-semibold text-purple-400">Cosmic Traveler Information</h2>
+            <h2 className="mb-6 text-2xl font-light text-white">Customer Information</h2>
             <form onSubmit={onSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-purple-300">Name</label>
+                <label htmlFor="name" className="block text-sm font-light text-gray-300">Name</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={customerInfo.name}
                   onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
-                  className="block w-full px-4 py-3 mt-1 text-purple-300 bg-gray-800 border border-purple-500 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-500"
+                  className="block w-full px-4 py-3 mt-1 text-white bg-black border border-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-white"
                   required
                 />
               </div>
-
+    
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-purple-300">Email</label>
+                <label htmlFor="email" className="block text-sm font-light text-gray-300">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={customerInfo.email}
                   onChange={(e) => setCustomerInfo({ ...customerInfo, email: e.target.value })}
-                  className="block w-full px-4 py-3 mt-1 text-purple-300 bg-gray-800 border border-purple-500 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-500"
+                  className="block w-full px-4 py-3 mt-1 text-white bg-black border border-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-white"
                   required
                 />
               </div>
-
+    
               <div>
-                <label htmlFor="phoneNo" className="block text-sm font-medium text-purple-300">Intergalactic Communication Number</label>
+                <label htmlFor="phoneNo" className="block text-sm font-light text-gray-300">Phone Number</label>
                 <input
                   type="tel"
                   id="phoneNo"
                   name="phoneNo"
                   value={customerInfo.phoneNo}
                   onChange={(e) => setCustomerInfo({ ...customerInfo, phoneNo: e.target.value })}
-                  className="block w-full px-4 py-3 mt-1 text-purple-300 bg-gray-800 border border-purple-500 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-500"
+                  className="block w-full px-4 py-3 mt-1 text-white bg-black border border-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-white"
                   required
                 />
               </div>
-
+    
               <div>
-                <label htmlFor="address" className="block text-sm font-medium text-purple-300">Cosmic Address</label>
+                <label htmlFor="address" className="block text-sm font-light text-gray-300">Address</label>
                 <textarea
                   id="address"
                   name="address"
                   value={customerInfo.address}
                   onChange={(e) => setCustomerInfo({ ...customerInfo, address: e.target.value })}
-                  className="block w-full px-4 py-3 mt-1 text-purple-300 bg-gray-800 border border-purple-500 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-500"
+                  className="block w-full px-4 py-3 mt-1 text-white bg-black border border-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-white"
                   required
                   rows="3"
                 ></textarea>
               </div>
-
+    
               <div>
-                <label htmlFor="pincode" className="block text-sm font-medium text-purple-300">PinCode</label>
+                <label htmlFor="pincode" className="block text-sm font-light text-gray-300">Pincode</label>
                 <input
                   type="text"
                   id="pincode"
                   name="pincode"
                   value={customerInfo.pincode}
                   onChange={(e) => setCustomerInfo({ ...customerInfo, pincode: e.target.value })}
-                  className="block w-full px-4 py-3 mt-1 text-purple-300 bg-gray-800 border border-purple-500 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-500"
+                  className="block w-full px-4 py-3 mt-1 text-white bg-black border border-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-white"
                   required
                 />
               </div>
-
-
+    
               <div className="flex justify-between">
                 <button
                   type="button"
                   onClick={cancelOrder}
-                  className="px-6 py-3 text-base font-semibold text-purple-400 transition duration-200 bg-gray-800 border border-purple-500 rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+                  className="px-6 py-3 text-base font-light text-white transition duration-200 bg-black border border-white rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-white hover:text-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                 >
-                    Cancel Order
+                  Cancel Order
                 </button>
                 
                 <button
                   type="submit"
-                  className="px-6 py-3 text-base font-semibold text-white transition duration-200 bg-purple-600 rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+                  className="px-6 py-3 text-base font-light text-black transition duration-200 bg-white rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                 >
-                  Launch Order
+                  Place Order
                 </button>
               </div>
             </form>

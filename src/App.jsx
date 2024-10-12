@@ -1,6 +1,7 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { useEffect } from 'react';
 import Home from './Home';
 import Book from './Book';
 import Services from './Services';
@@ -10,7 +11,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './About';
 import Help from './components/Help';
-import './components/DataDeletionPage';
 import DataDeletionPage from './components/DataDeletionPage';
 import Orders from './components/Orders';
 import Return from './Return';
@@ -43,7 +43,7 @@ const ScrollToTop = () => {
   return null;
 }
 
-const App = () => {
+const AppContent = () => {
   const [cartItems, setCartItems] = useState([]);
 
   const addToCart = useCallback((product) => {
@@ -80,31 +80,38 @@ const App = () => {
   }, []);
 
   return (
+    <>
+      <ScrollToTop />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/book" element={<Book />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/return" element={<Return />} />
+        <Route path='/Help' element={<Help />} />
+        <Route path='/delete' element={<DataDeletionPage />} />
+        <Route path="/products" element={<Products addToCart={addToCart} />} />
+        <Route path="/cart" element={
+          <Cart
+            cartItems={cartItems}
+            updateQuantity={updateQuantity}
+            removeFromCart={removeFromCart}
+            onBuyNow={(product) => console.log(`Buy now ${product.name}`)}
+          />
+        } />
+        <Route path="/about" element={<About />} />
+      </Routes> 
+      <Footer />
+    </>
+  );
+};
+
+const App = () => {
+  return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <ScrollToTop />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/book" element={<Book />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/return" element={<Return />} />
-          <Route path='/Help' element={<Help></Help>}></Route>
-          <Route path='/delete' element={<DataDeletionPage></DataDeletionPage>}></Route>
-
-          <Route path="/products" element={<Products addToCart={addToCart} />} />
-          <Route path="/cart" element={
-            <Cart
-              cartItems={cartItems}
-              updateQuantity={updateQuantity}
-              removeFromCart={removeFromCart}
-              onBuyNow={(product) => console.log(`Buy now ${product.name}`)}
-            />
-          } />
-          <Route path="/about" element={<About />} />
-        </Routes> 
-        <Footer />
+        <AppContent />
       </BrowserRouter>
     </ThemeProvider>
   );
