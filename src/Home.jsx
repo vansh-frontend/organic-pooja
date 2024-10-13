@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accordion from './components/Accordion';
-import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope,FaComments,FaArrowRight} from 'react-icons/fa';
+import { FaLeaf, FaStar, FaHeart, FaGift, FaRegClock, FaHandsHelping, FaHandSparkles, FaShieldAlt, FaUsers, FaPhone, FaEnvelope, FaComments, FaArrowRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 import './Home.css';
@@ -10,6 +10,7 @@ const Home = () => {
   const sectionRefs = useRef([]);
   const [scrollDirection, setScrollDirection] = useState(null);
   const [activeSection, setActiveSection] = useState(null);
+  const testimonialRef = useRef(null);
 
   const values = [
     { icon: FaLeaf, text: "Natural Ingredients", color: "green" },
@@ -27,23 +28,13 @@ const Home = () => {
   ];
 
   const testimonials = [
-    {
-      text: "Organic by Pooja has completely transformed my skin!",
-      name: "Eshita Arora",
-      rating: 4,
-    },
-    {
-      text: "I love the special offers and quality of products.",
-      name: "Kanika",
-      rating: 3,
-    },
-    {
-      text: "The team at Organic by Pooja truly cares about their customers.",
-      name: "Nandini Pathak",
-      rating: 5,
-    },
+    { name: 'ESHITA ARORA', review: 'The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!', img: 'img/sec2.jpg', rating: 5 },
+    { name: 'KANIKA', review: 'Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.', img: 'img/sec2.jpg', rating: 4.5 },
+    { name: 'NANDINI PATHAK', review: 'Professional staff and fantastic results. The best salon experience I have ever had!', img: 'img/sec2.jpg', rating: 4 },
+    { name: 'KAVITA BHALLA', review: 'The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!', img: 'img/sec2.jpg', rating: 5 },
+    { name: 'ANJALI SHARMA', review: 'Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.', img: 'img/sec2.jpg', rating: 4.5 },
+    { name: 'VARSHA AGARWAL', review: 'Professional staff and fantastic results. The best salon experience I have ever had!', img: 'img/sec2.jpg', rating: 4 },
   ];
-
 
   useEffect(() => {
     let lastScrollTop = window.pageYOffset;
@@ -89,7 +80,6 @@ const Home = () => {
     };
   }, [scrollDirection]);
 
-  // New effect to handle body scroll
   useEffect(() => {
     if (activeSection) {
       document.body.style.overflow = 'hidden';
@@ -102,6 +92,12 @@ const Home = () => {
     };
   }, [activeSection]);
 
+  const scrollTestimonials = (direction) => {
+    if (testimonialRef.current) {
+      const scrollAmount = direction === 'left' ? -300 : 300;
+      testimonialRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
 
   return (
@@ -707,101 +703,111 @@ const Home = () => {
 </section>
       {/* Testimonials Section */}
 {/* Testimonials Section */}
-<section className="relative py-24 overflow-hidden text-white bg-black">
-  <div className="container relative z-10 px-4 mx-auto max-w-7xl">
-    <motion.div
-      className="mb-16 text-center"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-      <motion.h2 
-        className="mb-4 text-4xl font-light md:text-5xl lg:text-6xl"
-      >
-        What Our Clients <span className="font-semibold">Love About Us</span>
-      </motion.h2>
-      <motion.p
-        className="text-xl text-gray-300 md:text-2xl"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        Hear from our satisfied customers about their experiences
-      </motion.p>
-    </motion.div>
-    
-    <div className="relative">
-      <motion.div 
-        className="flex gap-6 pb-8 overflow-x-auto scrolling-touch scrolling-wrapper"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-      >
-        {[
-          { name: 'ESHITA ARORA', review: 'The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!', img: 'img/sec2.jpg', rating: 5 },
-          { name: 'KANIKA', review: 'Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.', img: 'img/sec2.jpg', rating: 4.5 },
-          { name: 'NANDINI PATHAK', review: 'Professional staff and fantastic results. The best salon experience I have ever had!', img: 'img/sec2.jpg', rating: 4 },
-          { name: 'KAVITA BHALLA', review: 'The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!', img: 'img/sec2.jpg', rating: 5 },
-          { name: 'ANJALI SHARMA', review: 'Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.', img: 'img/sec2.jpg', rating: 4.5 },
-          { name: 'VARSHA AGARWAL', review: 'Professional staff and fantastic results. The best salon experience I have ever had!', img: 'img/sec2.jpg', rating: 4 },
-        ].map((testimonial, index) => (
+ <section className="relative py-24 overflow-hidden text-white bg-black">
+        <div className="container relative z-10 px-4 mx-auto max-w-7xl">
           <motion.div
-            key={index}
-            whileHover={{ scale: 1.05 }}
-            className="flex-shrink-0 p-6 transition-all duration-300 border border-white rounded-lg bg-opacity-10 backdrop-filter backdrop-blur-sm w-80 hover:bg-white hover:bg-opacity-5"
+            className="mb-16 text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-           <div className="flex items-center mb-4">
-  <div className="flex items-center justify-center w-12 h-12 mr-3 text-black bg-white rounded-full">
-    <span className="text-lg font-bold">{testimonial.name[0]}</span>
-  </div>
-  <div className="flex-1 min-w-0">
-    <p className="font-light tracking-widest text-white truncate">{testimonial.name}</p>
-    <div className="flex">
-      {[...Array(5)].map((_, i) => (
-        <FaStar key={i} className={`${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-600'} text-xs`} />
-      ))}
-    </div>
-  </div>
-</div>
-            <p className="text-sm italic text-gray-300">{testimonial.review}</p>
+            <motion.h2 
+                          className="mb-4 text-4xl font-light md:text-5xl lg:text-6xl"
+            >
+              What Our Clients <span className="font-semibold">Love About Us</span>
+            </motion.h2>
+            <motion.p
+              className="text-xl text-gray-300 md:text-2xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Hear from our satisfied customers about their experiences
+            </motion.p>
           </motion.div>
-        ))}
-      </motion.div>
-    </div>
-  </div>
+          
+          <div className="relative">
+            <motion.div 
+              ref={testimonialRef}
+              className="flex gap-6 pb-8 overflow-x-auto scrolling-touch scrolling-wrapper"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex-shrink-0 p-6 transition-all duration-300 border border-white rounded-lg bg-opacity-10 backdrop-filter backdrop-blur-sm w-80 hover:bg-white hover:bg-opacity-5"
+                >
+                  <div className="flex items-center mb-4">
+                    <div className="flex items-center justify-center w-12 h-12 mr-3 text-black bg-white rounded-full">
+                      <span className="text-lg font-bold">{testimonial.name[0]}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-light tracking-widest text-white truncate">{testimonial.name}</p>
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <FaStar key={i} className={`${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-600'} text-xs`} />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-sm italic text-gray-300">{testimonial.review}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
 
-  {/* Subtle floating elements */}
-  <motion.div
-    className="absolute w-64 h-64 bg-white rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-10"
-    animate={{
-      scale: [1, 1.2, 1],
-      rotate: [0, 90, 180, 270, 360],
-      x: ['-25%', '0%', '-25%'],
-      y: ['-25%', '0%', '-25%'],
-    }}
-    transition={{
-      duration: 20,
-      repeat: Infinity,
-      repeatType: "reverse",
-    }}
-  />
-  <motion.div
-    className="absolute w-64 h-64 bg-white rounded-full bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-10"
-    animate={{
-      scale: [1, 1.2, 1],
-      rotate: [0, -90, -180, -270, -360],
-      x: ['25%', '0%', '25%'],
-      y: ['25%', '0%', '25%'],
-    }}
-    transition={{
-      duration: 25,
-      repeat: Infinity,
-      repeatType: "reverse",
-    }}
-  />
+          <div className="flex justify-center mt-8">
+            <button 
+              onClick={() => scrollTestimonials('left')}
+              className="p-2 mr-4 text-white transition-colors duration-300 border border-white rounded-full hover:bg-white hover:text-black"
+            >
+              <FaChevronLeft />
+            </button>
+            <button 
+              onClick={() => scrollTestimonials('right')}
+              className="p-2 text-white transition-colors duration-300 border border-white rounded-full hover:bg-white hover:text-black"
+            >
+              <FaChevronRight />
+            </button>
+          </div>
+        </div>
 
-  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
-</section>
+        {/* Subtle floating elements */}
+        <motion.div
+          className="absolute w-64 h-64 bg-white rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 90, 180, 270, 360],
+            x: ['-25%', '0%', '-25%'],
+            y: ['-25%', '0%', '-25%'],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+        />
+        <motion.div
+          className="absolute w-64 h-64 bg-white rounded-full bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, -90, -180, -270, -360],
+            x: ['25%', '0%', '25%'],
+            y: ['25%', '0%', '25%'],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+        />
+
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
+      </section>
+
 
 {/* FAQ Section */}
 <section className="relative min-h-screen py-24 text-white bg-black" ref={(el) => (sectionRefs.current[7] = el)}>

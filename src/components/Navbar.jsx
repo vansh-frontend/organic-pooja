@@ -132,7 +132,7 @@ const Navbar = ({ position }) => {
             <div className="py-2">
               <NavLink 
                 to="/orders" 
-                className="flex items-center px-4 py-2 text-sm transition-colors duration-150 text-white-700 hover:-100 hover:text-black"
+                className="flex items-center px-4 py-2 text-sm text-black transition-colors duration-150 hover:-100 hover:text-green-600"
                 onClick={() => {
                   setIsUserMenuOpen(false);
                   if (isMobile) setIsOpen(false);
@@ -142,7 +142,7 @@ const Navbar = ({ position }) => {
               </NavLink>
               <NavLink 
                 to="/wishlist" 
-                className="flex items-center px-4 py-2 text-sm transition-colors duration-150 text-white-700 hover:-100 hover:text-black"
+                className="flex items-center px-4 py-2 text-sm text-black transition-colors duration-150 hover:-100 hover:text-green-600"
                 onClick={() => {
                   setIsUserMenuOpen(false);
                   if (isMobile) setIsOpen(false);
@@ -152,7 +152,7 @@ const Navbar = ({ position }) => {
               </NavLink>
               <NavLink 
                 to='/Help' 
-                className="flex items-center px-4 py-2 text-sm transition-colors duration-150 text-white-700 hover:-100 hover:text-black"
+                className="flex items-center px-4 py-2 text-sm text-black transition-colors duration-150 hover:-100 hover:text-green-600"
                 onClick={() => {
                   setIsUserMenuOpen(false);
                   if (isMobile) setIsOpen(false);
@@ -181,7 +181,7 @@ const Navbar = ({ position }) => {
                     setIsUserMenuOpen(false);
                     if (isMobile) setIsOpen(false);
                   }}
-                  className="flex items-center w-full px-4 py-2 text-sm text-left text-black transition-colors duration-150 hover:-100 hover:text-black"
+                  className="flex items-center w-full px-4 py-2 text-sm text-left text-black transition-colors duration-150 hover:-100 hover:text-green-600"
                 >
                   Login
                 </button>
@@ -202,7 +202,7 @@ const Navbar = ({ position }) => {
             to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
             className="relative py-2 group"
           >
-            <span className="relative z-10 text-lg font-semibold text-black transition-all duration-300 font-sans uppercase tracking-wider">
+            <span className="relative z-10 font-sans text-lg font-semibold tracking-wider text-black uppercase transition-all duration-300">
               {item}
             </span>
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100"></span>
@@ -218,10 +218,10 @@ const Navbar = ({ position }) => {
       <li>
         <NavLink
           to="/Cart"
-          className="relative py-2 group flex items-center"
+          className="relative flex items-center py-2 group"
         >
           <IconShoppingCart size={24} className="relative z-10 text-black transition-all duration-300" />
-          <span className="relative z-10 ml-2 text-lg font-semibold text-black transition-all duration-300 font-sans uppercase tracking-wider">
+          <span className="relative z-10 ml-2 font-sans text-lg font-semibold tracking-wider text-black uppercase transition-all duration-300">
             Cart
           </span>
           <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100"></span>
@@ -230,10 +230,10 @@ const Navbar = ({ position }) => {
       <li className="flex-shrink-0">
         <NavLink
           to="/book"
-          className="group relative inline-block px-4 sm:px-6 py-2 sm:py-3 font-sans text-xs sm:text-sm font-semibold text-white transition-all duration-300 ease-in-out border border-black bg-black hover:text-black uppercase tracking-widest"
+          className="relative inline-block px-4 py-2 font-sans text-xs font-semibold tracking-widest text-white uppercase transition-all duration-300 ease-in-out bg-black border border-black group sm:px-6 sm:py-3 sm:text-sm hover:text-black"
         >
           <span className="relative z-10">BOOK CONSULTATION</span>
-          <span className="absolute inset-0 bg-white transform origin-left transition-transform duration-300 ease-in-out scale-x-0 group-hover:scale-x-100"></span>
+          <span className="absolute inset-0 transition-transform duration-300 ease-in-out origin-left transform scale-x-0 bg-white group-hover:scale-x-100"></span>
         </NavLink>
       </li>
     </ul>
@@ -269,7 +269,7 @@ const Navbar = ({ position }) => {
   transition={{ delay: 0.2, duration: 0.4 }}
   className="mb-8"
 >
-  <div className="w-full bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 p-2">
+  <div className="w-full p-2 overflow-hidden bg-white border border-gray-200 rounded-lg shadow-md">
     <UserMenu 
       isMobile={true} 
       className="text-black"
@@ -300,7 +300,7 @@ const Navbar = ({ position }) => {
                 onClick={toggleMenu}
               >
                 <Icon size={20} className="mr-4" />
-                <span className="font-poppins text-lg font-medium">{label}</span>
+                <span className="text-lg font-medium font-poppins">{label}</span>
               </NavLink>
             </motion.div>
           ))}
@@ -313,7 +313,7 @@ const Navbar = ({ position }) => {
           >
             <NavLink
               to="/book"
-              className="group relative inline-block w-full text-center py-3 px-6 font-poppins text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 ease-in-out bg-black hover:bg-gray-900"
+              className="relative inline-block w-full px-6 py-3 text-sm font-semibold tracking-wider text-center text-white uppercase transition-all duration-300 ease-in-out bg-black group font-poppins hover:bg-gray-900"
               onClick={toggleMenu}
             >
               <span className="relative z-10">Book Consultation</span>
