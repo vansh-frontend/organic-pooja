@@ -245,8 +245,7 @@ const Home = () => {
       {/* Services Section */}
 
  {/* Services Section */}
- <section className="relative min-h-screen overflow-hidden text-white bg-black">
-  {/* Background image with overlay */}
+<section className="relative min-h-screen overflow-hidden text-white bg-black">
   <motion.div 
     className="absolute inset-0 z-0"
     initial={{ scale: 1.2, opacity: 0 }}
@@ -258,18 +257,18 @@ const Home = () => {
 
   <div className="container relative z-10 flex flex-col justify-center min-h-screen px-4 py-16 mx-auto">
     <motion.div
-      className="mb-16 text-center"
+      className="mb-12 text-center"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
       <motion.h2 
-        className="mb-4 text-4xl font-light md:text-5xl lg:text-6xl"
+        className="mb-4 text-3xl font-light md:text-4xl lg:text-5xl"
       >
         Our Premium <span className="font-semibold">Services</span>
       </motion.h2>
       <motion.p
-        className="text-xl text-gray-300 md:text-2xl"
+        className="text-lg text-gray-300 md:text-xl lg:text-2xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -279,7 +278,7 @@ const Home = () => {
     </motion.div>
 
     <motion.div 
-      className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.4 }}
@@ -294,12 +293,12 @@ const Home = () => {
       ].map((service, index) => (
         <motion.div 
           key={index}
-          className="p-6 bg-white rounded-lg bg-opacity-10 backdrop-filter backdrop-blur-sm"
+          className="relative p-4 bg-white rounded-lg sm:p-6 bg-opacity-10 backdrop-filter backdrop-blur-sm group"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
         >
-          <h3 className="mb-2 text-lg font-light tracking-widest text-white">{service.title}</h3>
+          <h3 className="mb-2 text-base font-light tracking-widest text-white sm:text-lg">{service.title}</h3>
           <p className="mb-4 text-sm font-light text-gray-300">{service.desc}</p>
           <a 
             href="#" 
@@ -307,12 +306,12 @@ const Home = () => {
           >
             Learn more
           </a>
+          <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></div>
         </motion.div>
       ))}
     </motion.div>
   </div>
 
-  {/* Subtle animated element */}
   <motion.div
     className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white to-transparent"
     animate={{
@@ -321,32 +320,6 @@ const Home = () => {
     }}
     transition={{
       duration: 5,
-      repeat: Infinity,
-      repeatType: "reverse",
-    }}
-  />
-
-  {/* Decorative elements */}
-  <motion.div
-    className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20"
-    animate={{
-      scale: [1, 1.2, 1],
-      rotate: [0, 90, 0],
-    }}
-    transition={{
-      duration: 20,
-      repeat: Infinity,
-      repeatType: "reverse",
-    }}
-  />
-  <motion.div
-    className="absolute bottom-0 left-0 w-64 h-64 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20"
-    animate={{
-      scale: [1, 1.2, 1],
-      rotate: [0, -90, 0],
-    }}
-    transition={{
-      duration: 20,
       repeat: Infinity,
       repeatType: "reverse",
     }}
