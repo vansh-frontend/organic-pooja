@@ -24,7 +24,7 @@ const Header = () => {
         {/* Centered Logo and Title */}
         <div className="flex justify-center mt-4 md:justify-start md:mt-0 md:ml-8 lg:ml-28">
           <NavLink to="/" className="flex items-center space-x-3 group">
-            <div className="relative">
+            <div className="relative flex-shrink-0">
               <img 
                 src="img/pooja 2.png"
                 alt="Logo"
@@ -32,9 +32,14 @@ const Header = () => {
               />
               <IconLeaf className="absolute w-6 h-6 text-green-800 -top-2 -right-2 animate-bounce" />
             </div>
-            <h1 className="text-2xl font-semibold tracking-widest text-gray-800 uppercase font-cormorant">
-              ORGANIC <span className="font-bold text-green-800 font-cormorant">POOJA</span>
-            </h1>
+            <div className="flex flex-col">
+              <h1 className="text-2xl font-semibold leading-tight tracking-widest text-gray-800 uppercase font-cormorant">
+                ORGANIC
+              </h1>
+              <h2 className="text-2xl font-bold leading-tight tracking-widest text-green-800 uppercase font-cormorant">
+                POOJA
+              </h2>
+            </div>
           </NavLink>
         </div>  
 
