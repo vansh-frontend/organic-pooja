@@ -245,7 +245,7 @@ const Home = () => {
       {/* Services Section */}
 
  {/* Services Section */}
-<section className="relative min-h-screen overflow-hidden text-white bg-black">
+ <section className="relative min-h-screen overflow-hidden text-white bg-black">
   <motion.div 
     className="absolute inset-0 z-0"
     initial={{ scale: 1.2, opacity: 0 }}
@@ -325,6 +325,7 @@ const Home = () => {
     }}
   />
 </section>
+
 
 {/* Product Section */}
 <section className="relative py-24 overflow-hidden text-white bg-black">
