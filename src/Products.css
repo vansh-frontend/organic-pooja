@@ -8,9 +8,11 @@
 }
 
 .animate-marquee {
-  animation: marquee 30s linear infinite;
+  animation: marquee 20s linear infinite;
   cursor: pointer;
-  white-space: nowrap; /* Ensure the text stays on a single line */
+  white-space: nowrap;
+  position: sticky;
+  top:0; /* Ensure the text stays on a single line */
 }
 
 .animate-marquee:hover {
