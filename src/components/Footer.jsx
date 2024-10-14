@@ -101,14 +101,37 @@ const Footer = () => {
                     </Link>
                   </li>
                  
-
-		  {['Contact Us', 'Terms & Conditions', 'Privacy Policy'].map((item, index) => (
-                    <li key={index}>
-                      <a href={`/company/${item.toLowerCase().replace(' & ', '-').replace(' ', '-')}`} className="text-sm transition-colors duration-300 hover:text-green-600 hover:underline">
-                        {item}
-                      </a>
-                    </li>
-                  ))}
+                  <li className='text-sm hover:text-green-200 hover:underline'>
+                    <Link 
+                      to="/ContactUs" 
+                      className={({ isActive }) => 
+                        `text-sm transition-colors duration-300 ${isActive ? 'text-green-800 font-semibold' : 'hover:text-green-800 hover:underline'}`
+                      }
+                    >
+                     <li className='list-none hover:text-green-600 hover:underline'>Contact Us</li> 
+                    </Link>
+                  </li>
+                        
+                   <li className='text-sm hover:text-green-200 hover:underline'>
+                    <Link 
+                      to="/Policy" 
+                      className={({ isActive }) => 
+                        `text-sm transition-colors duration-300 ${isActive ? 'text-green-800 font-semibold' : 'hover:text-green-800 hover:underline'}`
+                      }
+                    >
+                     <li className='list-none hover:text-green-600 hover:underline'>Privacy Policy </li> 
+                    </Link>
+                  </li>
+                  <li className='text-sm hover:text-green-200 hover:underline'>
+                    <Link 
+                      to="/Terms" 
+                      className={({ isActive }) => 
+                        `text-sm transition-colors duration-300 ${isActive ? 'text-green-800 font-semibold' : 'hover:text-green-800 hover:underline'}`
+                      }
+                    >
+                     <li className='list-none hover:text-green-600 hover:underline'>Terms & Condition</li> 
+                    </Link>
+                  </li>
                   <li className='text-sm hover:text-green-200 hover:underline'>
                     <Link 
                       to="/Return" 
@@ -154,7 +177,7 @@ const Footer = () => {
           <div className="pt-8 mt-12 text-center border-t border-gray-200">
             <p className="text-sm text-gray-600">&copy; {new Date().getFullYear()} Organic by Pooja Skin Clinic. All rights reserved.</p>
             <div className="flex justify-center mt-4 space-x-4">
-              <a href="/privacy-policy" className="text-sm text-gray-600 transition-colors duration-300 hover:text-green-600">Privacy Policy</a>
+              <a href="/Policy" className="text-sm text-gray-600 transition-colors duration-300 hover:text-green-600">Privacy Policy</a>
               <a href="/terms-of-service" className="text-sm text-gray-600 transition-colors duration-300 hover:text-green-600">Terms of Service</a>
             </div>
           </div>

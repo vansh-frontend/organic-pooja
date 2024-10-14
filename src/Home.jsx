@@ -30,7 +30,7 @@ const Home = () => {
   const testimonials = [
     { name: 'ESHITA ARORA', review: 'The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!', img: 'img/sec2.jpg', rating: 5 },
     { name: 'KANIKA', review: 'Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.', img: 'img/sec2.jpg', rating: 4.5 },
-    { name: 'NANDINI PATHAK', review: 'Professional staff and fantastic results. The best salon experience I have ever had!', img: 'img/sec2.jpg', rating: 4 },
+    { name: 'NANDINI PATHAK', review: 'Professional staff and fantastic results. The best salon experience I have ever had!', img: 'img/sec2.jpg', rating:5 },
     { name: 'KAVITA BHALLA', review: 'The organic products are amazing, and the treatments are top-notch. I feel rejuvenated every time!', img: 'img/sec2.jpg', rating: 5 },
     { name: 'ANJALI SHARMA', review: 'Excellent service and great quality products. Highly recommend for anyone looking to elevate their skincare routine.', img: 'img/sec2.jpg', rating: 4.5 },
     { name: 'VARSHA AGARWAL', review: 'Professional staff and fantastic results. The best salon experience I have ever had!', img: 'img/sec2.jpg', rating: 4 },
@@ -164,10 +164,10 @@ const Home = () => {
           Explore Our Services
         </a>
         <a 
-          href="/about" 
+          href="/Products" 
           className="inline-block px-8 py-3 text-sm tracking-wider uppercase hover:underline"
         >
-          About Us
+          Our Products
         </a>
       </motion.div>
     </div>
