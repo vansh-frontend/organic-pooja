@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import crypto from 'crypto';
+import './PhonePeRedirect'
 
 const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   const [couponCode, setCouponCode] = useState('');
