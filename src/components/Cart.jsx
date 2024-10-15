@@ -50,7 +50,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
 
   const handlePhonePePayment = async () => {
     try {
-      const response = await axios.post('http://api.phonepe.com/apis/hermes', {
+      const response = await axios.post('https://api.phonepe.com/apis/hermes', {
         amount: total * 100, // Amount in paise
         merchantId: "M22RNZIM5DDWC",
         merchantTransactionId: `MT${Date.now()}`, // Generate a unique transaction ID
@@ -64,7 +64,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
       }, {
         headers: {
           'Content-Type': 'application/json',
-          'X-VERIFY': 'YOUR_CHECKSUM_HERE' // You need to generate this
+          // 'X-VERIFY': 'YOUR_CHECKSUM_HERE' // You need to generate this
         }
       });
   
