@@ -50,16 +50,16 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
 
   const handlePhonePePayment = async () => {
     try {
-      const response = await axios.post('http://api.phonepe.com/apis/hermes/', {
+      const response = await axios.post('https://api-preprod.phonepe.com/apis/hermes ', {
         amount: total * 100, // Amount in paise
-        merchantId: "M22RNZIM5DDWC",
+        merchantId: "PGTESTPAYUAT",
         merchantTransactionId: `MT${Date.now()}`, // Generate a unique transaction ID
         redirectUrl: `${window.location.origin}/redirect`,
         redirectMode: "POST",
         callbackUrl: `${window.location.origin}/callback`,
         mobileNumber: customerInfo.phoneNo,
-        saltKey: "SHA256(base64 encoded payload + “/pg/v1/pay” + ### + salt index)",
-        saltIndex: "51e16e0b-5fda-4b4f-888b-73dc505c4c92",
+        saltKey: "099eb0cd-02cf-4e2a-8aca-3e6c6aff0399",
+        saltIndex: "1",
         paymentInstrument: {
           type: "PAY_PAGE"
         }
