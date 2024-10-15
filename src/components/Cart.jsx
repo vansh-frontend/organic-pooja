@@ -71,6 +71,8 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
         }
       };
   
+      console.log('Payload:', payload); // Log the payload
+  
       const base64Payload = btoa(JSON.stringify(payload));
       
       const string = `${base64Payload}/pg/v1/pay${saltKey}`;
@@ -80,6 +82,8 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
       const hashArray = Array.from(new Uint8Array(hashBuffer));
       const sha256 = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
       const xVerify = `${sha256}###${saltIndex}`;
+  
+      console.log('X-VERIFY:', xVerify); // Log the X-VERIFY header
   
       const response = await axios.post(apiEndpoint, 
         {
@@ -93,15 +97,27 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
         }
       );
   
+      console.log('PhonePe API Response:', response.data); // Log the API response
+  
       if (response.data.success) {
         const paymentUrl = response.data.data.instrumentResponse.redirectInfo.url;
         window.location.href = paymentUrl;
       } else {
-        toast.error('Failed to initiate payment. Please try again.');
+        console.error('PhonePe API Error:', response.data);
+        toast.error(`Failed to initiate payment: ${response.data.message || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Payment error:', error);
-      toast.error('An error occurred during payment initiation. Please try again.');
+      if (error.response) {
+        console.error('Error response:', error.response.data);
+        console.error('Error status:', error.response.status);
+        console.error('Error headers:', error.response.headers);
+      } else if (error.request) {
+        console.error('Error request:', error.request);
+      } else {
+        console.error('Error message:', error.message);
+      }
+      toast.error(`An error occurred during payment initiation: ${error.message}`);
     }
   };
   const isCouponValid = (coupon, currentSubtotal) => {
