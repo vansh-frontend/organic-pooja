@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
+import crypto from 'crypto';
 
 const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   const [couponCode, setCouponCode] = useState('');
@@ -50,10 +51,16 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
 
   const handlePhonePePayment = async () => {
     try {
+      const merchantId = "PGTESTPAYUAT";
+      const saltKey = "099eb0cd-02cf-4e2a-8aca-3e6c6aff0399";
+      const saltIndex = "1";
+      const apiEndpoint = "https://api-preprod.phonepe.com/apis/hermes/pg/v1/pay";
+  
       const payload = {
-        amount: total * 100, // Amount in paise
-        merchantId: "PGTESTPAYUAT",
-        merchantTransactionId: `MT${Date.now()}`, // Generate a unique transaction ID
+        merchantId: merchantId,
+        merchantTransactionId: `MT${Date.now()}`,
+        merchantUserId: `MUID${Date.now()}`,
+        amount: total * 100,
         redirectUrl: `${window.location.origin}/redirect`,
         redirectMode: "POST",
         callbackUrl: `${window.location.origin}/callback`,
@@ -63,23 +70,27 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
         }
       };
   
-      const base64Payload = btoa(JSON.stringify(payload));
-      const saltKey = "099eb0cd-02cf-4e2a-8aca-3e6c6aff0399";
-      const saltIndex = "1";
+      const base64Payload = Buffer.from(JSON.stringify(payload)).toString('base64');
+      
+      const string = `${base64Payload}/pg/v1/pay${saltKey}`;
+      const sha256 = crypto.createHash('sha256').update(string).digest('hex');
+      const xVerify = `${sha256}###${saltIndex}`;
   
-      const sha256 = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(base64Payload + "/pg/v1/pay" + saltKey));
-      const hashArray = Array.from(new Uint8Array(sha256));
-      const xVerify = hashArray.map(b => b.toString(16).padStart(2, '0')).join('') + '###' + saltIndex;
-  
-      const response = await axios.post('https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay', payload, {
-        headers: {
-          'Content-Type': 'application/json',
-          'X-VERIFY': 'SHA256(base64 encoded payload + “/pg/v1/pay” + ### + salt index)', // You need to generate this
+      const response = await axios.post(apiEndpoint, 
+        {
+          request: base64Payload
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-VERIFY': xVerify,
+          }
         }
-      });
+      );
   
       if (response.data.success) {
-        window.location.href = response.data.data.instrumentResponse.redirectInfo.url;
+        const paymentUrl = response.data.data.instrumentResponse.redirectInfo.url;
+        window.location.href = paymentUrl;
       } else {
         toast.error('Failed to initiate payment. Please try again.');
       }
