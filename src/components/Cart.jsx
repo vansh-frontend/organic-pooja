@@ -50,27 +50,36 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
 
   const handlePhonePePayment = async () => {
     try {
-        const response = await axios.post('http://api.phonepe.com/apis/hermes', {
-            amount: total, 
-            merchantId: "M22RNZIM5DDWC",
-            transactionId: "1234567890", // Consider generating a unique transaction ID
-            currency: "INR"
-        }, {
-            headers: {
-                'Content-Type': 'application/json', // Set the content type if needed
-            }
-        });
-        // Handle the response from PhonePe
-        if (response.data.success) {
-            toast.success('Payment successful!');
-        } else {
-            toast.error('Payment failed. Please try again.');
+      const response = await axios.post('http://api.phonepe.com/apis/hermes', {
+        amount: total * 100, // Amount in paise
+        merchantId: "M22RNZIM5DDWC",
+        merchantTransactionId: `MT${Date.now()}`, // Generate a unique transaction ID
+        redirectUrl: `${window.location.origin}/redirect`,
+        redirectMode: "POST",
+        callbackUrl: `${window.location.origin}/callback`,
+        mobileNumber: customerInfo.phoneNo,
+        paymentInstrument: {
+          type: "PAY_PAGE"
         }
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-VERIFY': 'YOUR_CHECKSUM_HERE' // You need to generate this
+        }
+      });
+  
+      // Handle the response from PhonePe
+      if (response.data.success) {
+        // Redirect to PhonePe payment page
+        window.location.href = response.data.data.instrumentResponse.redirectInfo.url;
+      } else {
+        toast.error('Failed to initiate payment. Please try again.');
+      }
     } catch (error) {
-        console.error('Payment error:', error);
-        toast.error('An error occurred during payment. Please try again.');
+      console.error('Payment error:', error);
+      toast.error('An error occurred during payment initiation. Please try again.');
     }
-};
+  };
   const isCouponValid = (coupon, currentSubtotal) => {
     switch (coupon.code) {
       case 'SAVE150':
