@@ -60,7 +60,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
         merchantId: merchantId,
         merchantTransactionId: `MT${Date.now()}`,
         merchantUserId: `MUID${Date.now()}`,
-        amount: total * 100,
+        amount: Math.round(total * 100), // Ensure amount is an integer
         redirectUrl: `${window.location.origin}/redirect`,
         redirectMode: "POST",
         callbackUrl: `${window.location.origin}/callback`,
@@ -70,10 +70,14 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
         }
       };
   
-      const base64Payload = Buffer.from(JSON.stringify(payload)).toString('base64');
+      const base64Payload = btoa(JSON.stringify(payload));
       
       const string = `${base64Payload}/pg/v1/pay${saltKey}`;
-      const sha256 = crypto.createHash('sha256').update(string).digest('hex');
+      const encoder = new TextEncoder();
+      const data = encoder.encode(string);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const sha256 = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
       const xVerify = `${sha256}###${saltIndex}`;
   
       const response = await axios.post(apiEndpoint, 
