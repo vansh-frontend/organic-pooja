@@ -61,7 +61,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
         merchantId: merchantId,
         merchantTransactionId: `MT${Date.now()}`,
         merchantUserId: `MUID${Date.now()}`,
-        amount: Math.round(total * 100), // Ensure amount is an integer
+        amount: Math.round(total * 100), // Ensure amount is an integer in paise
         redirectUrl: `${window.location.origin}/redirect`,
         redirectMode: "POST",
         callbackUrl: `${window.location.origin}/callback`,
@@ -71,10 +71,11 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
         }
       };
   
-      console.log('Payload:', payload); // Log the payload
+      console.log('Payload:', payload);
   
       const base64Payload = btoa(JSON.stringify(payload));
       
+      // Generate X-VERIFY header
       const string = `${base64Payload}/pg/v1/pay${saltKey}`;
       const encoder = new TextEncoder();
       const data = encoder.encode(string);
@@ -83,12 +84,11 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
       const sha256 = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
       const xVerify = `${sha256}###${saltIndex}`;
   
-      console.log('X-VERIFY:', xVerify); // Log the X-VERIFY header
+      console.log('X-VERIFY:', xVerify);
   
+      // Make the API call
       const response = await axios.post(apiEndpoint, 
-        {
-          request: base64Payload
-        },
+        { request: base64Payload },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
         }
       );
   
-      console.log('PhonePe API Response:', response.data); // Log the API response
+      console.log('PhonePe API Response:', response.data);
   
       if (response.data.success) {
         const paymentUrl = response.data.data.instrumentResponse.redirectInfo.url;

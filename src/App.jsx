@@ -16,7 +16,7 @@ import Orders from './components/Orders';
 import Return from './Return';
 import Policy from './components/Policy';
 import Terms from './components/Terms';
-import PhonePeRedirect from './components/PhonePeRedirect';
+import PaymentResult from './components/PaymentResult';
 
 const theme = {
   colors: {
@@ -99,14 +99,13 @@ const AppContent = () => {
         <Route path="/products" element={<Products addToCart={addToCart} />} />
         <Route path="/cart" element={
           <Cart
-          component={Cart}
             cartItems={cartItems}
             updateQuantity={updateQuantity}
             removeFromCart={removeFromCart}
             onBuyNow={(product) => console.log(`Buy now ${product.name}`)}
           />
         } />
-         <Route path="/redirect" component={PhonePeRedirect} />
+                <Route path="/payment-result" element={<PaymentResult />} />
         <Route path="/about" element={<About />} />
       </Routes> 
       <Footer />
