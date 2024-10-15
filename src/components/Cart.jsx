@@ -50,33 +50,22 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
 
   const handlePhonePePayment = async () => {
     try {
-      const response = await axios.post('https://api.phonepe.com/apis/hermes', {
+      const response = await axios.post('/api/initiate-phonepe-payment', {
         amount: total * 100, // Amount in paise
-        merchantId: "M22RNZIM5DDWC",
-        merchantTransactionId: `MT${Date.now()}`, // Generate a unique transaction ID
-        redirectUrl: `${window.location.origin}/redirect`,
-        redirectMode: "POST",
-        callbackUrl: `${window.location.origin}/callback`,
         mobileNumber: customerInfo.phoneNo,
-        paymentInstrument: {
-          type: "PAY_PAGE"
-        }
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-          // 'X-VERIFY': 'YOUR_CHECKSUM_HERE' // You need to generate this
-        }
+        name: customerInfo.name,
+        email: customerInfo.email,
+        orderId: `ORD${Date.now()}`, // Generate a unique order ID
       });
   
-      // Handle the response from PhonePe
       if (response.data.success) {
         // Redirect to PhonePe payment page
-        window.location.href = response.data.data.instrumentResponse.redirectInfo.url;
+        window.location.href = response.data.paymentUrl;
       } else {
-        toast.error('Failed to initiate payment. Please try again.');
+        toast.error(response.data.message || 'Failed to initiate payment. Please try again.');
       }
     } catch (error) {
-      console.error('Payment error:', error);
+      console.error('Payment initiation error:', error);
       toast.error('An error occurred during payment initiation. Please try again.');
     }
   };
