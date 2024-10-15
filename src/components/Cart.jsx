@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaTrash, FaShoppingCart, FaMinus, FaPlus, FaArrowRight, FaTruck, FaPercent, FaMoneyBillWave, FaCheckCircle } from 'react-icons/fa';
+import { FaTrash, FaShoppingCart, FaMinus, FaPlus, FaArrowRight, FaPercent, FaCheckCircle } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,7 +10,6 @@ import axios from 'axios';
 const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   const [couponCode, setCouponCode] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState(null);
-  const [shippingMethod, setShippingMethod] = useState('standard');
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [orderId, setOrderId] = useState(null);
@@ -51,7 +50,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
 
   const handlePhonePePayment = async () => {
     try {
-        const response = await axios.post('http://api.phonepe.com/apis/hermes/pg/v1/pay', {
+        const response = await axios.post('http://api.phonepe.com/apis/hermes', {
             amount: total, 
             merchantId: "M22RNZIM5DDWC",
             transactionId: "1234567890", // Consider generating a unique transaction ID
@@ -72,7 +71,6 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
         toast.error('An error occurred during payment. Please try again.');
     }
 };
-
   const isCouponValid = (coupon, currentSubtotal) => {
     switch (coupon.code) {
       case 'SAVE150':
@@ -136,7 +134,6 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
     setOrderId(null);
     toast.info('Mission aborted');
   };
-
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -203,31 +200,31 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   if (orderPlaced) {
     return (
       <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="min-h-screen py-12 bg-black"
-    >
-      <div className="container max-w-3xl px-4 mx-auto">
-        <div className="p-8 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm">
-          <FaCheckCircle className="mx-auto mb-6 text-6xl text-green-500" />
-          <h2 className="mb-4 text-3xl font-light text-center text-white">Order Confirmed!</h2>
-          <p className="mb-6 text-xl text-center text-gray-300">Thank you for your purchase. Your order ID is: {orderId}</p>
-          <div className="flex justify-center">
-            <button
-              onClick={() => navigate('/products')}
-              className="px-6 py-3 text-base font-light text-black transition-colors bg-white rounded-full hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-            >
-              Continue Shopping
-            </button>
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="min-h-screen py-12 bg-black"
+      >
+        <div className="container max-w-3xl px-4 mx-auto">
+          <div className="p-8 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm">
+            <FaCheckCircle className="mx-auto mb-6 text-6xl text-green-500" />
+            <h2 className="mb-4 text-3xl font-light text-center text-white">Order Confirmed!</h2>
+            <p className="mb-6 text-xl text-center text-gray-300">Thank you for your purchase. Your order ID is: {orderId}</p>
+            <div className="flex justify-center">
+              <button
+                onClick={() => navigate('/products')}
+                className="px-6 py-3 text-base font-light text-black transition-colors bg-white rounded-full hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+              >
+                Continue Shopping
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
     );
-    }
+  }
     
-    return (
+  return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -472,12 +469,12 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                 </button>
                 
                 <button
-  type="button"
-  onClick={handlePhonePePayment}
-  className="px-6 py-3 text-base font-light text-black transition duration-200 bg-white rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
->
-  Pay with PhonePe
-</button>
+                  type="button"
+                  onClick={handlePhonePePayment}
+                  className="px-6 py-3 text-base font-light text-black transition duration-200 bg-white rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                >
+                  Pay with PhonePe
+                </button>
               </div>
             </form>
           </motion.div>
