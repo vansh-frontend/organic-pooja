@@ -49,6 +49,30 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
     0
   );
 
+  const handlePhonePePayment = async () => {
+    try {
+        const response = await axios.post('http://api.phonepe.com/apis/hermes/pg/v1/pay', {
+            amount: total, 
+            merchantId: "M22RNZIM5DDWC",
+            transactionId: "1234567890", // Consider generating a unique transaction ID
+            currency: "INR"
+        }, {
+            headers: {
+                'Content-Type': 'application/json', // Set the content type if needed
+            }
+        });
+        // Handle the response from PhonePe
+        if (response.data.success) {
+            toast.success('Payment successful!');
+        } else {
+            toast.error('Payment failed. Please try again.');
+        }
+    } catch (error) {
+        console.error('Payment error:', error);
+        toast.error('An error occurred during payment. Please try again.');
+    }
+};
+
   const isCouponValid = (coupon, currentSubtotal) => {
     switch (coupon.code) {
       case 'SAVE150':
@@ -448,11 +472,12 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                 </button>
                 
                 <button
-                  type="submit"
-                  className="px-6 py-3 text-base font-light text-black transition duration-200 bg-white rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-                >
-                  Place Order
-                </button>
+  type="button"
+  onClick={handlePhonePePayment}
+  className="px-6 py-3 text-base font-light text-black transition duration-200 bg-white rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+>
+  Pay with PhonePe
+</button>
               </div>
             </form>
           </motion.div>

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion, useAnimation } from 'framer-motion';
-import { FaGift, FaPercent } from 'react-icons/fa';
+import { FaGift, FaPercent, FaSearch } from 'react-icons/fa';
 import ProductCard from './components/ProductCard';
 import ProductModal from './components/ProductModal';
 import './Products.css';
@@ -28,15 +28,18 @@ const categories = ['All', 'Skincare', 'Haircare', 'Combo'];
 const Products = ({ addToCart }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
   const controls = useAnimation();
 
   useEffect(() => {
     controls.start({ opacity: 1, y: 0 });
   }, [controls]);
 
-  const filteredProducts = selectedCategory === 'All'
-    ? allProducts
-    : allProducts.filter(product => product.category === selectedCategory);
+  const filteredProducts = allProducts
+    .filter(product => 
+      (selectedCategory === 'All' || product.category === selectedCategory) &&
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
   const handleProductDetails = (product) => {
     setSelectedProduct(product);
@@ -89,6 +92,25 @@ const Products = ({ addToCart }) => {
         >
           <span className="font-light">Our</span> <span className="font-normal">Cosmic</span> <span className="font-light">Collection</span>
         </motion.h1>
+
+        {/* Search Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={controls}
+          transition={{ delay: 0.1 }}
+          className="mb-8"
+        >
+          <div className="relative max-w-md mx-auto">
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full px-4 py-2 text-white bg-black border border-white rounded-full focus:outline-none focus:ring-2 focus:ring-white"
+            />
+            <FaSearch className="absolute text-white transform -translate-y-1/2 right-4 top-1/2" />
+          </div>
+        </motion.div>
 
         {/* Category Filter */}
         <motion.div 
@@ -151,6 +173,17 @@ const Products = ({ addToCart }) => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* No Results Message */}
+        {filteredProducts.length === 0 && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mt-8 text-xl text-center text-white"
+          >
+            No products found. Try adjusting your search or category.
+          </motion.p>
+        )}
 
         {/* Modal Section */}
         {selectedProduct && (
