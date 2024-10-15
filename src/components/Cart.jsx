@@ -50,7 +50,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
 
   const handlePhonePePayment = async () => {
     try {
-      const response = await axios.post('https://api-preprod.phonepe.com/apis/hermes ', {
+      const response = await axios.post('https://api-preprod.phonepe.com/apis/hermes/pg/v1/pay ', {
         amount: total * 100, // Amount in paise
         merchantId: "PGTESTPAYUAT",
         merchantTransactionId: `MT${Date.now()}`, // Generate a unique transaction ID
