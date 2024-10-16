@@ -113,10 +113,27 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
     toast.info('Mission aborted');
   };
 
+  const initiatePhonePePayment = async (newOrderId) => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/initiate-phonepay', {
+        amount: total,
+        orderId: newOrderId,
+        customerInfo: customerInfo
+      });
+
+      if (response.data.success) {
+        window.location.href = response.data.paymentUrl;
+      } else {
+        toast.error('Failed to initiate payment. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error initiating payment:', error);
+      toast.error('An error occurred. Please try again.');
+    }
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
     const newOrderId = Math.floor(100000 + Math.random() * 900000);
   
     const emailContent = `
@@ -142,6 +159,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   Total: ₹${total.toFixed(2)}
     `.trim();
   
+    const formData = new FormData();
     formData.append("access_key", "2a83fafa-3cb5-48ba-9e38-48544d68b19c");
     formData.append("subject", `Cosmic Order Confirmation #${newOrderId}`);
     formData.append("from_name", "Galactic Organic Pooja");
@@ -163,10 +181,8 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
         localStorage.setItem('customerInfo', JSON.stringify(customerInfo));
         localStorage.setItem('orders', JSON.stringify([...JSON.parse(localStorage.getItem('orders') || '[]'), newOrder]));
   
-        setOrderPlaced(true);
         setOrderId(newOrderId);
-        clearCart();
-        toast.success('Order placed successfully!');
+        await initiatePhonePePayment(newOrderId);
       } else {
         toast.error('Failed to place order. Please try again.');
       }
@@ -179,31 +195,31 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   if (orderPlaced) {
     return (
       <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="min-h-screen py-12 bg-black"
-    >
-      <div className="container max-w-3xl px-4 mx-auto">
-        <div className="p-8 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm">
-          <FaCheckCircle className="mx-auto mb-6 text-6xl text-green-500" />
-          <h2 className="mb-4 text-3xl font-light text-center text-white">Order Confirmed!</h2>
-          <p className="mb-6 text-xl text-center text-gray-300">Thank you for your purchase. Your order ID is: {orderId}</p>
-          <div className="flex justify-center">
-            <button
-              onClick={() => navigate('/products')}
-              className="px-6 py-3 text-base font-light text-black transition-colors bg-white rounded-full hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-            >
-              Continue Shopping
-            </button>
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="min-h-screen py-12 bg-black"
+      >
+        <div className="container max-w-3xl px-4 mx-auto">
+          <div className="p-8 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm">
+            <FaCheckCircle className="mx-auto mb-6 text-6xl text-green-500" />
+            <h2 className="mb-4 text-3xl font-light text-center text-white">Order Confirmed!</h2>
+            <p className="mb-6 text-xl text-center text-gray-300">Thank you for your purchase. Your order ID is: {orderId}</p>
+            <div className="flex justify-center">
+              <button
+                onClick={() => navigate('/products')}
+                className="px-6 py-3 text-base font-light text-black transition-colors bg-white rounded-full hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+              >
+                Continue Shopping
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
     );
-    }
-    
-    return (
+  }
+  
+  return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
