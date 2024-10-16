@@ -52,74 +52,22 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
 
   const handlePhonePePayment = async () => {
     try {
-      const merchantId = "PGTESTPAYUAT";
-      const saltKey = "099eb0cd-02cf-4e2a-8aca-3e6c6aff0399";
-      const saltIndex = "1";
-      const apiEndpoint = "https://api-preprod.phonepe.com/apis/hermes/pg/v1/pay";
-  
-      const payload = {
-        merchantId: merchantId,
-        merchantTransactionId: `MT${Date.now()}`,
-        merchantUserId: `MUID${Date.now()}`,
-        amount: Math.round(total * 100), // Ensure amount is an integer in paise
-        redirectUrl: `${window.location.origin}/redirect`,
-        redirectMode: "POST",
-        callbackUrl: `${window.location.origin}/callback`,
+      const response = await axios.post('/api/initiate-phonepe-payment', {
+        amount: total,
         mobileNumber: customerInfo.phoneNo,
-        paymentInstrument: {
-          type: "PAY_PAGE"
-        }
-      };
-  
-      console.log('Payload:', payload);
-  
-      const base64Payload = btoa(JSON.stringify(payload));
-      
-      // Generate X-VERIFY header
-      const string = `${base64Payload}/pg/v1/pay${saltKey}`;
-      const encoder = new TextEncoder();
-      const data = encoder.encode(string);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      const sha256 = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-      const xVerify = `${sha256}###${saltIndex}`;
-  
-      console.log('X-VERIFY:', xVerify);
-  
-      // Make the API call
-      const response = await axios.post(apiEndpoint, 
-        { request: base64Payload },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'X-VERIFY': xVerify,
-          }
-        }
-      );
-  
-      console.log('PhonePe API Response:', response.data);
-  
+      });
+
       if (response.data.success) {
-        const paymentUrl = response.data.data.instrumentResponse.redirectInfo.url;
-        window.location.href = paymentUrl;
+        window.location.href = response.data.paymentUrl;
       } else {
-        console.error('PhonePe API Error:', response.data);
         toast.error(`Failed to initiate payment: ${response.data.message || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Payment error:', error);
-      if (error.response) {
-        console.error('Error response:', error.response.data);
-        console.error('Error status:', error.response.status);
-        console.error('Error headers:', error.response.headers);
-      } else if (error.request) {
-        console.error('Error request:', error.request);
-      } else {
-        console.error('Error message:', error.message);
-      }
       toast.error(`An error occurred during payment initiation: ${error.message}`);
     }
   };
+
   const isCouponValid = (coupon, currentSubtotal) => {
     switch (coupon.code) {
       case 'SAVE150':

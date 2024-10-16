@@ -105,7 +105,7 @@ const AppContent = () => {
             onBuyNow={(product) => console.log(`Buy now ${product.name}`)}
           />
         } />
-                <Route path="/payment-result" element={<PaymentResult />} />
+                 <Route path="/payment-result" element={<PaymentResult />} />
         <Route path="/about" element={<About />} />
       </Routes> 
       <Footer />
