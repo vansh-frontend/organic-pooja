@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { IconHome, IconBook, IconApps, IconMenu4, IconX, IconShoppingCart, IconUserCircle, IconBrandGoogle, IconArrowRight, IconServicemark, IconLogout,IconBrandFacebook } from '@tabler/icons-react';
+import { IconHome, IconApps, IconMenu4, IconX, IconShoppingCart, IconUserCircle, IconBrandGoogle, IconServicemark, IconLogout,IconBrandFacebook } from '@tabler/icons-react';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,9 +12,6 @@ import './Orders';
 const Navbar = ({ position }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [email, setEmail] = useState('');
-  const [OTP, setotp] = useState('');
-  const [telephone, setTelephone] = useState('');
   const [error, setError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
@@ -81,7 +78,7 @@ const Navbar = ({ position }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, OTP);
+      const userCredential = await signInWithEmailAndPassword(auth);
       const user = userCredential.user;
       console.log('Login successful:', user);
       setUserName(user.displayName || 'User');
@@ -108,11 +105,11 @@ const Navbar = ({ position }) => {
       <button
         onClick={toggleUserMenu}
         className={`flex items-center px-4 py-2 text-sm font-semibold text-black transition-all duration-300 ease-in-out ${
-          isMobile ? "w-full justify-start" : "rounded-full hover:text-white hover:bg-gray-900 hover:bg-opacity-20"
+          isMobile ? "w-full justify-start" : "rounded-full hover:bg-gray-900 hover:text-white"
         }`}
       >
         <IconUserCircle size={24} className="mr-2 text-black" />
-        <span className="truncate max-w-[100px] text-xl">{isLoggedIn ? userName : 'Guest'}</span>
+        <span className="truncate max-w-[100px]">{isLoggedIn ? userName : 'Guest'}</span>
       </button>
       <AnimatePresence>
         {isUserMenuOpen && (
@@ -126,7 +123,7 @@ const Navbar = ({ position }) => {
             }`}
           >
             <div className="p-4 border-b border-gray-200">
-              <p className="text-sm text-xl font-medium text-black">Hello, {isLoggedIn ? userName : 'Guest'}</p>
+              <p className="text-sm font-medium text-black">Hello, {isLoggedIn ? userName : 'Guest'}</p>
               <p className="text-xs text-white-600">{isLoggedIn ? 'Manage your account' : 'Sign in to your account'}</p>
             </div>
             <div className="py-2">
