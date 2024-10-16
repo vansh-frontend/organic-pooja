@@ -14,9 +14,6 @@ import Help from './components/Help';
 import DataDeletionPage from './components/DataDeletionPage';
 import Orders from './components/Orders';
 import Return from './Return';
-import Policy from './components/Policy';
-import Terms from './components/Terms';
-import PaymentResult from './components/PaymentResult';
 
 const theme = {
   colors: {
@@ -91,8 +88,6 @@ const AppContent = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/book" element={<Book />} />
         <Route path="/orders" element={<Orders />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/Policy" element={<Policy />} />
         <Route path="/return" element={<Return />} />
         <Route path='/Help' element={<Help />} />
         <Route path='/delete' element={<DataDeletionPage />} />
@@ -105,7 +100,6 @@ const AppContent = () => {
             onBuyNow={(product) => console.log(`Buy now ${product.name}`)}
           />
         } />
-                 <Route path="/payment-result" element={<PaymentResult />} />
         <Route path="/about" element={<About />} />
       </Routes> 
       <Footer />
