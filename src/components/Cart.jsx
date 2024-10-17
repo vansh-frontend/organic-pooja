@@ -176,6 +176,27 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
     }
   };
 
+  const initiatePayment = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/initiate-payment', {
+        amount: total,
+        userId: 'MUID123', // You might want to use a real user ID here
+      });
+      
+      if (response.data.success) {
+        // Redirect the user to the PhonePe payment page
+        window.location.href = response.data.data.instrumentResponse.redirectInfo.url;
+      } else {
+        console.error('Payment initiation failed:', response.data);
+        toast.error('Failed to initiate payment. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error initiating payment:', error);
+      toast.error('An error occurred. Please try again.');
+    }
+  };
+
+
   if (orderPlaced) {
     return (
       <motion.div
@@ -449,6 +470,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                 
                 <button
                   type="submit"
+                  onClick={initiatePayment}
                   className="px-6 py-3 text-base font-light text-black transition duration-200 bg-white rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                 >
                   Place Order

@@ -6,6 +6,10 @@
   --transition-speed: 0.3s;
 }
 
+::-webkit-scrollbar{
+  width: 0;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
