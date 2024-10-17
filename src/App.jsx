@@ -15,9 +15,9 @@ import Orders from './components/Orders';
 import Return from './Return';
 import Policy from './components/Policy';
 import Terms from './components/Terms';
-import PaymentPage from './components/PaymentPage';
-import PaymentSuccess from './components/PaymentSuccess';
-import PaymentFailure from './components/PaymentFailure';
+// import PaymentPage from './components/PaymentPage';
+// import PaymentSuccess from './components/PaymentSuccess';
+// import PaymentFailure from './components/PaymentFailure';
 
 const theme = {
   colors: {
@@ -110,9 +110,6 @@ const AppContent = () => {
             clearCart={clearCart}
           />
         } />
-        <Route path="/pay" element={<PaymentPage cartItems={cartItems} clearCart={clearCart} />} />
-        <Route path="/payment/success" element={<PaymentSuccess />} />
-        <Route path="/payment/failure" element={<PaymentFailure />} />
         <Route path="/about" element={<About />} />
       </Routes> 
       <Footer />
