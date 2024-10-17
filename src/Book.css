@@ -17,5 +17,5 @@
   
   @keyframes blink-caret {
     from, to { border-color: transparent }
-    100% { border-color: purple; }
+    100% { border-color: red; }
   }
