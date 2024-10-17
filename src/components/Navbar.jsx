@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { IconHome, IconApps, IconMenu4, IconX, IconShoppingCart, IconUserCircle, IconBrandGoogle, IconServicemark, IconLogout,IconBrandFacebook } from '@tabler/icons-react';
+import { IconHome, IconBook, IconApps, IconMenu4, IconX, IconShoppingCart, IconUserCircle, IconBrandGoogle, IconArrowRight, IconServicemark, IconLogout,IconBrandFacebook } from '@tabler/icons-react';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,6 +12,9 @@ import './Orders';
 const Navbar = ({ position }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [email, setEmail] = useState('');
+  const [OTP, setotp] = useState('');
+  const [telephone, setTelephone] = useState('');
   const [error, setError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
@@ -78,7 +81,7 @@ const Navbar = ({ position }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(auth);
+      const userCredential = await signInWithEmailAndPassword(auth, email, OTP);
       const user = userCredential.user;
       console.log('Login successful:', user);
       setUserName(user.displayName || 'User');
