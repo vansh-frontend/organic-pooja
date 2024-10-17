@@ -14,7 +14,8 @@ import Help from './components/Help';
 import DataDeletionPage from './components/DataDeletionPage';
 import Orders from './components/Orders';
 import Return from './Return';
-
+import Policy from './components/Policy';
+import Terms from './components/Terms';
 const theme = {
   colors: {
     heading: 'rgb(24, 24, 29)',
@@ -88,6 +89,8 @@ const AppContent = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/book" element={<Book />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/policy" element={<Policy />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="/return" element={<Return />} />
         <Route path='/Help' element={<Help />} />
         <Route path='/delete' element={<DataDeletionPage />} />
