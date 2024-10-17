@@ -410,7 +410,7 @@ const Navbar = ({ position }) => {
   </div>
   </div>
   </motion.div>
-  </motion.div>
+  </motion.div> 
   )}
   </AnimatePresence>
   </nav>

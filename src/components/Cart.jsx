@@ -1,19 +1,14 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaTrash, FaShoppingCart, FaMinus, FaPlus, FaArrowRight, FaTruck, FaPercent, FaMoneyBillWave, FaCheckCircle } from 'react-icons/fa';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+import { FaTrash, FaMinus, FaPlus, FaPercent } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import { motion, AnimatePresence } from 'framer-motion';
-import axios from 'axios';
 
 const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   const [couponCode, setCouponCode] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState(null);
-  const [shippingMethod, setShippingMethod] = useState('standard');
   const [isCheckingOut, setIsCheckingOut] = useState(false);
-  const [orderPlaced, setOrderPlaced] = useState(false);
-  const [orderId, setOrderId] = useState(null);
   const navigate = useNavigate();
 
   const [customerInfo, setCustomerInfo] = useState({
@@ -108,130 +103,29 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
 
   const cancelOrder = () => {
     setIsCheckingOut(false);
-    setOrderPlaced(false);
-    setOrderId(null);
     toast.info('Mission aborted');
   };
 
-
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const newOrderId = Math.floor(100000 + Math.random() * 900000);
-  
-    const emailContent = `
-  Cosmic Order Confirmation
-  
-  Thank you for your intergalactic order, ${customerInfo.name}!
-  
-  Order ID: ${newOrderId}
-  
-  Cosmic Traveler Information:
-  Name: ${customerInfo.name}
-  Email: ${customerInfo.email}
-  Phone: ${customerInfo.phoneNo}
-  Address: ${customerInfo.address}
-  Pincode: ${customerInfo.pincode}
-
-  
-  Order Details:
-  ${cartItems.map(item => `- ${item.name} - Quantity: ${item.quantity} - Price: ${item.price}`).join('\n')}
-  
-  Subtotal: ₹${subtotal.toFixed(2)}
-  ${appliedCoupon ? `Galactic Discount: -₹${discount.toFixed(2)}\n` : ''}
-  Total: ₹${total.toFixed(2)}
-    `.trim();
-  
-    formData.append("access_key", "2a83fafa-3cb5-48ba-9e38-48544d68b19c");
-    formData.append("subject", `Cosmic Order Confirmation #${newOrderId}`);
-    formData.append("from_name", "Galactic Organic Pooja");
-    formData.append("message", emailContent);
-  
-    try {
-      const response = await axios.post("https://api.web3forms.com/submit", formData);
-  
-      if (response.data.success) {
-        const newOrder = {
-          id: newOrderId,
-          date: new Date().toISOString(),
-          status: 'Launching',
-          items: cartItems,
-          total: total,
-          customerInfo: customerInfo,
-        };
-  
-        localStorage.setItem('customerInfo', JSON.stringify(customerInfo));
-        localStorage.setItem('orders', JSON.stringify([...JSON.parse(localStorage.getItem('orders') || '[]'), newOrder]));
-  
-        setOrderPlaced(true);
-        setOrderId(newOrderId);
-        clearCart();
-        toast.success('Order placed successfully!');
-      } else {
-        toast.error('Failed to place order. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      toast.error('An error occurred. Please try again.');
-    }
+  const handlePhonePe = () => {
+    localStorage.setItem('customerInfo', JSON.stringify(customerInfo));
+    navigate('/pay');
   };
 
-  if (orderPlaced) {
-    return (
-      <motion.div
+  return (
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="min-h-screen py-12 bg-black"
     >
-      <div className="container max-w-3xl px-4 mx-auto">
-        <div className="p-8 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm">
-          <FaCheckCircle className="mx-auto mb-6 text-6xl text-green-500" />
-          <h2 className="mb-4 text-3xl font-light text-center text-white">Order Confirmed!</h2>
-          <p className="mb-6 text-xl text-center text-gray-300">Thank you for your purchase. Your order ID is: {orderId}</p>
-          <div className="flex justify-center">
-            <button
-              onClick={() => navigate('/products')}
-              className="px-6 py-3 text-base font-light text-black transition-colors bg-white rounded-full hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-            >
-              Continue Shopping
-            </button>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-    );
-    }
-    
-    return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="min-h-screen py-6 bg-black sm:py-12"
-    >
-      <div className="container px-4 mx-auto max-w-7xl">
-        <h1 className="mb-6 text-2xl font-light text-center text-white sm:mb-8 sm:text-4xl">Your Cart</h1>
+      <div className="container px-4 mx-auto">
+        <h1 className="mb-8 text-3xl font-light text-white sm:text-4xl">Your Cosmic Cart</h1>
         
-        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
-    
         {cartItems.length === 0 ? (
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="p-6 text-center bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm sm:p-12"
-          >
-            <FaShoppingCart className="mx-auto mb-4 text-6xl text-white sm:mb-6 sm:text-8xl animate-bounce" />
-            <p className="mb-6 text-xl text-gray-300 sm:mb-8 sm:text-2xl">Your cart is empty. Start exploring our products!</p>
-            <button className="w-full px-6 py-3 text-base font-light text-black transition-colors bg-white rounded-full sm:w-auto sm:px-8 sm:py-4 sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black">
-              <FaArrowRight className="inline-block mr-2" />
-              <Link to="/products">Continue Shopping</Link>
-            </button>
-          </motion.div>
+          <p className="text-lg text-white">Your cart is empty. Start adding some cosmic items!</p>
         ) : (
-          <div className="grid grid-cols-1 gap-6 lg:gap-8 lg:grid-cols-3">
-            <div className="space-y-4 sm:space-y-6 lg:col-span-2">
+          <div className="grid gap-8 md:grid-cols-3">
+            <div className="md:col-span-2">
               <AnimatePresence>
                 {cartItems.map((item) => (
                   <motion.div
@@ -240,18 +134,14 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="overflow-hidden transition-shadow duration-300 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm"
+                    className="p-4 mb-4 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm sm:p-6"
                   >
-                    <div className="flex flex-col sm:flex-row">
-                      <div className="w-full sm:w-1/3">
-                        <img src={item.image} alt={item.name} className="object-cover w-full h-48 sm:h-full" />
-                      </div>
-                      <div className="flex-1 p-4 sm:p-6">
-                        <h3 className="mb-2 text-lg font-light text-white sm:text-xl">{item.name}</h3>
-                        <p className="mb-4 text-xl font-light text-gray-300 sm:text-2xl">
-                          {item.price}
-                        </p>
-                        <div className="flex flex-col items-center justify-between sm:flex-row">
+                    <div className="flex items-center">
+                      <img src={item.image} alt={item.name} className="object-cover w-20 h-20 mr-4 rounded-lg sm:w-24 sm:h-24" />
+                      <div className="flex-grow">
+                        <h3 className="mb-1 text-lg font-light text-white sm:text-xl">{item.name}</h3>
+                        <p className="mb-2 text-sm text-gray-300 sm:text-base">{item.price}</p>
+                        <div className="flex items-center justify-between">
                           <div className="flex items-center mb-4 overflow-hidden border border-white rounded-lg sm:mb-0">
                             <button
                               onClick={() => handleQuantityChange(item, item.quantity - 1)}
@@ -372,7 +262,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
             className="p-6 mt-8 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm sm:p-8"
           >
             <h2 className="mb-6 text-2xl font-light text-white">Customer Information</h2>
-            <form onSubmit={onSubmit} className="space-y-6">
+            <form className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-light text-gray-300">Name</label>
                 <input
@@ -448,7 +338,8 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
                 </button>
                 
                 <button
-                  type="submit"
+                  type="button"
+                  onClick={handlePhonePe}
                   className="px-6 py-3 text-base font-light text-black transition duration-200 bg-white rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                 >
                   Place Order

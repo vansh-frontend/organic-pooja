@@ -1,7 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { useEffect } from 'react';
 import Home from './Home';
 import Book from './Book';
 import Services from './Services';
@@ -16,6 +15,10 @@ import Orders from './components/Orders';
 import Return from './Return';
 import Policy from './components/Policy';
 import Terms from './components/Terms';
+import PaymentPage from './components/PaymentPage';
+import PaymentSuccess from './components/PaymentSuccess';
+import PaymentFailure from './components/PaymentFailure';
+
 const theme = {
   colors: {
     heading: 'rgb(24, 24, 29)',
@@ -37,7 +40,7 @@ const theme = {
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
   
@@ -45,9 +48,9 @@ const ScrollToTop = () => {
 }
 
 const AppContent = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = React.useState([]);
 
-  const addToCart = useCallback((product) => {
+  const addToCart = React.useCallback((product) => {
     setCartItems((prevCartItems) => {
       const existingItem = prevCartItems.find(item => item.id === product.id);
       if (existingItem) {
@@ -62,7 +65,7 @@ const AppContent = () => {
     });
   }, []);
 
-  const updateQuantity = useCallback((product, quantity) => {
+  const updateQuantity = React.useCallback((product, quantity) => {
     setCartItems(prevCartItems =>
       prevCartItems
         .map(item =>
@@ -74,10 +77,14 @@ const AppContent = () => {
     );
   }, []);
 
-  const removeFromCart = useCallback((product) => {
+  const removeFromCart = React.useCallback((product) => {
     setCartItems(prevCartItems =>
       prevCartItems.filter(item => item.id !== product.id)
     );
+  }, []);
+
+  const clearCart = React.useCallback(() => {
+    setCartItems([]);
   }, []);
 
   return (
@@ -100,9 +107,12 @@ const AppContent = () => {
             cartItems={cartItems}
             updateQuantity={updateQuantity}
             removeFromCart={removeFromCart}
-            onBuyNow={(product) => console.log(`Buy now ${product.name}`)}
+            clearCart={clearCart}
           />
         } />
+        <Route path="/pay" element={<PaymentPage cartItems={cartItems} clearCart={clearCart} />} />
+        <Route path="/payment/success" element={<PaymentSuccess />} />
+        <Route path="/payment/failure" element={<PaymentFailure />} />
         <Route path="/about" element={<About />} />
       </Routes> 
       <Footer />
