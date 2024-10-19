@@ -134,288 +134,290 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart, clearCart }) => {
   };
 
   if (orderPlaced) {
-    return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="min-h-screen py-12 bg-black"
-      >
-        <div className="container max-w-3xl px-4 mx-auto">
-          <div className="p-8 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm">
-            <FaCheckCircle className="mx-auto mb-6 text-6xl text-green-500" />
-            <h2 className="mb-4 text-3xl font-light text-center text-white">Order Confirmed!</h2>
-            <p className="mb-6 text-xl text-center text-gray-300">Thank you for your purchase. Your order ID is: {orderId}</p>
-            <div className="flex justify-center">
-              <button
-                onClick={() => navigate('/products')}
-                className="px-6 py-3 text-base font-light text-black transition-colors bg-white rounded-full hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-              >
-                Continue Shopping
-              </button>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    );
-  }
+   // ... (previous imports and component definition)
 
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="min-h-screen py-6 bg-black sm:py-12"
-    >
-      <div className="container px-4 mx-auto max-w-7xl">
-        <h1 className="mb-6 text-2xl font-light text-center text-white sm:mb-8 sm:text-4xl">Your Cart</h1>
-        
-        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
-    
-        {cartItems.length === 0 ? (
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="p-6 text-center bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm sm:p-12"
+return (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    className="min-h-screen py-12 bg-[#F9F6EE]"
+  >
+    <div className="container max-w-3xl px-4 mx-auto">
+      <div className="p-8 bg-white border border-gray-200 rounded-lg shadow-sm">
+        <FaCheckCircle className="mx-auto mb-6 text-6xl text-green-500" />
+        <h2 className="mb-4 text-3xl font-light text-center text-gray-800">Order Confirmed!</h2>
+        <p className="mb-6 text-xl text-center text-gray-600">Thank you for your purchase. Your order ID is: {orderId}</p>
+        <div className="flex justify-center">
+          <button
+            onClick={() => navigate('/products')}
+            className="px-6 py-3 text-base font-light text-white transition-colors bg-gray-800 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white"
           >
-            <FaShoppingCart className="mx-auto mb-4 text-6xl text-white sm:mb-6 sm:text-8xl animate-bounce" />
-            <p className="mb-6 text-xl text-gray-300 sm:mb-8 sm:text-2xl">Your cart is empty. Start exploring our products!</p>
-            <button className="w-full px-6 py-3 text-base font-light text-black transition-colors bg-white rounded-full sm:w-auto sm:px-8 sm:py-4 sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black">
-              <FaArrowRight className="inline-block mr-2" />
-              <Link to="/products">Continue Shopping</Link>
-            </button>
-          </motion.div>
-        ) : (
-          <div className="grid grid-cols-1 gap-6 lg:gap-8 lg:grid-cols-3">
-            <div className="space-y-4 sm:space-y-6 lg:col-span-2">
-              <AnimatePresence>
-                {cartItems.map((item) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden transition-shadow duration-300 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm"
-                  >
-                    <div className="flex flex-col sm:flex-row">
-                      <div className="w-full sm:w-1/3">
-                        <img src={item.image} alt={item.name} className="object-cover w-full h-48 sm:h-full" />
-                      </div>
-                      <div className="flex-1 p-4 sm:p-6">
-                        <h3 className="mb-2 text-lg font-light text-white sm:text-xl">{item.name}</h3>
-                        <p className="mb-4 text-xl font-light text-gray-300 sm:text-2xl">
-                          {item.price}
-                        </p>
-                        <div className="flex flex-col items-center justify-between sm:flex-row">
-                          <div className="flex items-center mb-4 overflow-hidden border border-white rounded-lg sm:mb-0">
-                            <button
-                              onClick={() => handleQuantityChange(item, item.quantity - 1)}
-                              className="px-3 py-1 text-black transition-colors bg-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
-                            >
-                              <FaMinus className="text-black" />
-                            </button>
-                            <input
-                              type="number"
-                              value={item.quantity}
-                              onChange={(e) => handleQuantityChange(item, parseInt(e.target.value, 10))}
-                              className="w-16 text-center text-white bg-black border-l border-r border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
-                            />
-                            <button
-                              onClick={() => handleQuantityChange(item, item.quantity + 1)}
-                              className="px-3 py-1 text-black transition-colors bg-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
-                            >
-                              <FaPlus className="text-black" />
-                            </button>
-                          </div>
-                          <button
-                            onClick={() => removeFromCart(item)}
-                            className="p-2 text-white transition-colors bg-red-600 rounded-full hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black"
-                          >
-                            <FaTrash />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+            Continue Shopping
+          </button>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+}
+
+return (
+<motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+  className="min-h-screen py-6 bg-[#F9F6EE] sm:py-12"
+>
+  <div className="container px-4 mx-auto max-w-7xl">
+    <h1 className="mb-6 text-2xl font-light text-center text-gray-800 sm:mb-8 sm:text-4xl">Your Cart</h1>
     
-              {/* Apply Coupon Section */}
+    <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
+
+    {cartItems.length === 0 ? (
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="p-6 text-center bg-white border border-gray-200 rounded-lg shadow-sm sm:p-12"
+      >
+        <FaShoppingCart className="mx-auto mb-4 text-6xl text-gray-400 sm:mb-6 sm:text-8xl animate-bounce" />
+        <p className="mb-6 text-xl text-gray-600 sm:mb-8 sm:text-2xl">Your cart is empty. Start exploring our products!</p>
+        <button className="w-full px-6 py-3 text-base font-light text-white transition-colors bg-gray-800 rounded-full sm:w-auto sm:px-8 sm:py-4 sm:text-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white">
+          <FaArrowRight className="inline-block mr-2" />
+          <Link to="/products">Continue Shopping</Link>
+        </button>
+      </motion.div>
+    ) : (
+      <div className="grid grid-cols-1 gap-6 lg:gap-8 lg:grid-cols-3">
+        <div className="space-y-4 sm:space-y-6 lg:col-span-2">
+          <AnimatePresence>
+            {cartItems.map((item) => (
               <motion.div
+                key={item.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.2 }}
-                className="p-4 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm sm:p-6"
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden transition-shadow duration-300 bg-white border border-gray-200 rounded-lg shadow-sm"
               >
-                <h3 className="flex items-center mb-4 text-lg font-light text-white sm:text-xl">
-                  <FaPercent className="mr-2 text-white" /> Apply Coupon
-                </h3>
-                {appliedCoupon ? (
-                  <div className="flex items-center justify-between p-3 bg-white rounded-lg bg-opacity-10">
-                    <span className="text-gray-300">Coupon {appliedCoupon.code} applied</span>
-                    <button
-                      onClick={removeCoupon}
-                      className="px-3 py-1 text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black"
-                    >
-                      Remove
-                    </button>
+                <div className="flex flex-col sm:flex-row">
+                  <div className="w-full sm:w-1/3">
+                    <img src={item.image} alt={item.name} className="object-cover w-full h-48 sm:h-full" />
                   </div>
-                ) : (
-                  <div className="flex flex-col items-center justify-between sm:flex-row">
-                    <input
-                      type="text"
-                      value={couponCode}
-                      onChange={(e) => setCouponCode(e.target.value)}
-                      className="w-full px-3 py-2 mb-4 text-center text-white bg-black border border-white rounded-lg sm:w-auto sm:mb-0 sm:text-left focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
-                      placeholder="Enter coupon code"
-                    />
-                    <button
-                      onClick={applyCoupon}
-                      className="px-6 py-3 font-light text-black transition-colors bg-white rounded-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-                    >
-                      Apply
-                    </button>
-                  </div>
-                )}
-              </motion.div>
-            </div>
-    
-            {/* Summary Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
-              className="p-6 border border-white rounded-lg bg-black bg-opacity-50 backdrop-filter backdrop-blur-sm sm:p-8 flex flex-col h-[calc(100vh-200px)] sticky top-24"
-            >
-              <h2 className="mb-4 text-xl font-light text-white sm:text-2xl">Order Summary</h2>
-              <div className="flex-grow mb-4 overflow-y-auto">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-lg font-light text-gray-300">
-                    <span>Subtotal</span>
-                    <span>₹{subtotal.toFixed(2)}</span>
-                  </div>
-                  {appliedCoupon && (
-                    <div className="flex items-center justify-between text-lg font-light text-gray-300">
-                      <span>Discount</span>
-                      <span>-₹{discount.toFixed(2)}</span>
+                  <div className="flex-1 p-4 sm:p-6">
+                    <h3 className="mb-2 text-lg font-light text-gray-800 sm:text-xl">{item.name}</h3>
+                    <p className="mb-4 text-xl font-light text-gray-600 sm:text-2xl">
+                      {item.price}
+                    </p>
+                    <div className="flex flex-col items-center justify-between sm:flex-row">
+                      <div className="flex items-center mb-4 overflow-hidden border border-gray-300 rounded-lg sm:mb-0">
+                        <button
+                          onClick={() => handleQuantityChange(item, item.quantity - 1)}
+                          className="px-3 py-1 text-white transition-colors bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-inset"
+                        >
+                          <FaMinus className="text-white" />
+                        </button>
+                        <input
+                          type="number"
+                          value={item.quantity}
+                          onChange={(e) => handleQuantityChange(item, parseInt(e.target.value, 10))}
+                          className="w-16 text-center text-gray-800 bg-white border-l border-r border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-inset"
+                        />
+                        <button
+                          onClick={() => handleQuantityChange(item, item.quantity + 1)}
+                          className="px-3 py-1 text-white transition-colors bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-inset"
+                        >
+                          <FaPlus className="text-white" />
+                        </button>
+                      </div>
+                      <button
+                        onClick={() => removeFromCart(item)}
+                        className="p-2 text-white transition-colors bg-red-600 rounded-full hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-white"
+                      >
+                        <FaTrash />
+                      </button>
                     </div>
-                  )}
+                  </div>
                 </div>
-              </div>
-              <div className="pt-4 border-t border-white">
-                <div className="flex items-center justify-between mb-6 text-lg font-light text-white">
-                  <span>Total</span>
-                  <span>₹{total.toFixed(2)}</span>
-                </div>
-                <button
-                  onClick={handleCheckout}
-                  className="w-full px-6 py-3 text-base font-light text-black transition-colors bg-white rounded-full sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-                >
-                  Proceed to Checkout
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-    
-        {/* Checkout Form */}
-        {isCheckingOut && (
+              </motion.div>
+            ))}
+          </AnimatePresence>
+
+          {/* Apply Coupon Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="p-6 mt-8 bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm sm:p-8"
+            transition={{ duration: 0.3, delay: 0.2 }}
+            className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6"
           >
-            <h2 className="mb-6 text-2xl font-light text-white">Customer Information</h2>
-            <form onSubmit={onSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-light text-gray-300">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={customerInfo.name}
-                  onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
-                  className="block w-full px-4 py-3 mt-1 text-white bg-black border border-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-white"
-                  required
-                />
-              </div>
-    
-              <div>
-                <label htmlFor="email" className="block text-sm font-light text-gray-300">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={customerInfo.email}
-                  onChange={(e) => setCustomerInfo({ ...customerInfo, email: e.target.value })}
-                  className="block w-full px-4 py-3 mt-1 text-white bg-black border border-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-white"
-                  required
-                />
-              </div>
-    
-              <div>
-                <label htmlFor="phoneNo" className="block text-sm font-light text-gray-300">Phone Number</label>
-                <input
-                  type="tel"
-                  id="phoneNo"
-                  name="phoneNo"
-                  value={customerInfo.phoneNo}
-                  onChange={(e) => setCustomerInfo({ ...customerInfo, phoneNo: e.target.value })}
-                  className="block w-full px-4 py-3 mt-1 text-white bg-black border border-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-white"
-                  required
-                />
-              </div>
-    
-              <div>
-                <label htmlFor="address" className="block text-sm font-light text-gray-300">Address</label>
-                <textarea
-                  id="address"
-                  name="address"
-                  value={customerInfo.address}
-                  onChange={(e) => setCustomerInfo({ ...customerInfo, address: e.target.value })}
-                  className="block w-full px-4 py-3 mt-1 text-white bg-black border border-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-white"
-                  required
-                  rows="3"
-                ></textarea>
-              </div>
-    
-              <div>
-                <label htmlFor="pincode" className="block text-sm font-light text-gray-300">Pincode</label>
-                <input
-                  type="text"
-                  id="pincode"
-                  name="pincode"
-                  value={customerInfo.pincode}
-                  onChange={(e) => setCustomerInfo({ ...customerInfo, pincode: e.target.value })}
-                  className="block w-full px-4 py-3 mt-1 text-white bg-black border border-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-white"
-                  required
-                />
-              </div>
-    
-              <div className="flex justify-between">
+            <h3 className="flex items-center mb-4 text-lg font-light text-gray-800 sm:text-xl">
+              <FaPercent className="mr-2 text-gray-600" /> Apply Coupon
+            </h3>
+            {appliedCoupon ? (
+              <div className="flex items-center justify-between p-3 bg-gray-100 rounded-lg">
+                <span className="text-gray-600">Coupon {appliedCoupon.code} applied</span>
                 <button
-                  type="button"
-                  onClick={cancelOrder}
-                  className="px-6 py-3 text-base font-light text-white transition duration-200 bg-black border border-white rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-white hover:text-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+                  onClick={removeCoupon}
+                  className="px-3 py-1 text-white transition-colors bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-white"
                 >
-                  Cancel Order
-                </button>
-                
-                <button
-                  type="submit"
-                  className="px-6 py-3 text-base font-light text-black transition duration-200 bg-white rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-                >
-                  Place Order
+                  Remove
                 </button>
               </div>
-            </form>
+            ) : (
+              <div className="flex flex-col items-center justify-between sm:flex-row">
+                <input
+                  type="text"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  className="w-full px-3 py-2 mb-4 text-center text-gray-800 bg-white border border-gray-300 rounded-lg sm:w-auto sm:mb-0 sm:text-left focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-inset"
+                  placeholder="Enter coupon code"
+                />
+                <button
+                  onClick={applyCoupon}
+                  className="px-6 py-3 font-light text-white transition-colors bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white"
+                >
+                  Apply
+                </button>
+              </div>
+            )}
           </motion.div>
-        )}
+        </div>
+
+        {/* Summary Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.4 }}
+          className="p-6 border border-gray-200 rounded-lg bg-white shadow-sm sm:p-8 flex flex-col h-[calc(100vh-200px)] sticky top-24"
+        >
+          <h2 className="mb-4 text-xl font-light text-gray-800 sm:text-2xl">Order Summary</h2>
+          <div className="flex-grow mb-4 overflow-y-auto">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-lg font-light text-gray-600">
+                <span>Subtotal</span>
+                <span>₹{subtotal.toFixed(2)}</span>
+              </div>
+              {appliedCoupon && (
+                <div className="flex items-center justify-between text-lg font-light text-gray-600">
+                  <span>Discount</span>
+                  <span>-₹{discount.toFixed(2)}</span>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-between mb-6 text-lg font-light text-gray-800">
+              <span>Total</span>
+              <span>₹{total.toFixed(2)}</span>
+            </div>
+            <button
+              onClick={handleCheckout}
+              className="w-full px-6 py-3 text-base font-light text-white transition-colors bg-gray-800 rounded-full sm:text-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white"
+            >
+              Proceed to Checkout
+            </button>
+          </div>
+        </motion.div>
       </div>
-    </motion.div>
+    )}
+
+    {/* Checkout Form */}
+    {isCheckingOut && (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="p-6 mt-8 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8"
+      >
+        <h2 className="mb-6 text-2xl font-light text-gray-800">Customer Information</h2>
+        <form onSubmit={onSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="name" className="block text-sm font-light text-gray-600">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={customerInfo.name}
+              onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
+              className="block w-full px-4 py-3 mt-1 text-gray-800 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-light text-gray-600">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={customerInfo.email}
+              onChange={(e) => setCustomerInfo({ ...customerInfo, email: e.target.value })}
+              className="block w-full px-4 py-3 mt-1 text-gray-800 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="phoneNo" className="block text-sm font-light text-gray-600">Phone Number</label>
+            <input
+              type="tel"
+              id="phoneNo"
+              name="phoneNo"
+              value={customerInfo.phoneNo}
+              onChange={(e) => setCustomerInfo({ ...customerInfo, phoneNo: e.target.value })}
+              className="block w-full px-4 py-3 mt-1 text-gray-800 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="address" className="block text-sm font-light text-gray-600">Address</label>
+            <textarea
+              id="address"
+              name="address"
+              value={customerInfo.address}
+              onChange={(e) => setCustomerInfo({ ...customerInfo, address: e.target.value })}
+              className="block w-full px-4 py-3 mt-1 text-gray-800 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+              required
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div>
+            <label htmlFor="pincode" className="block text-sm font-light text-gray-600">Pincode</label>
+            <input
+              type="text"
+              id="pincode"
+              name="pincode"
+              value={customerInfo.pincode}
+              onChange={(e) => setCustomerInfo({ ...customerInfo, pincode: e.target.value })}
+              className="block w-full px-4 py-3 mt-1 text-gray-800 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+              required
+            />
+          </div>
+
+          <div className="flex justify-between">
+            <button
+              type="button"
+              onClick={cancelOrder}
+              className="px-6 py-3 text-base font-light text-gray-800 transition duration-200 bg-white border border-gray-300 rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white"
+            >
+              Cancel Order
+            </button>
+            
+            <button
+              type="submit"
+              className="px-6 py-3 text-base font-light text-white transition duration-200 bg-gray-800 rounded-full sm:px-8 sm:py-4 sm:text-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-white"
+            >
+              Place Order
+            </button>
+          </div>
+        </form>
+      </motion.div>
+    )}
+  </div>
+</motion.div>
   );
 };
 

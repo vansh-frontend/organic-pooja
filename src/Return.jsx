@@ -13,9 +13,9 @@ const PolicySection = ({ title, items, icon }) => {
       <div className="container px-6 mx-auto">
         <div className="flex items-center mb-6">
           <div className="p-3 bg-white rounded-full bg-opacity-10">{icon}</div>
-          <h2 className="ml-5 text-2xl font-light text-white">{title}</h2>
+          <h2 className="ml-5 text-2xl font-light text-gray-800">{title}</h2>
         </div>
-        <ul className="pl-4 space-y-3 text-gray-300">
+        <ul className="pl-4 space-y-3 text-gray-800">
           {items.map((item, index) => (
             <motion.li 
               key={index} 
@@ -24,7 +24,7 @@ const PolicySection = ({ title, items, icon }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <span className="mr-3 text-white">•</span>
+              <span className="mr-3 text-gray-800">•</span>
               <span className="text-base font-light">{item}</span>
             </motion.li>
           ))}
@@ -56,7 +56,7 @@ const Return = () => {
         "Warranty issues should be referred to manufacturers.",
         "Approved refunds processed within 7 days."
       ],
-      icon: <FaBook className="text-2xl text-white" />
+      icon: <FaBook className="text-2xl text-gray-800" />
     },
     {
       title: "Return Policy",
@@ -68,7 +68,7 @@ const Return = () => {
         "Some product categories may be exempt from returns or refunds.",
         "Returns are subject to inspection and approval."
       ],
-      icon: <FaExchangeAlt className="text-2xl text-white" />
+      icon: <FaExchangeAlt className="text-2xl text-gray-800" />
     },
     {
       title: "Shipping Policy",
@@ -80,19 +80,19 @@ const Return = () => {
         "Service delivery confirmed via registered email.",
         "Shipping costs are non-refundable."
       ],
-      icon: <FaTruck className="text-2xl text-white" />
+      icon: <FaTruck className="text-2xl text-gray-800" />
     }
   ];
 
   return (
-    <div className="min-h-screen text-white bg-black">
-      <header className="py-20 bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg">
+    <div className="min-h-screen text-gray-800 bg-[#F9F6EE]">
+      <header className="py-20 text-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-lg">
         <div className="container px-6 mx-auto">
           <motion.h1 
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mb-4 text-4xl font-light text-center text-white md:text-5xl lg:text-6xl"
+            className="mb-4 text-4xl font-light text-center text-gray-800 md:text-5xl lg:text-6xl"
           >
             Our Refund & Cancellation Policy
           </motion.h1>
@@ -100,7 +100,7 @@ const Return = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="max-w-2xl mx-auto mt-4 text-xl text-center text-gray-300 md:text-2xl"
+            className="max-w-2xl mx-auto mt-4 text-xl text-center text-gray-800 md:text-2xl"
           >
             We strive to ensure your satisfaction with our products and services
           </motion.p>
@@ -111,16 +111,16 @@ const Return = () => {
             className="flex flex-wrap justify-center mt-12 space-x-8"
           >
             <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center mb-4">
-              <FaExchangeAlt className="mb-2 text-4xl text-white" />
-              <span className="text-sm font-light text-gray-300">Easy Returns</span>
+              <FaExchangeAlt className="mb-2 text-4xl text-gray-800" />
+              <span className="text-sm font-light text-gray-800">Easy Returns</span>
             </motion.div>
             <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center mb-4"> 
-              <FaMoneyBillWave className="mb-2 text-4xl text-white" />
-              <span className="text-sm font-light text-gray-300">Quick Refunds</span>
+              <FaMoneyBillWave className="mb-2 text-4xl text-gray-800" />
+              <span className="text-sm font-light text-gray-800">Quick Refunds</span>
             </motion.div>
             <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center mb-4">
-              <FaShippingFast className="mb-2 text-4xl text-white" />
-              <span className="text-sm font-light text-gray-300">Fast Shipping</span>
+              <FaShippingFast className="mb-2 text-4xl text-gray-800" />
+              <span className="text-sm font-light text-gray-800">Fast Shipping</span>
             </motion.div>
           </motion.div>
         </div>
@@ -130,8 +130,8 @@ const Return = () => {
         <PolicySection key={index} {...policy} />
       ))}
 
-      <footer className="py-16 bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg">
-        <div className="container px-6 mx-auto text-center">
+      <footer className="py-16 bg-opacity-50 backdrop-filter backdrop-blur-lg">
+        <div className="container px-6 mx-auto text-center">  
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

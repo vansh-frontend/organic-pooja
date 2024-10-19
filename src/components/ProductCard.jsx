@@ -7,13 +7,13 @@ const CustomAlert = ({ message, onClose }) => (
     initial={{ opacity: 0, y: -50 }}
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -50 }}
-    className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30 backdrop-blur-sm"
   >
-    <div className="p-6 bg-black border rounded-lg shadow-lg bg-opacity-80 border-white/20">
-      <p className="mb-4 text-lg font-light text-white">{message}</p>
+    <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
+      <p className="mb-4 text-lg font-medium text-gray-800">{message}</p>
       <button
         onClick={onClose}
-        className="px-4 py-2 text-sm font-light tracking-wider text-black transition-colors duration-200 bg-white rounded hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white"
+        className="px-4 py-2 text-sm font-medium tracking-wider text-white transition-colors duration-200 bg-gray-800 rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
       >
         CLOSE
       </button>
@@ -32,7 +32,7 @@ const ProductCard = memo(({ product, onAddToCart, onMoreDetails }) => {
   return (
     <>
       <motion.div
-        className="flex flex-col h-full overflow-hidden transition-all duration-300 bg-black bg-opacity-50 rounded-lg shadow-md backdrop-filter backdrop-blur-sm hover:shadow-lg"
+        className="flex flex-col h-full overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-sm hover:shadow-md"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
@@ -46,17 +46,17 @@ const ProductCard = memo(({ product, onAddToCart, onMoreDetails }) => {
             whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.3 }}
           />
-          <div className="absolute px-2 py-1 text-xs font-light tracking-wider text-black bg-white rounded-full top-2 right-2">
+          <div className="absolute px-2 py-1 text-xs font-medium tracking-wider text-white bg-gray-800 rounded-full top-2 right-2">
             IN STOCK
           </div>
         </div>
         <div className="flex flex-col flex-grow p-4">
-          <h3 className="mb-2 text-base font-light tracking-wide text-white line-clamp-2 sm:text-lg">{product.name}</h3>
-          <p className="mt-auto mb-4 text-xl font-light text-white">{product.price}</p>
+          <h3 className="mb-2 text-base font-medium tracking-wide text-gray-800 line-clamp-2 sm:text-lg">{product.name}</h3>
+          <p className="mt-auto mb-4 text-xl font-semibold text-gray-800">{product.price}</p>
           <div className="flex space-x-2">
             <motion.button
               onClick={() => onMoreDetails(product)}
-              className="flex-1 px-3 py-1.5 text-xs font-light tracking-wider text-white transition-colors duration-200 bg-transparent border border-white rounded hover:bg-white hover:text-black focus:outline-none focus:ring-2 focus:ring-white sm:text-sm"
+              className="flex-1 px-3 py-1.5 text-xs font-medium tracking-wider text-gray-800 transition-colors duration-200 bg-transparent border border-gray-300 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 sm:text-sm"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -64,7 +64,7 @@ const ProductCard = memo(({ product, onAddToCart, onMoreDetails }) => {
             </motion.button>
             <motion.button
               onClick={handleAddToCart}
-              className="flex-1 px-3 py-1.5 text-xs font-light tracking-wider text-black transition-all duration-200 bg-white rounded hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white sm:text-sm"
+              className="flex-1 px-3 py-1.5 text-xs font-medium tracking-wider text-white transition-all duration-200 bg-gray-800 rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 sm:text-sm"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
