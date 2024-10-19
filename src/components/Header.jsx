@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 
 const Header = () => {
   return (
-    <header className="sticky top-0 z-50 bg-[#f9f7f1] shadow-md">
+    <header className="sticky top-0 z-50 bg-[#ffff] shadow-md">
       {/* Call Us Section */}
       <div className="flex items-center justify-center py-2 space-x-2 text-gray-100 bg-black">
         <IconPhoneCall size={20} className="text-gray-100" />

@@ -245,14 +245,14 @@ const Home = () => {
       {/* Services Section */}
 
  {/* Services Section */}
- <section className="relative min-h-screen overflow-hidden text-white bg-black">
+ <section className="relative min-h-screen overflow-hidden text-black bg-[#F9F6EE]">
   <motion.div 
     className="absolute inset-0 z-0"
     initial={{ scale: 1.2, opacity: 0 }}
     animate={{ scale: 1, opacity: 1 }}
     transition={{ duration: 1.5 }}
   >
-    <div className="absolute inset-0 opacity-75 bg-gradient-to-r from-black via-transparent to-black"></div>
+    <div className="absolute inset-0 opacity-75 bg-gradient-to-r from-[#F9F6EE] via-transparent to-[#F9F6EE]"></div>
   </motion.div>
 
   <div className="container relative z-10 flex flex-col justify-center min-h-screen px-4 py-16 mx-auto">
@@ -263,12 +263,12 @@ const Home = () => {
       transition={{ duration: 0.8 }}
     >
       <motion.h2 
-        className="mb-4 text-3xl font-light md:text-4xl lg:text-5xl"
+        className="mb-4 text-3xl font-light text-gray-800 md:text-4xl lg:text-5xl"
       >
         Our Premium <span className="font-semibold">Services</span>
       </motion.h2>
       <motion.p
-        className="text-lg text-gray-300 md:text-xl lg:text-2xl"
+        className="text-lg text-gray-600 md:text-xl lg:text-2xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -293,27 +293,27 @@ const Home = () => {
       ].map((service, index) => (
         <motion.div 
           key={index}
-          className="relative p-4 bg-white rounded-lg sm:p-6 bg-opacity-10 backdrop-filter backdrop-blur-sm group"
+          className="relative p-4 bg-white rounded-lg shadow-md sm:p-6 group"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
         >
-          <h3 className="mb-2 text-base font-light tracking-widest text-white sm:text-lg">{service.title}</h3>
-          <p className="mb-4 text-sm font-light text-gray-300">{service.desc}</p>
+          <h3 className="mb-2 text-base font-medium tracking-widest text-gray-800 sm:text-lg">{service.title}</h3>
+          <p className="mb-4 text-sm text-gray-600">{service.desc}</p>
           <a 
             href="#" 
-            className="text-sm font-light tracking-wider text-white uppercase transition-colors duration-300 hover:text-gray-300"
+            className="text-sm font-medium tracking-wider text-gray-700 uppercase transition-colors duration-300 hover:text-gray-900"
           >
             Learn more
           </a>
-          <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></div>
+          <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></div>
         </motion.div>
       ))}
     </motion.div>
   </div>
 
   <motion.div
-    className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white to-transparent"
+    className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-black to-transparent"
     animate={{
       scaleX: [1, 1.5, 1],
       opacity: [0.3, 0.6, 0.3]
@@ -326,12 +326,11 @@ const Home = () => {
   />
 </section>
 
-
 {/* Product Section */}
-<section className="relative py-24 overflow-hidden text-white bg-black">
+<section className="relative py-24 overflow-hidden text-black bg-[#F9F6EE]">
   <div className="absolute inset-0 opacity-5">
     <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
-      <path fill="#ffffff" fillOpacity="0.4" d="M14 16H9v-2h5V9h2v5h5v2h-5v5h-2v-5zM64 62v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm-32 0v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm0-48v2h-5v5h-2v-5h-5v-2h5V9h2v5h5z"></path>
+      <path fill="#000000" fillOpacity="0.4" d="M14 16H9v-2h5V9h2v5h5v2h-5v5h-2v-5zM64 62v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm-32 0v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm0-48v2h-5v5h-2v-5h-5v-2h5V9h2v5h5z"></path>
     </svg>
   </div>
   
@@ -343,12 +342,12 @@ const Home = () => {
       transition={{ duration: 0.8 }}
     >
       <motion.h2 
-        className="mb-4 text-3xl font-light md:text-4xl lg:text-5xl"
+        className="mb-4 text-3xl font-light text-gray-800 md:text-4xl lg:text-5xl"
       >
         Our Featured <span className="font-semibold">Products</span>
       </motion.h2>
       <motion.p
-        className="text-lg text-gray-300 md:text-xl"
+        className="text-lg text-gray-600 md:text-xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -373,16 +372,16 @@ const Home = () => {
       ].map((product, index) => (
         <motion.div 
           key={index}
-          className="flex flex-col overflow-hidden transition-all duration-300 border border-white rounded-lg bg-opacity-10 backdrop-filter backdrop-blur-sm hover:bg-white hover:bg-opacity-5"
+          className="flex flex-col overflow-hidden transition-all duration-300 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md"
           whileHover={{ scale: 1.03 }}
         >
           <div className="relative flex-shrink-0 h-48 sm:h-56 md:h-64">
             <img src={product.image} alt={product.name} className="absolute object-cover w-full h-full" />
           </div>
           <div className="flex flex-col flex-grow p-4">
-            <h3 className="mb-2 text-lg font-light sm:text-xl">{product.name}</h3>
-            <p className="mb-4 text-base font-semibold text-gray-100 sm:text-lg">{product.price}</p>
-            <button className="px-4 py-2 mt-auto text-sm font-light tracking-wider text-black transition-all duration-300 bg-white rounded-full hover:bg-opacity-80">
+            <h3 className="mb-2 text-lg font-medium text-gray-800 sm:text-xl">{product.name}</h3>
+            <p className="mb-4 text-base font-semibold text-gray-700 sm:text-lg">{product.price}</p>
+            <button className="px-4 py-2 mt-auto text-sm font-medium tracking-wider text-gray-800 transition-all duration-300 bg-transparent border border-gray-300 rounded-full hover:bg-gray-100">
               View Details
             </button>
           </div>
@@ -393,7 +392,7 @@ const Home = () => {
     <div className="text-center">
       <Link 
         to="/products" 
-        className="inline-flex items-center px-6 py-3 text-base font-light tracking-wider text-black transition-all duration-300 bg-white rounded-full sm:px-8 sm:text-lg hover:bg-opacity-80"
+        className="inline-flex items-center px-6 py-3 text-base font-medium tracking-wider text-gray-800 transition-all duration-300 bg-transparent border border-gray-300 rounded-full sm:px-8 sm:text-lg hover:bg-gray-100"
       >
         View All Products
         <FaArrowRight className="ml-2" />
@@ -403,7 +402,7 @@ const Home = () => {
 
   {/* Subtle floating elements */}
   <motion.div
-    className="absolute w-48 h-48 bg-white rounded-full sm:w-64 sm:h-64 top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+    className="absolute w-48 h-48 bg-gray-200 rounded-full sm:w-64 sm:h-64 top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-20"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, 90, 180, 270, 360],
@@ -417,7 +416,7 @@ const Home = () => {
     }}
   />
   <motion.div
-    className="absolute w-48 h-48 bg-white rounded-full sm:w-64 sm:h-64 bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+    className="absolute w-48 h-48 bg-gray-200 rounded-full sm:w-64 sm:h-64 bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-20"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, -90, -180, -270, -360],
@@ -431,19 +430,18 @@ const Home = () => {
     }}
   />
 
-  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
+  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 </section>
-
 
 {/* product section */}
 
 
 
       {/* About Us Section */}
-      <section className="relative min-h-screen overflow-hidden text-white bg-black">
+      <section className="relative min-h-screen py-24 overflow-hidden text-black bg-[#F9F6EE]">
   <div className="absolute inset-0 opacity-5">
     <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
-      <path fill="#ffffff" fillOpacity="0.4" d="M14 16H9v-2h5V9h2v5h5v2h-5v5h-2v-5zM64 62v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm-32 0v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm0-48v2h-5v5h-2v-5h-5v-2h5V9h2v5h5z"></path>
+      <path fill="#000000" fillOpacity="0.4" d="M14 16H9v-2h5V9h2v5h5v2h-5v5h-2v-5zM64 62v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm-32 0v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm0-48v2h-5v5h-2v-5h-5v-2h5V9h2v5h5z"></path>
     </svg>
   </div>
   
@@ -455,12 +453,12 @@ const Home = () => {
       transition={{ duration: 0.8 }}
     >
       <motion.h2 
-        className="mb-4 text-4xl font-light md:text-5xl lg:text-6xl"
+        className="mb-4 text-4xl font-light text-gray-800 md:text-5xl lg:text-6xl"
       >
         Discover <span className="font-semibold">Organic by Pooja</span>
       </motion.h2>
       <motion.p
-        className="text-xl text-gray-300 md:text-2xl"
+        className="text-xl text-gray-600 md:text-2xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -471,48 +469,48 @@ const Home = () => {
 
     <div className="grid gap-12 mb-16 md:grid-cols-2">
       <motion.div 
-        className="flex flex-col justify-between p-8 border border-white rounded-lg bg-opacity-10 backdrop-filter backdrop-blur-sm"
+        className="flex flex-col justify-between p-8 bg-white border border-gray-200 rounded-lg shadow-sm"
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <div>
           <div className="flex items-center mb-6">
-            <div className="flex items-center justify-center w-16 h-16 bg-white rounded-full">
-              <span className="text-2xl font-bold text-black">OP</span>
+            <div className="flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full">
+              <span className="text-2xl font-bold text-gray-800">OP</span>
             </div>
-            <h3 className="ml-4 text-3xl font-light text-white">Our Story</h3>
+            <h3 className="ml-4 text-3xl font-light text-gray-800">Our Story</h3>
           </div>
           
           <div className="space-y-6">
-            <p className="relative text-lg leading-relaxed text-gray-300">
-              <span className="absolute top-0 text-5xl text-white opacity-30 -left-4"></span>
-              Founded in <span className="font-light text-white">2019</span>, <span className="font-light text-white">ORGANIC BY POOJA</span> embarked on a mission to revolutionize skincare with natural, homemade solutions. Our journey from a small initiative to a trusted name in personalized care is a testament to our unwavering commitment to authenticity and quality.
+            <p className="relative text-lg leading-relaxed text-gray-600">
+              <span className="absolute top-0 text-5xl text-gray-300 opacity-30 -left-4"></span>
+              Founded in <span className="font-medium text-gray-800">2019</span>, <span className="font-medium text-gray-800">ORGANIC BY POOJA</span> embarked on a mission to revolutionize skincare with natural, homemade solutions. Our journey from a small initiative to a trusted name in personalized care is a testament to our unwavering commitment to authenticity and quality.
             </p>
-            <p className="text-lg leading-relaxed text-gray-300">
+            <p className="text-lg leading-relaxed text-gray-600">
               We believe in harnessing the power of nature to bring out your inner beauty, offering a range of organic products and services tailored to your unique needs.
             </p>
           </div>
         </div>
         
         <div className="flex justify-end mt-8">
-          <div className="px-6 py-2 text-sm font-light tracking-widest text-white border border-white rounded-full">
+          <div className="px-6 py-2 text-sm font-medium tracking-widest text-gray-800 border border-gray-300 rounded-full">
             EST. 2019
           </div>
         </div>
       </motion.div>
 
       <motion.div 
-        className="relative overflow-hidden border border-white rounded-lg bg-opacity-10 backdrop-filter backdrop-blur-sm"
+        className="relative overflow-hidden bg-white border border-gray-200 rounded-lg shadow-sm"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
         <img src="img/1.jpg" alt="Organic by Pooja" className="object-cover w-full h-full" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
         <div className="absolute bottom-0 left-0 right-0 p-8">
-          <h3 className="mb-4 text-2xl font-light text-white sm:text-3xl">Our Promise</h3>
-          <ul className="space-y-2 text-gray-200">
+          <h3 className="mb-4 text-2xl font-light text-gray-800 sm:text-3xl">Our Promise</h3>
+          <ul className="space-y-2 text-gray-600">
             {['100% Natural Ingredients', 'Personalized Skincare Solutions', 'Eco-friendly Practices', 'Cruelty-free Products'].map((item, index) => (
               <motion.li 
                 key={index}
@@ -521,7 +519,7 @@ const Home = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
               >
-                <svg className="w-6 h-6 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                <svg className="w-6 h-6 mr-2 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                 <span className="font-light">{item}</span>
               </motion.li>
             ))}
@@ -539,7 +537,7 @@ const Home = () => {
       {['VALUES', 'SERVICES', 'TESTIMONIALS'].map((section) => (
         <motion.button
           key={section}
-          className="relative px-8 py-6 overflow-hidden text-lg font-light tracking-widest text-white transition-all duration-300 border border-white rounded-lg hover:bg-white hover:bg-opacity-5 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+          className="relative px-8 py-6 overflow-hidden text-lg font-medium tracking-widest text-gray-800 transition-all duration-300 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50"
           onClick={() => setActiveSection(section)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -552,7 +550,7 @@ const Home = () => {
 
   {/* Subtle floating elements */}
   <motion.div
-    className="absolute w-64 h-64 bg-white rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+    className="absolute w-64 h-64 bg-gray-200 rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-20"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, 90, 180, 270, 360],
@@ -566,7 +564,7 @@ const Home = () => {
     }}
   />
   <motion.div
-    className="absolute w-64 h-64 bg-white rounded-full bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+    className="absolute w-64 h-64 bg-gray-200 rounded-full bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-20"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, -90, -180, -270, -360],
@@ -591,35 +589,35 @@ const Home = () => {
       style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
     >
       <motion.div 
-        className="relative w-full max-w-4xl p-8 overflow-y-auto border border-white bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-lg shadow-2xl max-h-[90vh]"
+        className="relative w-full max-w-4xl p-8 overflow-y-auto bg-white border border-gray-200 rounded-lg shadow-2xl max-h-[90vh]"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 50, opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
         <button
-          className="absolute text-gray-400 top-4 right-4 hover:text-gray-200"
+          className="absolute text-gray-600 top-4 right-4 hover:text-gray-800"
           onClick={() => setActiveSection(null)}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
-        <h3 className="mb-6 text-3xl font-light text-white">{activeSection}</h3>
+        <h3 className="mb-6 text-3xl font-light text-gray-800">{activeSection}</h3>
         
         {activeSection === 'VALUES' && (
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {values.map((item, index) => (
               <motion.div 
                 key={index} 
-                className="p-6 transition-all duration-300 border border-white rounded-lg hover:bg-white hover:bg-opacity-5"
+                className="p-6 transition-all duration-300 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <item.icon className="mb-4 text-4xl text-white" />
-                <h4 className="mb-2 text-lg font-light tracking-widest text-white">{item.text}</h4>
-                <p className="text-sm text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <item.icon className={`mb-4 text-4xl text-${item.color}-500`} />
+                <h4 className="mb-2 text-lg font-medium tracking-widest text-gray-800">{item.text}</h4>
+                <p className="text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </motion.div>
             ))}
           </div>
@@ -629,14 +627,14 @@ const Home = () => {
             {services.map((item, index) => (
               <motion.div 
                 key={index} 
-                className="p-6 transition-all duration-300 border border-white rounded-lg hover:bg-white hover:bg-opacity-5"
+                className="p-6 transition-all duration-300 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <item.icon className="mb-4 text-4xl text-white" />
-                <h4 className="mb-2 text-lg font-light tracking-widest text-white">{item.text}</h4>
-                <p className="text-sm text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <item.icon className={`mb-4 text-4xl text-${item.color}-500`} />
+                <h4 className="mb-2 text-lg font-medium tracking-widest text-gray-800">{item.text}</h4>
+                <p className="text-sm text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               </motion.div>
             ))}
           </div>
@@ -646,25 +644,25 @@ const Home = () => {
             {testimonials.map((item, index) => (
               <motion.div 
                 key={index} 
-                className="p-6 transition-all duration-300 border border-white rounded-lg hover:bg-white hover:bg-opacity-5"
+                className="p-6 transition-all duration-300 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <div className="flex items-center mb-4">
-                  <div className="flex items-center justify-center w-12 h-12 mr-4 text-black bg-white rounded-full">
+                  <div className="flex items-center justify-center w-12 h-12 mr-4 text-white bg-gray-800 rounded-full">
                     <span className="text-xl font-bold">{item.name[0]}</span>
                   </div>
                   <div>
-                    <p className="font-light tracking-widest text-white">{item.name}</p>
+                    <p className="font-medium tracking-widest text-gray-800">{item.name}</p>
                     <div className="flex">
                       {[...Array(5)].map((_, i) => (
-                        <FaStar key={i} className={`${i < item.rating ? 'text-yellow-400' : 'text-gray-600'} text-sm`} />
+                        <FaStar key={i} className={`${i < item.rating ? 'text-yellow-400' : 'text-gray-300'} text-sm`} />
                       ))}
                     </div>
                   </div>
                 </div>
-                <p className="text-sm italic text-gray-300">&ldquo;{item.text}&rdquo;</p>
+                <p className="text-sm italic text-gray-600">&ldquo;{item.review}&rdquo;</p>
               </motion.div>
             ))}
           </div>
@@ -673,118 +671,11 @@ const Home = () => {
     </motion.div>
   )}
 
-  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
+  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 </section>
       {/* Testimonials Section */}
 {/* Testimonials Section */}
- <section className="relative py-24 overflow-hidden text-white bg-black">
-        <div className="container relative z-10 px-4 mx-auto max-w-7xl">
-          <motion.div
-            className="mb-16 text-center"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.h2 
-                          className="mb-4 text-4xl font-light md:text-5xl lg:text-6xl"
-            >
-              What Our Clients <span className="font-semibold">Love About Us</span>
-            </motion.h2>
-            <motion.p
-              className="text-xl text-gray-300 md:text-2xl"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Hear from our satisfied customers about their experiences
-            </motion.p>
-          </motion.div>
-          
-          <div className="relative">
-            <motion.div 
-              ref={testimonialRef}
-              className="flex gap-6 pb-8 overflow-x-auto scrolling-touch scrolling-wrapper"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                  className="flex-shrink-0 p-6 transition-all duration-300 border border-white rounded-lg bg-opacity-10 backdrop-filter backdrop-blur-sm w-80 hover:bg-white hover:bg-opacity-5"
-                >
-                  <div className="flex items-center mb-4">
-                    <div className="flex items-center justify-center w-12 h-12 mr-3 text-black bg-white rounded-full">
-                      <span className="text-lg font-bold">{testimonial.name[0]}</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-light tracking-widest text-white truncate">{testimonial.name}</p>
-                      <div className="flex">
-                        {[...Array(5)].map((_, i) => (
-                          <FaStar key={i} className={`${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-600'} text-xs`} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-sm italic text-gray-300">{testimonial.review}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-
-          <div className="flex justify-center mt-8">
-            <button 
-              onClick={() => scrollTestimonials('left')}
-              className="p-2 mr-4 text-white transition-colors duration-300 border border-white rounded-full hover:bg-white hover:text-black"
-            >
-              <FaChevronLeft />
-            </button>
-            <button 
-              onClick={() => scrollTestimonials('right')}
-              className="p-2 text-white transition-colors duration-300 border border-white rounded-full hover:bg-white hover:text-black"
-            >
-              <FaChevronRight />
-            </button>
-          </div>
-        </div>
-
-        {/* Subtle floating elements */}
-        <motion.div
-          className="absolute w-64 h-64 bg-white rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-10"
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 180, 270, 360],
-            x: ['-25%', '0%', '-25%'],
-            y: ['-25%', '0%', '-25%'],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        />
-        <motion.div
-          className="absolute w-64 h-64 bg-white rounded-full bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-10"
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, -90, -180, -270, -360],
-            x: ['25%', '0%', '25%'],
-            y: ['25%', '0%', '25%'],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        />
-
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
-      </section>
-
-
-{/* FAQ Section */}
-<section className="relative min-h-screen py-24 text-white bg-black" ref={(el) => (sectionRefs.current[7] = el)}>
+<section className="relative py-24 overflow-hidden text-black bg-[#F9F6EE]">
   <div className="container relative z-10 px-4 mx-auto max-w-7xl">
     <motion.div
       className="mb-16 text-center"
@@ -793,12 +684,119 @@ const Home = () => {
       transition={{ duration: 0.8 }}
     >
       <motion.h2 
-        className="mb-4 text-4xl font-light md:text-5xl lg:text-6xl"
+        className="mb-4 text-4xl font-light text-gray-800 md:text-5xl lg:text-6xl"
+      >
+        What Our Clients <span className="font-semibold">Love About Us</span>
+      </motion.h2>
+      <motion.p
+        className="text-xl text-gray-600 md:text-2xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        Hear from our satisfied customers about their experiences
+      </motion.p>
+    </motion.div>
+    
+    <div className="relative">
+      <motion.div 
+        ref={testimonialRef}
+        className="flex gap-6 pb-8 overflow-x-auto scrolling-touch scrolling-wrapper"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+      >
+        {testimonials.map((testimonial, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.05 }}
+            className="flex-shrink-0 p-6 transition-all duration-300 bg-white border border-gray-200 rounded-lg shadow-sm w-80 hover:shadow-md"
+          >
+            <div className="flex items-center mb-4">
+              <div className="flex items-center justify-center w-12 h-12 mr-3 text-white bg-gray-800 rounded-full">
+                <span className="text-lg font-bold">{testimonial.name[0]}</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-medium tracking-widest text-gray-800 truncate">{testimonial.name}</p>
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar key={i} className={`${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'} text-xs`} />
+                  ))}
+                </div>
+              </div>
+            </div>
+            <p className="text-sm italic text-gray-600">{testimonial.review}</p>
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
+
+    <div className="flex justify-center mt-8">
+      <button 
+        onClick={() => scrollTestimonials('left')}
+        className="p-2 mr-4 text-gray-800 transition-colors duration-300 bg-white border border-gray-300 rounded-full hover:bg-gray-100"
+      >
+        <FaChevronLeft />
+      </button>
+      <button 
+        onClick={() => scrollTestimonials('right')}
+        className="p-2 text-gray-800 transition-colors duration-300 bg-white border border-gray-300 rounded-full hover:bg-gray-100"
+      >
+        <FaChevronRight />
+      </button>
+    </div>
+  </div>
+
+  {/* Subtle floating elements */}
+  <motion.div
+    className="absolute w-64 h-64 bg-gray-200 rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-20"
+    animate={{
+      scale: [1, 1.2, 1],
+      rotate: [0, 90, 180, 270, 360],
+      x: ['-25%', '0%', '-25%'],
+      y: ['-25%', '0%', '-25%'],
+    }}
+    transition={{
+      duration: 20,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+  />
+  <motion.div
+    className="absolute w-64 h-64 bg-gray-200 rounded-full bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-20"
+    animate={{
+      scale: [1, 1.2, 1],
+      rotate: [0, -90, -180, -270, -360],
+      x: ['25%', '0%', '25%'],
+      y: ['25%', '0%', '25%'],
+    }}
+    transition={{
+      duration: 25,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+  />
+
+  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+</section>
+
+
+{/* FAQ Section */}
+<section className="relative min-h-screen py-24 text-black bg-[#F9F6EE]" ref={(el) => (sectionRefs.current[7] = el)}>
+  <div className="container relative z-10 px-4 mx-auto max-w-7xl">
+    <motion.div
+      className="mb-16 text-center"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      <motion.h2 
+        className="mb-4 text-4xl font-light text-gray-800 md:text-5xl lg:text-6xl"
       >
         Frequently Asked <span className="font-semibold">Questions</span>
       </motion.h2>
       <motion.p
-        className="text-xl text-gray-300 md:text-2xl"
+        className="text-xl text-gray-600 md:text-2xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -820,7 +818,7 @@ const Home = () => {
 
   {/* Subtle floating elements */}
   <motion.div
-    className="absolute w-64 h-64 bg-white rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+    className="absolute w-64 h-64 bg-gray-200 rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-20"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, 90, 180, 270, 360],
@@ -834,7 +832,7 @@ const Home = () => {
     }}
   />
   <motion.div
-    className="absolute w-64 h-64 bg-white rounded-full bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+    className="absolute w-64 h-64 bg-gray-200 rounded-full bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-20"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, -90, -180, -270, -360],
@@ -848,14 +846,14 @@ const Home = () => {
     }}
   />
 
-  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
+  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 </section>
  {/* Contact Section */}
- <section ref={el => sectionRefs.current[4] = el} className="relative py-24 overflow-hidden text-white bg-black">
+ <section ref={el => sectionRefs.current[4] = el} className="relative py-24 overflow-hidden text-black bg-[#F9F6EE]">
   {/* Enhanced background pattern */}
   <div className="absolute inset-0 opacity-5">
     <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
-      <path fill="#ffffff" fillOpacity="0.4" d="M14 16H9v-2h5V9h2v5h5v2h-5v5h-2v-5zM64 62v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm-32 0v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm0-48v2h-5v5h-2v-5h-5v-2h5V9h2v5h5z"></path>
+      <path fill="#000000" fillOpacity="0.4" d="M14 16H9v-2h5V9h2v5h5v2h-5v5h-2v-5zM64 62v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm-32 0v2h-5v5h-2v-5h-5v-2h5v-5h2v5h5zm0-48v2h-5v5h-2v-5h-5v-2h5V9h2v5h5z"></path>
     </svg>
   </div>
   
@@ -867,12 +865,12 @@ const Home = () => {
       transition={{ duration: 0.8 }}
     >
       <motion.h2 
-        className="mb-4 text-4xl font-light md:text-5xl lg:text-6xl"
+        className="mb-4 text-4xl font-light text-gray-800 md:text-5xl lg:text-6xl"
       >
         Get in <span className="font-semibold">Touch</span>
       </motion.h2>
       <motion.p
-        className="max-w-2xl mx-auto text-xl text-gray-300 md:text-2xl"
+        className="max-w-2xl mx-auto text-xl text-gray-600 md:text-2xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -895,13 +893,13 @@ const Home = () => {
         >
           <Link 
             to={item.href}
-            className="flex flex-col items-center p-8 transition-all duration-300 border border-white rounded-lg hover:bg-white hover:bg-opacity-5 group"
+            className="flex flex-col items-center p-8 transition-all duration-300 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md group"
           >
-            <div className="flex items-center justify-center w-16 h-16 mb-4 text-3xl text-black bg-white rounded-full group-hover:animate-bounce">
+            <div className="flex items-center justify-center w-16 h-16 mb-4 text-3xl text-white bg-gray-800 rounded-full group-hover:animate-bounce">
               <item.icon />
             </div>
-            <h3 className="mb-2 text-lg font-light tracking-widest text-white">{item.text}</h3>
-            <p className="text-center text-gray-300 transition-colors duration-300 group-hover:text-white">
+            <h3 className="mb-2 text-lg font-medium tracking-widest text-gray-800">{item.text}</h3>
+            <p className="text-center text-gray-600 transition-colors duration-300 group-hover:text-gray-800">
               Click to {item.text.toLowerCase()}
             </p>
           </Link>
@@ -912,7 +910,7 @@ const Home = () => {
 
   {/* Subtle floating elements */}
   <motion.div
-    className="absolute w-64 h-64 bg-white rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+    className="absolute w-64 h-64 bg-gray-200 rounded-full top-1/4 left-1/4 mix-blend-overlay filter blur-3xl opacity-20"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, 90, 180, 270, 360],
@@ -926,7 +924,7 @@ const Home = () => {
     }}
   />
   <motion.div
-    className="absolute w-64 h-64 bg-white rounded-full bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-10"
+    className="absolute w-64 h-64 bg-gray-200 rounded-full bottom-1/4 right-1/4 mix-blend-overlay filter blur-3xl opacity-20"
     animate={{
       scale: [1, 1.2, 1],
       rotate: [0, -90, -180, -270, -360],
@@ -940,7 +938,7 @@ const Home = () => {
     }}
   />
 
-  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
+  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
 </section>
     </div>
   );

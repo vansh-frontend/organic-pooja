@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaStar } from 'react-icons/fa';
+import { FaChevronDown } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
 
@@ -11,22 +11,22 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="mb-6 overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-lg bg-opacity-10 backdrop-filter backdrop-blur-sm hover:shadow-xl"
+      className="mb-6 overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-sm hover:shadow-md"
     >
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => onToggle(id)}
         className={`flex items-center justify-between w-full px-6 py-4 text-left focus:outline-none transition-all duration-300 ${
-          isOpen ? 'text-white' : 'text-gray-300'
+          isOpen ? 'text-gray-800' : 'text-gray-600'
         }`}
       >
-        <span className="pr-4 text-lg font-light tracking-wider">{title}</span>
+        <span className="pr-4 text-lg font-medium tracking-wider">{title}</span>
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <FaStar className={`text-xl ${isOpen ? 'text-white' : 'text-gray-500'}`} />
+          <FaChevronDown className={`text-xl ${isOpen ? 'text-gray-800' : 'text-gray-500'}`} />
         </motion.span>
       </motion.button>
       <AnimatePresence initial={false}>
@@ -42,7 +42,7 @@ const AccordionItem = ({ id, title, content, isOpen, onToggle }) => {
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="px-6 py-4 text-gray-300 bg-white bg-opacity-5">
+            <div className="px-6 py-4 text-gray-600 bg-gray-50">
               {content}
             </div>
           </motion.div>
