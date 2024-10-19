@@ -63,8 +63,8 @@ const Book = () => {
                   <FaEnvelope className="mt-1 text-2xl text-white/80" />
                   <div>
                     <h3 className="mb-1 font-light text-white">Email</h3>
-                    <a href="mailto:info@organicbypooja.com" className="transition duration-300 text-white/80 hover:text-white">
-                      info@organicbypooja.com
+                    <a href="mailto:organicbypooja@gmail.com" className="transition duration-300 text-white/80 hover:text-white">
+                      organicbypooja@gmail.com
                     </a>
                   </div>
                 </motion.div>
