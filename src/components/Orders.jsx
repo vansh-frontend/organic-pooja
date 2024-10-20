@@ -163,7 +163,7 @@ const Orders = () => {
 
   if (orders.length === 0) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-black">
+      <div className="flex items-center justify-center min-h-screen bg-[#F9F6EE]">
       <div className="w-full max-w-md p-6 mx-4 text-center bg-black bg-opacity-50 border border-white rounded-lg backdrop-filter backdrop-blur-sm">
         <FaBox className="mx-auto mb-4 text-5xl text-white sm:text-6xl" />
         <h2 className="mb-2 text-xl font-light text-white sm:text-2xl">No Orders Yet</h2>
