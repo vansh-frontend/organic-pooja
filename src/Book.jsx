@@ -26,7 +26,7 @@ const Book = () => {
           >
             <h2 className="mb-8 text-3xl font-light leading-tight text-gray-800 lg:text-4xl">Contact <span className="font-normal">Us</span></h2>
             <p className="mb-12 text-lg font-light leading-relaxed text-gray-600">
-              Get in touch with us for a cosmic experience tailored just for you.
+              Get in touch with us for a cosmic experience tailored just for you...
             </p>
   
             <div className="space-y-6">
