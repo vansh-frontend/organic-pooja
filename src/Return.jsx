@@ -4,33 +4,31 @@ import { FaBook, FaExchangeAlt, FaTruck, FaFileDownload, FaMoneyBillWave, FaShip
 
 const PolicySection = ({ title, items, icon }) => {
   return (
-    <motion.section 
-      initial={{ opacity: 0, y: 50 }}
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="py-12 border-b border-white border-opacity-20"
+      transition={{ duration: 0.5 }}
+      className="p-6 mb-8 bg-white rounded-lg shadow-md"
     >
-      <div className="container px-6 mx-auto">
-        <div className="flex items-center mb-6">
-          <div className="p-3 bg-white rounded-full bg-opacity-10">{icon}</div>
-          <h2 className="ml-5 text-2xl font-light text-gray-800">{title}</h2>
-        </div>
-        <ul className="pl-4 space-y-3 text-gray-800">
-          {items.map((item, index) => (
-            <motion.li 
-              key={index} 
-              className="flex items-start"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <span className="mr-3 text-gray-800">•</span>
-              <span className="text-base font-light">{item}</span>
-            </motion.li>
-          ))}
-        </ul>
+      <div className="flex items-center mb-4">
+        <div className="p-3 bg-gray-100 rounded-full">{icon}</div>
+        <h2 className="ml-4 text-xl font-semibold text-gray-800">{title}</h2>
       </div>
-    </motion.section>
+      <ul className="space-y-2 text-gray-600">
+        {items.map((item, index) => (
+          <motion.li 
+            key={index}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
+            className="flex items-start"
+          >
+            <span className="mr-2 text-gray-400">•</span>
+            <span>{item}</span>
+          </motion.li>
+        ))}
+      </ul>
+    </motion.div>
   );
 };
 
@@ -56,7 +54,7 @@ const Return = () => {
         "Warranty issues should be referred to manufacturers.",
         "Approved refunds processed within 7 days."
       ],
-      icon: <FaBook className="text-2xl text-gray-800" />
+      icon: <FaBook className="text-2xl text-gray-600" />
     },
     {
       title: "Return Policy",
@@ -68,7 +66,7 @@ const Return = () => {
         "Some product categories may be exempt from returns or refunds.",
         "Returns are subject to inspection and approval."
       ],
-      icon: <FaExchangeAlt className="text-2xl text-gray-800" />
+      icon: <FaExchangeAlt className="text-2xl text-gray-600" />
     },
     {
       title: "Shipping Policy",
@@ -80,70 +78,63 @@ const Return = () => {
         "Service delivery confirmed via registered email.",
         "Shipping costs are non-refundable."
       ],
-      icon: <FaTruck className="text-2xl text-gray-800" />
+      icon: <FaTruck className="text-2xl text-gray-600" />
     }
   ];
 
   return (
-    <div className="min-h-screen text-gray-800 bg-[#F9F6EE]">
-      <header className="py-20 text-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-lg">
-        <div className="container px-6 mx-auto">
-          <motion.h1 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mb-4 text-4xl font-light text-center text-gray-800 md:text-5xl lg:text-6xl"
-          >
+    <div className="min-h-screen py-12 bg-[#F9F6EE]">
+      <div className="max-w-4xl px-4 mx-auto">
+        <motion.header
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-12 text-center"
+        >
+          <h1 className="mb-4 text-4xl font-bold text-gray-800">
             Our Refund & Cancellation Policy
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="max-w-2xl mx-auto mt-4 text-xl text-center text-gray-800 md:text-2xl"
-          >
+          </h1>
+          <p className="mb-8 text-xl text-gray-600">
             We strive to ensure your satisfaction with our products and services
-          </motion.p>
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex flex-wrap justify-center mt-12 space-x-8"
-          >
-            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center mb-4">
-              <FaExchangeAlt className="mb-2 text-4xl text-gray-800" />
-              <span className="text-sm font-light text-gray-800">Easy Returns</span>
+          </p>
+          <div className="flex justify-center space-x-8">
+            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center">
+              <FaExchangeAlt className="mb-2 text-3xl text-gray-600" />
+              <span className="text-sm text-gray-600">Easy Returns</span>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center mb-4"> 
-              <FaMoneyBillWave className="mb-2 text-4xl text-gray-800" />
-              <span className="text-sm font-light text-gray-800">Quick Refunds</span>
+            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center">
+              <FaMoneyBillWave className="mb-2 text-3xl text-gray-600" />
+              <span className="text-sm text-gray-600">Quick Refunds</span>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center mb-4">
-              <FaShippingFast className="mb-2 text-4xl text-gray-800" />
-              <span className="text-sm font-light text-gray-800">Fast Shipping</span>
+            <motion.div whileHover={{ scale: 1.1 }} className="flex flex-col items-center">
+              <FaShippingFast className="mb-2 text-3xl text-gray-600" />
+              <span className="text-sm text-gray-600">Fast Shipping</span>
             </motion.div>
-          </motion.div>
-        </div>
-      </header>
+          </div>
+        </motion.header>
 
-      {policies.map((policy, index) => (
-        <PolicySection key={index} {...policy} />
-      ))}
+        {policies.map((policy, index) => (
+          <PolicySection key={index} {...policy} />
+        ))}
 
-      <footer className="py-16 bg-opacity-50 backdrop-filter backdrop-blur-lg">
-        <div className="container px-6 mx-auto text-center">  
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mt-12 text-center"
+        >
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={downloadPDF}
             disabled={isDownloading}
-            className="inline-flex items-center px-8 py-3 text-base font-light text-black transition duration-300 ease-in-out bg-white rounded-full hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <FaFileDownload className="mr-2" />
             <span>{isDownloading ? 'Opening PDF...' : 'View Full Policy PDF'}</span>
           </motion.button>
-        </div>
-      </footer>
+        </motion.div>
+      </div>
     </div>
   );
 };
