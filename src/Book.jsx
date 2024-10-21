@@ -44,7 +44,7 @@ const Book = () => {
                   <FaMapMarkerAlt className="mt-1 text-2xl text-gray-600" />
                   <div className='flex flex-col'>
                     <h3 className="mb-1 font-light text-gray-800">Location 2</h3>
-                    <p className="text-gray-600">#E42 A New Multan Nagar
+                    <p className="text-gray-600">#E42 A New Multan Nagar.
                     Ground floor New Delhi</p>
                   </div>
                 </motion.div>
