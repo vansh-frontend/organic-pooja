@@ -1,9 +1,37 @@
 {
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@vercel/node",
-        "config": { "buildCommand": "npm run build" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "npm run build"
       }
-    ]
-  }
+    },
+    {
+      "src": "Backend/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/payment/validate/(.*)",
+      "dest": "/Backend/index.js"
+    },
+    {
+      "src": "/pay",
+      "dest": "/Backend/index.js"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/Backend/index.js"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/index.html"
+    }
+  ]
+}
