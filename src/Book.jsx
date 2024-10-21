@@ -35,7 +35,7 @@ const Book = () => {
                 <motion.div whileHover={{ scale: 1.05 }} className="flex items-start space-x-4">
                   <FaMapMarkerAlt className="mt-1 text-2xl text-gray-600" />
                   <div className='flex flex-col'>
-                    <h3 className="mb-1 font-light text-gray-800">Location</h3>
+                    <h3 className="mb-1 font-light text-gray-800">Location.</h3>
                     <p className="text-gray-600">#762 JanakPuri, Bareilly 243122</p>
                   </div>
                 </motion.div>
